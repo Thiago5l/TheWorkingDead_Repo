@@ -28,7 +28,7 @@ public class ObviedadZombieScript : MonoBehaviour
     {
         while (Zombiedad > 0)
         {
-            Zombiedad -= Time.deltaTime;
+           // Zombiedad -= Time.deltaTime;
         }
 
         if (Zombiedad <= 0)
