@@ -18,6 +18,16 @@ public class ObviedadZombieScript : MonoBehaviour
         
     }
 
+  /*IEnumerator WaitObviedad(int countLimit)
+    {
+        while (Zombiedad > 0)
+        {
+            Zombiedad = Zombiedad - 1;
+            yield return new WaitForSeconds(1);
+        }
+    */
+
+
     // Update is called once per frame
     void Update()
     {
@@ -26,14 +36,13 @@ public class ObviedadZombieScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        while (Zombiedad > 0)
-        {
-           // Zombiedad -= Time.deltaTime;
-        }
+        //while (Zombiedad > 0){}
 
         if (Zombiedad <= 0)
         {
             PlayerTransform.position = RespawnPoint.position;
         }
     }
+
+  
 }
