@@ -17,13 +17,7 @@ public class PlayerInteractor : MonoBehaviour
         if (transform.position.y <= respawnFallLimit) Respawn();
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            Respawn();
-        }
-    }
+    
     void Respawn()
     {
         playerRB.linearVelocity = new Vector3(0, 0, 0);
