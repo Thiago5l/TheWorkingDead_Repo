@@ -9,7 +9,9 @@ public class PlayerController : MonoBehaviour
     #region General Variables
     [Header("Editor References")]
     [SerializeField] Transform camTransform; //ref  transform cámara
-
+    
+    [SerializeField] float TaskDetectorRad;
+    [SerializeField] LayerMask interactablesLayer;
 
     [Header("Movement Parametres")]
     [SerializeField] float speed = 10f;
@@ -28,6 +30,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody PlayerRB;//ref a rigid boddy
     Vector2 moveImput;//almacén imput mov
     bool isGrounded;//determina si estás tocando el suelo
+    bool TaskDetector;
     #endregion
 
     private void Awake()
@@ -63,6 +66,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        TaskDetector = Physics.CheckSphere(this.gameObject.transform.position, TaskDetectorRad, interactablesLayer);
+
         HandleMovement();
         HandleRotation();
     }

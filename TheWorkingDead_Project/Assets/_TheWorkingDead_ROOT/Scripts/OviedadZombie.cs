@@ -8,7 +8,7 @@ public class OviedadZombie : MonoBehaviour
 {
 
     #region General Variables
-    [SerializeField] float Zombiedad = 0;
+    public float Zombiedad = 0;
     [SerializeField] Slider ZombiedadBar;
     [SerializeField] Transform PlayerTransform;
     [SerializeField] Transform RespawnPoint;
