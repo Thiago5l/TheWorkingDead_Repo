@@ -23,7 +23,16 @@ public class TareasAleatorias : MonoBehaviour
 
         if (PrefabsTareas != null && PrefabsTareas.Count > 0)
         {
+            List<GameObject> copia = new List<GameObject>(PrefabsTareas);
+            MezclarList(PrefabsTareas);
+            int take = Mathf.Min(TareasPorNivel, copia.Count);
+            tareasSeleccionadas = copia.GetRange(0, take);
+            foreach (GameObject prefab in tareasSeleccionadas)
+            {
+                GameObject inst;
                 
+            }
+
         }
        /* NTareas.Clear();
         for (int i = 0; i < TotalTareas; i++) 
@@ -43,6 +52,18 @@ public class TareasAleatorias : MonoBehaviour
                 }
             }
         }*/
+    }
+
+
+    private void MezclarList<T>(List<T> lista)
+    {
+        for(int i = lista.Count-1; i > 0; i--)
+        {
+            T grdr = lista[i];
+            int x = Random.Range(0, i + 1);
+            lista[i] = lista[x];
+            lista[x] = grdr;
+        }
     }
 
     // Update is called once per frame
