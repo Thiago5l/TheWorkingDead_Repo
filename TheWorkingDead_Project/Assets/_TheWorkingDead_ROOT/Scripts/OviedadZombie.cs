@@ -12,7 +12,7 @@ public class OviedadZombie : MonoBehaviour
     [SerializeField] Slider ZombiedadBar;
     [SerializeField] Transform PlayerTransform;
     [SerializeField] Transform RespawnPoint;
-    [SerializeField] float sumValue;
+    [SerializeField] public float sumValue;
     [SerializeField] float time;
     #endregion
 
