@@ -14,6 +14,7 @@ public class Impresora : MonoBehaviour
     [SerializeField] GameObject Player;
     [SerializeField] float restValue;
     [SerializeField] float time;
+    [SerializeField] Material Mat;
     private float save;
     #endregion
 
@@ -47,8 +48,8 @@ public class Impresora : MonoBehaviour
             ValueBarStart = save;
             TaskBar.gameObject.SetActive(false);
             this.gameObject.GetComponent<Impresora>().enabled = false;
-            Destroy(this.gameObject.GetComponent<MeshRenderer>());
-            //this.gameObject<MeshRenderer.AddComponent(MeshRenderer)>;
+            Destroy(this.gameObject.GetComponent<MeshRenderer>().material);
+            this.gameObject.GetComponent<MeshRenderer>().material = Mat;
 
         }
         if (ValueBarStart <= 0)

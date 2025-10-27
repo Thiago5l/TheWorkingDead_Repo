@@ -4568,7 +4568,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0e547ea6ff746e44cbb5785365a68044, type: 2}
+  - {fileID: 2100000, guid: 3cf2a3290e5dbf64687a183dfd700be0, type: 2}
   - {fileID: 2100000, guid: e38aeca7324085541a728a3ff6366c39, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4637,6 +4637,7 @@ MonoBehaviour:
   Player: {fileID: 2145047231}
   restValue: 0.75
   time: 0.25
+  Mat: {fileID: 0}
 --- !u!1 &1175354551
 GameObject:
   m_ObjectHideFlags: 0
@@ -4908,7 +4909,7 @@ Transform:
   m_GameObject: {fileID: 1243776734}
   serializedVersion: 2
   m_LocalRotation: {x: 0.1573787, y: 0.41619778, z: -0.0733869, w: 0.89253896}
-  m_LocalPosition: {x: 5.4688077, y: 4.4980755, z: 39.328022}
+  m_LocalPosition: {x: 4.468809, y: 4.4980755, z: 39.328022}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5982,7 +5983,7 @@ Transform:
   m_GameObject: {fileID: 1532994168}
   serializedVersion: 2
   m_LocalRotation: {x: 0.1573787, y: 0.41619778, z: -0.0733869, w: 0.89253896}
-  m_LocalPosition: {x: 5.4688063, y: 4.498076, z: 39.328022}
+  m_LocalPosition: {x: 4.4688087, y: 4.498075, z: 39.328022}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6850,7 +6851,7 @@ GameObject:
   - component: {fileID: 1762805775}
   - component: {fileID: 1762805774}
   m_Layer: 0
-  m_Name: 'silla '
+  m_Name: cafetera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6865,8 +6866,8 @@ Transform:
   m_GameObject: {fileID: 1762805772}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9, y: 0.125, z: 3.1280212}
-  m_LocalScale: {x: 1, y: 0.25, z: 1}
+  m_LocalPosition: {x: 9, y: 0.73, z: 4.59}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2109421176}
@@ -6946,7 +6947,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1762805772}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1767087562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7979,7 +7980,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7192288205431524021, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7192288205431524021, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: m_LocalPosition.y
