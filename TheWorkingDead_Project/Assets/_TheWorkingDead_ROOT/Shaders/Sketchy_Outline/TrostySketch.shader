@@ -1,19 +1,19 @@
-Shader "Trosty/SketchOutlineURP"
+Shader "Trosty/SketchURP"
 {
     Properties
     {
         _ContourColor("Contour Color", Color) = (0,0,0,1)
         _ContourWidth("Contour Width", Range(0,0.1)) = 0.02
-        _Amplitude("Noise Amplitude", Range(0,0.1)) = 0.01
-        _Speed("Noise Speed", Float) = 6.0
+        _Amplitude("Amplitude", Range(0,0.1)) = 0.01
+        _Speed("Speed", Float) = 6.0
     }
 
     SubShader
     {
-        Tags { "RenderType"="Opaque" "Queue"="Overlay" }
+        Tags { "RenderType"="Transparent" "Queue"="Overlay" }
+        Blend SrcAlpha OneMinusSrcAlpha
         Cull Front
         ZWrite Off
-        Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
         {
@@ -23,13 +23,7 @@ Shader "Trosty/SketchOutlineURP"
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
-
-            float4 _ContourColor;
-            float _ContourWidth;
-            float _Amplitude;
-            float _Speed;
 
             struct Attributes
             {
@@ -44,23 +38,26 @@ Shader "Trosty/SketchOutlineURP"
                 float2 uv          : TEXCOORD0;
             };
 
-            // Hash noise function
-            float hash(float2 p)
+            float4 _ContourColor;
+            float _ContourWidth;
+            float _Amplitude;
+            float _Speed;
+
+            // Pseudo-random hash
+            float hash(float2 seed)
             {
-                return frac(sin(dot(p, float2(12.9898,78.233))) * 43758.5453);
+                return frac(sin(dot(seed.xy, float2(12.9898,78.233))) * 43758.5453);
             }
 
             Varyings vert(Attributes IN)
             {
                 Varyings OUT;
-
                 float3 n = normalize(IN.normalOS);
-                float h = hash(IN.uv + floor(_Time.y * _Speed)); // frame-step noise
-                float outline = _ContourWidth + _Amplitude * (h - 0.5);
+                float h = hash(IN.uv.xy + floor(_Time.y * _Speed));
+                float offset = _ContourWidth + _Amplitude * (h - 0.5);
+                float3 displaced = IN.positionOS.xyz + n * offset;
 
-                float3 offsetPos = IN.positionOS.xyz + n * outline;
-
-                OUT.positionHCS = TransformObjectToHClip(offsetPos);
+                OUT.positionHCS = TransformObjectToHClip(displaced);
                 OUT.uv = IN.uv;
                 return OUT;
             }
@@ -73,4 +70,6 @@ Shader "Trosty/SketchOutlineURP"
             ENDHLSL
         }
     }
+
+    FallBack Off
 }
