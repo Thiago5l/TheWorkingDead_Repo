@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     Vector2 moveImput;//almacén imput mov
     bool isGrounded;//determina si estás tocando el suelo
     bool TaskDetector;
+    Animator anim; // referencia al Animator
     #endregion
 
     private void Awake()
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour
         PlayerRB = GetComponent<Rigidbody>();
         if(camTransform == null) camTransform = Camera.main.transform; //busca la cámara main si no tiene cam asignada
         PlayerRB.freezeRotation = true; //congelar rotación de rigid body
+        anim = GetComponentInChildren<Animator>(); // referencia al Animator
     }
 
 
@@ -51,6 +53,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         CheckIfGrounded();
+        Animation();
     }
 
    
@@ -114,6 +117,11 @@ public class PlayerController : MonoBehaviour
 
         //elemento de visualización en editor opcional
 
+    }
+    void Animation()
+    {
+        if (moveImput.magnitude != 0) { anim.SetFloat("Movimiento", 1f); }
+        else { anim.SetFloat("Movimiento", 0f); }
     }
 
     #region imput methods
