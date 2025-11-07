@@ -1808,12 +1808,12 @@ MonoBehaviour:
   m_FadeScale: 0.9
   m_StartAngleFade: 180
   m_EndAngleFade: 180
-  m_UVScale: {x: 0.2059976, y: 1}
-  m_UVBias: {x: 0.79111046, y: 0}
+  m_UVScale: {x: 0.20599759, y: 0.28495526}
+  m_UVBias: {x: 0.79111046, y: 0.7150451}
   m_DecalLayerMask: 1
   m_ScaleMode: 0
-  m_Offset: {x: 0.61270237, y: -0.5905497, z: 0.5}
-  m_Size: {x: 0.6388741, y: 2.6533556, z: 1}
+  m_Offset: {x: 0.61270237, y: 0.35808456, z: 0.5}
+  m_Size: {x: 0.63887405, y: 0.75608754, z: 1}
   m_FadeFactor: 1
 --- !u!1001 &214325911
 PrefabInstance:
@@ -8328,7 +8328,7 @@ Transform:
   m_GameObject: {fileID: 1406134448}
   serializedVersion: 2
   m_LocalRotation: {x: -0.27995336, y: -0.1567806, z: 0.94565225, w: 0.052800775}
-  m_LocalPosition: {x: 2.16, y: 0.102, z: 10.406}
+  m_LocalPosition: {x: 2.16, y: 0.102, z: 10.634}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9184,12 +9184,12 @@ MonoBehaviour:
   m_FadeScale: 0.9
   m_StartAngleFade: 180
   m_EndAngleFade: 180
-  m_UVScale: {x: 0.2059976, y: 1}
-  m_UVBias: {x: 0.79111046, y: 0}
+  m_UVScale: {x: 0.20599759, y: 0.27371728}
+  m_UVBias: {x: 0.79111046, y: 0.72628284}
   m_DecalLayerMask: 1
   m_ScaleMode: 0
-  m_Offset: {x: 0.61270237, y: -0.5905497, z: 0.5}
-  m_Size: {x: 0.6388741, y: 2.6533556, z: 1}
+  m_Offset: {x: 0.61270237, y: 0.3729937, z: 0.5}
+  m_Size: {x: 0.63887405, y: 0.726269, z: 1}
   m_FadeFactor: 1
 --- !u!1001 &1638577975
 PrefabInstance:
@@ -11930,7 +11930,7 @@ Transform:
   m_GameObject: {fileID: 2144329229}
   serializedVersion: 2
   m_LocalRotation: {x: 0.049878016, y: 0.70534545, z: 0.049878016, w: 0.70534545}
-  m_LocalPosition: {x: -12.672, y: 19.291, z: -15.346}
+  m_LocalPosition: {x: -12.672, y: 19.901, z: -15.083}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11953,12 +11953,12 @@ MonoBehaviour:
   m_FadeScale: 0.9
   m_StartAngleFade: 180
   m_EndAngleFade: 180
-  m_UVScale: {x: 0.2059976, y: 1}
+  m_UVScale: {x: 0.20599759, y: 0.72044945}
   m_UVBias: {x: 0.79111046, y: 0}
   m_DecalLayerMask: 1
   m_ScaleMode: 0
-  m_Offset: {x: 0.61270237, y: -0.5905497, z: 0.5}
-  m_Size: {x: 0.6388741, y: 2.6533556, z: 1}
+  m_Offset: {x: 0.61270237, y: -0.96142346, z: 0.5}
+  m_Size: {x: 0.63887405, y: 1.9116081, z: 1}
   m_FadeFactor: 1
 --- !u!1001 &2145047230
 PrefabInstance:
@@ -12402,11 +12402,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 593253108645440067, guid: 5a5206ff6b4b3ac489e94230ca69b18f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.08
+      value: 2.308
       objectReference: {fileID: 0}
     - target: {fileID: 593253108645440067, guid: 5a5206ff6b4b3ac489e94230ca69b18f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.65
+      value: 4.547
       objectReference: {fileID: 0}
     - target: {fileID: 6078849270208535169, guid: 5a5206ff6b4b3ac489e94230ca69b18f, type: 3}
       propertyPath: m_Name
