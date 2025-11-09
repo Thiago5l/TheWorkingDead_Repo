@@ -1,28 +1,34 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
 public class PlayerAnimations : MonoBehaviour
 {
-    Vector2 moveImput;
-    Animator anim;
+    private Rigidbody rb;
+    private Animator anim;
+
+    [SerializeField] float velocidadUmbral = 0.1f;
+
     private void Awake()
     {
-        anim = GetComponentInChildren<Animator>(); // referencia al Animator
+        // Si el script está en un hijo, busca el Rigidbody en el padre
+        rb = GetComponentInParent<Rigidbody>();
+        anim = GetComponentInChildren<Animator>();
+
     }
 
-    void Update()
+    private void Update()
     {
-        Movimiento();
+        Debug.Log("PlayerAnimations activo");
+        ActualizarAnimacionMovimiento();
     }
-    void Movimiento()
-    {
-        if (moveImput.magnitude != 0) { anim.SetFloat("Movimiento", 1f); }
-        else { anim.SetFloat("Movimiento", 0f); }
-    }
-    public void DetectarMovimiento(InputAction.CallbackContext context) //context bontón físico
-    {
-        moveImput = context.ReadValue<Vector2>();
 
+    private void ActualizarAnimacionMovimiento()
+    {
+
+        Vector3 velocidadCaminado = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+        float velocidad = velocidadCaminado.magnitude;
+        if (velocidad > velocidadUmbral)
+            anim.SetFloat("Movimiento", 1f);
+        else
+            anim.SetFloat("Movimiento", 0f);
     }
 }
