@@ -10,8 +10,6 @@ public class eyes_blink : MonoBehaviour
     public Material eyeOpen;
     public Material eyeHalf;
     public Material eyeClosed;
-    public Material eyeStressed;
-    public Material eyeTired;
 
     [Header("Frecuencia del parpadeo")]
     public float minBlinkDelay = 3f;  // segundos mínimo entre parpadeos

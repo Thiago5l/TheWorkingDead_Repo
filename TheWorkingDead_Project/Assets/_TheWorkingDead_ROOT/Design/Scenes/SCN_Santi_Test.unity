@@ -1288,8 +1288,6 @@ MonoBehaviour:
   eyeOpen: {fileID: 2100000, guid: d2f6d24992cb70040a0fb228f79e4184, type: 2}
   eyeHalf: {fileID: 2100000, guid: af289c7e82a22b84e8907cd634253879, type: 2}
   eyeClosed: {fileID: 2100000, guid: 64422f3a5d344954081f11afe21ed7b6, type: 2}
-  eyeStressed: {fileID: 2100000, guid: 4cb5560abda0b7f418dbd42151ae9856, type: 2}
-  eyeTired: {fileID: 2100000, guid: 232e97b98f7c300498681a8729693171, type: 2}
   minBlinkDelay: 3
   maxBlinkDelay: 7
   blinkSpeed: 0.45
@@ -4040,7 +4038,7 @@ MonoBehaviour:
   randomize: 1
   minIntensity: 0
   maxIntensity: 64.7
-  minInterval: 0.02
+  minInterval: 2.34
   maxInterval: 0.3
   smoothTransitions: 0
   smoothDuration: 0.08
