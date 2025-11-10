@@ -37,9 +37,14 @@ public class OviedadZombie : MonoBehaviour
 
 // Update is called once per frame
 
-private void FixedUpdate()
+private void Update()
 {
         ZombiedadBar.value = Zombiedad;
+
+        if (Zombiedad < 0)
+        {
+            Zombiedad = 0;
+        }
 
         if (Zombiedad >= 100)
         {

@@ -13,15 +13,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Attack",
-                    "type": "Button",
-                    "id": "17167c25-c6bb-48ea-b05e-2e6abe1152ac",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -156,26 +147,160 @@
                     "action": "move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "Tareas",
+            "id": "3656718b-fa7c-40b9-b395-32dc354dc568",
+            "actions": [
+                {
+                    "name": "interactuar",
+                    "type": "Button",
+                    "id": "f4849ce9-a55d-4440-94ca-83be3d2666d5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
+                    "name": "SpaceSmash",
+                    "type": "Button",
+                    "id": "cb17e975-d734-4168-b93b-936ecddd7b50",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DobleSmash",
+                    "type": "Button",
+                    "id": "1f2560eb-b304-4d92-9b0c-17e5ec5cdac7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
                     "name": "",
-                    "id": "e6a0b463-d4dd-4671-8841-4446ce027acd",
-                    "path": "<Mouse>/leftButton",
+                    "id": "8686a7a8-c7d0-46ac-b54f-31cbb3a93344",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack",
+                    "action": "interactuar",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "1bc4f1ad-ab45-4e4f-9ece-41d3b47f8af6",
+                    "id": "6df4b061-6cce-4faa-8039-dc90e36cb522",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "interactuar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f5c57c64-fd60-4856-8251-d8877bb23641",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpaceSmash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d6bc89df-69ab-46dc-8fca-d4dfd060ccc4",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpaceSmash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3ed5c7d3-144a-4a75-978b-f34dc8c20759",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpaceSmash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "814f9cfb-7e1a-4aa8-8c2c-de10a6161933",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpaceSmash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1639cdc9-5bdf-48bb-ba44-96573287669a",
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack",
+                    "action": "SpaceSmash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4afc681a-24f8-40de-b131-27061cc9db8a",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DobleSmash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8cf214b5-dccb-452d-b148-a64973881665",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DobleSmash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "91ca34e2-bbb2-4a63-8c92-7d1afa565213",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DobleSmash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1e2e1de0-bf71-4352-9b57-b437593f3526",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DobleSmash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
