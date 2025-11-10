@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using JetBrains.Annotations;
+using UnityEngine.SceneManagement;
 
 public class OviedadZombie : MonoBehaviour
 {
@@ -48,8 +49,7 @@ private void Update()
 
         if (Zombiedad >= 100)
         {
-            PlayerTransform.position = RespawnPoint.position;
-            Zombiedad = 0f;
+            SceneManager.LoadScene("SCN_Game_Over");
         }
 }
 

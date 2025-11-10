@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static System.Net.WebRequestMethods;
 
 public class TareasAleatorias : MonoBehaviour
@@ -90,7 +91,7 @@ public class TareasAleatorias : MonoBehaviour
     [SerializeField] public bool acabarTarea;
     [SerializeField] public bool cambiarDeTarea;
 
-    
+
 
     [SerializeField] public List<GameObject> OrdenTareas;
     [SerializeField] public int TotalTareas;
@@ -148,12 +149,12 @@ public class TareasAleatorias : MonoBehaviour
 
     void Update()
     {
-        if(tareasHechas == TareasPorNivel)
+        if (tareasHechas == TareasPorNivel)
         {
             winLevel = true;
         }
 
-        if(acabarTarea == true)
+        if (acabarTarea == true)
         {
             Debug.Log($"Eliminando tarea en posición {posTareaAcabada}");
             OrdenTareas.RemoveAt(posTareaAcabada);
@@ -162,16 +163,16 @@ public class TareasAleatorias : MonoBehaviour
         }
 
 
-        if(OrdenTareas.Count <= 0)
+        if (OrdenTareas.Count <= 0)
         {
             winLevel= true;
         }
-
-
-
-
-
+        if (winLevel == true)
+        {
+            SceneManager.LoadScene("SCN_Win");
+        }
     }
+}
 
 
 
@@ -233,4 +234,4 @@ public class TareasAleatorias : MonoBehaviour
     //        Debug.Log(SVal.ToString());
     //    }
     //}
-}
+
