@@ -32,6 +32,8 @@ public class Impresora : MonoBehaviour
     [SerializeField] bool TareaActiva;
     [SerializeField] bool TareaAcabada;
     private float save;
+    [SerializeField] public Image spacebarsprite;
+    [SerializeField] private float visibleTime = 0.2f;
     #endregion
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -152,8 +154,14 @@ public class Impresora : MonoBehaviour
         {
             ValueBarStart = ValueBarStart + SumValue;
         }
-      
-        
+        StartCoroutine(FlashRoutine());
+
+    }
+    private System.Collections.IEnumerator FlashRoutine()
+    {
+        spacebarsprite.fillAmount = 100;            // Mostrar
+        yield return new WaitForSeconds(visibleTime);
+       spacebarsprite.fillAmount = 0;           // Ocultar
     }
 
 

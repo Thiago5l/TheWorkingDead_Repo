@@ -85,6 +85,9 @@ public class TareasAleatorias : MonoBehaviour
     [SerializeField] public GameObject[] PrefabsTareas;
     [SerializeField] public int tareasHechas;
     [SerializeField] public bool winLevel;
+    [SerializeField] public GameObject boxTarea;
+    [SerializeField] public Transform tareaContiner;
+
 
 
     [SerializeField] public int posTareaAcabada;
@@ -131,6 +134,7 @@ public class TareasAleatorias : MonoBehaviour
         {
             GameObject tempSvd = tareasDisponibles[i];
             OrdenTareas.Add(tempSvd);
+            SetNameTasks(tempSvd.GetComponent<TareaNombre>().tareaNombre);
         }
 
         Debug.Log($"Se generaron {OrdenTareas.Count} tareas aleatorias");
@@ -144,6 +148,7 @@ public class TareasAleatorias : MonoBehaviour
             GameObject temp = lista[i];
             lista[i] = lista[j];
             lista[j] = temp;
+
         }
     }
 
@@ -171,7 +176,20 @@ public class TareasAleatorias : MonoBehaviour
         {
             SceneManager.LoadScene("SCN_Win");
         }
+
+
+
+
     }
+
+
+    private void SetNameTasks(string nameTxt)
+    {
+        GameObject box = Instantiate(boxTarea, tareaContiner);
+        box.GetComponent<BoxTarea>().SetText(nameTxt);
+
+    }
+
 }
 
 
@@ -187,51 +205,50 @@ public class TareasAleatorias : MonoBehaviour
 
 
 
-    //[SerializeField] public GameObject[] PrefabsTareas;
-    //[SerializeField] public GameObject[] OrdenTareas;
-    //[SerializeField] public int TotalTareas;
-    //[SerializeField] public int TareasPorNivel;
-    //private List<GameObject> tareasSeleccionadas;
+//[SerializeField] public GameObject[] PrefabsTareas;
+//[SerializeField] public GameObject[] OrdenTareas;
+//[SerializeField] public int TotalTareas;
+//[SerializeField] public int TareasPorNivel;
+//private List<GameObject> tareasSeleccionadas;
 
 
-    //// Start is called once before the first execution of Update after the MonoBehaviour is created
-    //void Start()
-    //{
-    //    GeneradorListaTareas(PrefabsTareas, OrdenTareas);
-    //    IgualarListasPorPosicion(PrefabsTareas, OrdenTareas);
-    //}
+//// Start is called once before the first execution of Update after the MonoBehaviour is created
+//void Start()
+//{
+//    GeneradorListaTareas(PrefabsTareas, OrdenTareas);
+//    IgualarListasPorPosicion(PrefabsTareas, OrdenTareas);
+//}
 
-    //public void GeneradorListaTareas<GameObject>(GameObject[] listaA, GameObject[] listaB)
-    //{
-    //    tareasSeleccionadas.Clear();
+//public void GeneradorListaTareas<GameObject>(GameObject[] listaA, GameObject[] listaB)
+//{
+//    tareasSeleccionadas.Clear();
 
-    //    int tamañoA= listaA.Length;
-    //    int RandomVal;
-    //    GameObject Temp; 
+//    int tamañoA= listaA.Length;
+//    int RandomVal;
+//    GameObject Temp; 
 
-    //    if (listaA != null && tamañoA > 0)
-    //    {
-    //        for (int i = 0; i < tamañoA; i++)
-    //        {
-    //            RandomVal = Random.Range(0, tamañoA);
-    //            Temp = listaA[RandomVal];
-    //            listaA[RandomVal] = listaA[i];
-    //            listaA[i] = Temp;
+//    if (listaA != null && tamañoA > 0)
+//    {
+//        for (int i = 0; i < tamañoA; i++)
+//        {
+//            RandomVal = Random.Range(0, tamañoA);
+//            Temp = listaA[RandomVal];
+//            listaA[RandomVal] = listaA[i];
+//            listaA[i] = Temp;
 
-    //        }           
-    //    }
+//        }           
+//    }
 
 
 
-    //}
-    //public void IgualarListasPorPosicion<GameObject>(GameObject[] listaA, GameObject[] listaB)
-    //{
-    //    GameObject SVal;
+//}
+//public void IgualarListasPorPosicion<GameObject>(GameObject[] listaA, GameObject[] listaB)
+//{
+//    GameObject SVal;
 
-    //    for (int i = 0; i < TareasPorNivel; i++)
-    //    {
-    //        SVal = listaA[i];
-    //        Debug.Log(SVal.ToString());
-    //    }
-    //}
-
+//    for (int i = 0; i < TareasPorNivel; i++)
+//    {
+//        SVal = listaA[i];
+//        Debug.Log(SVal.ToString());
+//    }
+//}
