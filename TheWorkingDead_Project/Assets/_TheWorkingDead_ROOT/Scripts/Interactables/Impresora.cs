@@ -51,7 +51,7 @@ public class Impresora : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && TareaAcabada == false )
+        if (other.CompareTag("TaskPlayer") && TareaAcabada == false )
         {
             if (TareaActiva)
             {
@@ -81,7 +81,7 @@ public class Impresora : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") && TareaAcabada == false)
+        if (other.CompareTag("TaskPlayer") && TareaAcabada == false)
         {
             PlayerCerca = false;
             Destroy(this.gameObject.GetComponent<MeshRenderer>().material);
@@ -112,6 +112,8 @@ public class Impresora : MonoBehaviour
             TaskBar.gameObject.SetActive(false);
             Destroy(this.gameObject.GetComponent<MeshRenderer>().material);
             this.gameObject.GetComponent<MeshRenderer>().material = Mat;
+            Debug.Log("acabar tarea en true");
+            objectTareas.GetComponent<TareasAleatorias>().ganaTarea = true;
             TareaAcabada = true;
             StopAllCoroutines();
             TareaActiva = false;

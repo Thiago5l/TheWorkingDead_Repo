@@ -39,18 +39,19 @@ public class EnemyAiBase : MonoBehaviour
     [SerializeField] private List<Transform> waypoints;
     int currentWaypointIndex = 0;
 
-    //[Header("Attack configuration")]
-    //public float timeBetweenAttacks; // cadencia de disparo del enemigo
-    //bool alreadyattacked; //seguridad de ataques infinitos
-    //[SerializeField] GameObject proyectile;// ref prefab proyectil
-    //[SerializeField] Transform shootPoint;// ref al punto desde el que se disdpara
-    //[SerializeField] float shootSpeedZ;
-    //[SerializeField] float shootSpeedY;
+    [Header("Attack configuration")]
+    public float timeBetweenAttacks; // cadencia de disparo del enemigo
+    bool alreadyattacked; //seguridad de ataques infinitos
+    [SerializeField] GameObject proyectile;// ref prefab proyectil
+    [SerializeField] Transform shootPoint;// ref al punto desde el que se disdpara
+    [SerializeField] float shootSpeedZ;
+    [SerializeField] float shootSpeedY;
 
 
     [Header("States and detections")]
     [SerializeField] float sightRange;//rango al partir del cual persigue a player
     [SerializeField] float attackRange;//rango al partir del cual ataca a player
+    [SerializeField] float valorSumaZombiedad;
     [SerializeField] bool targetInSightRange;
     [SerializeField] bool targetInAttackRange;
     [SerializeField] GameObject playerObject;
@@ -85,7 +86,7 @@ public class EnemyAiBase : MonoBehaviour
 
     private void Start()
     {
-
+        valorSumaZombiedad = playerObject.GetComponent<OviedadZombie>().sumValue;
         //Arranque de la corrutina de proceso de la IA que sustituya al Update
         StartCoroutine(AIUpdateROutine());
     }
@@ -93,6 +94,7 @@ public class EnemyAiBase : MonoBehaviour
 
     private void Update()
     {
+        
         if (targetInSightRange) transform.LookAt(target);
 
         //if (targetInSightRange && !agent.isStopped)
@@ -106,8 +108,10 @@ public class EnemyAiBase : MonoBehaviour
 
     void Patrolling()
     {
+        playerObject.GetComponent<OviedadZombie>().sumValue = valorSumaZombiedad;
+        alreadyattacked = false;
         //deolvemos la capacidad e moverse al agene 
-        if(agent.isStopped) agent.isStopped = false;
+        if (agent.isStopped) agent.isStopped = false;
         //se comprueba si el agente ha llegado al punto
         //Para ello, se usa un margen de distancia pequeña + stoppingDistance para asegurarnos
         if(walkPointSet && !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance + 0.1f)
@@ -177,6 +181,8 @@ public class EnemyAiBase : MonoBehaviour
 
     void ChaseTarget()
     {
+        playerObject.GetComponent<OviedadZombie>().sumValue = valorSumaZombiedad;
+        alreadyattacked = false;
         if(agent.isStopped) agent.isStopped = false;//si el agente está parado dejará de estarlo 
         agent.SetDestination(target.position);//cambia el destino del agente a la position del target
 
@@ -185,29 +191,29 @@ public class EnemyAiBase : MonoBehaviour
 
     void AttackTarget()
     {
-        playerObject.GetComponent<OviedadZombie>().sumValue += 0.5f;
+        agent.isStopped = true;//el agente se para y empieza a atacar
+        if (!alreadyattacked)
+        {
+            playerObject.GetComponent<OviedadZombie>().sumValue *= 1.5f;
 
-        //agent.isStopped = true;//el agente se para y empieza a atacar
-        //if (!alreadyattacked)
-        //{
-        //    Rigidbody rb = Instantiate(proyectile, shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
-        //    rb.AddForce(transform.forward * shootSpeedZ, ForceMode.Impulse);
-        //    //EL siquiente addforce solo se aplica si queremos catapulta
-        //    //rb.AddForce(transform.up * shootSpeedY, ForceMode.Impulse);
-        //}
-        //alreadyattacked = true;
+            //Rigidbody rb = Instantiate(proyectile, shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
+            //rb.AddForce(transform.forward * shootSpeedZ, ForceMode.Impulse);
+            //EL siquiente addforce solo se aplica si queremos catapulta
+            //rb.AddForce(transform.up * shootSpeedY, ForceMode.Impulse);
+        }
+        alreadyattacked = true;
         //StartCoroutine(ResetAttackRoutine());
 
     }
 
 
 
-    IEnumerator ResetAttackRoutine()
-    {
-        yield return new WaitForSeconds(30);
-        //yield return new WaitForSeconds(timeBetweenAttacks);
-        //alreadyattacked = false; // permitir que el ataque se ejecute de nuevo
-    }
+    //IEnumerator ResetAttackRoutine()
+    //{
+    //    yield return new WaitForSeconds(30);
+    //    yield return new WaitForSeconds(timeBetweenAttacks);
+    //    alreadyattacked = false; // permitir que el ataque se ejecute de nuevo
+    //}
 
 
 
@@ -247,6 +253,7 @@ public class EnemyAiBase : MonoBehaviour
     }
 
 
+    
 
 
 

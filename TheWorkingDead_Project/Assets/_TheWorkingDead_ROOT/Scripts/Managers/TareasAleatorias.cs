@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static System.Net.WebRequestMethods;
@@ -100,8 +101,14 @@ public class TareasAleatorias : MonoBehaviour
     [SerializeField] public int TotalTareas;
     [SerializeField] public int TareasPorNivel;
 
+
+    [SerializeField] public GameObject player;
+    [SerializeField] public bool ganaTarea;
+
+
     void Start()
     {
+        ganaTarea = false;
         cambiarDeTarea = false;
         acabarTarea = false;
         winLevel = false;
@@ -177,10 +184,26 @@ public class TareasAleatorias : MonoBehaviour
             SceneManager.LoadScene("SCN_Win");
         }
 
-
+        if(ganaTarea == true)
+        {
+            Debug.Log("llamada función eliminar tarea ");
+            DeleteTaskList();
+        }
 
 
     }
+
+
+
+    private void DeleteTaskList()
+    {
+
+        Debug.Log("función eliminar tarea activada");
+        //Destroy(tareaContiner.GetChild(0).gameObject);
+        tareaContiner.GetChild(0).gameObject.SetActive(false); 
+        ganaTarea = false;
+    }
+    
 
 
     private void SetNameTasks(string nameTxt)

@@ -53,7 +53,7 @@ public class Ordenador : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && TareaAcabada == false)
+        if (other.CompareTag("TaskPlayer") && TareaAcabada == false)
         {
             if (TareaActiva)
             {
@@ -67,7 +67,7 @@ public class Ordenador : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") && TareaAcabada == false)
+        if (other.CompareTag("TaskPlayer") && TareaAcabada == false)
         {
             PlayerCerca = false;
             Destroy(this.gameObject.GetComponent<MeshRenderer>().material);
@@ -112,6 +112,7 @@ public class Ordenador : MonoBehaviour
             TaskBar.gameObject.SetActive(false);
             Destroy(this.gameObject.GetComponent<MeshRenderer>().material);
             this.gameObject.GetComponent<MeshRenderer>().material = Mat;
+            objectTareas.GetComponent<TareasAleatorias>().ganaTarea = true;
             TareaAcabada = true;
             StopAllCoroutines();
             WinValue = 0;
