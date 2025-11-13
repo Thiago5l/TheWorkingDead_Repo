@@ -6,21 +6,22 @@ using UnityEngine.SceneManagement;
 
 public class menu : MonoBehaviour
 {
+    [SerializeField] private FadeManager fadeManager;
 
     public GameObject mainpanel;
     public GameObject optionspanel;
 
     public void PlayButton()
     {
-        StartCoroutine(wait());
+        StartCoroutine(wait("SCN_Office_Level1"));
     }
 
-    IEnumerator wait()
+    IEnumerator wait(string sceneName)
     {
-        yield return new WaitForSeconds(0.6f);
+        fadeManager.DoFade(0, 0.7f, 0.7f, 0);
+        yield return new WaitForSeconds(0.7f);
+        SceneManager.LoadScene(sceneName);
         Debug.Log("carita feliz");
-        SceneManager.LoadScene("SCN_Toni_Map");
-        //los nombres dde las escenas van segun estan puestas en el index de las build settings
     }
     public void Options()
     {

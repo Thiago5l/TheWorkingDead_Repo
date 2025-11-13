@@ -10,7 +10,6 @@ public class Pause : MonoBehaviour
 
     public GameObject mainpanel;
     public GameObject optionspanel;
-    public GameObject cursor;
 
     private void Update()
     {
@@ -19,12 +18,10 @@ public class Pause : MonoBehaviour
             if (gamePaused)
             {
                 unPause();
-                cursor.SetActive(false);
             }
             else
             {
                 IsPause();
-                cursor.SetActive(true);
             }
         }
 
@@ -47,7 +44,7 @@ public class Pause : MonoBehaviour
     {
         StartCoroutine(wait());
         Debug.Log("loading main scene");
-        //SceneManager.LoadScene("menu principal");
+        SceneManager.LoadScene("SCN_MainMenu_Test");
         Time.timeScale = 1;
     }
     public void RestartLv()
