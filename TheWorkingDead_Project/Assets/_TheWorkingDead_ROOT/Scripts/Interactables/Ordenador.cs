@@ -43,11 +43,12 @@ public class Ordenador : MonoBehaviour
         TareaActiva = true;
         PlayerCerca = false;
         save = ValueBarStart;
+        TaskBar.GetComponent<Slider>().value = ValueBarStart;
         TareaAcabada = false;
 
         tareasScript = objectTareas.GetComponent<TareasAleatorias>();
 
-}
+    }
 
 
     // Update is called once per frame
@@ -69,9 +70,12 @@ public class Ordenador : MonoBehaviour
     {
         if (other.CompareTag("TaskPlayer") && TareaAcabada == false)
         {
-            PlayerCerca = false;
-            Destroy(this.gameObject.GetComponent<MeshRenderer>().material);
-            this.gameObject.GetComponent<MeshRenderer>().material = Mat;
+            if (TareaActiva)
+            {
+                PlayerCerca = true;
+                Destroy(this.gameObject.GetComponent<MeshRenderer>().material);
+                this.gameObject.GetComponent<MeshRenderer>().material = OutLine;
+            }
 
         }
 
@@ -107,7 +111,7 @@ public class Ordenador : MonoBehaviour
 
         if (WinValue >= 60)
         {
-            Player.GetComponent<OviedadZombie>().Zombiedad -= 20;
+            Player.GetComponent<OviedadZombie>().Zombiedad -= ((20)/100);
             ValueBarStart = save;
             TaskBar.gameObject.SetActive(false);
             Destroy(this.gameObject.GetComponent<MeshRenderer>().material);
@@ -120,7 +124,7 @@ public class Ordenador : MonoBehaviour
             this.gameObject.GetComponent<Ordenador>().enabled = false;
         }
 
-        if (TaskBar.value < 85 && TaskBar.value > 75)
+        if (TaskBar.value < 80 && TaskBar.value > 65)
         {
             StartCoroutine(WaitWinValue(0.5f));
         }
@@ -128,14 +132,17 @@ public class Ordenador : MonoBehaviour
 
         if (ValueBarStart <= 0)
         {
-            Player.GetComponent<OviedadZombie>().Zombiedad += 5;
+            Player.GetComponent<OviedadZombie>().Zombiedad += ((5)/100);
             ValueBarStart = save;
             TareaActiva = false; 
             TaskBar.gameObject.SetActive(false);
-            StopAllCoroutines();
             WinValue = 0;
+            StopAllCoroutines();
 
         }
+
+
+        if (ValueBarStart > 100) ValueBarStart = 100;
         if (TareaAcabada)
         {
             for (int i = 0; i < tareasScript.OrdenTareas.Count; i++)

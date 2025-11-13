@@ -22,7 +22,7 @@ public class Impresora : MonoBehaviour
 
     [SerializeField] float ValueBarStart = 25;
     [SerializeField] float SumValue;
-    [SerializeField] Slider TaskBar;
+    [SerializeField] GameObject TaskBar;
     [SerializeField] GameObject Player;
     [SerializeField] float restValue;
     [SerializeField] float time;
@@ -42,6 +42,7 @@ public class Impresora : MonoBehaviour
         TareaActiva = false;
         PlayerCerca = false;
         save = ValueBarStart;
+        TaskBar.GetComponent<Slider>().value = ValueBarStart;
         TareaAcabada = false;
 
         tareasScript = objectTareas.GetComponent<TareasAleatorias>();
@@ -94,7 +95,9 @@ public class Impresora : MonoBehaviour
     
     private void Update()
     {
-        
+
+
+        if (ValueBarStart > 100) ValueBarStart = 100;
 
         if (tareasScript.OrdenTareas[0] == this.gameObject)
         {
@@ -102,12 +105,12 @@ public class Impresora : MonoBehaviour
         }
         else { TareaActiva = false; }
 
-            TaskBar.value = ValueBarStart;
+        TaskBar.GetComponent<Slider>().value = ValueBarStart;
 
         if (ValueBarStart >= 100)
         {
 
-            Player.GetComponent<OviedadZombie>().Zombiedad -= 20;
+            Player.GetComponent<OviedadZombie>().Zombiedad -= ((20)/100);
             ValueBarStart = save;
             TaskBar.gameObject.SetActive(false);
             Destroy(this.gameObject.GetComponent<MeshRenderer>().material);
@@ -123,7 +126,7 @@ public class Impresora : MonoBehaviour
         }
         if (ValueBarStart <= 0)
         {
-            Player.GetComponent<OviedadZombie>().Zombiedad += 5;
+            Player.GetComponent<OviedadZombie>().Zombiedad += ((5)/100);
             ValueBarStart = save;
             TaskBar.gameObject.SetActive(false);
             TareaActiva = false;
