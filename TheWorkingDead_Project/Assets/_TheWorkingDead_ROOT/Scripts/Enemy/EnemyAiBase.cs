@@ -94,8 +94,21 @@ public class EnemyAiBase : MonoBehaviour
 
     private void Update()
     {
-        
-        if (targetInSightRange) transform.LookAt(target);
+
+
+        if (targetInSightRange)
+        {
+            Vector3 direction = target.position - transform.position;
+            direction.y = 0;
+            if (direction != Vector3.zero)
+            {
+                Quaternion lookRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+            }
+        }
+
+
+        //if (targetInSightRange) transform.LookAt(target);
 
         //if (targetInSightRange && !agent.isStopped)
         //{
@@ -194,7 +207,7 @@ public class EnemyAiBase : MonoBehaviour
         agent.isStopped = true;//el agente se para y empieza a atacar
         if (!alreadyattacked)
         {
-            playerObject.GetComponent<OviedadZombie>().sumValue *= 1.5f;
+            playerObject.GetComponent<OviedadZombie>().sumValue *= 2f;
 
             //Rigidbody rb = Instantiate(proyectile, shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
             //rb.AddForce(transform.forward * shootSpeedZ, ForceMode.Impulse);
