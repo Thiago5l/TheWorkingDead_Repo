@@ -164,9 +164,11 @@ public class Ordenador : MonoBehaviour
 
     public void TaskCode()
     {
+        StartCoroutine(FlashRoutine());
         if (TareaActiva && !TareaAcabada)
         {
             ValueBarStart = ValueBarStart + SumValue;
+            //StartCoroutine(FlashRoutine());
         }
     }
     private System.Collections.IEnumerator FlashRoutine()
