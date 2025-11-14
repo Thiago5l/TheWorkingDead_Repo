@@ -55,7 +55,9 @@ public class EnemyAiBase : MonoBehaviour
     [SerializeField] bool targetInSightRange;
     [SerializeField] bool targetInAttackRange;
     [SerializeField] GameObject playerObject;
-
+    [SerializeField]public Light detectionlight;
+    public Color colorInsideRange = Color.red;   // Color si está dentro del rango
+    public Color colorOutsideRange = Color.green; // Color si está fuera del rango
 
     [Header("Optimization")]
     [SerializeField] float aiUpdateFrequency = 0.5f;
@@ -81,6 +83,11 @@ public class EnemyAiBase : MonoBehaviour
                 this.enabled = false;// Deshabilita script de IA si no encuentra al player
             }
         }
+        if (detectionlight == null)
+        {
+            detectionlight = GetComponentInChildren<Light>(); // Busca la luz en el mismo GameObject si no se asigna
+        }
+
     }
 
 
@@ -106,7 +113,7 @@ public class EnemyAiBase : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
             }
         }
-
+        UpdateLightColor();
 
         //if (targetInSightRange) transform.LookAt(target);
 
@@ -118,7 +125,13 @@ public class EnemyAiBase : MonoBehaviour
         //}
     }
 
-
+    void UpdateLightColor()
+    {
+        if (targetInAttackRange==true)
+        { detectionlight.color=colorInsideRange; }
+        else
+        { detectionlight.color=colorOutsideRange;}
+    }
     void Patrolling()
     {
         playerObject.GetComponent<OviedadZombie>().sumValue = valorSumaZombiedad;
