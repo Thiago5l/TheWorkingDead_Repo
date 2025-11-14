@@ -13,10 +13,10 @@ public class menu : MonoBehaviour
 
     public void PlayButton()
     {
-        StartCoroutine(wait("SCN_Office_Level1"));
+        StartCoroutine(wait("SCN_INIT_CINE"));
     }
 
-    IEnumerator wait(string sceneName)
+IEnumerator wait(string sceneName)
     {
         fadeManager.DoFade(0, 0.7f, 0.7f, 0);
         yield return new WaitForSeconds(0.7f);
