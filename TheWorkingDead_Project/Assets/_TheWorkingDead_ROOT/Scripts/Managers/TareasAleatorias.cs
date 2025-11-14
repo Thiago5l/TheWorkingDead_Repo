@@ -181,7 +181,7 @@ public class TareasAleatorias : MonoBehaviour
         }
         if (winLevel == true)
         {
-            SceneManager.LoadScene("SCN_Win");
+            SceneManager.LoadScene("SCN_WIN_CINE");
         }
 
         if(ganaTarea == true)

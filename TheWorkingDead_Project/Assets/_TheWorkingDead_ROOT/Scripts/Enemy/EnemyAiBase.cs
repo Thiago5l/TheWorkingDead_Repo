@@ -128,9 +128,13 @@ public class EnemyAiBase : MonoBehaviour
     void UpdateLightColor()
     {
         if (targetInAttackRange==true)
-        { detectionlight.color=colorInsideRange; }
+        { detectionlight.color=colorInsideRange;
+            detectionlight.enabled=true;
+        }
         else
-        { detectionlight.color=colorOutsideRange;}
+        { detectionlight.color=colorOutsideRange;
+            detectionlight.enabled = false;
+        }
     }
     void Patrolling()
     {

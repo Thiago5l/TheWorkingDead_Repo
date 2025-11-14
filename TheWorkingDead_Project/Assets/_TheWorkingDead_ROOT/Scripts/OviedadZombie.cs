@@ -15,6 +15,7 @@ public class OviedadZombie : MonoBehaviour
     [SerializeField] Transform RespawnPoint;
     [SerializeField] public float sumValue;
     [SerializeField] float time;
+    [SerializeField] public GameObject LooseCanvas;
     #endregion
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -54,7 +55,7 @@ private void Update()
 
         if (Zombiedad >= 1)
         {
-            SceneManager.LoadScene("SCN_Game_Over");
+            LooseCanvas.SetActive(true);
         }
 }
 
