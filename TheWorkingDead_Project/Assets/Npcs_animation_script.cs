@@ -16,7 +16,6 @@ public class Npcs_animation_script : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("NPC Animations activo");
         ActualizarAnimacionMovimiento();
     }
 
@@ -25,7 +24,6 @@ public class Npcs_animation_script : MonoBehaviour
         // Velocidad REAL del NavMeshAgent
         float velocidad = agent.velocity.magnitude;
 
-        Debug.Log("Velocidad (NavMesh): " + velocidad);
 
         if (velocidad > velocidadUmbral)
             anim.SetFloat("Movimiento", 1f);

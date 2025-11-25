@@ -13,7 +13,7 @@ public class menu : MonoBehaviour
 
     public void PlayButton()
     {
-        StartCoroutine(wait("SCN_INIT_CINE"));
+        StartCoroutine(wait("SCN_CINE_INIT"));
     }
 
 IEnumerator wait(string sceneName)
@@ -21,7 +21,6 @@ IEnumerator wait(string sceneName)
         fadeManager.DoFade(0, 0.7f, 0.7f, 0);
         yield return new WaitForSeconds(0.7f);
         SceneManager.LoadScene(sceneName);
-        Debug.Log("carita feliz");
     }
     public void Options()
     {
@@ -48,6 +47,5 @@ IEnumerator wait(string sceneName)
     public void QuitGame()
     {
         Application.Quit();
-        Debug.Log("bolas de queso"); //quitar esto tmb jeje
     }
 }

@@ -181,12 +181,11 @@ public class TareasAleatorias : MonoBehaviour
         }
         if (winLevel == true)
         {
-            SceneManager.LoadScene("SCN_WIN_CINE");
+            SceneManager.LoadScene("SCN_CINE_WIN");
         }
 
         if(ganaTarea == true)
         {
-            Debug.Log("llamada función eliminar tarea ");
             DeleteTaskList();
         }
 

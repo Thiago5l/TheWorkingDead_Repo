@@ -17,7 +17,6 @@ public class PlayerAnimations : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("PlayerAnimations activo");
         ActualizarAnimacionMovimiento();
     }
 
