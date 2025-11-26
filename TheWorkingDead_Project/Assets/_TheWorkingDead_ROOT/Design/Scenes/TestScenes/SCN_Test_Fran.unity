@@ -9578,6 +9578,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 9714337}
     m_Modifications:
     - target: {fileID: 1081119802935260634, guid: cdc7f8795b0bb8846b356301c70ef70f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 75.396
+      objectReference: {fileID: 0}
+    - target: {fileID: 1081119802935260634, guid: cdc7f8795b0bb8846b356301c70ef70f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.17
       objectReference: {fileID: 0}
@@ -9587,7 +9591,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1081119802935260634, guid: cdc7f8795b0bb8846b356301c70ef70f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.26
+      value: 0.536
       objectReference: {fileID: 0}
     - target: {fileID: 1081119802935260634, guid: cdc7f8795b0bb8846b356301c70ef70f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9662,6 +9666,10 @@ PrefabInstance:
       value: PF_vendingmachine
       objectReference: {fileID: 0}
     - target: {fileID: 7597991455488687313, guid: cdc7f8795b0bb8846b356301c70ef70f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 75.396
+      objectReference: {fileID: 0}
+    - target: {fileID: 7597991455488687313, guid: cdc7f8795b0bb8846b356301c70ef70f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.17
       objectReference: {fileID: 0}
@@ -9671,7 +9679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7597991455488687313, guid: cdc7f8795b0bb8846b356301c70ef70f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.26
+      value: 0.536
       objectReference: {fileID: 0}
     - target: {fileID: 7597991455488687313, guid: cdc7f8795b0bb8846b356301c70ef70f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11670,6 +11678,10 @@ PrefabInstance:
       propertyPath: colorOutsideRange.b
       value: 0.42206
       objectReference: {fileID: 0}
+    - target: {fileID: 3772475834754749040, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6370170535448765431, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
       propertyPath: m_Range
       value: 4.46444
@@ -13148,7 +13160,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0}
+        key0: {r: 0, g: 0.946259, b: 1, a: 0}
         key1: {r: 1, g: 1, b: 1, a: 1}
         key2: {r: 1, g: 1, b: 1, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -22050,6 +22062,34 @@ PrefabInstance:
     - target: {fileID: 7529109076526770904, guid: 755d5ff0333361f48807db8fb31c29ce, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.00000017881
+      objectReference: {fileID: 0}
+    - target: {fileID: 8973205356449310356, guid: 755d5ff0333361f48807db8fb31c29ce, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.606
+      objectReference: {fileID: 0}
+    - target: {fileID: 8973205356449310356, guid: 755d5ff0333361f48807db8fb31c29ce, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.356
+      objectReference: {fileID: 0}
+    - target: {fileID: 8973205356449310356, guid: 755d5ff0333361f48807db8fb31c29ce, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.96854216
+      objectReference: {fileID: 0}
+    - target: {fileID: 8973205356449310356, guid: 755d5ff0333361f48807db8fb31c29ce, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8973205356449310356, guid: 755d5ff0333361f48807db8fb31c29ce, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8973205356449310356, guid: 755d5ff0333361f48807db8fb31c29ce, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.24884966
+      objectReference: {fileID: 0}
+    - target: {fileID: 8973205356449310356, guid: 755d5ff0333361f48807db8fb31c29ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 28.819
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
