@@ -88,6 +88,7 @@ public class Ordenador : MonoBehaviour
 
             if (TareaActiva)
             {
+                Player.GetComponent<PlayerController>().playerOcupado = true;
                 TaskBar.gameObject.SetActive(true);
                 StartCoroutine(WaitTaskBar(time));
             }
@@ -132,6 +133,7 @@ public class Ordenador : MonoBehaviour
 
         if (ValueBarStart <= 0)
         {
+            Player.GetComponent<PlayerController>().playerOcupado = false;
             Player.GetComponent<OviedadZombie>().Zombiedad += ((5)/100);
             ValueBarStart = save;
             TareaActiva = false; 
@@ -149,6 +151,7 @@ public class Ordenador : MonoBehaviour
             {
                 if (tareasScript.OrdenTareas[i].CompareTag("Ordenador"))//cambiar que cambie la lista pa que me cambie un bool que si está en true me elimine la posición de la lista en la que está la tarea, actualizar la listade tareas de este código en el update para que sea siempre la mmisma de TareasAleatorias.cs
                 {
+                    Player.GetComponent<PlayerController>().playerOcupado = false;
                     objectTareas.GetComponent<TareasAleatorias>().posTareaAcabada = i;
                     objectTareas.GetComponent<TareasAleatorias>().acabarTarea = true;
                     return;

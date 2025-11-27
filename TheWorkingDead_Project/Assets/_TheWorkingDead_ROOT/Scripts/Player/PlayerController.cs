@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask groundLayer; //capa detección suelo
 
 
+    public bool  playerOcupado;
+
+
     //variables referencia propias o internas
 
 
@@ -74,6 +77,7 @@ public class PlayerController : MonoBehaviour
 
     void HandleMovement()
     {
+        
         //almacenar dirección z + x de la cámara
         Vector3 cameraForward = Camera.main.transform.forward;//almacena el origen frontal de la cámara
         Vector3 cameraRight = Camera.main.transform.right;//almacena el origen lateral de la cámara
@@ -119,7 +123,11 @@ public class PlayerController : MonoBehaviour
     #region imput methods
     public void OnMove (InputAction.CallbackContext context) //context bontón físico
     {
-        moveImput = context.ReadValue<Vector2>();
+        if (!playerOcupado)
+        {
+            moveImput = context.ReadValue<Vector2>();
+        }
+            
 
     }
     

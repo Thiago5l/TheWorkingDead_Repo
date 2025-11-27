@@ -171,6 +171,12 @@ public class TareasAleatorias : MonoBehaviour
             Debug.Log($"Eliminando tarea en posición {posTareaAcabada}");
             OrdenTareas.RemoveAt(posTareaAcabada);
             Debug.Log($"Lista actual: {OrdenTareas.Count} tareas restantes");
+
+            if(OrdenTareas.Count == 1)
+            {
+                OrdenTareas.Clear();
+            }
+
             acabarTarea = false;
         }
 
