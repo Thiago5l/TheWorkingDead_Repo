@@ -3,6 +3,7 @@ using UnityEngine.AI;//librería necesaria para referenciar clases de NavMesh
 using System.Collections;
 using System.Collections.Generic;
 using System.Transactions;
+using UnityEngine.UI;
 
 
 public enum PatrollMode
@@ -46,6 +47,10 @@ public class EnemyAiBase : MonoBehaviour
     [SerializeField] Transform shootPoint;// ref al punto desde el que se disdpara
     [SerializeField] float shootSpeedZ;
     [SerializeField] float shootSpeedY;
+    [SerializeField] float detectandoPlayer;
+    [SerializeField] float maxValSliderSospecha;
+    [SerializeField] Slider sliderSospecha;
+    [SerializeField] bool atacando;
 
 
     [Header("States and detections")]
@@ -79,7 +84,6 @@ public class EnemyAiBase : MonoBehaviour
 
             else
             {
-                Debug.LogError("no se pudo encontrar objeto con tag Player; revise los tags");
                 this.enabled = false;// Deshabilita script de IA si no encuentra al player
             }
         }
@@ -96,6 +100,7 @@ public class EnemyAiBase : MonoBehaviour
         valorSumaZombiedad = playerObject.GetComponent<OviedadZombie>().sumValue;
         //Arranque de la corrutina de proceso de la IA que sustituya al Update
         StartCoroutine(AIUpdateROutine());
+        sliderSospecha.maxValue = maxValSliderSospecha;
     }
 
 
@@ -138,6 +143,7 @@ public class EnemyAiBase : MonoBehaviour
     }
     void Patrolling()
     {
+        atacando = false;
         playerObject.GetComponent<OviedadZombie>().sumValue = valorSumaZombiedad;
         alreadyattacked = false;
         //deolvemos la capacidad e moverse al agene 
@@ -184,6 +190,7 @@ public class EnemyAiBase : MonoBehaviour
             agent.SetDestination(walkPoint);    
             walkPointSet = true;
         }
+        
     }
 
 
@@ -206,21 +213,25 @@ public class EnemyAiBase : MonoBehaviour
         //Paso2: Cambiar el número de espacio de la lista a perseguir
         //... y en caso de llegar al fina, pasarlo a 0 de forma PRO
         currentWaypointIndex = (currentWaypointIndex+1) % waypoints.Count;
-
+        
     }
 
     void ChaseTarget()
     {
+        atacando = false;
         playerObject.GetComponent<OviedadZombie>().sumValue = valorSumaZombiedad;
         alreadyattacked = false;
         if(agent.isStopped) agent.isStopped = false;//si el agente está parado dejará de estarlo 
         agent.SetDestination(target.position);//cambia el destino del agente a la position del target
-
+        StopCoroutine(WaitToLoose());
     }
 
 
     void AttackTarget()
     {
+        atacando = true;
+        StartCoroutine(WaitToLoose());
+
         agent.isStopped = true;//el agente se para y empieza a atacar
         if (!alreadyattacked)
         {
@@ -283,7 +294,11 @@ public class EnemyAiBase : MonoBehaviour
     }
 
 
-    
+    IEnumerator WaitToLoose()
+    {
+        yield return new WaitForSeconds(detectandoPlayer);
+        sliderSospecha.value += 1;
+    }
 
 
 
