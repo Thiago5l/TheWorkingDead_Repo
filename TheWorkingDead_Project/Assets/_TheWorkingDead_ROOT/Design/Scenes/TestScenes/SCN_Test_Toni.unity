@@ -8335,18 +8335,12 @@ MonoBehaviour:
   PrefabsTareas:
   - {fileID: 60168017}
   - {fileID: 1978156220}
+  TareasPorNivel: 2
   tareasHechas: 0
   winLevel: 0
   boxTarea: {fileID: 4450916536924301904, guid: 35605ada0f016194198092f3730aff33, type: 3}
   tareaContiner: {fileID: 1675553755}
-  posTareaAcabada: 0
-  acabarTarea: 0
-  cambiarDeTarea: 0
   OrdenTareas: []
-  TotalTareas: 2
-  TareasPorNivel: 2
-  player: {fileID: 200637151}
-  ganaTarea: 0
 --- !u!1001 &1034626812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9787,7 +9781,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1747017550310725846, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
       propertyPath: m_Speed
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1908610580393155537, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
       propertyPath: target
