@@ -1,25 +1,15 @@
-using JetBrains.Annotations;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
 
 public class Ordenador : MonoBehaviour
 {
-
-
     #region Tareas aleatorias
     [SerializeField] public GameObject objectTareas;
     private TareasAleatorias tareasScript;
     #endregion
 
-
-    #region General Variables
-
+    #region Variables generales
     [SerializeField] float ValueBarStart = 25;
     [SerializeField] float SumValue;
     [SerializeField] Slider TaskBar;
@@ -35,166 +25,129 @@ public class Ordenador : MonoBehaviour
     [SerializeField] private float WinValue;
     [SerializeField] public Image spacebarsprite;
     [SerializeField] private float visibleTime = 0.2f;
+    [SerializeField] private float WinThreshold = 60f; // valor para completar la tarea
     #endregion
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        tareasScript = objectTareas.GetComponent<TareasAleatorias>();
         TareaActiva = true;
         PlayerCerca = false;
-        save = ValueBarStart;
-        TaskBar.GetComponent<Slider>().value = ValueBarStart;
         TareaAcabada = false;
-
-        tareasScript = objectTareas.GetComponent<TareasAleatorias>();
-
+        save = ValueBarStart;
+        TaskBar.value = ValueBarStart;
     }
 
-
-    // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("TaskPlayer") && TareaAcabada == false)
+        if (other.CompareTag("TaskPlayer") && !TareaAcabada)
         {
-            if (TareaActiva)
-            {
-                PlayerCerca = true;
-                Destroy(this.gameObject.GetComponent<MeshRenderer>().material);
-                this.gameObject.GetComponent<MeshRenderer>().material = OutLine;
-            }
-
+            PlayerCerca = true;
+            GetComponent<MeshRenderer>().material = OutLine;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("TaskPlayer") && TareaAcabada == false)
+        if (other.CompareTag("TaskPlayer") && !TareaAcabada)
         {
-            if (TareaActiva)
-            {
-                PlayerCerca = true;
-                Destroy(this.gameObject.GetComponent<MeshRenderer>().material);
-                this.gameObject.GetComponent<MeshRenderer>().material = OutLine;
-            }
+            PlayerCerca = false;
+            GetComponent<MeshRenderer>().material = Mat;
+        }
+    }
 
+    void Update()
+    {
+        // Actualizar si la tarea sigue activa
+        TareaActiva = PlayerCerca && !TareaAcabada;
+
+        // Actualizar barra
+        TaskBar.value = ValueBarStart;
+
+        // Completar tarea
+        if (WinValue >= WinThreshold && !TareaAcabada)
+        {
+            TareaAcabada = true;
+            Player.GetComponent<PlayerController>().playerOcupado = false;
+            Player.GetComponent<OviedadZombie>().Zombiedad -= 0.2f;
+            ValueBarStart = save;
+            TaskBar.gameObject.SetActive(false);
+            GetComponent<MeshRenderer>().material = Mat;
+
+            // Completar en TareasAleatorias
+            tareasScript.CompletarTarea(this.gameObject);
+
+            StopAllCoroutines();
+            WinValue = 0;
+            TareaActiva = false;
+            this.enabled = false;
         }
 
+        // Incremento de WinValue cuando la barra está en rango
+        if (ValueBarStart > 65 && ValueBarStart < 80)
+        {
+            StartCoroutine(IncrementWinValue(0.5f));
+        }
+        else
+        {
+            WinValue = 0;
+        }
+
+        // Fallo de tarea
+        if (ValueBarStart <= 0)
+        {
+            Player.GetComponent<PlayerController>().playerOcupado = false;
+            Player.GetComponent<OviedadZombie>().Zombiedad += 0.05f;
+            ValueBarStart = save;
+            TareaActiva = false;
+            TaskBar.gameObject.SetActive(false);
+            WinValue = 0;
+            StopAllCoroutines();
+        }
+
+        // Limitar barra
+        if (ValueBarStart > 100) ValueBarStart = 100;
     }
 
     public void Interactuar()
     {
-        if (PlayerCerca && !TareaAcabada)
+        if (TareaActiva && !TareaAcabada)
         {
-
-            if (TareaActiva)
-            {
-                Player.GetComponent<PlayerController>().playerOcupado = true;
-                TaskBar.gameObject.SetActive(true);
-                StartCoroutine(WaitTaskBar(time));
-            }
+            Player.GetComponent<PlayerController>().playerOcupado = true;
+            TaskBar.gameObject.SetActive(true);
+            StartCoroutine(DecrementTaskBar(time));
         }
     }
-
-    private void Update()
-    {
-
-
-
-
-        if (tareasScript.OrdenTareas[0] == this.gameObject)
-        {
-            TareaActiva = true;
-        }
-        else { TareaActiva = false; }
-
-
-        TaskBar.value = ValueBarStart;
-
-        if (WinValue >= 60)
-        {
-            Player.GetComponent<OviedadZombie>().Zombiedad -= ((20)/100);
-            ValueBarStart = save;
-            TaskBar.gameObject.SetActive(false);
-            Destroy(this.gameObject.GetComponent<MeshRenderer>().material);
-            this.gameObject.GetComponent<MeshRenderer>().material = Mat;
-            objectTareas.GetComponent<TareasAleatorias>().ganarTarea = true;
-            TareaAcabada = true;
-            StopAllCoroutines();
-            WinValue = 0;
-            TareaActiva = false;
-            this.gameObject.GetComponent<Ordenador>().enabled = false;
-        }
-
-        if (TaskBar.value < 80 && TaskBar.value > 65)
-        {
-            StartCoroutine(WaitWinValue(0.5f));
-        }
-        else { WinValue = 0; }
-
-        if (ValueBarStart <= 0)
-        {
-            Player.GetComponent<PlayerController>().playerOcupado = false;
-            Player.GetComponent<OviedadZombie>().Zombiedad += ((5)/100);
-            ValueBarStart = save;
-            TareaActiva = false; 
-            TaskBar.gameObject.SetActive(false);
-            WinValue = 0;
-            StopAllCoroutines();
-
-        }
-
-
-        if (ValueBarStart > 100) ValueBarStart = 100;
-        if (TareaAcabada)
-        {
-            for (int i = 0; i < tareasScript.OrdenTareas.Count; i++)
-            {
-                if (tareasScript.OrdenTareas[i].CompareTag("Ordenador"))//cambiar que cambie la lista pa que me cambie un bool que si está en true me elimine la posición de la lista en la que está la tarea, actualizar la listade tareas de este código en el update para que sea siempre la mmisma de TareasAleatorias.cs
-                {
-                    Player.GetComponent<PlayerController>().playerOcupado = false;
-                    objectTareas.GetComponent<TareasAleatorias>().posTareaAcabada = i;
-                    objectTareas.GetComponent<TareasAleatorias>().acabarTarea = true;
-                    return;
-                }
-            }
-
-        }
-
-    }
-
-
-    
 
     public void TaskCode()
     {
-        StartCoroutine(FlashRoutine());
         if (TareaActiva && !TareaAcabada)
         {
-            ValueBarStart = ValueBarStart + SumValue;
-            //StartCoroutine(FlashRoutine());
+            ValueBarStart += SumValue;
+            if (ValueBarStart > 100) ValueBarStart = 100;
+            StartCoroutine(FlashRoutine());
         }
     }
-    private System.Collections.IEnumerator FlashRoutine()
+
+    private IEnumerator FlashRoutine()
     {
-        spacebarsprite.fillAmount = 100;            // Mostrar
+        spacebarsprite.fillAmount = 1f;
         yield return new WaitForSeconds(visibleTime);
-        spacebarsprite.fillAmount = 0;           // Ocultar
+        spacebarsprite.fillAmount = 0f;
     }
-    IEnumerator WaitWinValue(float duration)
+
+    private IEnumerator IncrementWinValue(float duration)
     {
         yield return new WaitForSeconds(duration);
         WinValue += 1;
-
     }
 
-
-    IEnumerator WaitTaskBar(float duration)
+    private IEnumerator DecrementTaskBar(float duration)
     {
-        while (ValueBarStart < 100 && ValueBarStart > 0)
+        while (ValueBarStart > 0 && ValueBarStart < 100)
         {
             yield return new WaitForSeconds(duration);
-            ValueBarStart = ValueBarStart - restValue;
+            ValueBarStart -= restValue;
         }
-
     }
 }

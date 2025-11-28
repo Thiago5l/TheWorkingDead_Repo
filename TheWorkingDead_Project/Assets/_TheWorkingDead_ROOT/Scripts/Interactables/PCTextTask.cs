@@ -30,11 +30,8 @@ public class PCTextTask : MonoBehaviour
     [SerializeField] Material Mat;
     [SerializeField] Material OutLine;
     [SerializeField] bool PlayerCerca;
-    [SerializeField] bool tareaActiva;
-    [SerializeField] bool tareaAcabada;
-    [SerializeField] bool tareaFallada;
     [SerializeField] bool tareaEnProceso;
-    [SerializeField] private int palabrasBien;
+    [SerializeField] bool tareaAcabada;
 
     [Header("Penalización")]
     [SerializeField] GameObject Player;
@@ -43,11 +40,7 @@ public class PCTextTask : MonoBehaviour
     void Start()
     {
         tareasScript = objectTareas.GetComponent<TareasAleatorias>();
-        palabrasBien = 0;
-        textsSelected.Clear();
         tareaEnProceso = false;
-        tareaFallada = false;
-        tareaActiva = false;
         tareaAcabada = false;
         PlayerCerca = false;
         prefabTaskUI.SetActive(false);
@@ -56,12 +49,6 @@ public class PCTextTask : MonoBehaviour
 
     public void GeneradorListaTextos()
     {
-        if (textsToSelect == null || textsToSelect.Count == 0)
-        {
-            Debug.LogError("textsToSelect está vacío!");
-            return;
-        }
-
         if (textsToSelect.Count < tamañoTextsSelected)
         {
             Debug.LogError("No hay suficientes palabras en textsToSelect");
@@ -74,7 +61,6 @@ public class PCTextTask : MonoBehaviour
         for (int i = 0; i < tamañoTextsSelected; i++)
             textsSelected.Add(textsToSelect[i]);
 
-        palabrasBien = 0;
         PasarSiguientePalabra();
     }
 
@@ -82,6 +68,7 @@ public class PCTextTask : MonoBehaviour
     {
         insertedText.text = string.Empty;
         newText = string.Empty;
+
         if (textsSelected.Count > 0)
         {
             textToWrite = textsSelected[0];
@@ -112,7 +99,7 @@ public class PCTextTask : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("TaskPlayer") && !tareaAcabada)
+        if (other.CompareTag("TaskPlayer"))
         {
             PlayerCerca = false;
             GetComponent<MeshRenderer>().material = Mat;
@@ -121,21 +108,7 @@ public class PCTextTask : MonoBehaviour
 
     void Update()
     {
-        // Activación independiente por cercanía y no completada
-        tareaActiva = PlayerCerca && !tareaAcabada;
-
-        if (tareaAcabada)
-        {
-            for (int i = 0; i < tareasScript.OrdenTareas.Count; i++)
-            {
-                if (tareasScript.OrdenTareas[i] == this.gameObject)
-                {
-                    tareasScript.posTareaAcabada = i;
-                    tareasScript.acabarTarea = true;
-                    break;
-                }
-            }
-        }
+        if (tareaAcabada) return;
 
         if (tareaEnProceso)
         {
@@ -154,7 +127,6 @@ public class PCTextTask : MonoBehaviour
             prefabTaskUI.SetActive(true);
             insertedText.text = string.Empty;
             insertedText.ActivateInputField();
-            tareaFallada = false;
             Player.GetComponent<PlayerController>().playerOcupado = true;
         }
     }
@@ -169,81 +141,51 @@ public class PCTextTask : MonoBehaviour
 
     void LateUpdate()
     {
-        if (!tareaActiva || tareaAcabada) return;
+        if (!tareaEnProceso || tareaAcabada) return;
 
         newText = insertedText.text;
         ActualizarTextoColoreado();
 
         if (string.IsNullOrEmpty(newText)) return;
-
-        if (newText.Length > textToWrite.Length)
-        {
-            FallarTarea();
-            return;
-        }
+        if (newText.Length > textToWrite.Length) { FallarTarea(); return; }
 
         for (int i = 0; i < newText.Length; i++)
-        {
-            if (char.ToLower(newText[i]) != char.ToLower(textToWrite[i]))
-            {
-                FallarTarea();
-                return;
-            }
-        }
+            if (char.ToLower(newText[i]) != char.ToLower(textToWrite[i])) { FallarTarea(); return; }
 
         if (newText.Length == textToWrite.Length)
         {
-            palabrasBien++;
             textsSelected.RemoveAt(0);
-            if (textsSelected.Count > 0)
-                PasarSiguientePalabra();
+            if (textsSelected.Count > 0) PasarSiguientePalabra();
+            else CompletarTarea();
         }
-
-        if (palabrasBien == tamañoTextsSelected)
-            CompletarTarea();
     }
 
     void FallarTarea()
     {
-        if (!tareaEnProceso) return;
-
-        tareaFallada = true;
-        tareaActiva = false;
         tareaEnProceso = false;
-        timeSlider.value = 0;
         Player.GetComponent<PlayerController>().playerOcupado = false;
-        StartCoroutine(FalloConDelay());
-    }
-
-    IEnumerator FalloConDelay()
-    {
-        yield return new WaitForSeconds(0.5f);
+        timeSlider.value = 0;
         prefabTaskUI.SetActive(false);
-        insertedText.text = string.Empty;
-
-        if (Player != null)
-            Player.GetComponent<OviedadZombie>().Zombiedad += (penalizacion / 100);
-
+        Player.GetComponent<OviedadZombie>().Zombiedad += (penalizacion / 100);
         GetComponent<MeshRenderer>().material = Mat;
     }
 
     void CompletarTarea()
     {
         tareaEnProceso = false;
-        tareaFallada = false;
         tareaAcabada = true;
-        tareaActiva = false;
-        timeSlider.value = 0;
         Player.GetComponent<PlayerController>().playerOcupado = false;
         prefabTaskUI.SetActive(false);
         GetComponent<MeshRenderer>().material = Mat;
-        tareasScript.ganaTarea();
+
+        // Se comunica directamente con TareasAleatorias
+        tareasScript.CompletarTarea(this.gameObject);
         this.enabled = false;
     }
 
     void ActualizarTextoColoreado()
     {
-        string resultado = string.Empty;
+        string resultado = "";
         for (int i = 0; i < textToWrite.Length; i++)
         {
             if (i < newText.Length)
@@ -255,57 +197,58 @@ public class PCTextTask : MonoBehaviour
     }
 }
 
-        //textToWrite = textsSelected[0];
-        //textUI.GetComponent<TextMeshProUGUI>().text = textToWrite;
 
-        //ConfigurarTiempo();
-    
+//textToWrite = textsSelected[0];
+//textUI.GetComponent<TextMeshProUGUI>().text = textToWrite;
 
-
-
-    //public void GeneradorListaTextos()
-    //{
-    //    if (textsToSelect == null || textsToSelect.Count == 0)
-    //    {
-    //        Debug.LogError("textsToSelect está vacío!");
-    //        return;
-    //    }
-
-    //    MezclarLista(textsToSelect);
-    //    textToWrite = textsSelected[0];
-    //    textUI.GetComponent<TextMeshProUGUI>().text = textToWrite;
-    //}
-
-
-    //void FallarTarea()
-    //{
-    //    tareaFallada = true;
-    //    tareaActiva = false;
-    //    tareaEnProceso = false;
-
-    //    prefabTaskUI.SetActive(false);
-    //    insertedText.text = string.Empty;
-
-    //    // Penalización (igual que tu zombie)
-    //    if (Player != null)
-    //    {
-    //        Player.GetComponent<OviedadZombie>().Zombiedad += (penalizacion / 100);
-    //    }
-
-    //    GetComponent<MeshRenderer>().material = Mat;
-
-    //    Debug.Log("TAREA FALLADA - Penalización aplicada");
-    //}
-
-    // ===============================
-    // CUANDO SE COMPLETA
-    // ===============================
+//ConfigurarTiempo();
 
 
 
 
+//public void GeneradorListaTextos()
+//{
+//    if (textsToSelect == null || textsToSelect.Count == 0)
+//    {
+//        Debug.LogError("textsToSelect está vacío!");
+//        return;
+//    }
 
-    //////////////////////////////////////////////////////////////////////////
+//    MezclarLista(textsToSelect);
+//    textToWrite = textsSelected[0];
+//    textUI.GetComponent<TextMeshProUGUI>().text = textToWrite;
+//}
+
+
+//void FallarTarea()
+//{
+//    tareaFallada = true;
+//    tareaActiva = false;
+//    tareaEnProceso = false;
+
+//    prefabTaskUI.SetActive(false);
+//    insertedText.text = string.Empty;
+
+//    // Penalización (igual que tu zombie)
+//    if (Player != null)
+//    {
+//        Player.GetComponent<OviedadZombie>().Zombiedad += (penalizacion / 100);
+//    }
+
+//    GetComponent<MeshRenderer>().material = Mat;
+
+//    Debug.Log("TAREA FALLADA - Penalización aplicada");
+//}
+
+// ===============================
+// CUANDO SE COMPLETA
+// ===============================
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////
 
 
 
@@ -318,83 +261,81 @@ public class PCTextTask : MonoBehaviour
 
 
 
-    //[SerializeField] public GameObject prefabTaskUI;
-    //[SerializeField] public List<string> textsToSelect = new List<string>();
-    //[SerializeField] string newText = string.Empty;
-    //[SerializeField] string textToWrite = string.Empty;
-    //[SerializeField] string letra = string.Empty;
-    //[SerializeField] public GameObject textUI;
-    //[SerializeField] public GameObject insertedText;
-    //[SerializeField] public bool tareaFallada;
-    //[SerializeField] public bool tareaActiva;
+//[SerializeField] public GameObject prefabTaskUI;
+//[SerializeField] public List<string> textsToSelect = new List<string>();
+//[SerializeField] string newText = string.Empty;
+//[SerializeField] string textToWrite = string.Empty;
+//[SerializeField] string letra = string.Empty;
+//[SerializeField] public GameObject textUI;
+//[SerializeField] public GameObject insertedText;
+//[SerializeField] public bool tareaFallada;
+//[SerializeField] public bool tareaActiva;
 
-    //// Start is called once before the first execution of Update after the MonoBehaviour is created
-    //void Start()
-    //{
-    //    GeneradorListaTextos();
-    //    tareaFallada = false;
-    //    tareaActiva = false;
-    //}
+//// Start is called once before the first execution of Update after the MonoBehaviour is created
+//void Start()
+//{
+//    GeneradorListaTextos();
+//    tareaFallada = false;
+//    tareaActiva = false;
+//}
 
-    //public void GeneradorListaTextos()
-    //{
-    //    // Validar que tengamos suficientes tareas
-    //    if (textsToSelect == null || textsToSelect.Count == 0)
-    //    {
-    //        Debug.LogError("textsToSelect está vacío!");
-    //        return;
-    //    }
+//public void GeneradorListaTextos()
+//{
+//    // Validar que tengamos suficientes tareas
+//    if (textsToSelect == null || textsToSelect.Count == 0)
+//    {
+//        Debug.LogError("textsToSelect está vacío!");
+//        return;
+//    }
 
-    //    MezclarLista(textsToSelect);
+//    MezclarLista(textsToSelect);
 
-    //    textToWrite = textsToSelect[1];
-
-
-    //    textUI.GetComponent<TextMeshProUGUI>().text = textToWrite;
+//    textToWrite = textsToSelect[1];
 
 
-    //}
+//    textUI.GetComponent<TextMeshProUGUI>().text = textToWrite;
 
 
-
-    //private void MezclarLista(List<string> list)
-    //{
-    //    for (int i = list.Count - 1; i > 0; i--)
-    //    {
-    //        int j = UnityEngine.Random.Range(0, i + 1);
-    //        string temp = list[i];
-    //        list[i] = list[j];
-    //        list[j] = temp;
-    //    }
-    //}
+//}
 
 
 
+//private void MezclarLista(List<string> list)
+//{
+//    for (int i = list.Count - 1; i > 0; i--)
+//    {
+//        int j = UnityEngine.Random.Range(0, i + 1);
+//        string temp = list[i];
+//        list[i] = list[j];
+//        list[j] = temp;
+//    }
+//}
 
 
-    //void ActualizarTextoColoreado()
-    //{
-    //    string resultado = "";
-
-    //    for (int i = 0; i < textToWrite.Length; i++)
-    //    {
-    //        if (i < newText.Length)
-    //        {
-    //            if (char.ToLower(newText[i]) == char.ToLower(textToWrite[i]))
-    //                resultado += $"<color=green>{textToWrite[i]}</color>";
-    //            else
-    //                resultado += $"<color=red>{textToWrite[i]}</color>";
-    //        }
-    //        else
-    //        {
-    //            resultado += $"<color=white>{textToWrite[i]}</color>";
-    //        }
-    //    }
-
-    //    textUI.GetComponent<TextMeshProUGUI>().text = resultado;
-    //}
 
 
+
+//void ActualizarTextoColoreado()
+//{
+//    string resultado = "";
+
+//    for (int i = 0; i < textToWrite.Length; i++)
+//    {
+//        if (i < newText.Length)
+//        {
+//            if (char.ToLower(newText[i]) == char.ToLower(textToWrite[i]))
+//                resultado += $"<color=green>{textToWrite[i]}</color>";
+//            else
+//                resultado += $"<color=red>{textToWrite[i]}</color>";
+//        }
+//        else
+//        {
+//            resultado += $"<color=white>{textToWrite[i]}</color>";
+//        }
+//    }
+
+//    textUI.GetComponent<TextMeshProUGUI>().text = resultado;
+//}
 
 
 
@@ -403,74 +344,76 @@ public class PCTextTask : MonoBehaviour
 
 
 
-    //// Update is called once per frame
-    //void Update()
-    //{
-
-    //    if (tareaActiva)
-    //    {
-    //        ActualizarTextoColoreado();
-
-    //        TMP_InputField input = insertedText.GetComponent<TMP_InputField>();
-    //        newText = input.text;
-
-    //        // Si no ha escrito nada, no comprobamos
-    //        if (string.IsNullOrEmpty(newText))
-    //        return;
-
-    //        // Si escribe más caracteres de los que tiene la palabra objetivo
-    //        if (newText.Length > textToWrite.Length)
-    //        {
-    //            tareaFallada = true;
-    //        }
-
-    //        // Comprobamos carácter a carácter
-    //        for (int i = 0; i < newText.Length; i++)
-    //        {
-    //            if (char.ToLower(newText[i]) != char.ToLower(textToWrite[i]))
-    //            {
-    //                tareaFallada = true;
-    //            }
-    //        }
-
-    //        // Si llega aquí, TODO lo escrito hasta ahora es correcto
-    //        Debug.Log("Va bien");
-
-    //        // Si además ya ha terminado la palabra completa
-    //        if (newText.Length == textToWrite.Length)
-    //        {
-    //            tareaFallada = false;
-    //            tareaActiva = false;
-    //            prefabTaskUI.SetActive(false);
-    //        }
 
 
+//// Update is called once per frame
+//void Update()
+//{
 
-    //        //////////////////////////////////////////////////////////////////////////////////////////
+//    if (tareaActiva)
+//    {
+//        ActualizarTextoColoreado();
+
+//        TMP_InputField input = insertedText.GetComponent<TMP_InputField>();
+//        newText = input.text;
+
+//        // Si no ha escrito nada, no comprobamos
+//        if (string.IsNullOrEmpty(newText))
+//        return;
+
+//        // Si escribe más caracteres de los que tiene la palabra objetivo
+//        if (newText.Length > textToWrite.Length)
+//        {
+//            tareaFallada = true;
+//        }
+
+//        // Comprobamos carácter a carácter
+//        for (int i = 0; i < newText.Length; i++)
+//        {
+//            if (char.ToLower(newText[i]) != char.ToLower(textToWrite[i]))
+//            {
+//                tareaFallada = true;
+//            }
+//        }
+
+//        // Si llega aquí, TODO lo escrito hasta ahora es correcto
+//        Debug.Log("Va bien");
+
+//        // Si además ya ha terminado la palabra completa
+//        if (newText.Length == textToWrite.Length)
+//        {
+//            tareaFallada = false;
+//            tareaActiva = false;
+//            prefabTaskUI.SetActive(false);
+//        }
 
 
 
-
-    //        ////newText = insertedText.GetComponent<TMP_Text>().text.Trim();
-    //        //TMP_InputField input = insertedText.GetComponent<TMP_InputField>();
-    //        //newText = input.text/*.Trim()*/;
-
-
-    //        //if (string.Equals(textToWrite, newText, System.StringComparison.OrdinalIgnoreCase))/*(textToWrite.Trim() == newText)*/
-    //        //{
-    //        //    Debug.Log("DEBORASTE");
-    //        //}
+//        //////////////////////////////////////////////////////////////////////////////////////////
 
 
 
 
-    //    }
+//        ////newText = insertedText.GetComponent<TMP_Text>().text.Trim();
+//        //TMP_InputField input = insertedText.GetComponent<TMP_InputField>();
+//        //newText = input.text/*.Trim()*/;
 
-    //}
 
-    //public void TaskCode()
-    //{
-    //    tareaActiva = true;
-    //    prefabTaskUI.SetActive(true);
+//        //if (string.Equals(textToWrite, newText, System.StringComparison.OrdinalIgnoreCase))/*(textToWrite.Trim() == newText)*/
+//        //{
+//        //    Debug.Log("DEBORASTE");
+//        //}
 
-    //}
+
+
+
+//    }
+
+//}
+
+//public void TaskCode()
+//{
+//    tareaActiva = true;
+//    prefabTaskUI.SetActive(true);
+
+//}

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class TareasAleatorias : MonoBehaviour
 {
-    [Header("Configuracion de Tareas")]
+    [Header("Configuración de Tareas")]
     [SerializeField] public GameObject[] PrefabsTareas;
     [SerializeField] public int TareasPorNivel;
 
@@ -19,18 +19,10 @@ public class TareasAleatorias : MonoBehaviour
     [Header("Control de tareas")]
     [SerializeField] public List<GameObject> OrdenTareas = new List<GameObject>();
 
-    [Header("Flags de tarea")]
-    [SerializeField] public bool ganarTarea;
-    [SerializeField] public int posTareaAcabada;
-    [SerializeField] public bool acabarTarea;
-
     void Start()
     {
-        ganarTarea = false;
-        acabarTarea = false;
-        winLevel = false;
         tareasHechas = 0;
-
+        winLevel = false;
         GeneradorListaTareas();
     }
 
@@ -43,10 +35,7 @@ public class TareasAleatorias : MonoBehaviour
         }
 
         if (TareasPorNivel > PrefabsTareas.Length)
-        {
-            Debug.LogWarning("TareasPorNivel es mayor que PrefabsTareas disponibles. Ajustando...");
             TareasPorNivel = PrefabsTareas.Length;
-        }
 
         List<GameObject> tareasDisponibles = new List<GameObject>(PrefabsTareas);
         MezclarLista(tareasDisponibles);
@@ -55,12 +44,12 @@ public class TareasAleatorias : MonoBehaviour
 
         for (int i = 0; i < TareasPorNivel; i++)
         {
-            GameObject temp = tareasDisponibles[i];
-            OrdenTareas.Add(temp);
+            GameObject tarea = tareasDisponibles[i];
+            OrdenTareas.Add(tarea);
 
             // Crear UI
             GameObject box = Instantiate(boxTarea, tareaContiner);
-            box.GetComponent<BoxTarea>().SetText(temp.GetComponent<TareaNombre>().tareaNombre);
+            box.GetComponent<BoxTarea>().SetText(tarea.GetComponent<TareaNombre>().tareaNombre);
         }
 
         Debug.Log($"Se generaron {OrdenTareas.Count} tareas aleatorias");
@@ -77,45 +66,29 @@ public class TareasAleatorias : MonoBehaviour
         }
     }
 
-    void Update()
+    // Método público para completar cualquier tarea
+    public void CompletarTarea(GameObject tarea)
     {
-        // Revisar si se completo el nivel
-        if (tareasHechas >= TareasPorNivel || OrdenTareas.Count <= 0)
+        int index = OrdenTareas.IndexOf(tarea);
+        if (index >= 0)
         {
-            winLevel = true;
-        }
+            OrdenTareas.RemoveAt(index);
 
-        if (winLevel)
-        {
-            SceneManager.LoadScene("SCN_CINE_WIN");
-            return;
-        }
+            // Ocultar UI correspondiente
+            if (index < tareaContiner.childCount)
+                tareaContiner.GetChild(index).gameObject.SetActive(false);
 
-        // Revisar si se ganó alguna tarea
-        if (ganarTarea)
-        {
             tareasHechas++;
-            ganarTarea = false;
-        }
-
-        // Revisar flag de acabar tarea desde otra clase
-        if (acabarTarea)
-        {
-            if (posTareaAcabada >= 0 && posTareaAcabada < OrdenTareas.Count)
-            {
-                // Ocultar o destruir UI
-                if (posTareaAcabada < tareaContiner.childCount)
-                    tareaContiner.GetChild(posTareaAcabada).gameObject.SetActive(false);
-
-                OrdenTareas.RemoveAt(posTareaAcabada);
-            }
-            acabarTarea = false;
+            Debug.Log($"Tarea completada: {tarea.name} | Restantes: {OrdenTareas.Count}");
         }
     }
 
-    // Método público para marcar una tarea como completada
-    public void ganaTarea()
+    void Update()
     {
-        ganarTarea = true;
+        if (tareasHechas >= TareasPorNivel || OrdenTareas.Count <= 0)
+            winLevel = true;
+
+        if (winLevel)
+            SceneManager.LoadScene("SCN_CINE_WIN");
     }
 }
