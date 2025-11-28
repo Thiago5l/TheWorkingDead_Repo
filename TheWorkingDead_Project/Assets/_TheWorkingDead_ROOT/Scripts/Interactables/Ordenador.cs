@@ -117,7 +117,7 @@ public class Ordenador : MonoBehaviour
             TaskBar.gameObject.SetActive(false);
             Destroy(this.gameObject.GetComponent<MeshRenderer>().material);
             this.gameObject.GetComponent<MeshRenderer>().material = Mat;
-            objectTareas.GetComponent<TareasAleatorias>().ganaTarea = true;
+            objectTareas.GetComponent<TareasAleatorias>().ganarTarea = true;
             TareaAcabada = true;
             StopAllCoroutines();
             WinValue = 0;

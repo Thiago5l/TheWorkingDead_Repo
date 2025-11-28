@@ -1,25 +1,14 @@
-using JetBrains.Annotations;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
-using System.Collections.Generic;
+
 public class Impresora : MonoBehaviour
 {
-
-
-
-    #region Tareas aleatorias
+    [Header("Tareas aleatorias")]
     [SerializeField] public GameObject objectTareas;
     private TareasAleatorias tareasScript;
-    #endregion
 
-
-
-    #region General Variables
-
+    [Header("Variables generales")]
     [SerializeField] float ValueBarStart = 25;
     [SerializeField] float SumValue;
     [SerializeField] GameObject TaskBar;
@@ -32,156 +21,121 @@ public class Impresora : MonoBehaviour
     [SerializeField] bool TareaActiva;
     [SerializeField] bool TareaAcabada;
     private float save;
+
     [SerializeField] public Image spacebarsprite;
     [SerializeField] private float visibleTime = 0.2f;
-    #endregion
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Slider slider;
+
     void Start()
     {
         TareaActiva = false;
         PlayerCerca = false;
         save = ValueBarStart;
-        TaskBar.GetComponent<Slider>().value = ValueBarStart;
+        slider = TaskBar.GetComponent<Slider>();
+        slider.value = ValueBarStart;
         TareaAcabada = false;
 
-        tareasScript = objectTareas.GetComponent<TareasAleatorias>();
+        if (objectTareas != null)
+            tareasScript = objectTareas.GetComponent<TareasAleatorias>();
+        else
+            Debug.LogError("objectTareas no asignado en Impresora: " + gameObject.name);
     }
-   
 
-    // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("TaskPlayer") && TareaAcabada == false )
+        if (other.CompareTag("TaskPlayer") && !TareaAcabada)
         {
-            if (TareaActiva)
-            {
-                PlayerCerca = true;
-                Destroy(this.gameObject.GetComponent<MeshRenderer>().material);
-                this.gameObject.GetComponent<MeshRenderer>().material = OutLine;
-            }
-            
-
-        }
-    }
-
-    public void Interactuar()
-    {
-        if(PlayerCerca && !TareaAcabada)
-        {
-            if (TareaActiva)
-            {
-                TaskBar.gameObject.SetActive(true);
-                StartCoroutine(WaitTaskBar(time));
-            }
-
-
-            
+            PlayerCerca = true;
+            this.gameObject.GetComponent<MeshRenderer>().material = OutLine;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("TaskPlayer") && TareaAcabada == false)
+        if (other.CompareTag("TaskPlayer") && !TareaAcabada)
         {
             PlayerCerca = false;
-            Destroy(this.gameObject.GetComponent<MeshRenderer>().material);
             this.gameObject.GetComponent<MeshRenderer>().material = Mat;
-
         }
-
     }
 
-    
-    private void Update()
+    void Update()
     {
+        // Activación independiente
+        TareaActiva = PlayerCerca && !TareaAcabada;
 
+        slider.value = ValueBarStart;
 
-        if (ValueBarStart > 100) ValueBarStart = 100;
-
-        if (tareasScript.OrdenTareas[0] == this.gameObject)
+        if (ValueBarStart >= 100 && !TareaAcabada)
         {
-            TareaActiva = true;
-        }
-        else { TareaActiva = false; }
-
-        TaskBar.GetComponent<Slider>().value = ValueBarStart;
-
-        if (ValueBarStart >= 100)
-        {
-
-            Player.GetComponent<OviedadZombie>().Zombiedad -= ((20)/100);
-            ValueBarStart = save;
-            TaskBar.gameObject.SetActive(false);
-            Destroy(this.gameObject.GetComponent<MeshRenderer>().material);
-            this.gameObject.GetComponent<MeshRenderer>().material = Mat;
-            Debug.Log("acabar tarea en true");
-            objectTareas.GetComponent<TareasAleatorias>().ganaTarea = true;
             TareaAcabada = true;
-            StopAllCoroutines();
-            TareaActiva = false;
-            this.gameObject.GetComponent<Impresora>().enabled = false;
-
-
-        }
-        if (ValueBarStart <= 0)
-        {
-            Player.GetComponent<OviedadZombie>().Zombiedad += ((5)/100);
+            Player.GetComponent<PlayerController>().playerOcupado = false;
+            Player.GetComponent<OviedadZombie>().Zombiedad -= (20f / 100f);
             ValueBarStart = save;
-            TaskBar.gameObject.SetActive(false);
-            TareaActiva = false;
+            TaskBar.SetActive(false);
+            this.gameObject.GetComponent<MeshRenderer>().material = Mat;
+            tareasScript?.ganaTarea();
             StopAllCoroutines();
-
-
+            this.enabled = false;
         }
 
-        if (TareaAcabada)
+        if (ValueBarStart <= 0 && !TareaAcabada)
+        {
+            Player.GetComponent<OviedadZombie>().Zombiedad += (5f / 100f);
+            ValueBarStart = save;
+            TaskBar.SetActive(false);
+            TareaActiva = false;
+            Player.GetComponent<PlayerController>().playerOcupado = false;
+            StopAllCoroutines();
+        }
+
+        // Marcar tarea en TareasAleatorias
+        if (TareaAcabada && tareasScript != null)
         {
             for (int i = 0; i < tareasScript.OrdenTareas.Count; i++)
             {
-                if (tareasScript.OrdenTareas[i].CompareTag("Impresora"))
+                if (tareasScript.OrdenTareas[i] == this.gameObject)
                 {
-                    objectTareas.GetComponent<TareasAleatorias>().posTareaAcabada = i;
-                    objectTareas.GetComponent<TareasAleatorias>().acabarTarea = true;
-                    return;
+                    tareasScript.posTareaAcabada = i;
+                    tareasScript.acabarTarea = true;
+                    break;
                 }
             }
-
         }
-
-
     }
 
+    public void Interactuar()
+    {
+        if (TareaActiva && !TareaAcabada)
+        {
+            TaskBar.SetActive(true);
+            StartCoroutine(WaitTaskBar(time));
+            Player.GetComponent<PlayerController>().playerOcupado = true;
+        }
+    }
 
     public void TaskCode()
     {
         if (TareaActiva && !TareaAcabada)
-        {
-            ValueBarStart = ValueBarStart + SumValue;
-        }
+            ValueBarStart += SumValue;
+
         StartCoroutine(FlashRoutine());
-
     }
-    private System.Collections.IEnumerator FlashRoutine()
+
+    private IEnumerator FlashRoutine()
     {
-        spacebarsprite.fillAmount = 100;            // Mostrar
+        spacebarsprite.fillAmount = 100;
         yield return new WaitForSeconds(visibleTime);
-       spacebarsprite.fillAmount = 0;           // Ocultar
+        spacebarsprite.fillAmount = 0;
     }
 
-
-    IEnumerator WaitTaskBar(float duration)
+    private IEnumerator WaitTaskBar(float duration)
     {
-        while (ValueBarStart < 100 && ValueBarStart>0)
+        while (ValueBarStart < 100 && ValueBarStart > 0)
         {
             yield return new WaitForSeconds(duration);
-            ValueBarStart = ValueBarStart - restValue;
+            ValueBarStart -= restValue;
         }
-
     }
-
-
-
 }
-   
-

@@ -3,23 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using NUnit;
-using System.Threading.Tasks;
-//using Unity.VisualScripting;
 
 public class PCTextTask : MonoBehaviour
 {
-
-//CÓDIGO COMPLETO PASADO POR IA
-
-
-    #region Tareas aleatorias
+    [Header("Tareas aleatorias")]
     [SerializeField] public GameObject objectTareas;
     private TareasAleatorias tareasScript;
-    #endregion
 
-    #region Texto
+    [Header("Texto")]
     [SerializeField] public GameObject prefabTaskUI;
     [SerializeField] public List<string> textsToSelect = new List<string>();
     [SerializeField] public List<string> textsSelected = new List<string>();
@@ -28,16 +19,14 @@ public class PCTextTask : MonoBehaviour
     [SerializeField] string textToWrite = string.Empty;
     [SerializeField] public GameObject textUI;
     [SerializeField] public TMP_InputField insertedText;
-    #endregion
 
-    #region TIEMPO
+    [Header("Tiempo")]
     [SerializeField] private Slider timeSlider;
     [SerializeField] private float tiempoMax;
     [SerializeField] private float tiempoActual;
     [SerializeField] private float tiempoPorCaracter = 0.5f;
-    #endregion
 
-    #region Interacción y estado
+    [Header("Interacción y estado")]
     [SerializeField] Material Mat;
     [SerializeField] Material OutLine;
     [SerializeField] bool PlayerCerca;
@@ -45,28 +34,22 @@ public class PCTextTask : MonoBehaviour
     [SerializeField] bool tareaAcabada;
     [SerializeField] bool tareaFallada;
     [SerializeField] bool tareaEnProceso;
-    [SerializeField] private int palabarasBien;
-    #endregion
+    [SerializeField] private int palabrasBien;
 
-    #region Penalización
+    [Header("Penalización")]
     [SerializeField] GameObject Player;
-    [SerializeField] float penalizacion = 5f; // Cantidad de penalización
-    #endregion
+    [SerializeField] float penalizacion = 5f;
 
     void Start()
     {
         tareasScript = objectTareas.GetComponent<TareasAleatorias>();
-
-        palabarasBien = 0;
-
+        palabrasBien = 0;
         textsSelected.Clear();
-
         tareaEnProceso = false;
         tareaFallada = false;
         tareaActiva = false;
         tareaAcabada = false;
         PlayerCerca = false;
-
         prefabTaskUI.SetActive(false);
         GeneradorListaTextos();
     }
@@ -89,18 +72,194 @@ public class PCTextTask : MonoBehaviour
         MezclarLista(textsToSelect);
 
         for (int i = 0; i < tamañoTextsSelected; i++)
-        {
             textsSelected.Add(textsToSelect[i]);
+
+        palabrasBien = 0;
+        PasarSiguientePalabra();
+    }
+
+    public void PasarSiguientePalabra()
+    {
+        insertedText.text = string.Empty;
+        newText = string.Empty;
+        if (textsSelected.Count > 0)
+        {
+            textToWrite = textsSelected[0];
+            textUI.GetComponent<TextMeshProUGUI>().text = textToWrite;
+            ConfigurarTiempo();
+        }
+    }
+
+    private void MezclarLista(List<string> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            string temp = list[i];
+            list[i] = list[j];
+            list[j] = temp;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("TaskPlayer") && !tareaAcabada)
+        {
+            PlayerCerca = true;
+            GetComponent<MeshRenderer>().material = OutLine;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("TaskPlayer") && !tareaAcabada)
+        {
+            PlayerCerca = false;
+            GetComponent<MeshRenderer>().material = Mat;
+        }
+    }
+
+    void Update()
+    {
+        // Activación independiente por cercanía y no completada
+        tareaActiva = PlayerCerca && !tareaAcabada;
+
+        if (tareaAcabada)
+        {
+            for (int i = 0; i < tareasScript.OrdenTareas.Count; i++)
+            {
+                if (tareasScript.OrdenTareas[i] == this.gameObject)
+                {
+                    tareasScript.posTareaAcabada = i;
+                    tareasScript.acabarTarea = true;
+                    break;
+                }
+            }
         }
 
-        palabarasBien = 0;
+        if (tareaEnProceso)
+        {
+            tiempoActual -= Time.deltaTime;
+            timeSlider.value = tiempoActual;
+            if (tiempoActual <= 0f)
+                FallarTarea();
+        }
+    }
 
-        PasarSiguientePalabra();
+    public void Interactuar()
+    {
+        if (PlayerCerca && !tareaAcabada && !tareaEnProceso)
+        {
+            tareaEnProceso = true;
+            prefabTaskUI.SetActive(true);
+            insertedText.text = string.Empty;
+            insertedText.ActivateInputField();
+            tareaFallada = false;
+            Player.GetComponent<PlayerController>().playerOcupado = true;
+        }
+    }
+
+    void ConfigurarTiempo()
+    {
+        tiempoMax = textToWrite.Length * tiempoPorCaracter;
+        tiempoActual = tiempoMax;
+        timeSlider.maxValue = tiempoMax;
+        timeSlider.value = tiempoMax;
+    }
+
+    void LateUpdate()
+    {
+        if (!tareaActiva || tareaAcabada) return;
+
+        newText = insertedText.text;
+        ActualizarTextoColoreado();
+
+        if (string.IsNullOrEmpty(newText)) return;
+
+        if (newText.Length > textToWrite.Length)
+        {
+            FallarTarea();
+            return;
+        }
+
+        for (int i = 0; i < newText.Length; i++)
+        {
+            if (char.ToLower(newText[i]) != char.ToLower(textToWrite[i]))
+            {
+                FallarTarea();
+                return;
+            }
+        }
+
+        if (newText.Length == textToWrite.Length)
+        {
+            palabrasBien++;
+            textsSelected.RemoveAt(0);
+            if (textsSelected.Count > 0)
+                PasarSiguientePalabra();
+        }
+
+        if (palabrasBien == tamañoTextsSelected)
+            CompletarTarea();
+    }
+
+    void FallarTarea()
+    {
+        if (!tareaEnProceso) return;
+
+        tareaFallada = true;
+        tareaActiva = false;
+        tareaEnProceso = false;
+        timeSlider.value = 0;
+        Player.GetComponent<PlayerController>().playerOcupado = false;
+        StartCoroutine(FalloConDelay());
+    }
+
+    IEnumerator FalloConDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        prefabTaskUI.SetActive(false);
+        insertedText.text = string.Empty;
+
+        if (Player != null)
+            Player.GetComponent<OviedadZombie>().Zombiedad += (penalizacion / 100);
+
+        GetComponent<MeshRenderer>().material = Mat;
+    }
+
+    void CompletarTarea()
+    {
+        tareaEnProceso = false;
+        tareaFallada = false;
+        tareaAcabada = true;
+        tareaActiva = false;
+        timeSlider.value = 0;
+        Player.GetComponent<PlayerController>().playerOcupado = false;
+        prefabTaskUI.SetActive(false);
+        GetComponent<MeshRenderer>().material = Mat;
+        tareasScript.ganaTarea();
+        this.enabled = false;
+    }
+
+    void ActualizarTextoColoreado()
+    {
+        string resultado = string.Empty;
+        for (int i = 0; i < textToWrite.Length; i++)
+        {
+            if (i < newText.Length)
+                resultado += (char.ToLower(newText[i]) == char.ToLower(textToWrite[i])) ? $"<color=green>{textToWrite[i]}</color>" : $"<color=red>{textToWrite[i]}</color>";
+            else
+                resultado += $"<color=white>{textToWrite[i]}</color>";
+        }
+        textUI.GetComponent<TextMeshProUGUI>().text = resultado;
+    }
+}
+
         //textToWrite = textsSelected[0];
         //textUI.GetComponent<TextMeshProUGUI>().text = textToWrite;
 
         //ConfigurarTiempo();
-    }
+    
 
 
 
@@ -116,206 +275,6 @@ public class PCTextTask : MonoBehaviour
     //    textToWrite = textsSelected[0];
     //    textUI.GetComponent<TextMeshProUGUI>().text = textToWrite;
     //}
-
-    public void PasarSiguientePalabra()
-    {
-        insertedText.text = string.Empty;
-        newText = string.Empty;
-        
-        textToWrite = textsSelected[0];
-        textUI.GetComponent<TextMeshProUGUI>().text = textToWrite;
-
-        ConfigurarTiempo();
-    }
-
-    private void MezclarLista(List<string> list)
-    {
-        for (int i = list.Count - 1; i > 0; i--)
-        {
-            int j = Random.Range(0, i + 1);
-            string temp = list[i];
-            list[i] = list[j];
-            list[j] = temp;
-        }
-    }
-
-    // ===============================
-    // DETECCIÓN DEL JUGADOR (MATERIALES)
-    // ===============================
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("TaskPlayer") && !tareaAcabada)
-        {
-            if (tareaActiva)
-            {
-                PlayerCerca = true;
-                GetComponent<MeshRenderer>().material = OutLine;
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("TaskPlayer") && !tareaAcabada)
-        {
-            PlayerCerca = false;
-            GetComponent<MeshRenderer>().material = Mat;
-        }
-    }
-
-    // ===============================
-    // CONTROL DE ORDEN DE TAREAS
-    // ===============================
-    void Update()
-    {
-        if (tareasScript.OrdenTareas[0] == this.gameObject)
-            tareaActiva = true;
-        else
-            tareaActiva = false;
-
-        if (tareaAcabada)
-        {
-            for (int i = 0; i < tareasScript.OrdenTareas.Count; i++)
-            {
-                if (tareasScript.OrdenTareas[i] == this.gameObject)
-                {
-                    objectTareas.GetComponent<TareasAleatorias>().posTareaAcabada = i;
-                    objectTareas.GetComponent<TareasAleatorias>().acabarTarea = true;
-                    return;
-                }
-            }
-        }
-
-        if (tareaEnProceso)
-        {
-            
-            tiempoActual -= Time.deltaTime;
-            timeSlider.value = tiempoActual;
-
-            if (tiempoActual <= 0f)
-            {
-                FallarTarea();
-            }
-        }
-    }
-
-    // ===============================
-    // INTERACTUAR
-    // ===============================
-    public void Interactuar()
-    {
-        Player.GetComponent<PlayerController>().playerOcupado = true;
-        if (PlayerCerca && tareaActiva && !tareaAcabada && !tareaEnProceso)
-        {
-            tareaEnProceso = true;
-            prefabTaskUI.SetActive(true);
-            insertedText.text = string.Empty;
-            insertedText.ActivateInputField();
-            tareaFallada = false;
-        }
-    }
-
-
-    // ===============================
-    // CONTROL DEL TIEMPO
-    // ===============================
-
-    void ConfigurarTiempo()
-    {
-
-        tiempoMax = textToWrite.Length * tiempoPorCaracter;
-        tiempoActual = tiempoMax;
-
-        timeSlider.maxValue = tiempoMax;
-        timeSlider.value = tiempoMax;
-    }
-
-    // ===============================
-    // VALIDACIÓN DEL TEXTO
-    // ===============================
-    void LateUpdate()//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    {
-        if (!tareaActiva || tareaAcabada) return;
-
-        newText = insertedText.text;
-        ActualizarTextoColoreado();
-
-        if (string.IsNullOrEmpty(newText)) return;
-
-        // Si se pasa de largo -> FALLO
-        if (newText.Length > textToWrite.Length)
-        {
-            FallarTarea();
-            return;
-        }
-
-        // Fallo por letra incorrecta
-        for (int i = 0; i < newText.Length; i++)
-        {
-            if (char.ToLower(newText[i]) != char.ToLower(textToWrite[i]))
-            {
-                FallarTarea();
-                return;
-            }
-        }
-
-        // Palabra Completada correctamente
-        if (newText.Length == textToWrite.Length)
-        {
-            palabarasBien++;
-            textsSelected.RemoveAt(0);
-
-            if (textsSelected.Count > 0)
-            {
-                PasarSiguientePalabra();
-            }
-        }
-
-        if (palabarasBien == tamañoTextsSelected)
-        {
-            CompletarTarea();
-        }
-    }
-
-    // ===============================
-    // CUANDO SE FALLA
-    // ===============================
-
-
-    void FallarTarea()
-    {
-        if (!tareaEnProceso) return; // evita dobles llamadas
-
-        tareaFallada = true;
-        tareaActiva = false;
-        tareaEnProceso = false;
-        timeSlider.value = 0;
-
-        Player.GetComponent<PlayerController>().playerOcupado = false;
-
-        StartCoroutine(FalloConDelay());
-    }
-
-    IEnumerator FalloConDelay()
-    {
-        // Espera medio segundo
-        yield return new WaitForSeconds(0.5f);
-
-        prefabTaskUI.SetActive(false);
-        insertedText.text = string.Empty;
-
-        // Penalización
-        if (Player != null)
-        {
-            Player.GetComponent<OviedadZombie>().Zombiedad += (penalizacion / 100);
-        }
-
-        GetComponent<MeshRenderer>().material = Mat;
-
-    }
-
-
-
 
 
     //void FallarTarea()
@@ -341,49 +300,6 @@ public class PCTextTask : MonoBehaviour
     // ===============================
     // CUANDO SE COMPLETA
     // ===============================
-    void CompletarTarea()
-    {
-        tareaEnProceso = false;
-        tareaFallada = false;
-        tareaAcabada = true;
-        tareaActiva = false;
-        timeSlider.value = 0;
-
-        Player.GetComponent<PlayerController>().playerOcupado = false;
-
-        prefabTaskUI.SetActive(false);
-        GetComponent<MeshRenderer>().material = Mat;
-
-        objectTareas.GetComponent<TareasAleatorias>().ganaTarea = true;
-        this.enabled = false;
-    }
-
-    // ===============================
-    // TEXTO COLOREADO
-    // ===============================
-    void ActualizarTextoColoreado()
-    {
-        string resultado = string.Empty;
-
-        for (int i = 0; i < textToWrite.Length; i++)
-        {
-            if (i < newText.Length)
-            {
-                if (char.ToLower(newText[i]) == char.ToLower(textToWrite[i]))
-                    resultado += $"<color=green>{textToWrite[i]}</color>";
-                else
-                    resultado += $"<color=red>{textToWrite[i]}</color>";
-            }
-            else
-            {
-                resultado += $"<color=white>{textToWrite[i]}</color>";
-            }
-        }
-
-        textUI.GetComponent<TextMeshProUGUI>().text = resultado;
-    }
-
-
 
 
 
@@ -394,7 +310,7 @@ public class PCTextTask : MonoBehaviour
 
 
 
-}
+
 
 
 
