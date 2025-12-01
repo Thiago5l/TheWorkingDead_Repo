@@ -128,6 +128,7 @@ public class PCTextTask : MonoBehaviour
             insertedText.text = string.Empty;
             insertedText.ActivateInputField();
             Player.GetComponent<PlayerController>().playerOcupado = true;
+            ConfigurarTiempo();
         }
     }
 
@@ -164,7 +165,7 @@ public class PCTextTask : MonoBehaviour
     {
         tareaEnProceso = false;
         Player.GetComponent<PlayerController>().playerOcupado = false;
-        timeSlider.value = 0;
+        ConfigurarTiempo();
         prefabTaskUI.SetActive(false);
         Player.GetComponent<OviedadZombie>().Zombiedad += (penalizacion / 100);
         GetComponent<MeshRenderer>().material = Mat;

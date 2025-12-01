@@ -1,81 +1,117 @@
-﻿/* 
-    ------------------- Code Monkey -------------------
-
-    Thank you for downloading this package
-    I hope you find it useful in your projects
-    If you have any questions let me know
-    Cheers!
-
-               unitycodemonkey.com
-    --------------------------------------------------
- */
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using CodeMonkey.Utils;
 
-public class Window_QuestPointer : MonoBehaviour {
-
-    [SerializeField] private Camera uiCamera;
+public class Window_QuestPointer : MonoBehaviour
+{
+    [Header("Referencias")]
+    [SerializeField] private Camera uiCamera;        // Cámara de la UI
+    [SerializeField] private Transform playerTransform; // Posición desde donde buscar tasks
     [SerializeField] private Sprite arrowSprite;
     [SerializeField] private Sprite crossSprite;
+
+    [Header("Configuración")]
+    [SerializeField] private float detectionRadius = 100f; // Radio de detección de tasks
+    [SerializeField] private LayerMask taskLayer;         // Layer de tasks
+    [SerializeField] private float borderSize = 100f;     // Margen de pantalla para mostrar la flecha
 
     private Vector3 targetPosition;
     private RectTransform pointerRectTransform;
     private Image pointerImage;
 
-    private void Awake() {
+    private void Awake()
+    {
         pointerRectTransform = transform.Find("Pointer").GetComponent<RectTransform>();
         pointerImage = transform.Find("Pointer").GetComponent<Image>();
-
-        Hide();
     }
 
-    private void Update() {
-        float borderSize = 100f;
-        Vector3 targetPositionScreenPoint = Camera.main.WorldToScreenPoint(targetPosition);
-        bool isOffScreen = targetPositionScreenPoint.x <= borderSize || targetPositionScreenPoint.x >= Screen.width - borderSize || targetPositionScreenPoint.y <= borderSize || targetPositionScreenPoint.y >= Screen.height - borderSize;
+    private void Update()
+    {
+        // 1. Obtener la tarea más cercana al jugador
+        Transform closestTask = GetClosestTask();
+        if (closestTask != null)
+        {
+            targetPosition = closestTask.position;
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+            return;
+        }
 
-        if (isOffScreen) {
+        // 2. Convertir la posición del target a coordenadas de pantalla
+        Vector3 targetScreenPos = uiCamera.WorldToScreenPoint(targetPosition);
+
+        // 3. Verificar si el target está fuera de pantalla o detrás de la cámara
+        bool isOffScreen = targetScreenPos.x <= borderSize || targetScreenPos.x >= Screen.width - borderSize
+                         || targetScreenPos.y <= borderSize || targetScreenPos.y >= Screen.height - borderSize
+                         || targetScreenPos.z < 0;
+
+        if (isOffScreen)
+        {
+            // Flecha apuntando hacia el target
+            pointerImage.sprite = arrowSprite;
             RotatePointerTowardsTargetPosition();
 
-            pointerImage.sprite = arrowSprite;
-            Vector3 cappedTargetScreenPosition = targetPositionScreenPoint;
-            if (cappedTargetScreenPosition.x <= borderSize) cappedTargetScreenPosition.x = borderSize;
-            if (cappedTargetScreenPosition.x >= Screen.width - borderSize) cappedTargetScreenPosition.x = Screen.width - borderSize;
-            if (cappedTargetScreenPosition.y <= borderSize) cappedTargetScreenPosition.y = borderSize;
-            if (cappedTargetScreenPosition.y >= Screen.height - borderSize) cappedTargetScreenPosition.y = Screen.height - borderSize;
+            // Limitar posición del puntero dentro de la pantalla
+            Vector3 cappedPos = targetScreenPos;
+            cappedPos.x = Mathf.Clamp(cappedPos.x, borderSize, Screen.width - borderSize);
+            cappedPos.y = Mathf.Clamp(cappedPos.y, borderSize, Screen.height - borderSize);
 
-            Vector3 pointerWorldPosition = uiCamera.ScreenToWorldPoint(cappedTargetScreenPosition);
-            pointerRectTransform.position = pointerWorldPosition;
+            Vector3 pointerWorldPos = uiCamera.ScreenToWorldPoint(cappedPos);
+            pointerRectTransform.position = pointerWorldPos;
             pointerRectTransform.localPosition = new Vector3(pointerRectTransform.localPosition.x, pointerRectTransform.localPosition.y, 0f);
-        } else {
+        }
+        else
+        {
+            // Cruz indicando que el target está dentro de la pantalla
             pointerImage.sprite = crossSprite;
-            Vector3 pointerWorldPosition = uiCamera.ScreenToWorldPoint(targetPositionScreenPoint);
-            pointerRectTransform.position = pointerWorldPosition;
-            pointerRectTransform.localPosition = new Vector3(pointerRectTransform.localPosition.x, pointerRectTransform.localPosition.y, 0f);
-
             pointerRectTransform.localEulerAngles = Vector3.zero;
+
+            Vector3 pointerWorldPos = uiCamera.ScreenToWorldPoint(targetScreenPos);
+            pointerRectTransform.position = pointerWorldPos;
+            pointerRectTransform.localPosition = new Vector3(pointerRectTransform.localPosition.x, pointerRectTransform.localPosition.y, 0f);
         }
     }
 
-    private void RotatePointerTowardsTargetPosition() {
-        Vector3 toPosition = targetPosition;
-        Vector3 fromPosition = Camera.main.transform.position;
-        fromPosition.z = 0f;
-        Vector3 dir = (toPosition - fromPosition).normalized;
-        float angle = UtilsClass.GetAngleFromVectorFloat(dir);
+    private void RotatePointerTowardsTargetPosition()
+    {
+        Vector3 playerScreenPos = uiCamera.WorldToScreenPoint(playerTransform.position);
+        Vector3 targetScreenPos = uiCamera.WorldToScreenPoint(targetPosition);
+
+        Vector3 dir = (targetScreenPos - playerScreenPos).normalized;
+
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         pointerRectTransform.localEulerAngles = new Vector3(0, 0, angle);
     }
 
-    public void Hide() {
-        gameObject.SetActive(false);
+    public Transform GetClosestTask()
+    {
+        Collider[] hits = Physics.OverlapSphere(playerTransform.position, detectionRadius, taskLayer);
+
+        Transform closest = null;
+        float minDistance = Mathf.Infinity;
+        Vector3 currentPos = playerTransform.position;
+
+        foreach (Collider col in hits)
+        {
+            float dist = Vector3.Distance(currentPos, col.transform.position);
+            if (dist < minDistance)
+            {
+                minDistance = dist;
+                closest = col.transform;
+            }
+        }
+
+        return closest;
     }
 
-    public void Show(Vector3 targetPosition) {
-        gameObject.SetActive(true);
+    public void Show(Vector3 targetPosition)
+    {
         this.targetPosition = targetPosition;
+        gameObject.SetActive(true);
     }
 }
