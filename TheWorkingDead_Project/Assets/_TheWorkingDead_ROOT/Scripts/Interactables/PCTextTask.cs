@@ -195,6 +195,16 @@ public class PCTextTask : MonoBehaviour
         }
         textUI.GetComponent<TextMeshProUGUI>().text = resultado;
     }
+
+
+    public void cerrar()
+    {
+        tareaEnProceso = false;
+        Player.GetComponent<PlayerController>().playerOcupado = false;
+        timeSlider.value = 0;
+        prefabTaskUI.SetActive(false);
+        GetComponent<MeshRenderer>().material = Mat;
+    }
 }
 
 
