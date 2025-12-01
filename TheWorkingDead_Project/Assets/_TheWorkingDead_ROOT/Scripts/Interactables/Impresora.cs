@@ -114,4 +114,12 @@ public class Impresora : MonoBehaviour
             ValueBarStart -= restValue;
         }
     }
+
+    public void cerrar()
+    {
+        ValueBarStart = save;
+        TaskBar.SetActive(false);
+        Player.GetComponent<PlayerController>().playerOcupado = false;
+        StopAllCoroutines();
+    }
 }

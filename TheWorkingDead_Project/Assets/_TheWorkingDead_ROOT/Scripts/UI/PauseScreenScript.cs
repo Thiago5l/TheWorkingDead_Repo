@@ -7,13 +7,26 @@ public class Pause : MonoBehaviour
 {
     public GameObject pauseUI;
     public static bool gamePaused = false;
+    public GameObject player;
+    [SerializeField] private bool puedePausar;
 
     public GameObject mainpanel;
     public GameObject optionspanel;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+
+        if (player.GetComponent<PlayerController>().playerOcupado == false) 
+        {
+            puedePausar = true;
+        }
+
+        if (player.GetComponent<PlayerController>().playerOcupado == true)
+        {
+            puedePausar = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && puedePausar)
         {
             if (gamePaused)
             {
@@ -24,21 +37,30 @@ public class Pause : MonoBehaviour
                 IsPause();
             }
         }
+        if (puedePausar == false) { return; }
 
     }
 
     public void IsPause()
     {
-        Time.timeScale = 0;
-        pauseUI.SetActive(true);
-        gamePaused = true;
+
+        if (puedePausar)
+        {
+            Time.timeScale = 0;
+            pauseUI.SetActive(true);
+            gamePaused = true;
+        }
+        
     }
     public void unPause()
     {
-        StartCoroutine(wait());
-        Time.timeScale = 1;
-        pauseUI.SetActive(false);
-        gamePaused = false;
+        if (puedePausar)
+        {
+            StartCoroutine(wait());
+            Time.timeScale = 1;
+            pauseUI.SetActive(false);
+            gamePaused = false;
+        }
     }
     public void BackMenu()
     {
@@ -79,6 +101,5 @@ public class Pause : MonoBehaviour
     IEnumerator wait()
     {
         yield return new WaitForSeconds(0.6f);
-        Debug.Log("carita feliz");
     }
 }

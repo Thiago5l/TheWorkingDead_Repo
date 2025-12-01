@@ -95,6 +95,11 @@ public class PCTextTask : MonoBehaviour
             PlayerCerca = true;
             GetComponent<MeshRenderer>().material = OutLine;
         }
+        if (other.CompareTag("TaskPlayer") && tareaAcabada)
+        {
+            PlayerCerca = true;
+            GetComponent<MeshRenderer>().material = Mat;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -128,6 +133,7 @@ public class PCTextTask : MonoBehaviour
             insertedText.text = string.Empty;
             insertedText.ActivateInputField();
             Player.GetComponent<PlayerController>().playerOcupado = true;
+            ConfigurarTiempo();
         }
     }
 
@@ -164,7 +170,7 @@ public class PCTextTask : MonoBehaviour
     {
         tareaEnProceso = false;
         Player.GetComponent<PlayerController>().playerOcupado = false;
-        timeSlider.value = 0;
+        ConfigurarTiempo();
         prefabTaskUI.SetActive(false);
         Player.GetComponent<OviedadZombie>().Zombiedad += (penalizacion / 100);
         GetComponent<MeshRenderer>().material = Mat;
@@ -185,7 +191,7 @@ public class PCTextTask : MonoBehaviour
 
     void ActualizarTextoColoreado()
     {
-        string resultado = "";
+        string resultado = string.Empty;
         for (int i = 0; i < textToWrite.Length; i++)
         {
             if (i < newText.Length)
@@ -201,7 +207,7 @@ public class PCTextTask : MonoBehaviour
     {
         tareaEnProceso = false;
         Player.GetComponent<PlayerController>().playerOcupado = false;
-        timeSlider.value = 0;
+        ConfigurarTiempo();
         prefabTaskUI.SetActive(false);
         GetComponent<MeshRenderer>().material = Mat;
     }

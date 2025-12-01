@@ -4112,6 +4112,10 @@ PrefabInstance:
       propertyPath: cursor
       value: 
       objectReference: {fileID: 18182696}
+    - target: {fileID: 3513806414644574060, guid: cae7012859f26a34fae4be0d6a67680a, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 200637151}
     - target: {fileID: 4318961413916727454, guid: cae7012859f26a34fae4be0d6a67680a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.13305312

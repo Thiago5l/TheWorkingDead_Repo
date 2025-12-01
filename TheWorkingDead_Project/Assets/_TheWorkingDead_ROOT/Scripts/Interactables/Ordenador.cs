@@ -150,4 +150,13 @@ public class Ordenador : MonoBehaviour
             ValueBarStart -= restValue;
         }
     }
+    public void cerrar()
+    {
+        Player.GetComponent<PlayerController>().playerOcupado = false;
+        ValueBarStart = save;
+        TareaActiva = false;
+        TaskBar.gameObject.SetActive(false);
+        WinValue = 0;
+        StopAllCoroutines();
+    }
 }
