@@ -1,34 +1,33 @@
-Shader "Custom/URP/PainterlyLighting"
+Shader "Custom/URP/PainterlySketchy_ToonThreshold"
 {
     Properties
     {
-        _Color ("Color", Color) = (1,1,1,1)
-        [HDR]_SpecularColor("Specular color", Color) = (1, 1, 1, 1)
-        _MainTex ("Albedo (RGB)", 2D) = "white" {}
-        [Normal]_Normal("Normal", 2D) = "bump" {}
-        _NormalStrength("Normal strength", Range(-2, 2)) = 1
-
-        _Glossiness ("Smoothness", Range(0,1)) = 0.5
-        _Metallic ("Metallic", Range(0,1)) = 0.0
-
-        _ShadingGradient("Shading gradient", 2D) = "white" {}
-        _PainterlyGuide("Painterly guide", 2D) = "white" {}
-        _PainterlySmoothness("Painterly smoothness", Range(0, 1)) = 0.1
-        _PainterlyScale("Painterly world scale", Float) = 0.3
+        _BaseMap("Base Map", 2D) = "white" {}
+        _BaseColor("Base Color", Color) = (1,1,1,1)
+        _Normal("Normal Map", 2D) = "bump" {}
+        _RampTex("Toon Ramp", 2D) = "white" {}
+        _RampThreshold("Toon Threshold", Range(0,1)) = 0.2
+        _ShadowLines("Sketch Lines", 2D) = "white" {}
+        _ShadowScale("Shadow Scale", Float) = 2.0
+        _PainterlyScale("Painterly Scale", Float) = 4.0
+        _LightSteps("Light Steps", Float) = 4.0
+        _ShadowThreshold("Shadow Threshold", Range(0,1)) = 0.5
     }
 
     SubShader
     {
-        Tags { 
-            "RenderType"="Opaque" 
-            "RenderPipeline"="UniversalRenderPipeline"
+        Tags 
+        { 
+            "RenderType"="Opaque"
             "Queue"="Geometry"
+            "RenderPipeline"="UniversalRenderPipeline"
         }
+        LOD 200
 
         Pass
         {
             Name "ForwardLit"
-            Tags { "LightMode"="UniversalForward" }
+            Tags{"LightMode"="UniversalForward"}
 
             HLSLPROGRAM
             #pragma vertex vert
@@ -41,60 +40,54 @@ Shader "Custom/URP/PainterlyLighting"
             {
                 float4 positionOS : POSITION;
                 float3 normalOS   : NORMAL;
-                float2 uv         : TEXCOORD0;
                 float4 tangentOS  : TANGENT;
+                float2 uv         : TEXCOORD0;
             };
 
             struct Varyings
             {
-                float4 positionHCS : SV_POSITION;
-                float2 uv : TEXCOORD0;
-                float3 normalWS : TEXCOORD1;
-                float3 tangentWS : TEXCOORD2;
-                float3 bitangentWS : TEXCOORD3;
+                float4 positionCS : SV_POSITION;
+                float3 normalWS   : TEXCOORD1;
+                float3 tangentWS  : TEXCOORD2;
+                float3 bitangentWS: TEXCOORD3;
+                float2 uv         : TEXCOORD0;
                 float3 positionWS : TEXCOORD4;
             };
 
-            TEXTURE2D(_MainTex);          SAMPLER(sampler_MainTex);
-            TEXTURE2D(_Normal);           SAMPLER(sampler_Normal);
-            TEXTURE2D(_PainterlyGuide);   SAMPLER(sampler_PainterlyGuide);
-            TEXTURE2D(_ShadingGradient);  SAMPLER(sampler_ShadingGradient);
+            // PROPERTIES
+            TEXTURE2D(_BaseMap);       SAMPLER(sampler_BaseMap);
+            TEXTURE2D(_Normal);        SAMPLER(sampler_Normal);
+            TEXTURE2D(_RampTex);       SAMPLER(sampler_RampTex);
+            TEXTURE2D(_ShadowLines);   SAMPLER(sampler_ShadowLines);
 
-            float4 _Color;
-            float4 _SpecularColor;
-            float _NormalStrength;
-            float _Glossiness;
-            float _Metallic;
-            float _PainterlySmoothness;
+            float4 _BaseColor;
             float _PainterlyScale;
+            float _LightSteps;
+            float _ShadowScale;
+            float _ShadowThreshold;
+            float _RampThreshold;
 
-            Varyings vert (Attributes IN)
+            // VERTEX
+            Varyings vert(Attributes IN)
             {
                 Varyings OUT;
-
-                OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
+                OUT.positionCS = TransformObjectToHClip(IN.positionOS.xyz);
                 OUT.positionWS = TransformObjectToWorld(IN.positionOS.xyz);
 
                 OUT.normalWS   = TransformObjectToWorldNormal(IN.normalOS);
-                
                 float3 t = TransformObjectToWorldDir(IN.tangentOS.xyz);
                 float3 b = cross(OUT.normalWS, t) * IN.tangentOS.w;
-
                 OUT.tangentWS = t;
                 OUT.bitangentWS = b;
 
                 OUT.uv = IN.uv;
-
                 return OUT;
             }
 
-            // --------------------------
-            // TRIPLANAR MAPPING (NO SEAMS)
-            // --------------------------
-            float SamplePainterGuideTriplanar(float3 worldPos, float3 worldNormal)
+            // TRIPLANAR SHADOW LINES SIN ANIMACIÓN
+            float SampleShadowLinesTriplanar(float3 worldPos, float3 worldNormal)
             {
-                worldPos *= _PainterlyScale;
-
+                worldPos *= _ShadowScale;
                 float3 n = abs(normalize(worldNormal));
                 float3 w = n / (n.x + n.y + n.z);
 
@@ -102,69 +95,52 @@ Shader "Custom/URP/PainterlyLighting"
                 float2 uvY = worldPos.xz;
                 float2 uvZ = worldPos.xy;
 
-                float gX = SAMPLE_TEXTURE2D(_PainterlyGuide, sampler_PainterlyGuide, uvX).r;
-                float gY = SAMPLE_TEXTURE2D(_PainterlyGuide, sampler_PainterlyGuide, uvY).r;
-                float gZ = SAMPLE_TEXTURE2D(_PainterlyGuide, sampler_PainterlyGuide, uvZ).r;
+                float sX = SAMPLE_TEXTURE2D(_ShadowLines, sampler_ShadowLines, uvX).r;
+                float sY = SAMPLE_TEXTURE2D(_ShadowLines, sampler_ShadowLines, uvY).r;
+                float sZ = SAMPLE_TEXTURE2D(_ShadowLines, sampler_ShadowLines, uvZ).r;
 
-                return gX * w.x + gY * w.y + gZ * w.z;
+                return (sX * w.x + sY * w.y + sZ * w.z);
             }
 
-            float4 frag (Varyings IN) : SV_Target
+            float4 frag(Varyings IN) : SV_Target
             {
-                float3 normalTS = UnpackNormal(SAMPLE_TEXTURE2D(_Normal, sampler_Normal, IN.uv));
-                normalTS.xy *= _NormalStrength;
+                // Base color
+                float4 albedo = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, IN.uv) * _BaseColor;
 
+                // Normal map intacto
+                float3 normalTS = UnpackNormal(SAMPLE_TEXTURE2D(_Normal, sampler_Normal, IN.uv));
                 float3 normalWS = normalize(
                     normalTS.x * IN.tangentWS +
                     normalTS.y * IN.bitangentWS +
                     normalTS.z * IN.normalWS
                 );
 
-                float4 albedo = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv) * _Color;
+                // Main light
+                Light light = GetMainLight();
+                float NdotL = saturate(dot(normalWS, light.direction));
 
-                // PAINTERLY GUIDE SIN COSTURAS
-                float painterGuide = SamplePainterGuideTriplanar(IN.positionWS, normalWS);
+                // Aplicamos threshold para toon ramp
+                float NdotL_thresh = saturate(NdotL - _RampThreshold);
 
-                Light mainLight = GetMainLight();
-                float3 lightDir = normalize(mainLight.direction);
+                // Painterly steps
+                float stepped = floor(NdotL_thresh * _LightSteps) / _LightSteps;
 
-                float NdotL = saturate(dot(normalWS, -lightDir) + 0.2);
+                // Toon ramp lookup
+                float ramp = SAMPLE_TEXTURE2D(_RampTex, sampler_RampTex, float2(stepped,0.5)).r;
 
-                float diff = smoothstep(
-                    painterGuide - _PainterlySmoothness,
-                    painterGuide + _PainterlySmoothness,
-                    NdotL
-                );
+                // Shadow lines triplanar
+                float sketch = SampleShadowLinesTriplanar(IN.positionWS, normalWS);
 
-                float3 viewDir = normalize(_WorldSpaceCameraPos - IN.positionWS);
+                // Líneas solo en sombras profundas
+                float shadowMask = step(NdotL, _ShadowThreshold); // 1 si NdotL < threshold
+                sketch = lerp(1.0, sketch, shadowMask);
 
-                float3 refl = reflect(lightDir, normalWS);
-                float vDotRefl = dot(viewDir, -refl);
+                // Combinamos ramp con sketch
+                float lighting = ramp * sketch;
 
-                float specularThreshold = painterGuide + _Glossiness;
+                float3 finalColor = albedo.rgb * lighting;
 
-                float3 specular = 
-                    _SpecularColor.rgb * 
-                    mainLight.color * 
-                    smoothstep(
-                        specularThreshold - _PainterlySmoothness,
-                        specularThreshold + _PainterlySmoothness,
-                        vDotRefl
-                    ) * _Glossiness;
-
-                float atten = mainLight.distanceAttenuation * mainLight.shadowAttenuation;
-
-                atten = smoothstep(
-                    painterGuide - _PainterlySmoothness,
-                    painterGuide + _PainterlySmoothness,
-                    atten
-                );
-
-                float3 gradient = SAMPLE_TEXTURE2D(_ShadingGradient, sampler_ShadingGradient, float2(diff, 0)).rgb;
-
-                float3 finalColor = (albedo.rgb * gradient * mainLight.color + specular) * atten;
-
-                return float4(finalColor, albedo.a);
+                return float4(finalColor,1.0);
             }
 
             ENDHLSL
