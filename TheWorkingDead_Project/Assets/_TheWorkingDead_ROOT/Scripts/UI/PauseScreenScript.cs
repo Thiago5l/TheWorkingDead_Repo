@@ -44,7 +44,7 @@ public class Pause : MonoBehaviour
     {
         StartCoroutine(wait());
         Debug.Log("loading main scene");
-        SceneManager.LoadScene("SCN_MainMenu_Test");
+        SceneManager.LoadScene("SCN_Test_MainMenu");
         Time.timeScale = 1;
     }
     public void RestartLv()
