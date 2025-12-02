@@ -6,10 +6,14 @@ using UnityEngine.SceneManagement;
 public class Pause : MonoBehaviour
 {
     public GameObject pauseUI;
+    public GameObject pauseButtons;
+    public GameObject optionsButtons;
     public static bool gamePaused = false;
 
-    public GameObject mainpanel;
     public GameObject optionspanel;
+
+    public PaperAnimManager paperScript;
+
 
     private void Update()
     {
@@ -31,13 +35,18 @@ public class Pause : MonoBehaviour
     {
         Time.timeScale = 0;
         pauseUI.SetActive(true);
+        pauseButtons.SetActive(true);
         gamePaused = true;
+
+        paperScript.onPause();
     }
     public void unPause()
     {
         StartCoroutine(wait());
         Time.timeScale = 1;
         pauseUI.SetActive(false);
+        pauseButtons.SetActive(false);
+        optionsButtons.SetActive(false);
         gamePaused = false;
     }
     public void BackMenu()
@@ -56,29 +65,24 @@ public class Pause : MonoBehaviour
     }
     public void Options()
     {
-        StartCoroutine(SetActive());
+        pauseButtons.SetActive(false);
+        paperScript.onFliped();
+        StartCoroutine(waitForAnim());
     }
     public void OptionsBack()
     {
-        StartCoroutine(SetBack());
-    }
-    IEnumerator SetActive()
-    {
-        yield return new WaitForSeconds(0.6f);
-        mainpanel.SetActive(false);
-        yield return 0;
-        optionspanel.SetActive(true);
-    }
-    IEnumerator SetBack()
-    {
-        yield return new WaitForSeconds(0.6f);
-        mainpanel.SetActive(true);
-        yield return new WaitForSeconds(0);
-        optionspanel.SetActive(false);
+        pauseButtons.SetActive(true);
+        optionsButtons.SetActive(false);
+        paperScript.onFliped();
     }
     IEnumerator wait()
     {
         yield return new WaitForSeconds(0.6f);
         Debug.Log("carita feliz");
+    }
+    IEnumerator waitForAnim()
+    {
+        yield return new WaitForSecondsRealtime(0.8f);
+        optionsButtons.SetActive(true);
     }
 }

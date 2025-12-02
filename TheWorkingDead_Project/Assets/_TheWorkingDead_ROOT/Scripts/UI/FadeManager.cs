@@ -34,11 +34,11 @@ public class FadeManager : MonoBehaviour
         fadeImage.enabled = true;
         canvasGroup.alpha = starAlpha;
         yield return null;
-        yield return new WaitForSeconds(delayBeforeFade);
+        yield return new WaitForSecondsRealtime(delayBeforeFade);
         float timeElapsed = 0;
         while (timeElapsed < duration)
         {
-            timeElapsed += Time.deltaTime;
+            timeElapsed += Time.unscaledDeltaTime;
             float fadePercentage = timeElapsed / duration;
             fadePercentage = Mathf.Clamp01(fadePercentage);
             canvasGroup.alpha = Mathf.Lerp(starAlpha,endAlpha,fadePercentage);
