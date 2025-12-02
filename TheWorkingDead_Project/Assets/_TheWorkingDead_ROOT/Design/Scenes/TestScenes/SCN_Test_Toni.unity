@@ -584,6 +584,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3324190957077364466, guid: 592619a6eff8e3a4eb9f8448c2ee90e2, type: 3}
   m_PrefabInstance: {fileID: 527357871}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &60168028 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1257372993700217622, guid: 592619a6eff8e3a4eb9f8448c2ee90e2, type: 3}
+  m_PrefabInstance: {fileID: 527357871}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60168017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d586c9286a2bdd64a90fafe10a69c2c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PCTextTask
 --- !u!1001 &72778410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2361,12 +2372,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Window_QuestPointer
   uiCamera: {fileID: 2076534379}
   playerTransform: {fileID: 875105504}
+  tareas: {fileID: 1032389578}
   arrowSprite: {fileID: 21300000, guid: cebd198da3007b2459c8ce9d5d15cc5c, type: 3}
   crossSprite: {fileID: 21300000, guid: db49e1a1ba10f62428925d467eb4e207, type: 3}
-  detectionRadius: 100
-  taskLayer:
-    serializedVersion: 2
-    m_Bits: 256
   borderSize: 100
 --- !u!1001 &324282643
 PrefabInstance:
@@ -3761,6 +3769,46 @@ PrefabInstance:
       propertyPath: prefabTaskUI
       value: 
       objectReference: {fileID: 1003252473}
+    - target: {fileID: 1597815081133188933, guid: 592619a6eff8e3a4eb9f8448c2ee90e2, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597815081133188933, guid: 592619a6eff8e3a4eb9f8448c2ee90e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionId
+      value: 10cda578-ff8d-4ecb-88c7-c250e168d16f
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597815081133188933, guid: 592619a6eff8e3a4eb9f8448c2ee90e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionName
+      value: 'Tareas/cerrar[/Keyboard/escape]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597815081133188933, guid: 592619a6eff8e3a4eb9f8448c2ee90e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597815081133188933, guid: 592619a6eff8e3a4eb9f8448c2ee90e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597815081133188933, guid: 592619a6eff8e3a4eb9f8448c2ee90e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 60168028}
+    - target: {fileID: 1597815081133188933, guid: 592619a6eff8e3a4eb9f8448c2ee90e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597815081133188933, guid: 592619a6eff8e3a4eb9f8448c2ee90e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cerrar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597815081133188933, guid: 592619a6eff8e3a4eb9f8448c2ee90e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PCTextTask, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597815081133188933, guid: 592619a6eff8e3a4eb9f8448c2ee90e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3324190957077364466, guid: 592619a6eff8e3a4eb9f8448c2ee90e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.315
@@ -17407,6 +17455,46 @@ PrefabInstance:
       propertyPath: tareaNombre
       value: -Arreglar impresora
       objectReference: {fileID: 0}
+    - target: {fileID: 1576747966019665384, guid: 13a6172b71f124a4582d898c43383937, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1576747966019665384, guid: 13a6172b71f124a4582d898c43383937, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionId
+      value: 10cda578-ff8d-4ecb-88c7-c250e168d16f
+      objectReference: {fileID: 0}
+    - target: {fileID: 1576747966019665384, guid: 13a6172b71f124a4582d898c43383937, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionName
+      value: 'Tareas/cerrar[/Keyboard/escape]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1576747966019665384, guid: 13a6172b71f124a4582d898c43383937, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1576747966019665384, guid: 13a6172b71f124a4582d898c43383937, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1576747966019665384, guid: 13a6172b71f124a4582d898c43383937, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1978156231}
+    - target: {fileID: 1576747966019665384, guid: 13a6172b71f124a4582d898c43383937, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1576747966019665384, guid: 13a6172b71f124a4582d898c43383937, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cerrar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1576747966019665384, guid: 13a6172b71f124a4582d898c43383937, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Impresora, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1576747966019665384, guid: 13a6172b71f124a4582d898c43383937, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4870592267820618152, guid: 13a6172b71f124a4582d898c43383937, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.85
@@ -20698,6 +20786,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Postpro_Box_Volume
       objectReference: {fileID: 0}
+    - target: {fileID: 4999718373757053993, guid: a2ed1bca0b763ca4bbcc81fc98935cbb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5819637634869226001, guid: a2ed1bca0b763ca4bbcc81fc98935cbb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -21592,6 +21684,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4870592267820618152, guid: 13a6172b71f124a4582d898c43383937, type: 3}
   m_PrefabInstance: {fileID: 1486026924}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1978156231 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6949027157379810362, guid: 13a6172b71f124a4582d898c43383937, type: 3}
+  m_PrefabInstance: {fileID: 1486026924}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978156220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6c65c6ed4b532e459f593abe97fe31d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1983278099
 PrefabInstance:
   m_ObjectHideFlags: 0
