@@ -7250,6 +7250,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 619988299}
     m_Modifications:
+    - target: {fileID: 904086644092180465, guid: 755d5ff0333361f48807db8fb31c29ce, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c06666daa3a469e44809c5ffec8a81c1, type: 2}
+    - target: {fileID: 1851147427901946102, guid: 755d5ff0333361f48807db8fb31c29ce, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c06666daa3a469e44809c5ffec8a81c1, type: 2}
+    - target: {fileID: 2504522247600207498, guid: 755d5ff0333361f48807db8fb31c29ce, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c06666daa3a469e44809c5ffec8a81c1, type: 2}
+    - target: {fileID: 3428610176362306856, guid: 755d5ff0333361f48807db8fb31c29ce, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c976fa3d9f2f0b44aa9bb98ecd40f8e3, type: 2}
     - target: {fileID: 4874585222054549714, guid: 755d5ff0333361f48807db8fb31c29ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.9
@@ -7294,6 +7310,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_cubicle2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6417938553491772989, guid: 755d5ff0333361f48807db8fb31c29ce, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c06666daa3a469e44809c5ffec8a81c1, type: 2}
+    - target: {fileID: 7728493010086632147, guid: 755d5ff0333361f48807db8fb31c29ce, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c06666daa3a469e44809c5ffec8a81c1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -32989,6 +33013,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 619988299}
     m_Modifications:
+    - target: {fileID: 1851147427901946102, guid: 93c3f28675ec9d94d8a27b375dc1f18b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c06666daa3a469e44809c5ffec8a81c1, type: 2}
     - target: {fileID: 4874585222054549714, guid: 93c3f28675ec9d94d8a27b375dc1f18b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.4
