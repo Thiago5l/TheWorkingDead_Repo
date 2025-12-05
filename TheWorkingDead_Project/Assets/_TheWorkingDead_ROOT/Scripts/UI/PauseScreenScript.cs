@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,8 @@ public class Pause : MonoBehaviour
 
     public GameObject mainpanel;
     public GameObject optionspanel;
+    [SerializeField] public PlayerController playerController;
+
 
     private void Update()
     {
@@ -29,9 +32,12 @@ public class Pause : MonoBehaviour
 
     public void IsPause()
     {
-        Time.timeScale = 0;
-        pauseUI.SetActive(true);
-        gamePaused = true;
+        if (!playerController.playerOcupado)
+        {
+            Time.timeScale = 0;
+            pauseUI.SetActive(true);
+            gamePaused = true;
+        }
     }
     public void unPause()
     {

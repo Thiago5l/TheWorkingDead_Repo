@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
 
 public class BuzzText : MonoBehaviour
 {
@@ -21,7 +20,6 @@ public class BuzzText : MonoBehaviour
         StartDialogue();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -40,18 +38,21 @@ public class BuzzText : MonoBehaviour
 
     void StartDialogue()
     {
-        enemy.gameObject.SetActive(false);
-        barra.GetComponent<OviedadZombie>().enabled = false;
+        // PAUSAR EL JUEGO
+        Time.timeScale = 0f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
 
         index = 0;
         StartCoroutine(TypeLine());
     }
+
     IEnumerator TypeLine()
     {
         foreach (char c in lines[index].ToCharArray())
         {
             textComponent.text += c;
-            yield return new WaitForSeconds(textSpeed);
+            // Usamos WaitForSecondsRealtime porque timeScale = 0
+            yield return new WaitForSecondsRealtime(textSpeed);
         }
     }
 
@@ -65,11 +66,15 @@ public class BuzzText : MonoBehaviour
         }
         else
         {
-            
-            enemy.gameObject.SetActive(true);
-            barra.GetComponent<OviedadZombie>().enabled = true;
+            // REANUDAR EL JUEGO
+            Time.timeScale = 1f;
+            Time.fixedDeltaTime = 0.02f;
+
+            // Reactivar objetos
+            if (enemy != null) enemy.SetActive(true);
+            if (barra != null) barra.GetComponent<OviedadZombie>().enabled = true;
+
             gameObject.SetActive(false);
         }
-
     }
 }

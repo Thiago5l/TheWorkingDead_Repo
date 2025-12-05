@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "PlayerImputActions",
     "maps": [
         {
@@ -180,6 +181,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "cerrar",
+                    "type": "Button",
+                    "id": "10cda578-ff8d-4ecb-88c7-c250e168d16f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -301,6 +311,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "DobleSmash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ff3e64ae-7b84-43db-83ad-aa4839dda04f",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "cerrar",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
