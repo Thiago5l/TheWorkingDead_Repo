@@ -24,8 +24,9 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] string Pedos = "muchos";
 
     [Header("Sprites")]
-
+    [SerializeField] Image actualSprite;
     [SerializeField] Sprite[] paperSprites;
+
 
 
     //-------//
@@ -67,4 +68,70 @@ public class PauseMenuManager : MonoBehaviour
     }
     //-------//
 
+    public void OptionsButtons()
+    {
+        mainButtonGroup.SetActive(false);
+        StartCoroutine(PaperOptionsManagement());
+    }
+    IEnumerator PaperOptionsManagement()
+    {
+        //This one is normal
+        actualSprite.sprite = paperSprites[0];
+        yield return new WaitForSecondsRealtime(0.2f);
+        actualSprite.sprite = paperSprites[1];
+        yield return new WaitForSecondsRealtime(0.2f);
+        actualSprite.sprite = paperSprites[2];
+        yield return new WaitForSecondsRealtime(0.2f);
+        actualSprite.sprite = paperSprites[3];
+        yield return new WaitForSecondsRealtime(0.2f);
+        actualSprite.sprite = paperSprites[0];
+
+        yield return new WaitForSecondsRealtime(0.1f);
+        optionsButtonGroup.SetActive(true);
+    }
+    //-------//
+    public void BackButton()
+    {
+        optionsButtonGroup.SetActive(false);
+        controlsButtonGroup.SetActive(false);
+        StartCoroutine(BackAnimationManager());
+    }
+    IEnumerator BackAnimationManager()
+    {
+        //This is Fliped
+        actualSprite.sprite = paperSprites[0];
+        yield return new WaitForSecondsRealtime(0.2f);
+        actualSprite.sprite = paperSprites[3];
+        yield return new WaitForSecondsRealtime(0.2f);
+        actualSprite.sprite = paperSprites[2];
+        yield return new WaitForSecondsRealtime(0.2f);
+        actualSprite.sprite = paperSprites[1];
+        yield return new WaitForSecondsRealtime(0.2f);
+        actualSprite.sprite = paperSprites[0];
+
+        yield return new WaitForSecondsRealtime(0.1f);
+        mainButtonGroup.SetActive(true);
+    }
+    //-------//
+    public void ControlsButtons()
+    {
+        mainButtonGroup.SetActive(false);
+        StartCoroutine(ControlsAnimationManager());
+    }
+    IEnumerator ControlsAnimationManager()
+    {
+        actualSprite.sprite = paperSprites[0];
+        yield return new WaitForSecondsRealtime(0.2f);
+        actualSprite.sprite = paperSprites[1];
+        yield return new WaitForSecondsRealtime(0.2f);
+        actualSprite.sprite = paperSprites[2];
+        yield return new WaitForSecondsRealtime(0.2f);
+        actualSprite.sprite = paperSprites[3];
+        yield return new WaitForSecondsRealtime(0.2f);
+        actualSprite.sprite = paperSprites[0];
+
+        yield return new WaitForSecondsRealtime(0.1f);
+        controlsButtonGroup.SetActive(true);
+    }
+    //-------//
 }
