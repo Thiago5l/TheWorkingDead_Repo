@@ -42,10 +42,6 @@ public class BuzzText : MonoBehaviour
         Time.timeScale = 0f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
 
-        // Desactivar comportamientos específicos
-        if (enemy != null) enemy.SetActive(false);
-        if (barra != null) barra.GetComponent<OviedadZombie>().enabled = false;
-
         index = 0;
         StartCoroutine(TypeLine());
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +13,8 @@ public class Pause : MonoBehaviour
 
     public GameObject mainpanel;
     public GameObject optionspanel;
+    [SerializeField] public PlayerController playerController;
+
 
     private void Update()
     {

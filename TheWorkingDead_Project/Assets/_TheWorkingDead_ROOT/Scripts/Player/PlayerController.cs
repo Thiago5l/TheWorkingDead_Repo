@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement Parametres")]
     [SerializeField] float speed = 10f;
+    [SerializeField] float speedcontainer = 10f;
     [SerializeField] float rotSpeed = 15f;
 
 
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
         PlayerRB = GetComponent<Rigidbody>();
         if(camTransform == null) camTransform = Camera.main.transform; //busca la cámara main si no tiene cam asignada
         PlayerRB.freezeRotation = true; //congelar rotación de rigid body
+        speedcontainer = speed;
     }
 
 
@@ -54,6 +56,14 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         CheckIfGrounded();
+        if (playerOcupado)
+        {
+            speed = 0;
+        }
+        else
+        {
+            speed = speedcontainer;
+        }
     }
 
    
