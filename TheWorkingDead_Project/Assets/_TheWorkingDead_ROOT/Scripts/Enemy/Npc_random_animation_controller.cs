@@ -1,43 +1,56 @@
 using UnityEngine;
+using System.Collections;
 
-public class NpcRandomScratch : MonoBehaviour
+public class AnimacionAleatoria : MonoBehaviour
 {
     public Animator animator;
 
-    [Header("Tiempo entre animaciones")]
-    public float minDelay = 10f;
-    public float maxDelay = 12f;
-
-    [Header("Nombre del parámetro (ej.: 'rascar' o 'rascarmano')")]
-    public string paramName = "rascar";
-
-    private float timer;
+    public float tiempoMin = 3f;
+    public float tiempoMax = 8f;
 
     void Start()
     {
-        ResetTimer();
+        animator = GetComponent<Animator>();
+        StartCoroutine(ControlAnimaciones());
     }
 
-    void Update()
+    private IEnumerator ControlAnimaciones()
     {
-        timer -= Time.deltaTime;
-
-        if (timer <= 0)
+        while (true)
         {
-            StartCoroutine(ActivateParam());
-            ResetTimer();
+            // Espera aleatoria
+            float espera = Random.Range(tiempoMin, tiempoMax);
+            yield return new WaitForSeconds(espera);
+
+            int anim = Random.Range(0, 2);
+
+            if (anim == 0)
+            {
+                animator.SetFloat("rascar", 1f);
+                animator.SetFloat("rascarmano", 0f);
+            }
+            else
+            {
+                animator.SetFloat("rascarmano", 1f);
+                animator.SetFloat("rascar", 0f);
+            }
+
+            // Espera 1 segundo y resetea los parametros
+            yield return new WaitForSeconds(1f);
+
+            animator.SetFloat("rascar", 0f);
+            animator.SetFloat("rascarmano", 0f);
+
+            // Espera a que salga de Idle
+            yield return new WaitUntil(() => !AnimatorEstaEnEstado("anim_Npc_IdleAna"));
+
+            // Espera a que vuelva a Idle
+            yield return new WaitUntil(() => AnimatorEstaEnEstado("anim_Npc_IdleAna"));
         }
     }
 
-    void ResetTimer()
+    private bool AnimatorEstaEnEstado(string nombreEstado)
     {
-        timer = Random.Range(minDelay, maxDelay);
-    }
-
-    private System.Collections.IEnumerator ActivateParam()
-    {
-        animator.SetFloat(paramName, 1f);   // lo activas
-        yield return null;                  // 1 frame (puedes cambiarlo)
-        animator.SetFloat(paramName, 0f);   // lo vuelves a 0
+        return animator.GetCurrentAnimatorStateInfo(0).IsName(nombreEstado);
     }
 }
