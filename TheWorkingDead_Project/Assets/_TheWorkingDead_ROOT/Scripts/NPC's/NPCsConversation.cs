@@ -8,12 +8,14 @@ public class NPCsConversation : MonoBehaviour
     [SerializeField] public NPCConversation myConversation;
     [SerializeField] private bool playerCerca;
     [SerializeField] private bool canInteract = true;
-    [SerializeField] public GameObject player; 
+    [SerializeField] public GameObject player;
+    [SerializeField] public GameObject taskExclamation;
     //[SerializeField] public GameObject objectTareas; 
     //private TareasAleatorias tareasScript;
 
     void Start()
     {
+        taskExclamation.SetActive(true);
         playerCerca = false;
         canInteract = true;
     }
@@ -61,6 +63,7 @@ public class NPCsConversation : MonoBehaviour
     public void FinalBueno()
     {
         player.GetComponent<OviedadZombie>().Zombiedad -= (20f / 100f);
+        taskExclamation.SetActive(false);
     }
 
     public void FinalMalo()
