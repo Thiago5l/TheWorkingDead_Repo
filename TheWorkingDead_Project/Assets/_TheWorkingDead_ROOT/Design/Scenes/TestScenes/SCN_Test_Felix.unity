@@ -3252,8 +3252,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Window_QuestPointer
   uiCamera: {fileID: 2076534379}
+  playerTransform: {fileID: 0}
+  tareas: {fileID: 0}
   arrowSprite: {fileID: 21300000, guid: cebd198da3007b2459c8ce9d5d15cc5c, type: 3}
   crossSprite: {fileID: 21300000, guid: db49e1a1ba10f62428925d467eb4e207, type: 3}
+  borderSize: 100
 --- !u!1001 &324282643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3525,6 +3528,101 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4829367562415945093, guid: a53f828cab1981b47a090d2d06ab9e38, type: 3}
   m_PrefabInstance: {fileID: 403839971}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &382698096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 382698097}
+  - component: {fileID: 382698100}
+  - component: {fileID: 382698099}
+  - component: {fileID: 382698098}
+  m_Layer: 5
+  m_Name: GregSprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &382698097
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382698096}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1480685236}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -60, y: 192}
+  m_SizeDelta: {x: 54.3723, y: 54.3723}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &382698098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382698096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7128981f18348a458b585ac5a011df9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GregIcon
+  zombieValue: {fileID: 875105506}
+  actualGregSprite: {fileID: 382698099}
+  gregSprites:
+  - {fileID: -1305509853, guid: b6fd49e9ebac80a4ba83c92aa5a120b1, type: 3}
+  - {fileID: 1776281583, guid: b6fd49e9ebac80a4ba83c92aa5a120b1, type: 3}
+  - {fileID: -2126553561, guid: b6fd49e9ebac80a4ba83c92aa5a120b1, type: 3}
+  gregImage: {fileID: 382698097}
+--- !u!114 &382698099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382698096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -1305509853, guid: b6fd49e9ebac80a4ba83c92aa5a120b1, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &382698100
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382698096}
+  m_CullTransparentMesh: 1
 --- !u!1001 &397802781
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7297,6 +7395,10 @@ PrefabInstance:
       propertyPath: groundLayer.m_Bits
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5518870154727899447, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
+      propertyPath: actualGregSprite
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5730793163211232694, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -10776,6 +10878,14 @@ PrefabInstance:
       propertyPath: playerObject
       value: 
       objectReference: {fileID: 200637151}
+    - target: {fileID: 7517235681251064650, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517235681251064650, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7997392375358048578, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -18978,7 +19088,7 @@ RectTransform:
   - {fileID: 567039663}
   - {fileID: 1122186574}
   - {fileID: 1675553755}
-  - {fileID: 1598504191}
+  - {fileID: 382698097}
   m_Father: {fileID: 326527999}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -20254,100 +20364,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7218445769764742706, guid: a0238970d5539294ebcbda38b43b1bad, type: 3}
   m_PrefabInstance: {fileID: 1595430962}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1598504190
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1598504191}
-  - component: {fileID: 1598504193}
-  - component: {fileID: 1598504192}
-  - component: {fileID: 1598504194}
-  m_Layer: 5
-  m_Name: GregIcon
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1598504191
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598504190}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1480685236}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -58.4, y: 192.5}
-  m_SizeDelta: {x: 53.7102, y: 51.6355}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1598504192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598504190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: -1305509853, guid: b6fd49e9ebac80a4ba83c92aa5a120b1, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1598504193
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598504190}
-  m_CullTransparentMesh: 1
---- !u!114 &1598504194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598504190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7128981f18348a458b585ac5a011df9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GregIcon
-  zombieValue: {fileID: 875105506}
-  actualGregSprite: {fileID: 1598504192}
-  gregSprites:
-  - {fileID: -1305509853, guid: b6fd49e9ebac80a4ba83c92aa5a120b1, type: 3}
-  - {fileID: 1776281583, guid: b6fd49e9ebac80a4ba83c92aa5a120b1, type: 3}
-  - {fileID: -2126553561, guid: b6fd49e9ebac80a4ba83c92aa5a120b1, type: 3}
 --- !u!1001 &1603106394
 PrefabInstance:
   m_ObjectHideFlags: 0
