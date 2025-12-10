@@ -17,6 +17,7 @@ public class Impresora : MonoBehaviour
     [SerializeField] float time;
     [SerializeField] Material Mat;
     [SerializeField] Material OutLine;
+    [SerializeField] GameObject fbxRoto;
     [SerializeField] bool PlayerCerca;
     [SerializeField] bool TareaAcabada;
 
@@ -32,6 +33,7 @@ public class Impresora : MonoBehaviour
         save = ValueBarStart;
         slider = TaskBar.GetComponent<Slider>();
         slider.value = ValueBarStart;
+        fbxRoto.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -65,7 +67,7 @@ public class Impresora : MonoBehaviour
             ValueBarStart = save;
             TaskBar.SetActive(false);
             GetComponent<MeshRenderer>().material = Mat;
-
+            fbxRoto.SetActive(false) ;
             // Marcar tarea completada en TareasAleatorias
             tareasScript.CompletarTarea(this.gameObject);
 
