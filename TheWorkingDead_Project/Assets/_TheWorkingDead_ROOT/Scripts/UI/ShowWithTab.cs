@@ -11,9 +11,14 @@ public class ShowWithTab : MonoBehaviour
 
     void Update()
     {
-        while (Input.GetKeyDown(KeyCode.Tab))
+        // Activo mientras se mantiene pulsado Tab
+        if (Input.GetKey(KeyCode.Tab))
         {
-            panelToShow.SetActive(!panelToShow.activeSelf);
+            panelToShow.SetActive(true);
+        }
+        else
+        {
+            panelToShow.SetActive(false);
         }
     }
 }
