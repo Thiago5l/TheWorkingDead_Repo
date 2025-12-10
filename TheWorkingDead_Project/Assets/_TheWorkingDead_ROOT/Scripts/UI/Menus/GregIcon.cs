@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
+using DG.Tweening;
 
 public class GregIcon : MonoBehaviour
 {
     [SerializeField] OviedadZombie zombieValue;
 
+    [Header("Images")]
     [SerializeField] Image actualGregSprite;
     [SerializeField] Sprite[] gregSprites;
     [SerializeField] Transform gregImage;
@@ -23,7 +25,6 @@ public class GregIcon : MonoBehaviour
         if (zombieValue.Zombiedad >= 0.400f && zombieValue.Zombiedad <= 0.850f)
         {
             actualGregSprite.sprite = gregSprites[1];
-            StartCoroutine(SpriteShake());
             Debug.Log("medium");
         }
         if (zombieValue.Zombiedad >= 0.850f && zombieValue.Zombiedad <= 1.000f)
@@ -31,14 +32,6 @@ public class GregIcon : MonoBehaviour
             actualGregSprite.sprite = gregSprites[2];
             Debug.Log("Bad"); 
         }
-    }
 
-    IEnumerator SpriteShake()
-    {
-        gregImage.transform.localPosition = new Vector2(-59, 189);
-        yield return new WaitForSecondsRealtime(0.2f);
-        gregImage.transform.localPosition = new Vector2(-61, 193);
-        yield return new WaitForSecondsRealtime(0.2f);
-        gregImage.transform.localPosition = new Vector2(-60, 192);
     }
 }
