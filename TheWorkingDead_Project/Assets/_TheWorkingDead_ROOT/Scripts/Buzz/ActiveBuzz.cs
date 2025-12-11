@@ -38,7 +38,7 @@ public class ActiveBuzz : MonoBehaviour
         }
         else if (objectToActivate.activeSelf)
         { BuzzAnimator.Play("Idle"); }
-        if (playedinteract&&playedstart&&!objectToActivate.activeSelf)
+        if (playedinteract&&!playstart&&!objectToActivate.activeSelf)
         { Buzz.gameObject.SetActive(false); }
     }
 
@@ -60,33 +60,34 @@ public class ActiveBuzz : MonoBehaviour
             if(!playedinteract||!playedstart) 
             objectToActivate.SetActive(true);
             objectActivated = true;
-           
-        }
-        // 2. Esperar un frame para que Unity active el objeto completamente
-        yield return null;
 
-        // 3. Reproducir el diálogo AHORA que el objeto ya está activo
-        if (buzzTutorial != null)
-        {
-            if (playinteract&&!playedinteract)
+            // 2. Esperar un frame para que Unity active el objeto completamente
+            yield return null;
+
+            // 3. Reproducir el diálogo AHORA que el objeto ya está activo
+            if (buzzTutorial != null)
             {
-                Debug.Log("activeinteract");
-                buzzTutorial.PlayInteractDialogue();
-                playinteract = false;
-                playedinteract = true;
+                if (playinteract&&!playedinteract)
+                {
+                    Debug.Log("activeinteract");
+                    buzzTutorial.PlayInteractDialogue();
+                    playinteract = false;
+                    playedinteract = true;
+                }
+                else if (playstart&&!playedstart)
+                {
+                    Debug.Log("activestart");
+                    buzzTutorial.PlayStartDialogue();
+                    playstart = false;
+                    playedstart = true;
+                }
             }
-            else if (playstart&&!playedstart)
+            else
             {
-                Debug.Log("activestart");
-                buzzTutorial.PlayStartDialogue();
-                playstart = false;
-                playedstart = true;
+                Debug.LogWarning("buzzTutorial es NULL");
             }
-        }
-        else
-        {
-            Debug.LogWarning("buzzTutorial es NULL");
         }
     }
+
 
 }

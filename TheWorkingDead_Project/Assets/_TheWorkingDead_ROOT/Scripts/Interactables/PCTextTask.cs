@@ -37,14 +37,18 @@ public class PCTextTask : MonoBehaviour
     [SerializeField] GameObject Player;
     [SerializeField] float penalizacion = 5f;
 
+    [Header("Canvas")]
+    [SerializeField] public GameObject CanvasInteractableKey;
     void Start()
     {
-        tareasScript = objectTareas.GetComponent<TareasAleatorias>();
+        CanvasInteractableKey.SetActive(false);   
+    tareasScript = objectTareas.GetComponent<TareasAleatorias>();
         tareaEnProceso = false;
         tareaAcabada = false;
         PlayerCerca = false;
         prefabTaskUI.SetActive(false);
         GeneradorListaTextos();
+
     }
 
     public void GeneradorListaTextos()
@@ -94,11 +98,13 @@ public class PCTextTask : MonoBehaviour
         {
             PlayerCerca = true;
             GetComponent<MeshRenderer>().material = OutLine;
+            CanvasInteractableKey.SetActive(true);
         }
         if (other.CompareTag("TaskPlayer") && tareaAcabada)
         {
             PlayerCerca = true;
             GetComponent<MeshRenderer>().material = Mat;
+            CanvasInteractableKey.SetActive(false);
         }
     }
 
@@ -108,6 +114,7 @@ public class PCTextTask : MonoBehaviour
         {
             PlayerCerca = false;
             GetComponent<MeshRenderer>().material = Mat;
+            CanvasInteractableKey.SetActive(false);
         }
     }
 
@@ -128,6 +135,7 @@ public class PCTextTask : MonoBehaviour
     {
         if (PlayerCerca && !tareaAcabada && !tareaEnProceso)
         {
+            CanvasInteractableKey.SetActive(false);
             tareaEnProceso = true;
             prefabTaskUI.SetActive(true);
             insertedText.text = string.Empty;
@@ -178,6 +186,7 @@ public class PCTextTask : MonoBehaviour
 
     void CompletarTarea()
     {
+        CanvasInteractableKey.SetActive(false);
         tareaEnProceso = false;
         tareaAcabada = true;
         Player.GetComponent<PlayerController>().playerOcupado = false;
@@ -205,6 +214,7 @@ public class PCTextTask : MonoBehaviour
 
     public void cerrar()
     {
+        CanvasInteractableKey.SetActive(true);
         tareaEnProceso = false;
         Player.GetComponent<PlayerController>().playerOcupado = false;
         ConfigurarTiempo();

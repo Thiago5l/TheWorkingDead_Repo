@@ -26,6 +26,7 @@ public class Ordenador : MonoBehaviour
     [SerializeField] public Image spacebarsprite;
     [SerializeField] private float visibleTime = 0.2f;
     [SerializeField] private float WinThreshold = 60f; // valor para completar la tarea
+    [SerializeField] public GameObject CanvasInteractableKey;
     #endregion
 
     void Start()
@@ -44,6 +45,7 @@ public class Ordenador : MonoBehaviour
         {
             PlayerCerca = true;
             GetComponent<MeshRenderer>().material = OutLine;
+            CanvasInteractableKey.SetActive(true);
         }
     }
 
@@ -53,6 +55,7 @@ public class Ordenador : MonoBehaviour
         {
             PlayerCerca = false;
             GetComponent<MeshRenderer>().material = Mat;
+            CanvasInteractableKey.SetActive(false);
         }
     }
 
@@ -67,6 +70,7 @@ public class Ordenador : MonoBehaviour
         // Completar tarea
         if (WinValue >= WinThreshold && !TareaAcabada)
         {
+            CanvasInteractableKey.SetActive(false);
             TareaAcabada = true;
             Player.GetComponent<PlayerController>().playerOcupado = false;
             Player.GetComponent<OviedadZombie>().Zombiedad -= 0.2f;
@@ -113,6 +117,7 @@ public class Ordenador : MonoBehaviour
     {
         if (TareaActiva && !TareaAcabada)
         {
+            CanvasInteractableKey.SetActive(false);
             Player.GetComponent<PlayerController>().playerOcupado = true;
             TaskBar.gameObject.SetActive(true);
             StartCoroutine(DecrementTaskBar(time));
@@ -158,5 +163,6 @@ public class Ordenador : MonoBehaviour
         TaskBar.gameObject.SetActive(false);
         WinValue = 0;
         StopAllCoroutines();
+        CanvasInteractableKey.SetActive(true);
     }
 }
