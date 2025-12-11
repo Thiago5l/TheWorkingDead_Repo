@@ -18,7 +18,7 @@ public class Ordenador : MonoBehaviour
     [SerializeField] float time;
     [SerializeField] Material Mat;
     [SerializeField] Material OutLine;
-    [SerializeField] bool PlayerCerca;
+    [SerializeField] public bool PlayerCerca;
     [SerializeField] bool TareaActiva;
     [SerializeField] bool TareaAcabada;
     private float save;

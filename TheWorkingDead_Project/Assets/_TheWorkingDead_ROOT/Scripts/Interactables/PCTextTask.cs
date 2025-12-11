@@ -29,7 +29,7 @@ public class PCTextTask : MonoBehaviour
     [Header("Interacción y estado")]
     [SerializeField] Material Mat;
     [SerializeField] Material OutLine;
-    [SerializeField] bool PlayerCerca;
+    [SerializeField] public bool PlayerCerca;
     [SerializeField] bool tareaEnProceso;
     [SerializeField] bool tareaAcabada;
 

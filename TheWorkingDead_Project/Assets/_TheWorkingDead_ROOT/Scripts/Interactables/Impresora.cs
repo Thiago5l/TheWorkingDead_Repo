@@ -17,7 +17,7 @@ public class Impresora : MonoBehaviour
     [SerializeField] float time;
     [SerializeField] Material Mat;
     [SerializeField] Material OutLine;
-    [SerializeField] bool PlayerCerca;
+    [SerializeField] public bool PlayerCerca;
     [SerializeField] bool TareaAcabada;
 
     [SerializeField] public Image spacebarsprite;
