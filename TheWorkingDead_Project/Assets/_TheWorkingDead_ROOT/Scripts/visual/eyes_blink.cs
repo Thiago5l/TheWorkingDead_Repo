@@ -20,6 +20,7 @@ public class eyes_blink : MonoBehaviour
 
     private void Start()
     {
+        eyeRenderer.material = eyeOpen;
         if (eyeRenderer == null)
             eyeRenderer = GetComponent<Renderer>();
 
