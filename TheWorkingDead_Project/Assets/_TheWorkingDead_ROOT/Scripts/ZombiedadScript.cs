@@ -8,48 +8,53 @@ using UnityEngine.SceneManagement;
 public class ZombiedadScript : MonoBehaviour
 {
     [Header("Values")]
-    [SerializeField] public int Zombiedad = 100;
-    [SerializeField] public int sumValue;
-    [SerializeField] int time;
+    [SerializeField] float zombiedad;
+    [SerializeField] float maxZombiedad = 100;
 
     [Header("Game Objects")]
-    [SerializeField] Slider ZombiedadBar;
-    [SerializeField] Transform PlayerTransform;
-    [SerializeField] Transform RespawnPoint;
-    [SerializeField] public GameObject LooseCanvas;
+    [SerializeField] Slider zombiedadBar;
+    [SerializeField] GameObject looseCanvas;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [Header("Sprites")]
+    [SerializeField] Image gregHead;
+    [SerializeField] Sprite[] gregSprites;
+
+    //[Header("Others")]
+    //[SerializeField] Transform PlayerTransform;
+    //[SerializeField] Transform RespawnPoint;
+
+
     void Start()
     {
-        if (ZombiedadBar == null)
-        {
-            ZombiedadBar.value -= sumValue;
-        }
-        int zValue = 1;
-        StartCoroutine(WaitObviedad(zValue));
-    }
-    IEnumerator WaitObviedad(int duration)
-    {
-        while (Zombiedad < 1)
-        {
-            yield return new WaitForSeconds(time);
-            Zombiedad = Zombiedad - sumValue;        
-        }
+        zombiedad = maxZombiedad;
 
+        zombiedadBar.maxValue = maxZombiedad;
+        zombiedadBar.value = zombiedad;
     }
     //-----//
     private void Update()
     {
-
-         if (ZombiedadBar.value < 1)
-         {
-            Zombiedad = 1;
-         }
-
-         if (ZombiedadBar.value >= 0)
-         {
-            LooseCanvas.SetActive(true);
-         }
+        zombiedad -= 0.01f;
+        zombiedadBar.value = zombiedad;
+        if (zombiedad == 0)
+        {
+            looseCanvas.SetActive(true);
+        }
+        //-----//
+        if (zombiedad >= 100f && zombiedad <= 60f)
+        {
+            gregHead.sprite = gregSprites[0];
+            Debug.Log("Good");
+        }
+        if (zombiedad >= 60f && zombiedad <= 25f)
+        {
+            gregHead.sprite = gregSprites[1];
+            Debug.Log("medium");
+        }
+        if (zombiedad >= 25f && zombiedad <= 0f)
+        {
+            gregHead.sprite = gregSprites[2];
+            Debug.Log("Bad");
+        }
     }
-
- }
+}
