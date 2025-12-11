@@ -6623,7 +6623,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1245452138}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 1}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 367.9, y: -185.31}
@@ -7007,6 +7007,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5387577124201428210, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
+      propertyPath: taskLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387577124201428210, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: groundLayer.m_Bits
       value: 0
       objectReference: {fileID: 0}
@@ -7100,6 +7104,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7192288205431524021, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
   m_PrefabInstance: {fileID: 875105503}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &875105508 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5387577124201428210, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
+  m_PrefabInstance: {fileID: 875105503}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200637151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 526d11459c3030a4f96a229911821e25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &875252112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15705,7 +15720,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 829590550}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1245452143}
+        m_TargetAssemblyTypeName: ActiveBuzz, Assembly-CSharp
+        m_MethodName: ActivateObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1245452143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15718,8 +15745,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9484b3584e0a04a90216c6e122d18f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  triggerButton: {fileID: 1245452142}
-  objectToActivate: {fileID: 829590546}
+  playinteract: 0
+  playstart: 0
+  objectToActivate: {fileID: 1871381654}
+  buzzTutorial: {fileID: 0}
+  PlayerController: {fileID: 875105508}
 --- !u!1 &1246378630
 GameObject:
   m_ObjectHideFlags: 0
@@ -18333,6 +18363,10 @@ PrefabInstance:
     - target: {fileID: 5250072846885325586, guid: 13a6172b71f124a4582d898c43383937, type: 3}
       propertyPath: m_Name
       value: pf_task_printer
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250072846885325586, guid: 13a6172b71f124a4582d898c43383937, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6949027157379810362, guid: 13a6172b71f124a4582d898c43383937, type: 3}
       propertyPath: Player
@@ -21615,7 +21649,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1871381655
 RectTransform:
   m_ObjectHideFlags: 0
