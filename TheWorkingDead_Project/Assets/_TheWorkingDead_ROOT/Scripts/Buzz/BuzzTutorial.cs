@@ -14,53 +14,23 @@ public class BuzzTutorial : MonoBehaviour
 
     public float textSpeed = 0.05f;
 
-    public GameObject barra;
-    public GameObject enemy;
-
     public Image buzzsprite;
 
     private int index;
     private bool startDialoguePlayed = false;
     private bool interactDialoguePlayed = false;
 
-    private Outline outline;
-    public float outlineBlinkSpeed = 3f;
 
     private Coroutine typeCoroutine;
     private Coroutine blinkCoroutine;
     private float originalFixedDeltaTime;
 
+    public ActiveBuzz ActiveBuzz;
+
     void OnEnable()
     {
-        buzzsprite.enabled = true;
-
-        outline = buzzsprite.GetComponent<Outline>();
-        if (outline == null)
-            outline = buzzsprite.gameObject.AddComponent<Outline>();
-
-        blinkCoroutine = StartCoroutine(BlinkOutlineCoroutine());
 
         textComponent.text = "";
-    }
-
-    IEnumerator BlinkOutlineCoroutine()
-    {
-        float alpha = outline.effectColor.a;
-        int dir = -1;
-
-        while (gameObject.activeInHierarchy)
-        {
-            alpha += dir * outlineBlinkSpeed * Time.unscaledDeltaTime;
-
-            if (alpha <= 0f) { alpha = 0f; dir = 1; }
-            else if (alpha >= 1f) { alpha = 1f; dir = -1; }
-
-            Color c = outline.effectColor;
-            c.a = alpha;
-            outline.effectColor = c;
-
-            yield return null;
-        }
     }
 
     void Update()
@@ -69,13 +39,19 @@ public class BuzzTutorial : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (textComponent.text == currentLines[index])
+            Debug.Log("CLICK DETECTADO");
+
+            // Si ya terminó de escribir la línea
+            if (textComponent.text.Trim() == currentLines[index].Trim())
             {
                 NextLine();
             }
             else
             {
-                if (typeCoroutine != null) StopCoroutine(typeCoroutine);
+                // Completar línea instantáneo
+                if (typeCoroutine != null)
+                    StopCoroutine(typeCoroutine);
+
                 textComponent.text = currentLines[index];
             }
         }
@@ -106,7 +82,6 @@ public class BuzzTutorial : MonoBehaviour
         currentLines = linesToPlay;
         index = 0;
 
-        gameObject.SetActive(true);
         textComponent.text = "";
 
         originalFixedDeltaTime = Time.fixedDeltaTime;
@@ -137,14 +112,16 @@ public class BuzzTutorial : MonoBehaviour
         {
             Time.timeScale = 1f;
             Time.fixedDeltaTime = originalFixedDeltaTime;
-
-            if (enemy != null) enemy.SetActive(true);
-            if (barra != null) barra.GetComponent<OviedadZombie>().enabled = true;
-
-            if (blinkCoroutine != null) StopCoroutine(blinkCoroutine);
-
-            gameObject.SetActive(false);
             currentLines = null;
+            //Chat, añade aqui que espere 1 segundo
+
+            StartCoroutine(SetActivatedCoroutine());
         }
+    }
+    private IEnumerator SetActivatedCoroutine()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+        ActiveBuzz.objectActivated = false;
+        this.gameObject.SetActive(false);
     }
 }
