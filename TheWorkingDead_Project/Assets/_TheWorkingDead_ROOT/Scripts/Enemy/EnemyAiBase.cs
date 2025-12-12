@@ -104,7 +104,8 @@ public class EnemyAiBase : MonoBehaviour
         sliderSospecha.value = 0;
         sliderSospecha.gameObject.SetActive(false);
 
-        valorSumaZombiedad = playerObject.GetComponent<OviedadZombie>().sumValue;
+        //valorSumaZombiedad = playerObject.GetComponent<OviedadZombie>().sumValue;
+
         //Arranque de la corrutina de proceso de la IA que sustituya al Update
         StartCoroutine(AIUpdateROutine());
     }
@@ -164,7 +165,7 @@ public class EnemyAiBase : MonoBehaviour
         sliderSospecha.gameObject.SetActive(false);
         sliderSospecha.value = 0;
         isFillingBar = false;
-        playerObject.GetComponent<OviedadZombie>().sumValue = valorSumaZombiedad;
+        //playerObject.GetComponent<OviedadZombie>().sumValue = valorSumaZombiedad;
         alreadyattacked = false;
         //deolvemos la capacidad de moverse al agente 
         if (agent.isStopped) agent.isStopped = false;
@@ -267,7 +268,7 @@ public class EnemyAiBase : MonoBehaviour
         isFillingBar = false;
         sliderSospecha.value = 0;
 
-        playerObject.GetComponent<OviedadZombie>().sumValue = valorSumaZombiedad;
+        //playerObject.GetComponent<OviedadZombie>().sumValue = valorSumaZombiedad;
         alreadyattacked = false;
 
         if (agent.isStopped) agent.isStopped = false;
@@ -291,7 +292,7 @@ public class EnemyAiBase : MonoBehaviour
 
         if (!alreadyattacked)
         {
-            playerObject.GetComponent<OviedadZombie>().sumValue *= 2f;
+            //playerObject.GetComponent<OviedadZombie>().sumValue *= 2f;
             alreadyattacked = true;
         }
 

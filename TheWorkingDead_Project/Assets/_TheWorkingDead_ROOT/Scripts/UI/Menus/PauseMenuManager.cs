@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
+using TMPro;
 
 public class PauseMenuManager : MonoBehaviour
 {
@@ -22,16 +23,31 @@ public class PauseMenuManager : MonoBehaviour
 
     [SerializeField] bool gamePaused = false;
     [SerializeField] string Pedos = "muchos";
+    //
+    [SerializeField] int level = 0;
+    //
+    [SerializeField] Scene currentScene;
 
     [Header("Sprites")]
     [SerializeField] Image actualSprite;
     [SerializeField] Sprite[] paperSprites;
+    //
+    [SerializeField] Image calendarImage;
+    [SerializeField] Sprite[] calendarSprites;
+    //
+    [SerializeField] TMP_Text calendarNumber;
 
 
 
     //-------//
+    private void Start()
+    {
+        calendarNumber.gameObject.SetActive(false);
+        OnSceneLoaded();
+    }
     private void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gamePaused == true)
@@ -43,7 +59,9 @@ public class PauseMenuManager : MonoBehaviour
                 IsPause();
             }
         }
-
+        
+        calendarNumber.text = level.ToString();
+        level = SceneManager.GetActiveScene().buildIndex;
     }
     //-------//
     public void IsPause()
@@ -134,4 +152,22 @@ public class PauseMenuManager : MonoBehaviour
         controlsButtonGroup.SetActive(true);
     }
     //-------//
+    public void OnSceneLoaded()
+    {
+        StartCoroutine(CalendarStart());
+    }
+    IEnumerator CalendarStart()
+    {
+        calendarImage.sprite = calendarSprites[0];
+        yield return new WaitForSecondsRealtime(0.1f);
+        calendarImage.sprite = calendarSprites[1];
+        yield return new WaitForSecondsRealtime(0.1f);
+        calendarImage.sprite = calendarSprites[2];
+        yield return new WaitForSecondsRealtime(0.1f);
+        calendarImage.sprite = calendarSprites[3];
+        yield return new WaitForSecondsRealtime(0.1f);
+        calendarImage.sprite = calendarSprites[0];
+        yield return new WaitForSecondsRealtime(0.1f);
+        calendarNumber.gameObject.SetActive(true);
+    }
 }
