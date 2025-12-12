@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -24,8 +25,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float groundCheckRadius = 0.2f; //rando detección
     [SerializeField] LayerMask groundLayer; //capa detección suelo
 
-
-    public bool  playerOcupado;
+    [Header("task parametres")]
+    public bool playerOcupado;
+    public bool  playerCerca;
+    public GameObject TaskCollider;
+    public LayerMask taskLayer; 
 
 
     //variables referencia propias o internas
@@ -49,7 +53,7 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        TaskCollider= GameObject.FindGameObjectWithTag("TaskPlayer");
     }
 
     // Update is called once per frame
@@ -64,9 +68,29 @@ public class PlayerController : MonoBehaviour
         {
             speed = speedcontainer;
         }
+        
     }
 
-   
+    private void OnTriggerEnter(Collider other)
+    {
+        // Verifica si el objeto está en la layer deseada
+        if (((1 << other.gameObject.layer) & taskLayer) != 0)
+        {
+            playerCerca = true;
+            Debug.Log("Jugador entró en el área de Task (por layer)");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (((1 << other.gameObject.layer) & taskLayer) != 0)
+        {
+            playerCerca = false;
+            Debug.Log("Jugador salió del área de Task (por layer)");
+        }
+    }
+
+
 
     private void OnDrawGizmosSelected()
     {

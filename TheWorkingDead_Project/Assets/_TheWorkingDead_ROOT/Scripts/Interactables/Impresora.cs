@@ -17,21 +17,25 @@ public class Impresora : MonoBehaviour
     [SerializeField] float time;
     [SerializeField] Material Mat;
     [SerializeField] Material OutLine;
-    [SerializeField] bool PlayerCerca;
+    [SerializeField] public bool PlayerCerca;
     [SerializeField] bool TareaAcabada;
 
     [SerializeField] public Image spacebarsprite;
     [SerializeField] private float visibleTime = 0.2f;
+
+    [SerializeField] public GameObject CanvasInteractableKey;
 
     private Slider slider;
     private float save;
 
     void Start()
     {
+        CanvasInteractableKey.SetActive(false);
         tareasScript = objectTareas.GetComponent<TareasAleatorias>();
         save = ValueBarStart;
         slider = TaskBar.GetComponent<Slider>();
         slider.value = ValueBarStart;
+        fbxRoto.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,6 +44,7 @@ public class Impresora : MonoBehaviour
         {
             PlayerCerca = true;
             GetComponent<MeshRenderer>().material = OutLine;
+            CanvasInteractableKey.SetActive(true);
         }
     }
 
@@ -49,6 +54,7 @@ public class Impresora : MonoBehaviour
         {
             PlayerCerca = false;
             GetComponent<MeshRenderer>().material = Mat;
+            CanvasInteractableKey.SetActive(false);
         }
     }
 
@@ -59,13 +65,14 @@ public class Impresora : MonoBehaviour
 
         if (ValueBarStart >= 100 && !TareaAcabada)
         {
+            CanvasInteractableKey.SetActive(false);
             TareaAcabada = true;
             Player.GetComponent<PlayerController>().playerOcupado = false;
             Player.GetComponent<OviedadZombie>().Zombiedad -= (20f / 100f);
             ValueBarStart = save;
             TaskBar.SetActive(false);
             GetComponent<MeshRenderer>().material = Mat;
-
+            fbxRoto.SetActive(false) ;
             // Marcar tarea completada en TareasAleatorias
             tareasScript.CompletarTarea(this.gameObject);
 
@@ -87,6 +94,7 @@ public class Impresora : MonoBehaviour
     {
         if (PlayerCerca && !TareaAcabada)
         {
+            CanvasInteractableKey.SetActive(false);
             TaskBar.SetActive(true);
             StartCoroutine(WaitTaskBar(time));
             Player.GetComponent<PlayerController>().playerOcupado = true;
@@ -117,6 +125,7 @@ public class Impresora : MonoBehaviour
 
     public void cerrar()
     {
+        CanvasInteractableKey.SetActive(true);
         ValueBarStart = save;
         TaskBar.SetActive(false);
         Player.GetComponent<PlayerController>().playerOcupado = false;
