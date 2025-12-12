@@ -30,6 +30,7 @@ public class Impresora : MonoBehaviour
 
     void Start()
     {
+        CanvasInteractableKey.SetActive(false);
         tareasScript = objectTareas.GetComponent<TareasAleatorias>();
         save = ValueBarStart;
         slider = TaskBar.GetComponent<Slider>();
