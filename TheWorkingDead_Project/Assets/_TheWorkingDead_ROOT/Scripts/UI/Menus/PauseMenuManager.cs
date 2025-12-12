@@ -37,6 +37,8 @@ public class PauseMenuManager : MonoBehaviour
     //
     [SerializeField] TMP_Text calendarNumber;
 
+    [Header("References")]
+    [SerializeField] PlayerController playerController;
 
 
     //-------//
@@ -48,9 +50,9 @@ public class PauseMenuManager : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !playerController.playerOcupado)
         {
-            if (gamePaused == true)
+            if (gamePaused)
             {
                 unPause();
             }
@@ -59,7 +61,7 @@ public class PauseMenuManager : MonoBehaviour
                 IsPause();
             }
         }
-        
+
         calendarNumber.text = level.ToString();
         level = SceneManager.GetActiveScene().buildIndex;
     }

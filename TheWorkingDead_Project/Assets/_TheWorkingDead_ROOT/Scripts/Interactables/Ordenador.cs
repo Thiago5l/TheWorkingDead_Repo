@@ -37,6 +37,7 @@ public class Ordenador : MonoBehaviour
         TareaAcabada = false;
         save = ValueBarStart;
         TaskBar.value = ValueBarStart;
+        CanvasInteractableKey.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)

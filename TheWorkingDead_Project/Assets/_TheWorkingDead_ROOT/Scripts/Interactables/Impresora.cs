@@ -24,6 +24,7 @@ public class Impresora : MonoBehaviour
     [SerializeField] private float visibleTime = 0.2f;
 
     [SerializeField] public GameObject CanvasInteractableKey;
+    [SerializeField] public GameObject fbxRoto;
 
     private Slider slider;
     private float save;
