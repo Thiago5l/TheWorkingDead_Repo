@@ -13,11 +13,13 @@ public class NPCsConversation : MonoBehaviour
     [SerializeField] public GameObject taskExclamation;
     [SerializeField] private bool talking;
     [SerializeField] private bool alrreadyTalked;
+    [SerializeField] public GameObject canvasinteractkey;
     //[SerializeField] public GameObject objectTareas; 
     //private TareasAleatorias tareasScript;
 
     void Start()
     {
+        canvasinteractkey.SetActive(false);
         
         taskExclamation.SetActive(true);
         playerCerca = false;
@@ -33,6 +35,27 @@ public class NPCsConversation : MonoBehaviour
     void Update()
     {
         myConversation = conversationsList[0];
+        if (playerCerca&&!alrreadyTalked)
+        {
+            taskExclamation.SetActive(false);
+            canvasinteractkey.SetActive(true);
+        }
+        else
+        {
+            if (!alrreadyTalked)
+            {
+                canvasinteractkey.SetActive(false);
+                taskExclamation.SetActive(true); 
+            }
+            else
+            {
+                if (alrreadyTalked)
+                {
+                    taskExclamation.SetActive(false);
+                    canvasinteractkey.SetActive(false);
+                }
+            }
+        }
         //if (playerCerca && canInteract && Input.GetKeyDown(KeyCode.E))
         //{
         //    Interact();
@@ -57,7 +80,7 @@ public class NPCsConversation : MonoBehaviour
 
     public void Interact()
     {
-        if (playerCerca && myConversation != null && !talking)
+        if (playerCerca && myConversation != null && !talking && !alrreadyTalked)
         {
 
             MezclarLista(conversationsList);
