@@ -3994,6 +3994,7 @@ Transform:
   - {fileID: 1688484420}
   - {fileID: 1101880788}
   - {fileID: 299002926}
+  - {fileID: 511216580}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &335976168 stripped
@@ -6053,7 +6054,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &511216580
 Transform:
   m_ObjectHideFlags: 0
@@ -6067,7 +6068,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 326527999}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &511216581
 MonoBehaviour:
@@ -6858,6 +6859,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5196674670590694886, guid: cae7012859f26a34fae4be0d6a67680a, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 875105508}
     - target: {fileID: 5219639228121701776, guid: cae7012859f26a34fae4be0d6a67680a, type: 3}
       propertyPath: m_Color.a
       value: 0.23529412
@@ -32235,7 +32240,6 @@ SceneRoots:
   - {fileID: 1984235137}
   - {fileID: 2056705581}
   - {fileID: 103120324}
-  - {fileID: 511216580}
   - {fileID: 326527999}
   - {fileID: 2069793063}
   - {fileID: 1717159585}
