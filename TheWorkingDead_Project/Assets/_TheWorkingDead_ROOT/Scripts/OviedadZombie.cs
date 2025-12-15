@@ -13,6 +13,7 @@ public class OviedadZombie : MonoBehaviour
     [Header("Values")]
     [SerializeField] public float Zombiedad;
     [SerializeField] public float maxZombiedad = 100;
+    [SerializeField] public float ZombiedadSpeed = 100;
 
     [Header("Game Objects")]
     [SerializeField] Slider zombiedadBar;
@@ -47,7 +48,7 @@ public class OviedadZombie : MonoBehaviour
             Zombiedad = 0f;
         }
 
-        Zombiedad -= 0.01f;
+        Zombiedad -= ZombiedadSpeed * Time.deltaTime; 
         zombiedadBar.value = Zombiedad;
 
         if (Zombiedad <= 0f)

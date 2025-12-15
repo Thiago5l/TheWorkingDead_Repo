@@ -53,6 +53,7 @@ public class EnemyAiBase : MonoBehaviour
     float detectandoZombie;
     [SerializeField] float fillSpeed;
     bool isFillingBar;
+    [SerializeField] GameObject looseCanvas;
 
 
     [Header("States and detections")]
@@ -120,6 +121,7 @@ public class EnemyAiBase : MonoBehaviour
             if (sliderSospecha.value >= sliderSospecha.maxValue)
             {
                 sliderSospecha.value = sliderSospecha.maxValue;
+                looseCanvas.SetActive(true);
                 playerObject.GetComponent<OviedadZombie>().Zombiedad = 1f;
             }
         }

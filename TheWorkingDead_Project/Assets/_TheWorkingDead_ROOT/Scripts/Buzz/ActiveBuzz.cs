@@ -18,10 +18,15 @@ public class ActiveBuzz : MonoBehaviour
     public GameObject Buzz;
     public Animator BuzzAnimator;
 
-    private void Start()
+
+    private IEnumerator Start()
     {
         playstart = true;
         button = GetComponent<Button>();
+
+        yield return null; 
+
+        StartCoroutine(ActivateAndPlay());
     }
     private void Update()
     {

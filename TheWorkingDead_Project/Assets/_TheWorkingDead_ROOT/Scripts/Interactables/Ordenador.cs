@@ -27,6 +27,7 @@ public class Ordenador : MonoBehaviour
     [SerializeField] private float visibleTime = 0.2f;
     [SerializeField] private float WinThreshold = 60f; // valor para completar la tarea
     [SerializeField] public GameObject CanvasInteractableKey;
+    [SerializeField] private FadeCanvas taskFeedbackCanvas;
     #endregion
 
     void Start()
@@ -71,10 +72,10 @@ public class Ordenador : MonoBehaviour
         // Completar tarea
         if (WinValue >= WinThreshold && !TareaAcabada)
         {
+            taskFeedbackCanvas.PlayWin();
             CanvasInteractableKey.SetActive(false);
             TareaAcabada = true;
             Player.GetComponent<PlayerController>().playerOcupado = false;
-            Player.GetComponent<OviedadZombie>().Zombiedad -= 0.2f;
             ValueBarStart = save;
             TaskBar.gameObject.SetActive(false);
             GetComponent<MeshRenderer>().material = Mat;
@@ -101,8 +102,8 @@ public class Ordenador : MonoBehaviour
         // Fallo de tarea
         if (ValueBarStart <= 0)
         {
+            taskFeedbackCanvas.PlayLose();
             Player.GetComponent<PlayerController>().playerOcupado = false;
-            Player.GetComponent<OviedadZombie>().Zombiedad += 0.05f;
             ValueBarStart = save;
             TareaActiva = false;
             TaskBar.gameObject.SetActive(false);

@@ -25,6 +25,7 @@ public class Impresora : MonoBehaviour
 
     [SerializeField] public GameObject CanvasInteractableKey;
     [SerializeField] public GameObject fbxRoto;
+    [SerializeField] private FadeCanvas taskFeedbackCanvas;
 
     private Slider slider;
     private float save;
@@ -69,7 +70,6 @@ public class Impresora : MonoBehaviour
             CanvasInteractableKey.SetActive(false);
             TareaAcabada = true;
             Player.GetComponent<PlayerController>().playerOcupado = false;
-            Player.GetComponent<OviedadZombie>().Zombiedad -= (20f / 100f);
             ValueBarStart = save;
             TaskBar.SetActive(false);
             GetComponent<MeshRenderer>().material = Mat;
@@ -83,7 +83,6 @@ public class Impresora : MonoBehaviour
 
         if (ValueBarStart <= 0 && !TareaAcabada)
         {
-            Player.GetComponent<OviedadZombie>().Zombiedad += (5f / 100f);
             ValueBarStart = save;
             TaskBar.SetActive(false);
             Player.GetComponent<PlayerController>().playerOcupado = false;

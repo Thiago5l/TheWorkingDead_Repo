@@ -5,28 +5,29 @@ using UnityEngine.SceneManagement;
 public class TareasAleatorias : MonoBehaviour
 {
     [Header("Configuración de Tareas")]
-    [SerializeField] public GameObject[] PrefabsTareas;
-    [SerializeField] public int TareasPorNivel;
+    public GameObject[] PrefabsTareas;
+    public int TareasPorNivel;
 
     [Header("Estado del nivel")]
-    [SerializeField] public int tareasHechas;
-    [SerializeField] public bool winLevel;
+    public int tareasHechas;
+    public bool winLevel;
 
     [Header("UI y contenedor")]
-    [SerializeField] public GameObject boxTarea;
-    [SerializeField] public Transform tareaContiner;
+    public GameObject boxTarea;
+    public Transform tareaContiner;
 
     [Header("Control de tareas")]
-    [SerializeField] public List<GameObject> OrdenTareas = new List<GameObject>();
+    public List<GameObject> OrdenTareas = new List<GameObject>();
+    public Dictionary<GameObject, GameObject> tareaToUI = new Dictionary<GameObject, GameObject>();
 
     void Start()
     {
         tareasHechas = 0;
         winLevel = false;
-        GeneradorListaTareas();
+        GenerarListaTareas();
     }
 
-    public void GeneradorListaTareas()
+    public void GenerarListaTareas()
     {
         if (PrefabsTareas == null || PrefabsTareas.Length == 0)
         {
@@ -41,15 +42,17 @@ public class TareasAleatorias : MonoBehaviour
         MezclarLista(tareasDisponibles);
 
         OrdenTareas.Clear();
+        tareaToUI.Clear();
 
         for (int i = 0; i < TareasPorNivel; i++)
         {
             GameObject tarea = tareasDisponibles[i];
             OrdenTareas.Add(tarea);
 
-            // Crear UI
+            // Crear UI y asociarla directamente a la tarea
             GameObject box = Instantiate(boxTarea, tareaContiner);
             box.GetComponent<BoxTarea>().SetText(tarea.GetComponent<TareaNombre>().tareaNombre);
+            tareaToUI[tarea] = box;
         }
 
         Debug.Log($"Se generaron {OrdenTareas.Count} tareas aleatorias");
@@ -69,26 +72,32 @@ public class TareasAleatorias : MonoBehaviour
     // Método público para completar cualquier tarea
     public void CompletarTarea(GameObject tarea)
     {
-        int index = OrdenTareas.IndexOf(tarea);
-        if (index >= 0)
+        if (OrdenTareas.Contains(tarea))
         {
-            OrdenTareas.RemoveAt(index);
+            OrdenTareas.Remove(tarea);
 
-            // Ocultar UI correspondiente
-            if (index < tareaContiner.childCount)
-                tareaContiner.GetChild(index).gameObject.SetActive(false);
+            // Ocultar UI asociada a la tarea
+            if (tareaToUI.ContainsKey(tarea))
+            {
+                tareaToUI[tarea].SetActive(false);
+                tareaToUI.Remove(tarea);
+            }
 
             tareasHechas++;
             Debug.Log($"Tarea completada: {tarea.name} | Restantes: {OrdenTareas.Count}");
+        }
+        else
+        {
+            Debug.LogWarning($"La tarea {tarea.name} no está en la lista de tareas pendientes.");
         }
     }
 
     void Update()
     {
-        if (tareasHechas >= TareasPorNivel || OrdenTareas.Count <= 0)
+        if (!winLevel && (tareasHechas >= TareasPorNivel || OrdenTareas.Count <= 0))
+        {
             winLevel = true;
-
-        if (winLevel)
             SceneManager.LoadScene("SCN_CINE_WIN");
+        }
     }
 }

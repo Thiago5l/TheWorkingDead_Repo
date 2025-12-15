@@ -15,6 +15,7 @@ public class NPCsConversation : MonoBehaviour
     [SerializeField] private bool alrreadyTalked;
     [SerializeField] public GameObject canvasinteractkey;
     [SerializeField] TareasAleatorias taskmanager;
+    [SerializeField] private FadeCanvas taskFeedbackCanvas;
     //[SerializeField] public GameObject objectTareas; 
     //private TareasAleatorias tareasScript;
 
@@ -99,31 +100,30 @@ public class NPCsConversation : MonoBehaviour
 
     public void FinalBueno()
     {
+        taskFeedbackCanvas.PlayWin();
         Debug.Log("Final Bueno");
 
         player.GetComponent<PlayerController>().playerOcupado = false; 
-
-            player.GetComponent<OviedadZombie>().Zombiedad += 20f ;
             taskExclamation.SetActive(false);
             player.GetComponent<PlayerController>().playerOcupado = false;
             talking = false;
             alrreadyTalked = true;
             taskmanager.CompletarTarea(this.gameObject);
-    
+
     }
 
     public void FinalMalo()
     {
+        taskFeedbackCanvas.PlayLose();
         Debug.Log("Final Malo");    
         player.GetComponent<PlayerController>().playerOcupado = false;
-        
-      
-            player.GetComponent<OviedadZombie>().Zombiedad -= 20f ;
+
+        taskExclamation.SetActive(false);
             player.GetComponent<PlayerController>().playerOcupado = false;
             talking = false;
             alrreadyTalked = true;
+            taskmanager.CompletarTarea(this.gameObject);
 
-       
     }
 
 
