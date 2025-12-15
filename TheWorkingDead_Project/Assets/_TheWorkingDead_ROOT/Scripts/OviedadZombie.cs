@@ -37,11 +37,23 @@ public class OviedadZombie : MonoBehaviour
     //-----//
     private void Update()
     {
+        if (Zombiedad > 100f)
+        {
+            Zombiedad = 100f;
+        }
+
+        if (Zombiedad < 0f)
+        {
+            Zombiedad = 0f;
+        }
+
         Zombiedad -= 0.01f;
         zombiedadBar.value = Zombiedad;
-        if (Zombiedad == 0)
+
+        if (Zombiedad <= 0f)
         {
             looseCanvas.SetActive(true);
+            this.gameObject.GetComponent<PlayerController>().playerOcupado = true;
         }
         //-----//
         if (Zombiedad >= 100f && Zombiedad <= 60.000f)
@@ -54,7 +66,7 @@ public class OviedadZombie : MonoBehaviour
             gregHead.sprite = gregSprites[1];
             Debug.Log("medium");
         }
-        if (Zombiedad >= 25.000f && Zombiedad <= 0.000f)
+        if (Zombiedad >= 25.000f && Zombiedad <= 1f)
         {
             gregHead.sprite = gregSprites[2];
             Debug.Log("Bad");

@@ -99,41 +99,31 @@ public class NPCsConversation : MonoBehaviour
 
     public void FinalBueno()
     {
-        taskmanager.CompletarTarea(this.gameObject);
-        if (!alrreadyTalked)
-        {
-            player.GetComponent<OviedadZombie>().Zombiedad -= (20f / 100f);
+        Debug.Log("Final Bueno");
+
+        player.GetComponent<PlayerController>().playerOcupado = false; 
+
+            player.GetComponent<OviedadZombie>().Zombiedad += 20f ;
             taskExclamation.SetActive(false);
             player.GetComponent<PlayerController>().playerOcupado = false;
             talking = false;
             alrreadyTalked = true;
-        }
-        else
-        {
-            player.GetComponent<PlayerController>().playerOcupado = false;
-            talking = false;
-            alrreadyTalked = true;
-        }
+            taskmanager.CompletarTarea(this.gameObject);
+    
     }
 
     public void FinalMalo()
     {
-        taskmanager.CompletarTarea(this.gameObject);
-        if (!alrreadyTalked)
-        {
-            player.GetComponent<OviedadZombie>().Zombiedad += (20f / 100f);
+        Debug.Log("Final Malo");    
+        player.GetComponent<PlayerController>().playerOcupado = false;
+        
+      
+            player.GetComponent<OviedadZombie>().Zombiedad -= 20f ;
             player.GetComponent<PlayerController>().playerOcupado = false;
             talking = false;
             alrreadyTalked = true;
-            
-        }
-        else
-        {
-            player.GetComponent<PlayerController>().playerOcupado = false;
-            talking = false;
-            alrreadyTalked = true;
-            
-        }
+
+       
     }
 
 

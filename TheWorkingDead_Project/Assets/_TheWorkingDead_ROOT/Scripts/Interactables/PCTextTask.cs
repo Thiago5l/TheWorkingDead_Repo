@@ -42,7 +42,7 @@ public class PCTextTask : MonoBehaviour
     void Start()
     {
         CanvasInteractableKey.SetActive(false);   
-    tareasScript = objectTareas.GetComponent<TareasAleatorias>();
+        tareasScript = objectTareas.GetComponent<TareasAleatorias>();
         tareaEnProceso = false;
         tareaAcabada = false;
         PlayerCerca = false;

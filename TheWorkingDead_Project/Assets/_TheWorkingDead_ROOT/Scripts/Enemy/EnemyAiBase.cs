@@ -353,7 +353,7 @@ public class EnemyAiBase : MonoBehaviour
             else
             {
                 //patrullar
-                Patrolling(); Debug.Log("Caminando");
+                //Patrolling(); Debug.Log("Caminando");
             }
 
         }
