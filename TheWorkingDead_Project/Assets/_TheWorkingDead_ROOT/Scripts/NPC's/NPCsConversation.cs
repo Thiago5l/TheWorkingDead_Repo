@@ -14,6 +14,7 @@ public class NPCsConversation : MonoBehaviour
     [SerializeField] private bool talking;
     [SerializeField] private bool alrreadyTalked;
     [SerializeField] public GameObject canvasinteractkey;
+    [SerializeField] TareasAleatorias taskmanager;
     //[SerializeField] public GameObject objectTareas; 
     //private TareasAleatorias tareasScript;
 
@@ -34,7 +35,6 @@ public class NPCsConversation : MonoBehaviour
 
     void Update()
     {
-        myConversation = conversationsList[0];
         if (playerCerca&&!alrreadyTalked)
         {
             taskExclamation.SetActive(false);
@@ -80,6 +80,7 @@ public class NPCsConversation : MonoBehaviour
 
     public void Interact()
     {
+        myConversation = conversationsList[0];
         if (playerCerca && myConversation != null && !talking && !alrreadyTalked)
         {
 
@@ -98,6 +99,7 @@ public class NPCsConversation : MonoBehaviour
 
     public void FinalBueno()
     {
+        taskmanager.CompletarTarea(this.gameObject);
         if (!alrreadyTalked)
         {
             player.GetComponent<OviedadZombie>().Zombiedad -= (20f / 100f);
@@ -105,19 +107,18 @@ public class NPCsConversation : MonoBehaviour
             player.GetComponent<PlayerController>().playerOcupado = false;
             talking = false;
             alrreadyTalked = true;
-
         }
         else
         {
             player.GetComponent<PlayerController>().playerOcupado = false;
             talking = false;
             alrreadyTalked = true;
-            
         }
     }
 
     public void FinalMalo()
     {
+        taskmanager.CompletarTarea(this.gameObject);
         if (!alrreadyTalked)
         {
             player.GetComponent<OviedadZombie>().Zombiedad += (20f / 100f);
