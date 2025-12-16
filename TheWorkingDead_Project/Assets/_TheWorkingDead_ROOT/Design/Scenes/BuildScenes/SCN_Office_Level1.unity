@@ -761,12 +761,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6063700162511155842, guid: 3015bc4cbc8a1a2448da9bf8b24c5e1f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6181524545532262219, guid: 3015bc4cbc8a1a2448da9bf8b24c5e1f, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: c27a6380516d28a46b48d5f87da7d0b1, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 6181524545532262219, guid: 3015bc4cbc8a1a2448da9bf8b24c5e1f, type: 3}
       propertyPath: m_UseGeometry
       value: 0
@@ -10389,7 +10389,7 @@ PrefabInstance:
       objectReference: {fileID: 1048730158}
     - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: ZombiedadSpeed
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 3901302506987814512, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: LooseCanvas
@@ -14438,7 +14438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 977609638488973, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
       propertyPath: sightRange
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 977609638488973, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
       propertyPath: looseCanvas
@@ -23734,23 +23734,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 489198964316914385, guid: 0df2fe0f7a342b74fb08e34577b58732, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 489198964316914385, guid: 0df2fe0f7a342b74fb08e34577b58732, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 489198964316914385, guid: 0df2fe0f7a342b74fb08e34577b58732, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1245562859761843707, guid: 0df2fe0f7a342b74fb08e34577b58732, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1245562859761843707, guid: 0df2fe0f7a342b74fb08e34577b58732, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1403791872835371141, guid: 0df2fe0f7a342b74fb08e34577b58732, type: 3}
       propertyPath: m_SizeDelta.x
@@ -23822,7 +23822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5142278246891409032, guid: 0df2fe0f7a342b74fb08e34577b58732, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6891896735602788360, guid: 0df2fe0f7a342b74fb08e34577b58732, type: 3}
       propertyPath: m_SizeDelta.x
@@ -29503,7 +29503,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 0.2
-  m_NavMeshData: {fileID: 23800000, guid: 5dedbceb6afb1f448a9f8302200014a8, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 3f1e23367019bab40a4d4678e6595905, type: 2}
   m_BuildHeightMesh: 1
 --- !u!1001 &2076534374
 PrefabInstance:
