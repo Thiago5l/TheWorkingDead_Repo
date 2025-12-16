@@ -89,6 +89,11 @@ public class PauseMenuManager : MonoBehaviour
         Time.timeScale = 1;
     }
     //-------//
+    public void  BackToMenu()
+    {
+        SceneManager.LoadScene("SCN_Main_Menu"); //poner nombre de la escena que es el main menu
+    }
+    //-------//
 
     public void OptionsButtons()
     {
