@@ -784,6 +784,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6121474711048021974, guid: 95e2317e5eef32749be5c7c5111eaaa4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1973044985, guid: c438eefaeaf29144eb47f89f9359ae63, type: 3}
+    - target: {fileID: 7650033155129222035, guid: 95e2317e5eef32749be5c7c5111eaaa4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1973044985, guid: c438eefaeaf29144eb47f89f9359ae63, type: 3}
+    - target: {fileID: 7650033155129222035, guid: 95e2317e5eef32749be5c7c5111eaaa4, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7650033155129222035, guid: 95e2317e5eef32749be5c7c5111eaaa4, type: 3}
+      propertyPath: m_FillMethod
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8732865271874767753, guid: 95e2317e5eef32749be5c7c5111eaaa4, type: 3}
       propertyPath: videoPlayer
       value: 

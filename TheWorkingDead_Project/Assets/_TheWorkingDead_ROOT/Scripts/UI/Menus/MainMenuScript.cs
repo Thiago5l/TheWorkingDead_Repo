@@ -13,7 +13,7 @@ public class menu : MonoBehaviour
 
     public void PlayButton()
     {
-        StartCoroutine(wait("SCN_Test_Felix"));
+        StartCoroutine(wait("SCN_CINE_INIT"));
     }
 
 IEnumerator wait(string sceneName)

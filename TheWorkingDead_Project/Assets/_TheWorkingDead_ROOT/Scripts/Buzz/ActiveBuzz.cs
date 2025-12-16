@@ -45,6 +45,12 @@ public class ActiveBuzz : MonoBehaviour
         { BuzzAnimator.Play("Idle"); }
         if (playedinteract&&!playstart&&!objectToActivate.activeSelf)
         { Buzz.gameObject.SetActive(false); }
+        if (!PlayerController.playerCerca && playedstart && !objectToActivate.activeSelf) 
+        { Buzz.gameObject.SetActive(false); }
+            else if (PlayerController.playerCerca&&!playedinteract)
+            { Buzz.gameObject.SetActive(true); }
+        if (PlayerController.playerOcupado)
+        { Buzz.gameObject.SetActive(false); playedinteract=true; }
     }
 
         public void StartDialogue()
@@ -62,7 +68,8 @@ public class ActiveBuzz : MonoBehaviour
 
         if (!objectActivated)
         {
-            if(!playedinteract||!playedstart) 
+            if(!playedinteract||!playedstart)
+                if (playinteract||playstart)
             objectToActivate.SetActive(true);
             objectActivated = true;
 

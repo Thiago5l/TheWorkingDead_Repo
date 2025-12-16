@@ -44,6 +44,8 @@ public class PauseMenuManager : MonoBehaviour
     //-------//
     private void Start()
     {
+        level = SceneManager.GetActiveScene().buildIndex;
+        calendarNumber.text = (level - 1).ToString();
         calendarNumber.gameObject.SetActive(false);
         OnSceneLoaded();
     }
@@ -62,8 +64,6 @@ public class PauseMenuManager : MonoBehaviour
             }
         }
 
-        calendarNumber.text = level.ToString();
-        level = SceneManager.GetActiveScene().buildIndex;
     }
     //-------//
     public void IsPause()
@@ -99,13 +99,13 @@ public class PauseMenuManager : MonoBehaviour
     {
         //This one is normal
         actualSprite.sprite = paperSprites[0];
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(0.1f);
         actualSprite.sprite = paperSprites[1];
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(0.1f);
         actualSprite.sprite = paperSprites[2];
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(0.1f);
         actualSprite.sprite = paperSprites[3];
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(0.1f);
         actualSprite.sprite = paperSprites[0];
 
         yield return new WaitForSecondsRealtime(0.1f);
@@ -122,13 +122,13 @@ public class PauseMenuManager : MonoBehaviour
     {
         //This is Fliped
         actualSprite.sprite = paperSprites[0];
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(0.1f);
         actualSprite.sprite = paperSprites[3];
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(0.1f);
         actualSprite.sprite = paperSprites[2];
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(0.1f);
         actualSprite.sprite = paperSprites[1];
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(0.1f);
         actualSprite.sprite = paperSprites[0];
 
         yield return new WaitForSecondsRealtime(0.1f);
@@ -143,13 +143,13 @@ public class PauseMenuManager : MonoBehaviour
     IEnumerator ControlsAnimationManager()
     {
         actualSprite.sprite = paperSprites[0];
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(0.1f);
         actualSprite.sprite = paperSprites[1];
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(0.1f);
         actualSprite.sprite = paperSprites[2];
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(0.1f);
         actualSprite.sprite = paperSprites[3];
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(0.1f);
         actualSprite.sprite = paperSprites[0];
 
         yield return new WaitForSecondsRealtime(0.1f);

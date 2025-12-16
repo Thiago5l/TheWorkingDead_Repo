@@ -14424,6 +14424,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 875105504}
     - target: {fileID: 977609638488973, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
+      propertyPath: chaseDelay
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 977609638488973, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
       propertyPath: looseCanvas
       value: 
       objectReference: {fileID: 891191520}
@@ -14431,6 +14435,10 @@ PrefabInstance:
       propertyPath: playerObject
       value: 
       objectReference: {fileID: 200637151}
+    - target: {fileID: 977609638488973, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
+      propertyPath: alwaysChaseAtStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7517235681251064650, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -14445,7 +14453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8269600359859842607, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.98
+      value: -14.61
       objectReference: {fileID: 0}
     - target: {fileID: 8269600359859842607, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14453,7 +14461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8269600359859842607, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.55
+      value: -6.1
       objectReference: {fileID: 0}
     - target: {fileID: 8269600359859842607, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
       propertyPath: m_LocalRotation.w

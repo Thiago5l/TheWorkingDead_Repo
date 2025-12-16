@@ -29,6 +29,7 @@ public class Impresora : MonoBehaviour
 
     private Slider slider;
     private float save;
+    private bool PlayerInteractuando = false; // Flag para saber si el jugador inició la interacción
 
     void Start()
     {
@@ -65,26 +66,29 @@ public class Impresora : MonoBehaviour
         slider.value = ValueBarStart;
         bool TareaActiva = PlayerCerca && !TareaAcabada;
 
-        if (ValueBarStart >= 100 && !TareaAcabada)
+        // Completar tarea solo si el jugador ha interactuado
+        if (ValueBarStart >= 100 && !TareaAcabada && PlayerInteractuando)
         {
             CanvasInteractableKey.SetActive(false);
             TareaAcabada = true;
+            PlayerInteractuando = false;
             Player.GetComponent<PlayerController>().playerOcupado = false;
             ValueBarStart = save;
             TaskBar.SetActive(false);
             GetComponent<MeshRenderer>().material = Mat;
-            fbxRoto.SetActive(false) ;
-            // Marcar tarea completada en TareasAleatorias
+            fbxRoto.SetActive(false);
             tareasScript.CompletarTarea(this.gameObject);
 
             StopAllCoroutines();
             this.enabled = false;
         }
 
+        // Reset si falla
         if (ValueBarStart <= 0 && !TareaAcabada)
         {
             ValueBarStart = save;
             TaskBar.SetActive(false);
+            PlayerInteractuando = false;
             Player.GetComponent<PlayerController>().playerOcupado = false;
             StopAllCoroutines();
         }
@@ -94,6 +98,7 @@ public class Impresora : MonoBehaviour
     {
         if (PlayerCerca && !TareaAcabada)
         {
+            PlayerInteractuando = true; // jugador inició la interacción
             CanvasInteractableKey.SetActive(false);
             TaskBar.SetActive(true);
             StartCoroutine(WaitTaskBar(time));
@@ -103,8 +108,11 @@ public class Impresora : MonoBehaviour
 
     public void TaskCode()
     {
-        ValueBarStart += SumValue;
-        StartCoroutine(FlashRoutine());
+        if (PlayerInteractuando && !TareaAcabada) // solo sumar si el jugador está interactuando
+        {
+            ValueBarStart += SumValue;
+            StartCoroutine(FlashRoutine());
+        }
     }
 
     private IEnumerator FlashRoutine()
@@ -128,6 +136,7 @@ public class Impresora : MonoBehaviour
         CanvasInteractableKey.SetActive(true);
         ValueBarStart = save;
         TaskBar.SetActive(false);
+        PlayerInteractuando = false;
         Player.GetComponent<PlayerController>().playerOcupado = false;
         StopAllCoroutines();
     }

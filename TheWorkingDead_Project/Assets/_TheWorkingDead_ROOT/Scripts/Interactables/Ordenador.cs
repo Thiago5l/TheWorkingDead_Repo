@@ -76,6 +76,7 @@ public class Ordenador : MonoBehaviour
             CanvasInteractableKey.SetActive(false);
             TareaAcabada = true;
             Player.GetComponent<PlayerController>().playerOcupado = false;
+
             ValueBarStart = save;
             TaskBar.gameObject.SetActive(false);
             GetComponent<MeshRenderer>().material = Mat;
