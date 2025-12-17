@@ -79,8 +79,8 @@ public class PauseMenuManager : MonoBehaviour
     public void unPause()
     {
         paperImage.LeanMoveLocalY(-Screen.height, 0.6f).setEaseInExpo().setIgnoreTimeScale(true).setOnComplete(OnceCompleted);
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.None;
     }
     public void OnceCompleted()
     {

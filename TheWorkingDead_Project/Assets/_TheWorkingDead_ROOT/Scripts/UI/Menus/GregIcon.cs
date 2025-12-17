@@ -8,30 +8,30 @@ using DG.Tweening;
 
 public class GregIcon : MonoBehaviour
 {
-    //[SerializeField] OviedadZombie zombieValue;
+    [SerializeField] OviedadZombie zombieValue;
 
-    //[Header("Images")]
-    //[SerializeField] Image actualGregSprite;
-    //[SerializeField] Sprite[] gregSprites;
+    [Header("Images")]
+    [SerializeField] Image actualGregSprite;
+    [SerializeField] Sprite[] gregSprites;
     //[SerializeField] Transform gregImage;
 
-    //private void Update()
-    //{
-    //    if (zombieValue.Zombiedad >= 0f && zombieValue.Zombiedad <= 0.400f)
-    //    {
-    //        actualGregSprite.sprite = gregSprites[0];
-    //        Debug.Log("Good");
-    //    }
-    //    if (zombieValue.Zombiedad >= 0.400f && zombieValue.Zombiedad <= 0.850f)
-    //    {
-    //        actualGregSprite.sprite = gregSprites[1];
-    //        Debug.Log("medium");
-    //    }
-    //    if (zombieValue.Zombiedad >= 0.850f && zombieValue.Zombiedad <= 1.000f)
-    //    {
-    //        actualGregSprite.sprite = gregSprites[2];
-    //        Debug.Log("Bad"); 
-    //    }
+    private void Update()
+    {
+        if (zombieValue.Zombiedad >= 100f && zombieValue.Zombiedad <= 70f)
+        {
+            actualGregSprite.sprite = gregSprites[0];
+            Debug.Log("Good");
+        }
+        if (zombieValue.Zombiedad >= 70f && zombieValue.Zombiedad <= 30f)
+        {
+            actualGregSprite.sprite = gregSprites[1];
+            Debug.Log("medium");
+        }
+        if (zombieValue.Zombiedad >= 30f && zombieValue.Zombiedad <= 0f)
+        {
+            actualGregSprite.sprite = gregSprites[2];
+            Debug.Log("Bad");
+        }
 
-    //}
+    }
 }
