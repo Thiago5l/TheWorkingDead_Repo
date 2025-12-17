@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Parametres")]
     [SerializeField] float speed = 10f;
     [SerializeField] float speedcontainer = 10f;
+    [SerializeField] float speedbase = 10f;
     [SerializeField] float rotSpeed = 15f;
 
 
@@ -29,9 +31,12 @@ public class PlayerController : MonoBehaviour
     public bool playerOcupado;
     public bool  playerCerca;
     public GameObject TaskCollider;
-    public LayerMask taskLayer; 
+    public LayerMask taskLayer;
 
-
+    [Header("sprint parametres")]
+    [SerializeField]public float energeticas = 1;
+    [SerializeField]public float sprintspeed = 10f;
+    [SerializeField]public float sprinttime = 3f;
     //variables referencia propias o internas
 
 
@@ -47,6 +52,7 @@ public class PlayerController : MonoBehaviour
         if(camTransform == null) camTransform = Camera.main.transform; //busca la cámara main si no tiene cam asignada
         PlayerRB.freezeRotation = true; //congelar rotación de rigid body
         speedcontainer = speed;
+        speedbase=speed;
     }
 
 
@@ -153,7 +159,23 @@ public class PlayerController : MonoBehaviour
         //elemento de visualización en editor opcional
 
     }
+    #region sprint
+    public void Sprint()
+    {
+        if (energeticas>=1)
+        { StartCoroutine(StopSprintCoroutine()); }
+        else {StopCoroutine(StopSprintCoroutine()); }
 
+    }
+
+    IEnumerator StopSprintCoroutine()
+    {
+        speedcontainer = sprintspeed;
+        yield return new WaitForSeconds(sprinttime);
+        speedcontainer = speedbase;
+        energeticas = energeticas -1;
+    }
+    #endregion
     #region imput methods
     public void OnMove (InputAction.CallbackContext context) //context bontón físico
     {

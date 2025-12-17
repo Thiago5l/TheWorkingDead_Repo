@@ -9,15 +9,21 @@ public class FadeCanvas : MonoBehaviour
     public Image fadeImage;
     [SerializeField] GameObject Player;
 
-    [Header("Configuración")]
+    [Header("Configuracion Fade")]
     public float fadeDuration = 1f;
+    [Range(0f, 1f)] public float maxAlpha = 0.4f;
     public Color winColor = Color.green;
     public Color loseColor = Color.red;
-    [Range(0f, 1f)] public float maxAlpha = 0.4f;
+
+    [Header("Gameplay")]
     public float penalizacion;
     public float premio;
 
+    [Header("Bloqueo inicial")]
+    [SerializeField] private float fadeLockTime = 2f;
+
     private Coroutine currentFade;
+    private bool fadeEnabled = false;
 
     private void Awake()
     {
@@ -28,17 +34,34 @@ public class FadeCanvas : MonoBehaviour
         canvasGroup.blocksRaycasts = false;
     }
 
-    public void PlayWin()
-    { Player.GetComponent<OviedadZombie>().Zombiedad += premio; StartFade(winColor); }
-    public void PlayLose() 
+    private void Start()
+    {
+        canvasGroup.alpha = 0f;
+        StartCoroutine(EnableFadeAfterDelay());
+    }
 
-        {
+    private IEnumerator EnableFadeAfterDelay()
+    {
+        yield return new WaitForSeconds(fadeLockTime);
+        fadeEnabled = true;
+    }
+
+    public void PlayWin()
+    {
+        Player.GetComponent<OviedadZombie>().Zombiedad += premio;
+        StartFade(winColor);
+    }
+
+    public void PlayLose()
+    {
         Player.GetComponent<OviedadZombie>().Zombiedad -= penalizacion;
         StartFade(loseColor);
-}
+    }
 
     private void StartFade(Color color)
     {
+        if (!fadeEnabled) return;
+
         if (currentFade != null)
             StopCoroutine(currentFade);
 

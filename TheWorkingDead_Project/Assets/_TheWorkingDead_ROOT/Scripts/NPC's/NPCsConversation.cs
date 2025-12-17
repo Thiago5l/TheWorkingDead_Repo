@@ -16,6 +16,8 @@ public class NPCsConversation : MonoBehaviour
     [SerializeField] public GameObject canvasinteractkey;
     [SerializeField] TareasAleatorias taskmanager;
     [SerializeField] private FadeCanvas taskFeedbackCanvas;
+    public float rotationSpeed = 5f; // Velocidad de giro
+    public bool girando = false;
     //[SerializeField] public GameObject objectTareas; 
     //private TareasAleatorias tareasScript;
 
@@ -57,10 +59,25 @@ public class NPCsConversation : MonoBehaviour
                 }
             }
         }
-        //if (playerCerca && canInteract && Input.GetKeyDown(KeyCode.E))
-        //{
-        //    Interact();
-        //}
+        if (girando && player != null)
+        {
+            // Calcula la dirección hacia el jugador solo en el plano XZ
+            Vector3 direction = player.transform.position - transform.position;
+            direction.y = 0f; // Ignoramos la diferencia vertical
+
+            if (direction.magnitude > 0.01f) // Evita errores al estar muy cerca
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+                // Si está muy cerca de la rotación deseada, paramos de girar
+                if (Quaternion.Angle(transform.rotation, targetRotation) < 0.1f)
+                {
+                    transform.rotation = targetRotation;
+                    girando = false;
+                }
+            }
+        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -81,10 +98,16 @@ public class NPCsConversation : MonoBehaviour
 
     public void Interact()
     {
+        Vector3 direction = player.transform.position - transform.position;
+        // Crea la rotación deseada (mirando al jugador)
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        // Aplica el giro suave
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
         myConversation = conversationsList[0];
         if (playerCerca && myConversation != null && !talking && !alrreadyTalked)
         {
-
+            girando = true;
             MezclarLista(conversationsList);
             
             ConversationManager.Instance.StartConversation(myConversation);
@@ -100,6 +123,7 @@ public class NPCsConversation : MonoBehaviour
 
     public void FinalBueno()
     {
+        girando=false;
         taskFeedbackCanvas.PlayWin();
         Debug.Log("Final Bueno");
 
@@ -114,6 +138,7 @@ public class NPCsConversation : MonoBehaviour
 
     public void FinalMalo()
     {
+        girando = false;
         taskFeedbackCanvas.PlayLose();
         Debug.Log("Final Malo");    
         player.GetComponent<PlayerController>().playerOcupado = false;
