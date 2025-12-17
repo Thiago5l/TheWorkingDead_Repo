@@ -117,12 +117,7 @@ public class NPCsConversation : MonoBehaviour
         taskFeedbackCanvas.PlayLose();
         Debug.Log("Final Malo");    
         player.GetComponent<PlayerController>().playerOcupado = false;
-
-        taskExclamation.SetActive(false);
-            player.GetComponent<PlayerController>().playerOcupado = false;
             talking = false;
-            alrreadyTalked = true;
-            taskmanager.CompletarTarea(this.gameObject);
 
     }
 

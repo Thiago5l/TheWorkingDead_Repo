@@ -78,6 +78,7 @@ public class Impresora : MonoBehaviour
             GetComponent<MeshRenderer>().material = Mat;
             fbxRoto.SetActive(false);
             tareasScript.CompletarTarea(this.gameObject);
+            taskFeedbackCanvas.PlayWin();
 
             StopAllCoroutines();
             this.enabled = false;

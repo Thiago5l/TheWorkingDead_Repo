@@ -14,15 +14,17 @@ public class OviedadZombie : MonoBehaviour
     [SerializeField] public float Zombiedad;
     [SerializeField] public float maxZombiedad = 100;
     [SerializeField] public float ZombiedadSpeed = 100;
-
+    [SerializeField] public float Zombiedadocupadomultiplier = 0.25f;
+    private float zombiedadSpeedOriginal;
     [Header("Game Objects")]
     [SerializeField] Slider zombiedadBar;
     [SerializeField] GameObject looseCanvas;
-
+    [SerializeField] PlayerController playerController;
     [Header("Sprites")]
     [SerializeField] Image gregHead;
     [SerializeField] Sprite[] gregSprites;
-
+    [Header("Flags")]
+    private bool zombiedadReducida = false;
     //[Header("Others")]
     //[SerializeField] Transform PlayerTransform;
     //[SerializeField] Transform RespawnPoint;
@@ -30,10 +32,13 @@ public class OviedadZombie : MonoBehaviour
 
     void Start()
     {
+        zombiedadSpeedOriginal= ZombiedadSpeed;
         Zombiedad = maxZombiedad;
+        playerController = this.gameObject.GetComponent<PlayerController>();
 
         zombiedadBar.maxValue = maxZombiedad;
         zombiedadBar.value = Zombiedad;
+        zombiedadReducida = false;
     }
     //-----//
     private void Update()
@@ -72,6 +77,21 @@ public class OviedadZombie : MonoBehaviour
             gregHead.sprite = gregSprites[2];
             Debug.Log("Bad");
         }
+        // Reducir velocidad UNA VEZ
+        if (playerController.playerOcupado && !zombiedadReducida)
+        {
+            ZombiedadSpeed *= Zombiedadocupadomultiplier;
+            zombiedadReducida = true;
+        }
+
+        // Restaurar velocidad UNA VEZ
+        if (!playerController.playerOcupado && zombiedadReducida)
+        {
+            ZombiedadSpeed = zombiedadSpeedOriginal;
+            zombiedadReducida = false;
+        }
+
+
     }
 
     //    #region General Variables
