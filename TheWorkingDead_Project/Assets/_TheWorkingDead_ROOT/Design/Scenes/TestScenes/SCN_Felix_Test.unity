@@ -9988,7 +9988,7 @@ PrefabInstance:
     - target: {fileID: 5372837729872012726, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
       propertyPath: BackgroundImage
       value: 
-      objectReference: {fileID: 21300000, guid: 0be1ac315ab546f47961d639632f73f8, type: 3}
+      objectReference: {fileID: 2029416846, guid: 06964294ccba4c14b92234301d489e39, type: 3}
     - target: {fileID: 6147284871494750852, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
       propertyPath: m_Name
       value: PF_CanvasDialogos
