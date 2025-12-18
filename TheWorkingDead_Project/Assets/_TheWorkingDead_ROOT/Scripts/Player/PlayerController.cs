@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -38,6 +39,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField]public float sprintspeed = 10f;
     [SerializeField]public float sprinttime = 3f;
     public bool isSprinting;
+    [SerializeField] EnergeticasUI energeticasUI;
+    [SerializeField] Canvas EstaminaUI;
+    [SerializeField] Image EstaminaFillImage;
+    float sprintTimer;
+    [SerializeField] Image EstaminaDelayedImage; // la barra roja
+    [SerializeField] float delaySpeed = 2f; // velocidad con la que la barra roja sigue
     //variables referencia propias o internas
 
 
@@ -61,6 +68,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         TaskCollider= GameObject.FindGameObjectWithTag("TaskPlayer");
+        energeticasUI.SetEnergeticas((int)energeticas);
+        EstaminaUI.enabled = false;
     }
 
     // Update is called once per frame
@@ -75,7 +84,25 @@ public class PlayerController : MonoBehaviour
         {
             speed = speedcontainer;
         }
-        
+
+        if (isSprinting && EstaminaFillImage != null)
+        {
+            // Barra principal baja inmediatamente
+            sprintTimer -= Time.deltaTime;
+            float fillAmount = Mathf.Clamp01(sprintTimer / sprinttime);
+            EstaminaFillImage.fillAmount = fillAmount;
+
+            // Barra roja se interpola suavemente hacia la principal
+            if (EstaminaDelayedImage != null)
+            {
+                EstaminaDelayedImage.fillAmount = Mathf.Lerp(
+                    EstaminaDelayedImage.fillAmount,
+                    fillAmount,
+                    Time.deltaTime * delaySpeed
+                );
+            }
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -167,9 +194,10 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             if (energeticas <= 0 || isSprinting) return;
-
+            EstaminaUI.enabled = true;
             isSprinting = true;
             speedcontainer = sprintspeed;
+            sprintTimer = sprinttime; // inicializa el temporizador
 
             sprintCoroutine = StartCoroutine(StopSprintCoroutine());
         }
@@ -193,8 +221,15 @@ public class PlayerController : MonoBehaviour
             sprintCoroutine = null;
         }
 
+        EstaminaUI.enabled = false;
+        EstaminaFillImage.fillAmount = 1f;
+        if (EstaminaDelayedImage != null)
+            EstaminaDelayedImage.fillAmount = 1f;
+
         energeticas--;
+        energeticasUI.SetEnergeticas((int)energeticas);
     }
+
 
     IEnumerator StopSprintCoroutine()
     {
