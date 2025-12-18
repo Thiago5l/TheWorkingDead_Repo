@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     float sprintTimer;
     [SerializeField] Image EstaminaDelayedImage; // la barra roja
     [SerializeField] float delaySpeed = 2f; // velocidad con la que la barra roja sigue
+    [SerializeField] public GameObject sprintVFX;
     //variables referencia propias o internas
 
 
@@ -61,6 +62,7 @@ public class PlayerController : MonoBehaviour
         PlayerRB.freezeRotation = true; //congelar rotación de rigid body
         speedcontainer = speed;
         speedbase=speed;
+        sprintVFX.SetActive(false);
     }
 
 
@@ -195,6 +197,7 @@ public class PlayerController : MonoBehaviour
         {
             if (energeticas <= 0 || isSprinting) return;
             EstaminaUI.enabled = true;
+            sprintVFX.SetActive(true);
             isSprinting = true;
             speedcontainer = sprintspeed;
             sprintTimer = sprinttime; // inicializa el temporizador
@@ -222,6 +225,7 @@ public class PlayerController : MonoBehaviour
         }
 
         EstaminaUI.enabled = false;
+        sprintVFX.SetActive(false);
         EstaminaFillImage.fillAmount = 1f;
         if (EstaminaDelayedImage != null)
             EstaminaDelayedImage.fillAmount = 1f;
