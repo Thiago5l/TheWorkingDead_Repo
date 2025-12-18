@@ -11,7 +11,7 @@ public class GregIcon : MonoBehaviour
     [SerializeField] OviedadZombie zombieValue;
 
     [Header("Images")]
-    [SerializeField] Image actualGregSprite;
+    [SerializeField] RectTransform actualGregSprite;
     [SerializeField] Sprite[] gregSprites;
     //[SerializeField] Transform gregImage;
 
@@ -19,17 +19,17 @@ public class GregIcon : MonoBehaviour
     {
         if (zombieValue.Zombiedad >= 100f && zombieValue.Zombiedad <= 70f)
         {
-            actualGregSprite.sprite = gregSprites[0];
+            actualGregSprite.GetComponent<Image>().sprite = gregSprites[0];
             Debug.Log("Good");
         }
         if (zombieValue.Zombiedad >= 70f && zombieValue.Zombiedad <= 30f)
         {
-            actualGregSprite.sprite = gregSprites[1];
+            actualGregSprite.GetComponent<Image>().sprite = gregSprites[1];
             Debug.Log("medium");
         }
         if (zombieValue.Zombiedad >= 30f && zombieValue.Zombiedad <= 0f)
         {
-            actualGregSprite.sprite = gregSprites[2];
+            actualGregSprite.GetComponent<Image>().sprite = gregSprites[2];
             Debug.Log("Bad");
         }
 

@@ -20,7 +20,7 @@ public class OviedadZombie : MonoBehaviour
     [SerializeField] GameObject looseCanvas;
 
     [Header("Sprites")]
-    [SerializeField] Image gregHead;
+    [SerializeField] RectTransform gregHead;
     [SerializeField] Sprite[] gregSprites;
 
     //[Header("Others")]
@@ -55,6 +55,22 @@ public class OviedadZombie : MonoBehaviour
         {
             looseCanvas.SetActive(true);
             this.gameObject.GetComponent<PlayerController>().playerOcupado = true;
+        }
+        //-----//
+        if (Zombiedad >= 100.000f && Zombiedad <= 70.000f)
+        {
+            gregHead.GetComponent<Image>().sprite = gregSprites[0];
+            Debug.Log("Good");
+        }
+        if (Zombiedad >= 70.000f && Zombiedad <= 30.000f)
+        {
+            gregHead.GetComponent<Image>().sprite = gregSprites[1];
+            Debug.Log("medium");
+        }
+        if (Zombiedad >= 30f && Zombiedad <= 0f)
+        {
+            gregHead.GetComponent<Image>().sprite = gregSprites[2];
+            Debug.Log("Bad");
         }
     }
 

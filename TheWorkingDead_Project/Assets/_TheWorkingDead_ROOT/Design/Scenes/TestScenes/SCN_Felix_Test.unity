@@ -10333,7 +10333,7 @@ PrefabInstance:
     - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: gregHead
       value: 
-      objectReference: {fileID: 1629927587}
+      objectReference: {fileID: 1629927588}
     - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: looseCanvas
       value: 
@@ -10346,6 +10346,22 @@ PrefabInstance:
       propertyPath: ZombiedadSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
+      propertyPath: gregSprites.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
+      propertyPath: 'gregSprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: -1305509853, guid: b6fd49e9ebac80a4ba83c92aa5a120b1, type: 3}
+    - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
+      propertyPath: 'gregSprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1776281583, guid: b6fd49e9ebac80a4ba83c92aa5a120b1, type: 3}
+    - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
+      propertyPath: 'gregSprites.Array.data[2]'
+      value: 
+      objectReference: {fileID: -2126553561, guid: b6fd49e9ebac80a4ba83c92aa5a120b1, type: 3}
     - target: {fileID: 3901302506987814512, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: LooseCanvas
       value: 
@@ -22448,6 +22464,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewCursor
   cursorImage: {fileID: 1906521111}
+  cursorSprites:
+  - {fileID: -175114690, guid: ec9dea82b3501fa4eb280c51244e1e72, type: 3}
+  - {fileID: -842889416, guid: 2675bc7db677fe1409cfc5f28df0acfa, type: 3}
 --- !u!114 &1461093699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24462,17 +24481,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1169685547649474326, guid: 473fc9917e087f9428dd8601e5347e2f, type: 3}
   m_PrefabInstance: {fileID: 1628570671}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1629927587 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6004555627345358469, guid: d2fdcdde1650bc04b8e82cf5a435b8d0, type: 3}
+--- !u!224 &1629927588 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7596934074412999507, guid: d2fdcdde1650bc04b8e82cf5a435b8d0, type: 3}
   m_PrefabInstance: {fileID: 7695416408269772998}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &1631189700 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5893102722322837773, guid: 0df2fe0f7a342b74fb08e34577b58732, type: 3}
