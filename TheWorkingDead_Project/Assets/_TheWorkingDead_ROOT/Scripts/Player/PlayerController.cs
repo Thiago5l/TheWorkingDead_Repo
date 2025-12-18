@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]public float energeticas = 1;
     [SerializeField]public float sprintspeed = 10f;
     [SerializeField]public float sprinttime = 3f;
+    public bool isSprinting;
     //variables referencia propias o internas
 
 
@@ -160,20 +161,45 @@ public class PlayerController : MonoBehaviour
 
     }
     #region sprint
-    public void Sprint()
+    Coroutine sprintCoroutine;
+    public void OnSprint(InputAction.CallbackContext context)
     {
-        if (energeticas>=1)
-        { StartCoroutine(StopSprintCoroutine()); }
-        else {StopCoroutine(StopSprintCoroutine()); }
+        if (context.performed)
+        {
+            if (energeticas <= 0 || isSprinting) return;
 
+            isSprinting = true;
+            speedcontainer = sprintspeed;
+
+            sprintCoroutine = StartCoroutine(StopSprintCoroutine());
+        }
+
+        if (context.canceled)
+        {
+            StopSprint();
+        }
+    }
+
+    void StopSprint()
+    {
+        if (!isSprinting) return;
+
+        isSprinting = false;
+        speedcontainer = speedbase;
+
+        if (sprintCoroutine != null)
+        {
+            StopCoroutine(sprintCoroutine);
+            sprintCoroutine = null;
+        }
+
+        energeticas--;
     }
 
     IEnumerator StopSprintCoroutine()
     {
-        speedcontainer = sprintspeed;
         yield return new WaitForSeconds(sprinttime);
-        speedcontainer = speedbase;
-        energeticas = energeticas -1;
+        StopSprint();
     }
     #endregion
     #region imput methods

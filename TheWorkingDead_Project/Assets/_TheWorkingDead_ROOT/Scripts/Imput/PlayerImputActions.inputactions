@@ -162,7 +162,7 @@
                     "name": "",
                     "id": "40d08085-5c07-4b21-97ad-5db038ef5ccd",
                     "path": "<Keyboard>/leftShift",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "Sprint",
