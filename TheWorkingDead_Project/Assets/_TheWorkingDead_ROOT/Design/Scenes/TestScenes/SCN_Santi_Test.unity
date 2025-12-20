@@ -25970,7 +25970,8 @@ MonoBehaviour:
   showTime: 0.5
   pauseTime: 0.3
   sequence: 
-  "tama\xF1oSequence": 0
+  secuenciaDeBotones: []
+  "tama\xF1oSequence": 5
   rondasCompletadas: 0
   rondasACompletar: 3
 --- !u!65 &1786823403

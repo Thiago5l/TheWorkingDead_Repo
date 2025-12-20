@@ -29,6 +29,7 @@ public class SaimonSaysTaskUI : MonoBehaviour
     [SerializeField] float pauseTime = 0.3f;
     
     [SerializeField] List<int> sequence = new List<int>();
+    [SerializeField] List<SimonButton> secuenciaDeBotones = new List<SimonButton>();
     [SerializeField] int tamañoSequence;
     int playerIndex;
     bool playerTurn;
@@ -70,6 +71,7 @@ public class SaimonSaysTaskUI : MonoBehaviour
         
         if (playerCerca && !tareaAcabada)
         {
+            player.GetComponent<PlayerController>().playerOcupado = true;
             uiTarea.SetActive(true);
             InicioDeJuego();
             //StartCoroutine(WaitToStart());
@@ -87,21 +89,109 @@ public class SaimonSaysTaskUI : MonoBehaviour
             uiTarea.SetActive(false);
             tareaAcabada = true;
         }
+
+
+       
+        if (intOrdenBotonesPlayer.Count == sequence.Count && playerTurn)
+        {
+            bool correcto = true;
+            for (int i = 0; i < sequence.Count; i++)
+            {
+                if (intOrdenBotonesPlayer[i] != sequence[i])
+                {
+                    correcto = false;
+                    break;
+                }
+            }
+            if (correcto)
+            {
+                SiguienteRonda();
+            }
+            else
+            {
+                //Game Over
+                uiTarea.SetActive(false);
+                player.gameObject.GetComponent<PlayerController>().playerOcupado = false;
+                tareaAcabada = false;
+                Debug.Log("Game Over");
+
+            }
+            intOrdenBotonesPlayer.Clear();
+        }
+        
+
+        //if(intOrdenBotonesPlayer .Count == sequence.Count && playerTurn)
+        //{
+        //    bool correcto = true;
+        //    for(int i = 0; i < sequence.Count; i++)
+        //    {
+        //        if(intOrdenBotonesPlayer[i] != sequence[i])
+        //        {
+        //            correcto = false;
+        //            break;
+        //        }
+        //    }
+        //    if(correcto)
+        //    {
+        //        SiguienteRonda();
+        //    }
+        //    else
+        //    {
+        //        //Game Over
+        //        tareaAcabada = true;
+        //        uiTarea.SetActive(false);
+        //    }
+        //    intOrdenBotonesPlayer.Clear();
+        //}
+
     }
 
 
     void InicioDeJuego()
     {
         sequence.Clear();
+        secuenciaDeBotones.Clear();
         for (int i = 0; i <tamañoSequence; i++)
         {
 
             int randomBtton = Random.Range(0, buttonsList.Count);
             sequence.Add(randomBtton);
         }
+        for (int i = 0; i < sequence.Count; i++)
+        {
+            secuenciaDeBotones.Add(buttonsList[sequence[i]]);
+        }
+
+        MostrarSecuencia();
 
     }
 
+    public void MostrarSecuencia()
+    {
+        StartCoroutine(ShowSequence());
+    }
+    IEnumerator ShowSequence()
+    {
+        yield return new WaitForSeconds(1f);
+
+        for (int i = 0; i < sequence.Count; i++)
+        {
+            HighlightButton(/*buttonsList[index]*/sequence[i]);
+            yield return new WaitForSeconds(showTime);
+            ResetButton(sequence[i]);
+            yield return new WaitForSeconds(pauseTime);
+        }
+
+        //foreach (int index in sequence)
+        //{
+        //    HighlightButton(/*buttonsList[index]*/index);
+        //    yield return new WaitForSeconds(showTime);
+        //    ResetButton(/*buttonsList[index]*/index);
+        //    yield return new WaitForSeconds(pauseTime);
+        //}
+
+        playerTurn = true;
+    }
 
     public void PresionarBotonPlayer(int index)
     {
@@ -114,8 +204,25 @@ public class SaimonSaysTaskUI : MonoBehaviour
 
     void SiguienteRonda()
     {
-
+        if(rondasACompletar > rondasCompletadas)
+        {
+            rondasCompletadas += 1;
+            InicioDeJuego();
+        }
     }
+
+
+    void HighlightButton(int index)
+    {
+        secuenciaDeBotones[index].button.image.color = secuenciaDeBotones[index].highlightColor;
+    }
+
+    void ResetButton(int index)
+    {
+        secuenciaDeBotones[index].button.image.color = secuenciaDeBotones[index].normalColor;
+    }
+
+
 
 
 
@@ -266,14 +373,14 @@ public class SaimonSaysTaskUI : MonoBehaviour
     //    tareaAcabada = true;
     //    playerTurn = false;
     //}
-    void HighlightButton(int index)
-    {
-        buttonsList[index].button.image.color = buttonsList[index].highlightColor;
-    }
+    //void HighlightButton(int index)
+    //{
+    //    buttonsList[index].button.image.color = buttonsList[index].highlightColor;
+    //}
 
-    void ResetButton(int index)
-    {
-        buttonsList[index].button.image.color = buttonsList[index].normalColor;
-    }
+    //void ResetButton(int index)
+    //{
+    //    buttonsList[index].button.image.color = buttonsList[index].normalColor;
+    //}
 
 }
