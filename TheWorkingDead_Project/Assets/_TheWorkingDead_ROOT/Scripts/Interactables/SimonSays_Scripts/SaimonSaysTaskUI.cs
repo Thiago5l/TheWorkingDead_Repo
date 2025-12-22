@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class SimonButton
 {
     public Button button;
-    public Color normalColor;
-    public Color highlightColor;
+    public Sprite normalColor;
+    public Sprite highlightColor;
 
 }
 
@@ -83,15 +83,17 @@ public class SaimonSaysTaskUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(rondasCompletadas == rondasACompletar)
+        if (rondasCompletadas == rondasACompletar)
         {
             StopAllCoroutines();
             uiTarea.SetActive(false);
             tareaAcabada = true;
+
+            Debug.Log("Tarea Completada!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11");
         }
 
 
-       
+
         if (intOrdenBotonesPlayer.Count == sequence.Count && playerTurn)
         {
             bool correcto = true;
@@ -176,9 +178,11 @@ public class SaimonSaysTaskUI : MonoBehaviour
 
         for (int i = 0; i < sequence.Count; i++)
         {
-            HighlightButton(/*buttonsList[index]*/sequence[i]);
+            int index = sequence[i];
+            Debug.Log("Indice de la secuencia: " + index);
+            HighlightButton(index);
             yield return new WaitForSeconds(showTime);
-            ResetButton(sequence[i]);
+            ResetButton(index);
             yield return new WaitForSeconds(pauseTime);
         }
 
@@ -207,19 +211,28 @@ public class SaimonSaysTaskUI : MonoBehaviour
         if(rondasACompletar > rondasCompletadas)
         {
             rondasCompletadas += 1;
+            tamañoSequence += 1;
             InicioDeJuego();
+        }
+        if (rondasCompletadas == rondasACompletar)
+        {
+            StopAllCoroutines();
+            uiTarea.SetActive(false);
+            tareaAcabada = true;
+
+            Debug.Log("Tarea Completada!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11");
         }
     }
 
 
     void HighlightButton(int index)
     {
-        secuenciaDeBotones[index].button.image.color = secuenciaDeBotones[index].highlightColor;
+        secuenciaDeBotones[index].button.image.sprite = secuenciaDeBotones[index].highlightColor;
     }
 
     void ResetButton(int index)
     {
-        secuenciaDeBotones[index].button.image.color = secuenciaDeBotones[index].normalColor;
+        secuenciaDeBotones[index].button.image.sprite = secuenciaDeBotones[index].normalColor;
     }
 
 

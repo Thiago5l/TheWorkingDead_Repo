@@ -25971,7 +25971,7 @@ MonoBehaviour:
   pauseTime: 0.3
   sequence: 
   secuenciaDeBotones: []
-  "tama\xF1oSequence": 5
+  "tama\xF1oSequence": 4
   rondasCompletadas: 0
   rondasACompletar: 3
 --- !u!65 &1786823403
@@ -32125,7 +32125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1049851401670576134, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ButtonClicked
+      value: PresionarBotonPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 1049851401670576134, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -32281,11 +32281,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5857672981737669601, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ButtonClicked
+      value: PresionarBotonPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 5857672981737669601, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SaimonSaysTaskUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5857672981737669601, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5857672981737669601, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -32357,11 +32361,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7150703813875941030, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ButtonClicked
+      value: PresionarBotonPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 7150703813875941030, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SaimonSaysTaskUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150703813875941030, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7150703813875941030, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -32385,11 +32393,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7614371274454149100, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ButtonClicked
+      value: PresionarBotonPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 7614371274454149100, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SaimonSaysTaskUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7614371274454149100, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7614371274454149100, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
