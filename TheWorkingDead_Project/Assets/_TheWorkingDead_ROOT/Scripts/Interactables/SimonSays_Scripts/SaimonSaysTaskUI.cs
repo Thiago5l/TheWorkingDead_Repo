@@ -37,6 +37,9 @@ public class SaimonSaysTaskUI : MonoBehaviour
     [SerializeField] int rondasCompletadas;
     [SerializeField] public int rondasACompletar;
 
+
+    [SerializeField] private FadeCanvas taskFeedbackCanvas;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -115,6 +118,7 @@ public class SaimonSaysTaskUI : MonoBehaviour
                 uiTarea.SetActive(false);
                 player.gameObject.GetComponent<PlayerController>().playerOcupado = false;
                 tareaAcabada = false;
+                taskFeedbackCanvas.PlayLose();
                 Debug.Log("Game Over");
 
             }
@@ -219,7 +223,7 @@ public class SaimonSaysTaskUI : MonoBehaviour
             StopAllCoroutines();
             uiTarea.SetActive(false);
             tareaAcabada = true;
-
+            taskFeedbackCanvas.PlayWin();
             Debug.Log("Tarea Completada!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11");
         }
     }
