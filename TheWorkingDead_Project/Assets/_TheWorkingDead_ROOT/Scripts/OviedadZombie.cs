@@ -85,14 +85,16 @@ public class OviedadZombie : MonoBehaviour
         }
 
         // Restaurar velocidad UNA VEZ
-        if (!playerController.playerOcupado && zombiedadReducida)
+        if (!playerController.playerOcupado && zombiedadReducida && !playerController.snackusado)
         {
-            ZombiedadSpeed = zombiedadSpeedOriginal;
+            resetspeed();
             zombiedadReducida = false;
         }
 
 
     }
+    public void resetspeed()
+    { ZombiedadSpeed = zombiedadSpeedOriginal; }
 
     //    #region General Variables
     //    public float Zombiedad = 0;
