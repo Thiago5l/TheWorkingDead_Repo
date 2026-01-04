@@ -9,7 +9,6 @@ public class EnergeticasUI : MonoBehaviour
     [SerializeField] GameObject energeticaPrefab;
     [SerializeField] Transform gridParent;
     [SerializeField] public PlayerController playerController;
-
     private List<GameObject> icons = new List<GameObject>();
 
     private void Awake()

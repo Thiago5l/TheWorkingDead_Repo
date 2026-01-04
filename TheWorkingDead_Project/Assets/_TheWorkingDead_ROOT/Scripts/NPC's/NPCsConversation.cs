@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DialogueEditor;
+using UnityEngine.InputSystem;
 
 public class NPCsConversation : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class NPCsConversation : MonoBehaviour
 
     void Start()
     {
+        myConversation = conversationsList[0];
         canvasinteractkey.SetActive(false);
         
         taskExclamation.SetActive(true);
@@ -78,6 +80,7 @@ public class NPCsConversation : MonoBehaviour
                 }
             }
         }
+        if (Input.GetKeyDown(KeyCode.E)) { Interact(); }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -95,7 +98,11 @@ public class NPCsConversation : MonoBehaviour
             playerCerca = false;
         }
     }
-
+    public void InteractInput(InputAction.CallbackContext context)
+    {
+        Debug.Log("E PRESIONADA EN DIALOGO");
+        Interact();
+    }
     public void Interact()
     {
         Vector3 direction = player.transform.position - transform.position;
