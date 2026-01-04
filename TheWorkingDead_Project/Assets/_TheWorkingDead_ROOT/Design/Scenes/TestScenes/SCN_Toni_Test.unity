@@ -2309,17 +2309,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6660125668488583349, guid: df36c937045f51846bd5b04a13323a4d, type: 3}
   m_PrefabInstance: {fileID: 238898377}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &151034737 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5688169377213685998, guid: df36c937045f51846bd5b04a13323a4d, type: 3}
-  m_PrefabInstance: {fileID: 238898377}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 151034735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c2eda3b3dcbb04cbb5af509a5e7807, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NPCsConversation
 --- !u!4 &159239783 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6852149424233922619, guid: 5a5206ff6b4b3ac489e94230ca69b18f, type: 3}
@@ -3223,18 +3212,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1984235137}
     m_Modifications:
-    - target: {fileID: 3390638560675109100, guid: df36c937045f51846bd5b04a13323a4d, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 151034737}
-    - target: {fileID: 3390638560675109100, guid: df36c937045f51846bd5b04a13323a4d, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: FinalBueno
-      objectReference: {fileID: 0}
-    - target: {fileID: 5080416004761046101, guid: df36c937045f51846bd5b04a13323a4d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5688169377213685998, guid: df36c937045f51846bd5b04a13323a4d, type: 3}
       propertyPath: player
       value: 
@@ -3243,10 +3220,6 @@ PrefabInstance:
       propertyPath: taskmanager
       value: 
       objectReference: {fileID: 1032389578}
-    - target: {fileID: 5688169377213685998, guid: df36c937045f51846bd5b04a13323a4d, type: 3}
-      propertyPath: taskExclamation
-      value: 
-      objectReference: {fileID: 1295920511}
     - target: {fileID: 5688169377213685998, guid: df36c937045f51846bd5b04a13323a4d, type: 3}
       propertyPath: taskFeedbackCanvas
       value: 
@@ -3295,41 +3268,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7514756210891727136, guid: df36c937045f51846bd5b04a13323a4d, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: f4906ea44cf0e944bb08fbf64641f4fe, type: 2}
-    - target: {fileID: 8140397342455246517, guid: df36c937045f51846bd5b04a13323a4d, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8140397342455246517, guid: df36c937045f51846bd5b04a13323a4d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
-      value: 1f53e712-dfad-408d-a160-5e2086285e0b
-      objectReference: {fileID: 0}
-    - target: {fileID: 8140397342455246517, guid: df36c937045f51846bd5b04a13323a4d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_ActionId
-      value: 7769d754-1e4d-4bb7-9938-0b3a4b91bc24
-      objectReference: {fileID: 0}
-    - target: {fileID: 8140397342455246517, guid: df36c937045f51846bd5b04a13323a4d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
-      value: 'Gameplay/Sprint[/Keyboard/leftShift]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 8140397342455246517, guid: df36c937045f51846bd5b04a13323a4d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_ActionName
-      value: 'Gameplay/Snack[/Keyboard/q]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 8140397342455246517, guid: df36c937045f51846bd5b04a13323a4d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8140397342455246517, guid: df36c937045f51846bd5b04a13323a4d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: InteractInput
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 6057807164332024600, guid: df36c937045f51846bd5b04a13323a4d, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df36c937045f51846bd5b04a13323a4d, type: 3}
@@ -7276,14 +7216,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1984235137}
     m_Modifications:
-    - target: {fileID: 1401526924564320964, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1567276961}
-    - target: {fileID: 1401526924564320964, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: FinalBueno
-      objectReference: {fileID: 0}
     - target: {fileID: 5688169377213685998, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
       propertyPath: player
       value: 
@@ -7340,70 +7272,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6706618525147402714, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
-      propertyPath: NodeSerializedDataList.Array.size
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6706618525147402714, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
-      propertyPath: 'NodeSerializedDataList.Array.data[5]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6706618525147402714, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
-      propertyPath: 'NodeSerializedDataList.Array.data[6]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6706618525147402714, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
-      propertyPath: 'NodeSerializedDataList.Array.data[7]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6706618525147402714, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
-      propertyPath: 'NodeSerializedDataList.Array.data[8]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6706618525147402714, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7723947092562679525, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1567276961}
-    - target: {fileID: 7723947092562679525, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: FinalMalo
-      objectReference: {fileID: 0}
-    - target: {fileID: 7727099459184263367, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8140397342455246517, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8140397342455246517, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
-      value: 1f53e712-dfad-408d-a160-5e2086285e0b
-      objectReference: {fileID: 0}
-    - target: {fileID: 8140397342455246517, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_ActionId
-      value: 7769d754-1e4d-4bb7-9938-0b3a4b91bc24
-      objectReference: {fileID: 0}
-    - target: {fileID: 8140397342455246517, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
-      value: 'Gameplay/Sprint[/Keyboard/leftShift]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 8140397342455246517, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_ActionName
-      value: 'Gameplay/Snack[/Keyboard/q]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 8140397342455246517, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
-      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 6057807164332024600, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
-    - {fileID: 216434751019684912, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
@@ -11801,13 +11671,17 @@ PrefabInstance:
       propertyPath: BackgroundImage
       value: 
       objectReference: {fileID: 21300000, guid: 0be1ac315ab546f47961d639632f73f8, type: 3}
+    - target: {fileID: 5372837730006734125, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6147284871494750852, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
       propertyPath: m_Name
       value: PF_CanvasDialogos
       objectReference: {fileID: 0}
     - target: {fileID: 6147284871494750852, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8599298503263268028, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
       propertyPath: m_Pivot.x
@@ -16794,17 +16668,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cd5027421464574aaaab2126fb00a0d, type: 3}
---- !u!114 &1014048692 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2482872153625156363, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-  m_PrefabInstance: {fileID: 8773745297781151441}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83189876d4d389f43b7dd2e925aa112e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NPCConversation
 --- !u!1001 &1014188213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23832,6 +23695,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 755d5ff0333361f48807db8fb31c29ce, type: 3}
+--- !u!114 &1170270748 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3343467788244627029, guid: cdc7f8795b0bb8846b356301c70ef70f, type: 3}
+  m_PrefabInstance: {fileID: 99809739}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6b703d6a6964d64da954f1a83523f29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1001 &1170553185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29247,7 +29121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1170270748}
         m_TargetAssemblyTypeName: VendingMachine, Assembly-CSharp
         m_MethodName: DisableShop
         m_Mode: 1
@@ -30302,11 +30176,6 @@ Transform:
   - {fileID: 782718883}
   m_Father: {fileID: 1549938067}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1295920511 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5080416004761046101, guid: df36c937045f51846bd5b04a13323a4d, type: 3}
-  m_PrefabInstance: {fileID: 238898377}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1296426592
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30858,17 +30727,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4538083110403998884, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
   m_PrefabInstance: {fileID: 8773745297781151441}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1322379439 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3021385092628256507, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-  m_PrefabInstance: {fileID: 8773745297781151441}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1322379435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c2eda3b3dcbb04cbb5af509a5e7807, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NPCsConversation
 --- !u!1001 &1331978943
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33508,7 +33366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1528518144
 RectTransform:
   m_ObjectHideFlags: 0
@@ -34137,17 +33995,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6660125668488583349, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
   m_PrefabInstance: {fileID: 522984984}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1567276961 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5688169377213685998, guid: dba13a4147dd5ed4e82bd0b76cec255e, type: 3}
-  m_PrefabInstance: {fileID: 522984984}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1567276959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c2eda3b3dcbb04cbb5af509a5e7807, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NPCsConversation
 --- !u!1001 &1567798467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43547,43 +43394,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_Task_Toni
       objectReference: {fileID: 0}
-    - target: {fileID: 2482872153625156363, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: json
-      value: "{\"Options\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":3}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":263,\"yPos\":197},\"ID\":1,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Los
-        zombis no fumamos, lo que nos faltaba\",\"parentUIDs\":[0],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":4}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":36,\"yPos\":195},\"ID\":2,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Claro,
-        en el ba\xF1o me he dejado una chustilla\",\"parentUIDs\":[0],\"SpeechUID\":-1}],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":1},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":2}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":163.5,\"yPos\":22},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Pssss
-        no tendras por ahi algo pa fumar que el jefe me tiene hasta los huevos\",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Toni\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":263,\"yPos\":338},\"ID\":3,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Tu
-        no eres un zombie eres un pringao\",\"parentUIDs\":[1],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Toni\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":34,\"yPos\":338},\"ID\":4,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"ERES
-        UN GENIO MA\xD1ANA INVITO YO\",\"parentUIDs\":[2],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Toni\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0}]}"
-      objectReference: {fileID: 0}
-    - target: {fileID: 2482872153625156363, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2482872153625156363, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2482872153625156363, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1322379439}
-    - target: {fileID: 2482872153625156363, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2482872153625156363, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: FinalBueno
-      objectReference: {fileID: 0}
-    - target: {fileID: 2482872153625156363, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: NPCsConversation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2482872153625156363, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 3021385092628256507, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
       propertyPath: player
       value: 
@@ -43596,14 +43406,6 @@ PrefabInstance:
       propertyPath: taskFeedbackCanvas
       value: 
       objectReference: {fileID: 1835138751}
-    - target: {fileID: 3021385092628256507, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: conversationsList.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3021385092628256507, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: 'conversationsList.Array.data[0]'
-      value: 
-      objectReference: {fileID: 1014048692}
     - target: {fileID: 4538083110403998884, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.22
@@ -43644,70 +43446,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4647062408652022612, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: json
-      value: "{\"Options\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":4}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-19,\"yPos\":195},\"ID\":1,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Claro,
-        en el ba\xF1o me he dejado una chustilla\",\"parentUIDs\":[0],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":3}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":228,\"yPos\":197},\"ID\":2,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Los
-        zombis no fumamos, lo que nos faltaba\",\"parentUIDs\":[0],\"SpeechUID\":-1}],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":1},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":2}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":93,\"yPos\":5},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Pssss
-        no tendras por ahi algo pa fumar que el jefe me tiene hasta los huevos\",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":229,\"yPos\":335},\"ID\":3,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"bbbbbbbbbb
-        mal\",\"parentUIDs\":[2],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Toni\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-17,\"yPos\":337},\"ID\":4,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"ERES
-        UN GENIO MA\xD1ANA INVITO YO\",\"parentUIDs\":[1],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Toni\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0}]}"
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647062408652022612, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647062408652022612, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647062408652022612, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1322379439}
-    - target: {fileID: 4647062408652022612, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647062408652022612, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: FinalBueno
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647062408652022612, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: NPCsConversation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647062408652022612, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787331665924327635, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787331665924327635, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
-      value: 1f53e712-dfad-408d-a160-5e2086285e0b
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787331665924327635, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_ActionId
-      value: 7769d754-1e4d-4bb7-9938-0b3a4b91bc24
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787331665924327635, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
-      value: 'Gameplay/Sprint[/Keyboard/leftShift]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787331665924327635, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_ActionName
-      value: 'Gameplay/Snack[/Keyboard/q]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787331665924327635, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 440221206501632228, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c0ba4545448e524587b4cc1ebe7511d, type: 3}
