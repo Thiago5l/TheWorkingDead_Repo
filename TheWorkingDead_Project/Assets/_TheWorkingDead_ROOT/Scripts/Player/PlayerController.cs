@@ -60,6 +60,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public int snacks = 1;
     [SerializeField] public float coins = 1;
 
+    [Header("aires")]
+    [SerializeField] public int airesapagados = 0;
+
     Rigidbody PlayerRB;//ref a rigid boddy
     Vector2 moveImput;//almacén imput mov
     bool isGrounded;//determina si estás tocando el suelo

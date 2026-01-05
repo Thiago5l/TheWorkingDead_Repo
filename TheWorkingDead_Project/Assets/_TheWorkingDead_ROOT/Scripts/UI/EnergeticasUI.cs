@@ -47,8 +47,9 @@ public class EnergeticasUI : MonoBehaviour
                 if (icons[i].activeSelf)
                 {
                     // Animación de gastar: escala a 0 y desactiva al terminar
-                    icons[i].transform.DOScale(0f, 0.2f).SetEase(Ease.InBack)
-                        .OnComplete(() => icons[i].SetActive(false));
+                    GameObject icon = icons[i];
+                    icon.transform.DOScale(0f, 0.2f).SetEase(Ease.InBack)
+                        .OnComplete(() => icon.SetActive(false));
                 }
             }
         }

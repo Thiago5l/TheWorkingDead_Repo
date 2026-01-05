@@ -1,56 +1,67 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections.Generic;
 using DG.Tweening;
+using UnityEngine.UI;
+
 public class Snacks_UI : MonoBehaviour
 {
-    [Header("UI References")]
     [SerializeField] GameObject SnackPrefab;
     [SerializeField] Transform gridParent;
-    [SerializeField] public PlayerController playerController;
 
     public List<GameObject> icons = new List<GameObject>();
 
     private void Awake()
     {
-        if (gridParent == null) gridParent = transform;
+        if (gridParent == null)
+            gridParent = transform;
     }
 
     public void SetSnacks(int amount)
     {
-        // Crear iconos si faltan
         while (icons.Count < amount)
         {
             GameObject icon = Instantiate(SnackPrefab, gridParent);
-            icon.transform.localScale = Vector3.zero; // empezar invisible
+            icon.transform.localScale = Vector3.zero;
+
+            ResetVisual(icon);
             icons.Add(icon);
 
-            // Animación de aparecer
             icon.transform.DOScale(1f, 0.3f).SetEase(Ease.OutBack);
         }
 
-        // Activar / desactivar según cantidad
         for (int i = 0; i < icons.Count; i++)
         {
+            GameObject icon = icons[i];
+            icon.transform.DOKill();
+
             if (i < amount)
             {
-                if (!icons[i].activeSelf)
-                {
-                    icons[i].SetActive(true);
-                    // Animación de aparecer
-                    icons[i].transform.localScale = Vector3.zero;
-                    icons[i].transform.DOScale(1f, 0.3f).SetEase(Ease.OutBack);
-                }
+                icon.SetActive(true);
+                ResetVisual(icon);
+
+                icon.transform.localScale = Vector3.zero;
+                icon.transform.DOScale(1f, 0.3f).SetEase(Ease.OutBack);
             }
             else
             {
-                if (icons[i].activeSelf)
+                if (icon.activeSelf)
                 {
-                    // Animación de gastar: escala a 0 y desactiva al terminar
-                    icons[i].transform.DOScale(0f, 0.2f).SetEase(Ease.InBack)
-                        .OnComplete(() => icons[i].SetActive(false));
+                    icon.transform.DOScale(0f, 0.2f).SetEase(Ease.InBack)
+                        .OnComplete(() => icon.SetActive(false));
                 }
             }
+        }
+    }
+
+    void ResetVisual(GameObject icon)
+    {
+        Image img = icon.GetComponent<Image>();
+        if (img != null)
+        {
+            img.fillAmount = 1f;
+            Color c = img.color;
+            c.a = 1f;
+            img.color = c;
         }
     }
 }
