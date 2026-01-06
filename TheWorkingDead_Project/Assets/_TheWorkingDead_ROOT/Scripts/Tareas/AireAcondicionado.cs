@@ -3,18 +3,28 @@ using UnityEngine.InputSystem;
 
 public class AireAcondicionado : MonoBehaviour
 {
+    [Header("references")]
     [SerializeField] GameObject particulas;
+    [SerializeField] GameObject taskkey;
     [SerializeField] PlayerController playerController;
     public bool playercerca;
+
+    [Header("outline")]
+    [SerializeField] Renderer objRenderer;
+    [SerializeField] Color colorCerca = Color.green;
+    [SerializeField] Color colorLejos = Color.black;
 
     bool activo = false;
     private void Awake()
     {
         if (playerController == null)
             playerController = FindAnyObjectByType<PlayerController>();
+        if (objRenderer == null)
+            objRenderer = GetComponent<Renderer>();
     }
     private void Start()
     {
+        taskkey.SetActive(false);
         activo = false;
         if (particulas != null)
             particulas.SetActive(false);
@@ -24,13 +34,24 @@ public class AireAcondicionado : MonoBehaviour
         if (other.CompareTag("TaskPlayer"))
         {
             playercerca = true;
+            if (activo)
+            {
+                taskkey.SetActive(true);
+            CambiarColorOutline(colorCerca);
+            }
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("TaskPlayer"))
         {
             playercerca = false;
+            if (activo)
+            {
+                taskkey.SetActive(false);
+                CambiarColorOutline(colorLejos);
+            }
         }
     }
     public void Apagar()
@@ -52,6 +73,15 @@ public class AireAcondicionado : MonoBehaviour
             particulas.SetActive(true);
 
     }
+    void CambiarColorOutline(Color color)
+    {
+        Material[] mats = objRenderer.materials;
+
+        if (mats.Length > 1)
+        {
+            mats[1].SetColor("_ContourColor", color);
+        }
+    }
 
     public void Desactivar()
     {
@@ -61,6 +91,8 @@ public class AireAcondicionado : MonoBehaviour
 
         if (particulas != null)
             particulas.SetActive(false);
+        taskkey.SetActive(false);
+        CambiarColorOutline(colorLejos);
     }
 }
 

@@ -7,10 +7,17 @@ public class VendingMachine : MonoBehaviour
 
     [SerializeField] private GameObject shopCanvas;
     [SerializeField] PlayerController PlayerController;
-
+    [Header("outline")]
+    [SerializeField] Renderer objRenderer;
+    [SerializeField] Color colorCerca = Color.yellow;
+    [SerializeField] Color colorLejos = Color.black;
+    [SerializeField] GameObject taskkey;
     private void Start()
     {
+        if (objRenderer == null)
+            objRenderer = GetComponentInChildren<Renderer>();
         shopCanvas.SetActive(false);
+        taskkey.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -18,6 +25,8 @@ public class VendingMachine : MonoBehaviour
         if (other.CompareTag("TaskPlayer"))
         {
             shopActive = true;
+            taskkey.SetActive(true);
+            CambiarColorOutline(colorCerca);
         }
     }
 
@@ -27,6 +36,8 @@ public class VendingMachine : MonoBehaviour
         {
             shopActive = false;
             shopCanvas.SetActive(false); // Cierra al salir
+            taskkey.SetActive(false);
+            CambiarColorOutline(colorLejos);
         }
     }
 
@@ -45,6 +56,15 @@ public class VendingMachine : MonoBehaviour
         {
             shopCanvas.SetActive(false);
             PlayerController.playerOcupado=false;
+        }
+    }
+    void CambiarColorOutline(Color color)
+    {
+        Material[] mats = objRenderer.materials;
+
+        if (mats.Length > 1)
+        {
+            mats[1].SetColor("_ContourColor", color);
         }
     }
 }

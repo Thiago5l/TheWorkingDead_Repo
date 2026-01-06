@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_AAC (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8378365680036401429, guid: c090672cda48fb349a4b9416bddc23d6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1729,6 +1733,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9714337}
     m_Modifications:
+    - target: {fileID: 12247826129228682, guid: cdc7f8795b0bb8846b356301c70ef70f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 12247826129228682, guid: cdc7f8795b0bb8846b356301c70ef70f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.00015
+      objectReference: {fileID: 0}
+    - target: {fileID: 12247826129228682, guid: cdc7f8795b0bb8846b356301c70ef70f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3343467788244627029, guid: cdc7f8795b0bb8846b356301c70ef70f, type: 3}
       propertyPath: shopCanvas
       value: 
@@ -1779,6 +1795,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4286425762420991047, guid: cdc7f8795b0bb8846b356301c70ef70f, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327246160484838661, guid: cdc7f8795b0bb8846b356301c70ef70f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327246160484838661, guid: cdc7f8795b0bb8846b356301c70ef70f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327246160484838661, guid: cdc7f8795b0bb8846b356301c70ef70f, type: 3}
+      propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8332,6 +8360,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_AAC (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8378365680036401429, guid: c090672cda48fb349a4b9416bddc23d6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11096,6 +11128,10 @@ PrefabInstance:
     - target: {fileID: 1865881898776795274, guid: c090672cda48fb349a4b9416bddc23d6, type: 3}
       propertyPath: m_Name
       value: PF_AAC (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378365680036401429, guid: c090672cda48fb349a4b9416bddc23d6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15711,6 +15747,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9714337}
     m_Modifications:
+    - target: {fileID: 12247826129228682, guid: cdc7f8795b0bb8846b356301c70ef70f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3474422837817638653, guid: cdc7f8795b0bb8846b356301c70ef70f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.4600005
@@ -22692,87 +22732,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 667131c84607333408b4f5738f51ce57, type: 3}
---- !u!1 &1087544241
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1087544242}
-  - component: {fileID: 1087544243}
-  m_Layer: 8
-  m_Name: ConversationUwe
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1087544242
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087544241}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1257049723}
-  m_Father: {fileID: 1336612429}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1087544243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087544241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83189876d4d389f43b7dd2e925aa112e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NPCConversation
-  CurrentIDCounter: 12
-  json: "{\"Options\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":6}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":51,\"yPos\":404},\"ID\":4,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"No
-    se muy bien lo que son\",\"parentUIDs\":[3],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":10}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":313,\"yPos\":398},\"ID\":5,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"...\",\"parentUIDs\":[3],\"SpeechUID\":-1}],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":2}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":163.5,\"yPos\":22},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Sab\xEDas
-    que los\u202FODS\u202Fson una extensi\xF3n de los Objetivos de Desarrollo del
-    Milenio, acortado como ODM, con un enfoque m\xE1s amplio que incluye bienestar
-    humano y protecci\xF3n del planeta. \",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":null,\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":3}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":173,\"yPos\":154},\"ID\":2,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Cada
-    uno de los 17 objetivos\u202Fcontiene metas espec\xEDficas, formando un total
-    de 169 metas\u202Fque los pa\xEDses deben alcanzar para\u202F2030. \",\"parentUIDs\":[0],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":null,\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":4},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":5}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":167,\"yPos\":268},\"ID\":3,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Adem\xE1s,
-    tienen un enfoque equitativo, aplic\xE1ndose tanto a pa\xEDses desarrollados
-    como en desarrollo. Mi punto es, tu los aplicas en tu d\xEDa a d\xEDa?\",\"parentUIDs\":[2],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":null,\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":7}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":36,\"yPos\":510},\"ID\":6,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Muy
-    mal, pero puedo ense\xF1artelos\",\"parentUIDs\":[4],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":null,\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":35,\"yPos\":641},\"ID\":7,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Mira,
-    empieza por apagar 3 aires acondicionados y te dar\xE9 un eurillo para comprarte
-    esas energ\xE9ticas que tanto te gustan\",\"parentUIDs\":[6],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":null,\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":11}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":322,\"yPos\":503},\"ID\":10,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"
-    Hola estas ah\xED?\",\"parentUIDs\":[5],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":null,\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":332,\"yPos\":634},\"ID\":11,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Bueno
-    da igual, apaga 3 aires acondicionados, que esta gente no es responsable con
-    el medio ambiente y te dar\xE9 un eurillo para comprarte esas energ\xE9ticas
-    que tanto te gustan\",\"parentUIDs\":[10],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":null,\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0}]}"
-  saveVersion: 110
-  DefaultName: 
-  DefaultSprite: {fileID: 0}
-  DefaultFont: {fileID: 0}
-  NodeSerializedDataList:
-  - {fileID: 1257049733}
-  - {fileID: 1257049731}
-  - {fileID: 1257049730}
-  - {fileID: 1257049729}
-  - {fileID: 1257049728}
-  - {fileID: 1257049727}
-  - {fileID: 1257049726}
-  - {fileID: 1257049725}
-  - {fileID: 1257049724}
-  ContinueFont: {fileID: 0}
-  EndConversationFont: {fileID: 0}
-  Event:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1001 &1094024008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29925,265 +29884,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 667131c84607333408b4f5738f51ce57, type: 3}
---- !u!1 &1257049722
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1257049723}
-  - component: {fileID: 1257049733}
-  - component: {fileID: 1257049731}
-  - component: {fileID: 1257049730}
-  - component: {fileID: 1257049729}
-  - component: {fileID: 1257049728}
-  - component: {fileID: 1257049727}
-  - component: {fileID: 1257049726}
-  - component: {fileID: 1257049725}
-  - component: {fileID: 1257049724}
-  m_Layer: 0
-  m_Name: ConversationEventInfo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1257049723
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1257049722}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7799914, z: -0, w: 0.62579036}
-  m_LocalPosition: {x: -0.36127648, y: -0.00000023841858, z: -0.46082345}
-  m_LocalScale: {x: 0.9999999, y: 1, z: 0.9999999}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1087544242}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1257049724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1257049722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NodeEventHolder
-  Event:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1336612426}
-        m_TargetAssemblyTypeName: NPCsConversation, Assembly-CSharp
-        m_MethodName: FinalBueno
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1336612430}
-        m_TargetAssemblyTypeName: TaskAireAcondicionado, Assembly-CSharp
-        m_MethodName: EmpezarTareaAires
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  NodeID: 11
-  TMPFont: {fileID: 0}
-  Icon: {fileID: 0}
-  Audio: {fileID: 0}
---- !u!114 &1257049725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1257049722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NodeEventHolder
-  Event:
-    m_PersistentCalls:
-      m_Calls: []
-  NodeID: 10
-  TMPFont: {fileID: 0}
-  Icon: {fileID: 0}
-  Audio: {fileID: 0}
---- !u!114 &1257049726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1257049722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NodeEventHolder
-  Event:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1336612426}
-        m_TargetAssemblyTypeName: NPCsConversation, Assembly-CSharp
-        m_MethodName: FinalBueno
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1336612430}
-        m_TargetAssemblyTypeName: TaskAireAcondicionado, Assembly-CSharp
-        m_MethodName: EmpezarTareaAires
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  NodeID: 7
-  TMPFont: {fileID: 0}
-  Icon: {fileID: 0}
-  Audio: {fileID: 0}
---- !u!114 &1257049727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1257049722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NodeEventHolder
-  Event:
-    m_PersistentCalls:
-      m_Calls: []
-  NodeID: 6
-  TMPFont: {fileID: 0}
-  Icon: {fileID: 0}
-  Audio: {fileID: 0}
---- !u!114 &1257049728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1257049722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NodeEventHolder
-  Event:
-    m_PersistentCalls:
-      m_Calls: []
-  NodeID: 5
-  TMPFont: {fileID: 0}
-  Icon: {fileID: 0}
-  Audio: {fileID: 0}
---- !u!114 &1257049729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1257049722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NodeEventHolder
-  Event:
-    m_PersistentCalls:
-      m_Calls: []
-  NodeID: 4
-  TMPFont: {fileID: 0}
-  Icon: {fileID: 0}
-  Audio: {fileID: 0}
---- !u!114 &1257049730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1257049722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NodeEventHolder
-  Event:
-    m_PersistentCalls:
-      m_Calls: []
-  NodeID: 3
-  TMPFont: {fileID: 0}
-  Icon: {fileID: 0}
-  Audio: {fileID: 0}
---- !u!114 &1257049731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1257049722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NodeEventHolder
-  Event:
-    m_PersistentCalls:
-      m_Calls: []
-  NodeID: 2
-  TMPFont: {fileID: 0}
-  Icon: {fileID: 0}
-  Audio: {fileID: 0}
---- !u!114 &1257049733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1257049722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NodeEventHolder
-  Event:
-    m_PersistentCalls:
-      m_Calls: []
-  NodeID: 0
-  TMPFont: {fileID: 0}
-  Icon: {fileID: 0}
-  Audio: {fileID: 0}
 --- !u!1001 &1260237747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31220,6 +30920,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_AAC (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8378365680036401429, guid: c090672cda48fb349a4b9416bddc23d6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31424,42 +31128,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4003494794971912834, guid: 5bea4d4c60c54ef4f887fb1bf27da581, type: 3}
   m_PrefabInstance: {fileID: 1331978943}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1336612423 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 965930779381852388, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
-  m_PrefabInstance: {fileID: 1837385353}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1336612426 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3021385092628256507, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
-  m_PrefabInstance: {fileID: 1837385353}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1336612423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c2eda3b3dcbb04cbb5af509a5e7807, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NPCsConversation
 --- !u!4 &1336612429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4538083110403998884, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
   m_PrefabInstance: {fileID: 1837385353}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1336612430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1336612423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 164227c0a5be38c4cb965dd346a22f65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  tagObjetivo: AireAcondicionado
-  playerController: {fileID: 0}
-  CoinManager: {fileID: 0}
 --- !u!1001 &1336862580
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33039,68 +32712,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1169685547649474326, guid: 473fc9917e087f9428dd8601e5347e2f, type: 3}
   m_PrefabInstance: {fileID: 1433509680}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1437497618 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 973088865406777419, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
-  m_PrefabInstance: {fileID: 1837385353}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1437497627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437497618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NodeEventHolder
-  Event:
-    m_PersistentCalls:
-      m_Calls: []
-  NodeID: 9
-  TMPFont: {fileID: 0}
-  Icon: {fileID: 0}
-  Audio: {fileID: 0}
---- !u!114 &1437497628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437497618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NodeEventHolder
-  Event:
-    m_PersistentCalls:
-      m_Calls: []
-  NodeID: 8
-  TMPFont: {fileID: 0}
-  Icon: {fileID: 0}
-  Audio: {fileID: 0}
---- !u!114 &1437497629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437497618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NodeEventHolder
-  Event:
-    m_PersistentCalls:
-      m_Calls: []
-  NodeID: 7
-  TMPFont: {fileID: 0}
-  Icon: {fileID: 0}
-  Audio: {fileID: 0}
 --- !u!1 &1440028462
 GameObject:
   m_ObjectHideFlags: 0
@@ -34426,6 +34037,10 @@ PrefabInstance:
     - target: {fileID: 1865881898776795274, guid: c090672cda48fb349a4b9416bddc23d6, type: 3}
       propertyPath: m_Name
       value: PF_AAC (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378365680036401429, guid: c090672cda48fb349a4b9416bddc23d6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -37725,27 +37340,23 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1984235137}
     m_Modifications:
+    - target: {fileID: 326779821363310656, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326779821363310656, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 178
+      objectReference: {fileID: 0}
+    - target: {fileID: 326779821363310656, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 424
+      objectReference: {fileID: 0}
     - target: {fileID: 965930779381852388, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
       propertyPath: m_Name
       value: PF_Task_Uwe
-      objectReference: {fileID: 0}
-    - target: {fileID: 2411061859645620760, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
-      propertyPath: json
-      value: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[],"EditorInfo":{"isRoot":true,"xPos":163.5,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":null,"parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":null,"OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2411061859645620760, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
-      propertyPath: saveVersion
-      value: 110
-      objectReference: {fileID: 0}
-    - target: {fileID: 2411061859645620760, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
-      propertyPath: NodeSerializedDataList.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2411061859645620760, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
-      propertyPath: 'NodeSerializedDataList.Array.data[0]'
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3021385092628256507, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
       propertyPath: player
@@ -37759,10 +37370,18 @@ PrefabInstance:
       propertyPath: taskFeedbackCanvas
       value: 
       objectReference: {fileID: 1835138751}
-    - target: {fileID: 3021385092628256507, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
-      propertyPath: 'conversationsList.Array.data[0]'
-      value: 
-      objectReference: {fileID: 1087544243}
+    - target: {fileID: 4117102040012955963, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117102040012955963, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 408
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117102040012955963, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 435
+      objectReference: {fileID: 0}
     - target: {fileID: 4538083110403998884, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.37155104
@@ -37803,60 +37422,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7335711714725350957, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
-      propertyPath: json
-      value: "{\"Options\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":3}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":371,\"yPos\":269},\"ID\":1,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"...\",\"parentUIDs\":[0],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":4}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":134,\"yPos\":268},\"ID\":2,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"No
-        se muy bien lo que son\",\"parentUIDs\":[0],\"SpeechUID\":-1}],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":1},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":2}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":259,\"yPos\":123},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Sab\xEDas
-        que los\u202FODS\u202Fson una extensi\xF3n de los Objetivos de Desarrollo
-        del Milenio, acortado como ODM, con un enfoque m\xE1s amplio que incluye
-        bienestar humano y protecci\xF3n del planeta. Cada uno de los 17 objetivos\u202Fcontiene
-        metas espec\xEDficas, formando un total de 169 metas\u202Fque los pa\xEDses
-        deben alcanzar para\u202F2030. Adem\xE1s, tienen un enfoque equitativo, aplic\xE1ndose
-        tanto a pa\xEDses desarrollados como en desarrollo. Mi punto es, tu los aplicas
-        en tu d\xEDa a d\xEDa? \",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Uwe\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":6}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":369,\"yPos\":390},\"ID\":3,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"
-        Hola estas ah\xED?\",\"parentUIDs\":[1],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Uwe\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":5}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":109,\"yPos\":388},\"ID\":4,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Muy
-        mal, pero puedo ense\xF1artelos\",\"parentUIDs\":[2],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Uwe\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":110,\"yPos\":524},\"ID\":5,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Mira,
-        empieza por apagar 3 aires acondicionados y te dar\xE9 un eurillo para comprarte
-        esas energ\xE9ticas que tanto te gustan\",\"parentUIDs\":[4],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Uwe\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":371,\"yPos\":525},\"ID\":6,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Bueno
-        da igual, apaga 3 aires acondicionados, que esta gente no es responsable
-        con el medio ambiente y te dar\xE9 un eurillo para comprarte esas energ\xE9ticas
-        que tanto te gustan\",\"parentUIDs\":[3],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Uwe\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0}]}"
+    - target: {fileID: 7592989184593381460, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 681
       objectReference: {fileID: 0}
-    - target: {fileID: 7335711714725350957, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
-      propertyPath: Event.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787331665924327635, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787331665924327635, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_ActionId
-      value: 7769d754-1e4d-4bb7-9938-0b3a4b91bc24
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787331665924327635, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_ActionName
-      value: 'Gameplay/Snack[/Keyboard/q]'
+    - target: {fileID: 7592989184593381460, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 393
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4538083110403998884, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 1087544242}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 965930779381852388, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1336612430}
-    - targetCorrespondingSourceObject: {fileID: 973088865406777419, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1437497629}
-    - targetCorrespondingSourceObject: {fileID: 973088865406777419, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1437497628}
-    - targetCorrespondingSourceObject: {fileID: 973088865406777419, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1437497627}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
 --- !u!4 &1844767507 stripped
 Transform:
@@ -38875,6 +38452,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_AAC
       objectReference: {fileID: 0}
+    - target: {fileID: 8378365680036401429, guid: c090672cda48fb349a4b9416bddc23d6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -39745,6 +39326,7 @@ Transform:
   - {fileID: 1160209560}
   - {fileID: 1302239947}
   - {fileID: 151034736}
+  - {fileID: 1336612429}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1992039772 stripped
@@ -44128,4 +43710,3 @@ SceneRoots:
   - {fileID: 2069793063}
   - {fileID: 1717159585}
   - {fileID: 1993078060}
-  - {fileID: 1837385353}
