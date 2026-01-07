@@ -2776,6 +2776,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewCursor
   cursorImage: {fileID: 613583168}
+  cursorSprites:
+  - {fileID: -175114690, guid: ec9dea82b3501fa4eb280c51244e1e72, type: 3}
+  - {fileID: -842889416, guid: 2675bc7db677fe1409cfc5f28df0acfa, type: 3}
 --- !u!114 &2141665286
 MonoBehaviour:
   m_ObjectHideFlags: 0

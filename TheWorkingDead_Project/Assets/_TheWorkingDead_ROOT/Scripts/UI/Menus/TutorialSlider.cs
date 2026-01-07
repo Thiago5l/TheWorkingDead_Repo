@@ -8,6 +8,8 @@ public class TutorialSlider : MonoBehaviour
     public Image contentDisplay;
     public List<GameObject> contentPanels;
 
+    public GameObject tutorialPanel;
+
     [Header("Navigation Dots")]
     public GameObject dotsContainer;
     public GameObject dotPrefab;
@@ -92,6 +94,7 @@ public class TutorialSlider : MonoBehaviour
     {
         // Detect swipe input only within the content area
         DetectSwipe();
+        ToClose();
     }
 
     void DetectSwipe()
@@ -193,6 +196,14 @@ public class TutorialSlider : MonoBehaviour
             currentIndex = newIndex;
             ShowContent();
             UpdateDots();
+        }
+    }
+
+    public void ToClose()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            tutorialPanel.SetActive(false);
         }
     }
 }
