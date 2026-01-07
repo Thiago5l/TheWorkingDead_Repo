@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Collections;
 using JetBrains.Annotations;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class OviedadZombie : MonoBehaviour
 {
@@ -20,7 +21,8 @@ public class OviedadZombie : MonoBehaviour
     [SerializeField] GameObject looseCanvas;
 
     [Header("Sprites")]
-    [SerializeField] RectTransform gregHead;
+    [SerializeField] Transform gregHeadTransform;
+    [SerializeField] Image gregHeadImage;
     [SerializeField] Sprite[] gregSprites;
 
     //[Header("Others")]
@@ -57,19 +59,21 @@ public class OviedadZombie : MonoBehaviour
             this.gameObject.GetComponent<PlayerController>().playerOcupado = true;
         }
         //-----//
-        if (Zombiedad >= 100.000f && Zombiedad <= 70.000f)
+        if (Zombiedad <= 100.000f && Zombiedad >= 70.000f)
         {
-            gregHead.GetComponent<Image>().sprite = gregSprites[0];
+            gregHeadImage.sprite = gregSprites[0];
             Debug.Log("Good");
+
+            gregHeadTransform.DOMoveX(3f, 2f).SetLoops(5, LoopType.Yoyo);
         }
-        if (Zombiedad >= 70.000f && Zombiedad <= 30.000f)
+        if (Zombiedad <= 70.000f && Zombiedad >= 30.000f)
         {
-            gregHead.GetComponent<Image>().sprite = gregSprites[1];
+            gregHeadImage.sprite = gregSprites[1];
             Debug.Log("medium");
         }
-        if (Zombiedad >= 30f && Zombiedad <= 0f)
+        if (Zombiedad <= 30f && Zombiedad >= 0f)
         {
-            gregHead.GetComponent<Image>().sprite = gregSprites[2];
+            gregHeadImage.sprite = gregSprites[2];
             Debug.Log("Bad");
         }
     }
