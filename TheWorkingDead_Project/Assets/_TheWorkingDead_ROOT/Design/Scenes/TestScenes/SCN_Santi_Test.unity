@@ -4474,6 +4474,34 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1169685547649474326, guid: 473fc9917e087f9428dd8601e5347e2f, type: 3}
   m_PrefabInstance: {fileID: 386380143}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &397691045 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5875216557805195688, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
+  m_PrefabInstance: {fileID: 6056415464145488906}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &397691049
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397691045}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &397802781
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14391,6 +14419,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 10cda578-ff8d-4ecb-88c7-c250e168d16f
     m_ActionName: 'Tareas/cerrar[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1f53e712-dfad-408d-a160-5e2086285e0b
+    m_ActionName: 'Gameplay/Sprint[/Keyboard/leftShift]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Tareas
@@ -22484,37 +22516,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1169685547649474326, guid: 473fc9917e087f9428dd8601e5347e2f, type: 3}
   m_PrefabInstance: {fileID: 1433509680}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1438547304
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1438547305}
-  m_Layer: 0
-  m_Name: BrazoCaido
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1438547305
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1438547304}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1462838703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25955,17 +25956,17 @@ MonoBehaviour:
   playerCerca: 0
   buttonsList:
   - button: {fileID: 937729598}
-    normalColor: {r: 0.8235295, g: 0.40784317, b: 0.40784317, a: 1}
-    highlightColor: {r: 1, g: 0, b: 0, a: 1}
+    normalColor: {fileID: 0}
+    highlightColor: {fileID: 0}
   - button: {fileID: 110640029}
-    normalColor: {r: 0.48627454, g: 0.8235295, b: 0.40784317, a: 1}
-    highlightColor: {r: 0.19298244, g: 1, b: 0, a: 1}
+    normalColor: {fileID: 0}
+    highlightColor: {fileID: 0}
   - button: {fileID: 1354124}
-    normalColor: {r: 0.8235295, g: 0.75294125, b: 0.40784317, a: 1}
-    highlightColor: {r: 1, g: 0.83018863, b: 0, a: 1}
+    normalColor: {fileID: 0}
+    highlightColor: {fileID: 0}
   - button: {fileID: 331676193}
-    normalColor: {r: 0.40784317, g: 0.6, b: 0.8313726, a: 1}
-    highlightColor: {r: 0, g: 0.4528303, b: 1, a: 1}
+    normalColor: {fileID: 0}
+    highlightColor: {fileID: 0}
   intOrdenBotonesPlayer: 
   showTime: 0.5
   pauseTime: 0.3
@@ -25974,6 +25975,7 @@ MonoBehaviour:
   "tama\xF1oSequence": 4
   rondasCompletadas: 0
   rondasACompletar: 3
+  taskFeedbackCanvas: {fileID: 1835138751}
 --- !u!65 &1786823403
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26123,6 +26125,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 10cda578-ff8d-4ecb-88c7-c250e168d16f
     m_ActionName: 'Tareas/cerrar[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1f53e712-dfad-408d-a160-5e2086285e0b
+    m_ActionName: 'Gameplay/Sprint[/Keyboard/leftShift]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Tareas
@@ -26816,11 +26822,12 @@ MonoBehaviour:
   fadeImage: {fileID: 0}
   Player: {fileID: 200637151}
   fadeDuration: 0.1
+  maxAlpha: 0.4
   winColor: {r: 0, g: 1, b: 0, a: 1}
   loseColor: {r: 1, g: 0, b: 0, a: 1}
-  maxAlpha: 0.4
   penalizacion: 5
   premio: 5
+  fadeLockTime: 2
 --- !u!114 &1835138752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31789,6 +31796,86 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4740843425589735715, guid: 5cadb64c61de9834c97d2da1505f6e48, type: 3}
   m_PrefabInstance: {fileID: 4625910378331593625}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6056415464145488906
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 194366377552449552, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 674967263430808210, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
+      propertyPath: m_Name
+      value: BrazoCaido
+      objectReference: {fileID: 0}
+    - target: {fileID: 3442562842102979843, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3442562842102979843, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5970851339515137189, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5970851339515137189, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5970851339515137189, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5970851339515137189, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5970851339515137189, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5970851339515137189, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5970851339515137189, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5970851339515137189, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5970851339515137189, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5970851339515137189, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6297840427252789942, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6297840427252789942, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5875216557805195688, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 397691049}
+  m_SourcePrefab: {fileID: 100100000, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
 --- !u!1001 &6758832044894223773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32934,4 +33021,4 @@ SceneRoots:
   - {fileID: 2069793063}
   - {fileID: 1717159585}
   - {fileID: 1993078060}
-  - {fileID: 1438547305}
+  - {fileID: 6056415464145488906}
