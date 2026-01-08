@@ -13,8 +13,7 @@ public class NPCSpawner : MonoBehaviour
 
     // Numero total de NPCs a spawnear (incluye el fijo)
     public int npcCount = 3;
-
-    void Start()
+    private void Awake()
     {
         SpawnNPCs();
     }

@@ -30,10 +30,16 @@ public class TareasAleatorias : MonoBehaviour
     }
     public void DetectarNPCsComoTareas()
     {
-        // Encuentra todos los NPCs con el tag
+        // Encuentra todos los NPCs activos en la escena con el tag correcto
         GameObject[] npcs = GameObject.FindGameObjectsWithTag("NpcConversation");
 
-        // Convierte PrefabsTareas a lista para poder agregar NPCs
+        if (npcs.Length == 0)
+        {
+            Debug.LogWarning("No se detectaron NPCs con el tag 'NpcConversation'");
+            return;
+        }
+
+        // Convierte PrefabsTareas a lista para agregar NPCs
         List<GameObject> prefabsList = new List<GameObject>(PrefabsTareas);
 
         foreach (GameObject npc in npcs)
@@ -44,11 +50,10 @@ public class TareasAleatorias : MonoBehaviour
             }
         }
 
-        // Vuelve a convertir a array
         PrefabsTareas = prefabsList.ToArray();
-
         Debug.Log($"Se detectaron {npcs.Length} NPCs por tag y se añadieron a PrefabsTareas. Total prefabs: {PrefabsTareas.Length}");
     }
+
 
 
 
