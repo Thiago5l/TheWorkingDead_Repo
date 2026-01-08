@@ -25,6 +25,14 @@ public class FadeCanvas : MonoBehaviour
     private Coroutine currentFade;
     private bool fadeEnabled = false;
 
+    [Header("Brazo caido")]
+    [SerializeField] private GameObject brazoL;
+    public GameObject pfBrazoCaido;
+    public bool brazoYaCaido;
+    private bool loseTriggered = false;
+
+
+
     private void Awake()
     {
         if (!canvasGroup) canvasGroup = GetComponent<CanvasGroup>();
@@ -36,6 +44,7 @@ public class FadeCanvas : MonoBehaviour
 
     private void Start()
     {
+        brazoYaCaido = false;
         canvasGroup.alpha = 0f;
         StartCoroutine(EnableFadeAfterDelay());
     }
@@ -54,13 +63,61 @@ public class FadeCanvas : MonoBehaviour
 
     public void PlayLose()
     {
+        if (loseTriggered) return;
+        loseTriggered = true;
+
         Player.GetComponent<OviedadZombie>().Zombiedad -= penalizacion;
         StartFade(loseColor);
+
+        if (!brazoYaCaido)
+        {
+
+            // Asegúrate de que brazoL no sea null
+            if (brazoL == null)
+                brazoL = GameObject.FindGameObjectWithTag("BrazoL");
+
+            GameObject nuevoBrazo = Instantiate(pfBrazoCaido, brazoL.transform.position, brazoL.transform.rotation);
+
+            BrazoCaido script = nuevoBrazo.GetComponent<BrazoCaido>();
+
+            // PASA TODAS LAS REFERENCIAS NECESARIAS
+            script.brazoL = brazoL; // referencia al brazo original
+            script.player = GameObject.FindGameObjectWithTag("Player"); // referencia al jugador
+            script.feedBackCanva = this.gameObject; // referencia al FadeCanvas
+
+            // Inicializa variables del minijuego si quieres
+            script.rotacionTotal = 0;
+            script.miniGameStarted = false;
+            script.progresoSlider.value = 0;
+
+            brazoYaCaido = true;
+
+            //GameObject nuevoBrazo = Instantiate(pfBrazoCaido, brazoL.transform.position, brazoL.transform.rotation);
+            //BrazoCaido script = nuevoBrazo.GetComponent<BrazoCaido>();
+            //script.brazoL = brazoL;
+            //script.player = GameObject.FindGameObjectWithTag("Player");
+            //script.feedBackCanva = this.gameObject;
+            //brazoYaCaido = true;
+        }
+
+        // OPCIONAL: permitir perder otra vez tras el fade
+        StartCoroutine(ResetLose());
     }
+    private IEnumerator ResetLose()
+    {
+        yield return new WaitForSeconds(fadeDuration * 2f);
+        loseTriggered = false;
+    }
+
+
 
     private void StartFade(Color color)
     {
         if (!fadeEnabled) return;
+
+        // LIMPIEZA FORZADA
+        canvasGroup.alpha = 0f;
+        canvasGroup.blocksRaycasts = false;
 
         if (currentFade != null)
             StopCoroutine(currentFade);
@@ -68,34 +125,82 @@ public class FadeCanvas : MonoBehaviour
         currentFade = StartCoroutine(Fade(color));
     }
 
+    //private void StartFade(Color color)
+    //{
+    //    if (!fadeEnabled) return;
+
+    //    if (currentFade != null)
+    //        StopCoroutine(currentFade);
+
+    //    currentFade = StartCoroutine(Fade(color));
+    //}
+
+
     private IEnumerator Fade(Color color)
     {
         fadeImage.color = color;
         canvasGroup.blocksRaycasts = true;
 
-        float t = 0f;
-
-        // Fade In
-        while (t < fadeDuration)
+        try
         {
-            t += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(0f, maxAlpha, t / fadeDuration);
-            yield return null;
+            float t = 0f;
+
+            // Fade In
+            while (t < fadeDuration)
+            {
+                t += Time.deltaTime;
+                canvasGroup.alpha = Mathf.Lerp(0f, maxAlpha, t / fadeDuration);
+                yield return null;
+            }
+
+            canvasGroup.alpha = maxAlpha;
+            t = 0f;
+
+            // Fade Out
+            while (t < fadeDuration)
+            {
+                t += Time.deltaTime;
+                canvasGroup.alpha = Mathf.Lerp(maxAlpha, 0f, t / fadeDuration);
+                yield return null;
+            }
         }
-
-        canvasGroup.alpha = maxAlpha;
-        t = 0f;
-
-        // Fade Out
-        while (t < fadeDuration)
+        finally
         {
-            t += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(maxAlpha, 0f, t / fadeDuration);
-            yield return null;
+            canvasGroup.alpha = 0f;
+            canvasGroup.blocksRaycasts = false;
+            currentFade = null;
         }
-
-        canvasGroup.alpha = 0f;
-        canvasGroup.blocksRaycasts = false;
-        currentFade = null;
     }
+
+
+    //private IEnumerator Fade(Color color)
+    //{
+    //    fadeImage.color = color;
+    //    canvasGroup.blocksRaycasts = true;
+
+    //    float t = 0f;
+
+    //    // Fade In
+    //    while (t < fadeDuration)
+    //    {
+    //        t += Time.deltaTime;
+    //        canvasGroup.alpha = Mathf.Lerp(0f, maxAlpha, t / fadeDuration);
+    //        yield return null;
+    //    }
+
+    //    canvasGroup.alpha = maxAlpha;
+    //    t = 0f;
+
+    //    // Fade Out
+    //    while (t < fadeDuration)
+    //    {
+    //        t += Time.deltaTime;
+    //        canvasGroup.alpha = Mathf.Lerp(maxAlpha, 0f, t / fadeDuration);
+    //        yield return null;
+    //    }
+
+    //    canvasGroup.alpha = 0f;
+    //    canvasGroup.blocksRaycasts = false;
+    //    currentFade = null;
+    //}
 }

@@ -5,17 +5,23 @@ public class BrazoCaido : MonoBehaviour
 {
 
     public bool miniGameStarted;
-    [SerializeField] public float rotacionTotal;
-    [SerializeField] public float rotacionMax;
-    [SerializeField] public GameObject canvasTarea;
-    [SerializeField] public Slider progresoSlider;
-    [SerializeField] public bool playerCerca;
-    [SerializeField] public GameObject player;
-    [SerializeField] public GameObject CanvasInteractableKey;
-    [SerializeField] public float sumValueZombiedad;
+    public float rotacionTotal;
+    public float rotacionMax;
+    public GameObject canvasTarea;
+    public Slider progresoSlider;
+    public bool playerCerca;
+    public GameObject player;
+    public GameObject CanvasInteractableKey;
+    public float sumValueZombiedad;
+    public GameObject pfBrazo;
 
     private float anguloAnterior;
     private float rotacionAcumulada;
+
+    public GameObject brazoL;
+
+    public GameObject feedBackCanva;
+
 
 
     private void OnTriggerEnter(Collider other)
@@ -37,10 +43,9 @@ public class BrazoCaido : MonoBehaviour
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    void OnEnable()
     {
-        //canvasTarea = GameObject.FindGameObjectWithTag("UiBrazoCaido");
         progresoSlider.value = 0;
         canvasTarea.SetActive(false);
         rotacionTotal = 0;
@@ -50,9 +55,24 @@ public class BrazoCaido : MonoBehaviour
         //{
         //}
         progresoSlider.maxValue = rotacionMax;
-        player = GameObject.FindGameObjectWithTag("Player");
+
+        //feedBackCanva = GameObject.FindGameObjectWithTag("Feedback");
+        //player = GameObject.FindGameObjectWithTag("Player");
+        //brazoL = GameObject.FindGameObjectWithTag("BrazoCaido");   
+        brazoL.gameObject.SetActive(false);
     }
 
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        
+        
+    }
+
+    private void Awake()
+    {
+        
+    }
 
     public void interactuar()
     {
@@ -71,18 +91,24 @@ public class BrazoCaido : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         rotacionTotal = canvasTarea.GetComponentInChildren<uiGiratoria>().rotacionTotal;
+        if (rotacionTotal < 0) rotacionTotal = rotacionTotal * -1;
         progresoSlider.value = rotacionTotal;
         if (rotacionTotal >= rotacionMax)
         {
             miniGameStarted = false;
             canvasTarea.SetActive(false);
             progresoSlider.value = progresoSlider.maxValue;
-            GameObject Padre = this.gameObject.GetComponentInParent<GameObject>();
-            
+
             // Aquí va la lógica para completar el minijuego
-            player.GetComponent<OviedadZombie>().Zombiedad += sumValueZombiedad;
-            Destroy(Padre);
+            player.GetComponent<PlayerController>().playerOcupado = false;
+            brazoL.gameObject.SetActive(true);
+
+            feedBackCanva.GetComponent<FadeCanvas>().brazoYaCaido = false;
+            feedBackCanva.GetComponent<FadeCanvas>().PlayWin();
+
+            Destroy(pfBrazo);
         }
 
 
