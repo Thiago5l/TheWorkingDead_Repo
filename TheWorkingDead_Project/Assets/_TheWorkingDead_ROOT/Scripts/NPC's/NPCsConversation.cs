@@ -98,28 +98,40 @@ public class NPCsConversation : MonoBehaviour
 
     public void Interact()
     {
-        Vector3 direction = player.transform.position - transform.position;
-        // Crea la rotación deseada (mirando al jugador)
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        // Aplica el giro suave
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        Debug.Log("hablando");
+
+        if (player == null)
+        {
+            Debug.LogError("Player no asignado");
+            return;
+        }
+
+        if (conversationsList == null || conversationsList.Count == 0)
+        {
+            Debug.LogError("No hay conversaciones");
+            return;
+        }
 
         myConversation = conversationsList[0];
+
         if (playerCerca && myConversation != null && !talking && !alrreadyTalked)
         {
             girando = true;
             MezclarLista(conversationsList);
-            
-            ConversationManager.Instance.StartConversation(myConversation);
-            talking = true;
-            player.GetComponent<PlayerController>().playerOcupado = true;
 
-        }
-        else
-        {
-            Debug.LogWarning("No hay conversación asignada");
+            if (ConversationManager.Instance != null)
+                ConversationManager.Instance.StartConversation(myConversation);
+            else
+                Debug.LogError("ConversationManager.Instance es NULL");
+
+            talking = true;
+
+            var controller = player.GetComponent<PlayerController>();
+            if (controller != null)
+                controller.playerOcupado = true;
         }
     }
+
 
     public void FinalBueno()
     {
