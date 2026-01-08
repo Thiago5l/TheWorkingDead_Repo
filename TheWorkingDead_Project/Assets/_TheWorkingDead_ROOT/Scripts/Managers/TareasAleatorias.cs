@@ -22,10 +22,36 @@ public class TareasAleatorias : MonoBehaviour
 
     void Start()
     {
+        DetectarNPCsComoTareas();
+        MezclarLista(OrdenTareas);
         tareasHechas = 0;
         winLevel = false;
         GenerarListaTareas();
     }
+    public void DetectarNPCsComoTareas()
+    {
+        // Encuentra todos los NPCs con el tag
+        GameObject[] npcs = GameObject.FindGameObjectsWithTag("NpcConversation");
+
+        // Convierte PrefabsTareas a lista para poder agregar NPCs
+        List<GameObject> prefabsList = new List<GameObject>(PrefabsTareas);
+
+        foreach (GameObject npc in npcs)
+        {
+            if (!prefabsList.Contains(npc))
+            {
+                prefabsList.Add(npc);
+            }
+        }
+
+        // Vuelve a convertir a array
+        PrefabsTareas = prefabsList.ToArray();
+
+        Debug.Log($"Se detectaron {npcs.Length} NPCs por tag y se añadieron a PrefabsTareas. Total prefabs: {PrefabsTareas.Length}");
+    }
+
+
+
 
     public void GenerarListaTareas()
     {
