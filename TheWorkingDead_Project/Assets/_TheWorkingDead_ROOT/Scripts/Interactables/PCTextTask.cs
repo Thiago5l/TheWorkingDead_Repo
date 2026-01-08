@@ -39,10 +39,11 @@ public class PCTextTask : MonoBehaviour
 
     [Header("Canvas")]
     [SerializeField] public GameObject CanvasInteractableKey;
+    [SerializeField] private FadeCanvas taskFeedbackCanvas;
     void Start()
     {
         CanvasInteractableKey.SetActive(false);   
-    tareasScript = objectTareas.GetComponent<TareasAleatorias>();
+        tareasScript = objectTareas.GetComponent<TareasAleatorias>();
         tareaEnProceso = false;
         tareaAcabada = false;
         PlayerCerca = false;
@@ -176,16 +177,17 @@ public class PCTextTask : MonoBehaviour
 
     void FallarTarea()
     {
+        taskFeedbackCanvas.PlayLose();
         tareaEnProceso = false;
         Player.GetComponent<PlayerController>().playerOcupado = false;
         ConfigurarTiempo();
         prefabTaskUI.SetActive(false);
-        Player.GetComponent<OviedadZombie>().Zombiedad += (penalizacion / 100);
         GetComponent<MeshRenderer>().material = Mat;
     }
 
     void CompletarTarea()
     {
+        taskFeedbackCanvas.PlayWin();
         CanvasInteractableKey.SetActive(false);
         tareaEnProceso = false;
         tareaAcabada = true;

@@ -53,6 +53,7 @@ public class EnemyAiBase : MonoBehaviour
     float detectandoZombie;
     [SerializeField] float fillSpeed;
     bool isFillingBar;
+    [SerializeField] GameObject looseCanvas;
 
 
     [Header("States and detections")]
@@ -68,6 +69,11 @@ public class EnemyAiBase : MonoBehaviour
 
     [Header("Optimization")]
     [SerializeField] float aiUpdateFrequency = 0.5f;
+
+    [Header("Always Chase Settings")]
+    [SerializeField] bool alwaysChaseAtStart = true; // persigue siempre al inicio
+    [SerializeField] float chaseDelay = 2f;          // tiempo hasta empezar a respetar sightRange
+    private bool useSightRange = false;               // controla si se respeta sightRange
 
     #endregion
 
@@ -104,10 +110,14 @@ public class EnemyAiBase : MonoBehaviour
         sliderSospecha.value = 0;
         sliderSospecha.gameObject.SetActive(false);
 
-        //valorSumaZombiedad = playerObject.GetComponent<OviedadZombie>().sumValue;
-
-        //Arranque de la corrutina de proceso de la IA que sustituya al Update
+        // Inicia la IA
         StartCoroutine(AIUpdateROutine());
+
+        // Control del comportamiento inicial de persecución
+        if (alwaysChaseAtStart)
+            StartCoroutine(EnableSightRangeAfterDelay());
+        else
+            useSightRange = true; // usa sightRange desde el inicio
     }
 
 
@@ -120,6 +130,7 @@ public class EnemyAiBase : MonoBehaviour
             if (sliderSospecha.value >= sliderSospecha.maxValue)
             {
                 sliderSospecha.value = sliderSospecha.maxValue;
+                looseCanvas.SetActive(true);
                 playerObject.GetComponent<OviedadZombie>().Zombiedad = 1f;
             }
         }
@@ -144,6 +155,11 @@ public class EnemyAiBase : MonoBehaviour
         //    Quaternion lookRotation = Quaternion.LookRotation(new Vector3(dir.x, 0, dir.z));
         //    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
         //}
+    }
+    private IEnumerator EnableSightRangeAfterDelay()
+    {
+        yield return new WaitForSeconds(chaseDelay);
+        useSightRange = true;
     }
 
     void UpdateLightColor()
@@ -326,38 +342,36 @@ public class EnemyAiBase : MonoBehaviour
 
 
     //corrutine de funcionamiento de la IA (Cerebro de la IA)
-    private IEnumerator AIUpdateROutine()
+   private IEnumerator AIUpdateROutine()
+{
+    while (true)
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(aiUpdateFrequency);
+        yield return new WaitForSeconds(aiUpdateFrequency);
 
-            //Chequear detección de target
-
+        // Detección del target usando sightRange solo si está habilitado
+        if (useSightRange)
             targetInSightRange = Physics.CheckSphere(transform.position, sightRange, targetLayer);
-            targetInAttackRange = Physics.CheckSphere(transform.position, attackRange, targetLayer);
+        else
+            targetInSightRange = true; // persigue siempre al inicio
 
-            //Paso 2: detección y cambio entre estados
+        targetInAttackRange = Physics.CheckSphere(transform.position, attackRange, targetLayer);
 
-            if (targetInSightRange && targetInAttackRange)
-            {
-                //atacar
-                AttackTarget();
-            }
-            else if (targetInSightRange && !targetInAttackRange)
-            {
-                //persecución
-                ChaseTarget();
-            }
-
-            else
-            {
-                //patrullar
-                Patrolling(); Debug.Log("Caminando");
-            }
-
+        // Cambio de estados
+        if (targetInSightRange && targetInAttackRange)
+        {
+            AttackTarget();
+        }
+        else if (targetInSightRange && !targetInAttackRange)
+        {
+            ChaseTarget();
+        }
+        else
+        {
+            Patrolling(); // patrulla cuando no ve al target
         }
     }
+}
+
 
 
 

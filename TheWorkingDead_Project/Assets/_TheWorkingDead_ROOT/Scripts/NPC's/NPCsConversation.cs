@@ -13,11 +13,15 @@ public class NPCsConversation : MonoBehaviour
     [SerializeField] public GameObject taskExclamation;
     [SerializeField] private bool talking;
     [SerializeField] private bool alrreadyTalked;
+    [SerializeField] public GameObject canvasinteractkey;
+    [SerializeField] TareasAleatorias taskmanager;
+    [SerializeField] private FadeCanvas taskFeedbackCanvas;
     //[SerializeField] public GameObject objectTareas; 
     //private TareasAleatorias tareasScript;
 
     void Start()
     {
+        canvasinteractkey.SetActive(false);
         
         taskExclamation.SetActive(true);
         playerCerca = false;
@@ -32,7 +36,27 @@ public class NPCsConversation : MonoBehaviour
 
     void Update()
     {
-        myConversation = conversationsList[0];
+        if (playerCerca&&!alrreadyTalked)
+        {
+            taskExclamation.SetActive(false);
+            canvasinteractkey.SetActive(true);
+        }
+        else
+        {
+            if (!alrreadyTalked)
+            {
+                canvasinteractkey.SetActive(false);
+                taskExclamation.SetActive(true); 
+            }
+            else
+            {
+                if (alrreadyTalked)
+                {
+                    taskExclamation.SetActive(false);
+                    canvasinteractkey.SetActive(false);
+                }
+            }
+        }
         //if (playerCerca && canInteract && Input.GetKeyDown(KeyCode.E))
         //{
         //    Interact();
@@ -57,7 +81,8 @@ public class NPCsConversation : MonoBehaviour
 
     public void Interact()
     {
-        if (playerCerca && myConversation != null && !talking)
+        myConversation = conversationsList[0];
+        if (playerCerca && myConversation != null && !talking && !alrreadyTalked)
         {
 
             MezclarLista(conversationsList);
@@ -75,41 +100,30 @@ public class NPCsConversation : MonoBehaviour
 
     public void FinalBueno()
     {
-        if (!alrreadyTalked)
-        {
-            player.GetComponent<OviedadZombie>().Zombiedad -= (20f / 100f);
+        taskFeedbackCanvas.PlayWin();
+        Debug.Log("Final Bueno");
+
+        player.GetComponent<PlayerController>().playerOcupado = false; 
             taskExclamation.SetActive(false);
             player.GetComponent<PlayerController>().playerOcupado = false;
             talking = false;
             alrreadyTalked = true;
+            taskmanager.CompletarTarea(this.gameObject);
 
-        }
-        else
-        {
-            player.GetComponent<PlayerController>().playerOcupado = false;
-            talking = false;
-            alrreadyTalked = true;
-            
-        }
     }
 
     public void FinalMalo()
     {
-        if (!alrreadyTalked)
-        {
-            player.GetComponent<OviedadZombie>().Zombiedad += (20f / 100f);
+        taskFeedbackCanvas.PlayLose();
+        Debug.Log("Final Malo");    
+        player.GetComponent<PlayerController>().playerOcupado = false;
+
+        taskExclamation.SetActive(false);
             player.GetComponent<PlayerController>().playerOcupado = false;
             talking = false;
             alrreadyTalked = true;
-            
-        }
-        else
-        {
-            player.GetComponent<PlayerController>().playerOcupado = false;
-            talking = false;
-            alrreadyTalked = true;
-            
-        }
+            taskmanager.CompletarTarea(this.gameObject);
+
     }
 
 

@@ -20,7 +20,7 @@ public class EscenaPerder : MonoBehaviour
 
     public void Salir()
     {
-        SceneManager.LoadScene("SCN_MainMenu_Test");
+        SceneManager.LoadScene("SCN_Main_Menu");
     }
 
     //void Update()
