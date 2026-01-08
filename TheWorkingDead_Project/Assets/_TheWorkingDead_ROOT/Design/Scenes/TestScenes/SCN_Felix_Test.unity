@@ -10297,18 +10297,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 326527999}
     m_Modifications:
-    - target: {fileID: 5372837729872012726, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
-      propertyPath: OptionImageSliced
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5372837729872012726, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
-      propertyPath: BackgroundImageSliced
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5372837730209628712, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 821d36ae3414f5f42a634e2bf654e693, type: 3}
     - target: {fileID: 6147284871494750852, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
       propertyPath: m_Name
       value: PF_CanvasDialogos
