@@ -16,7 +16,7 @@ public class uiGiratoria : MonoBehaviour
     {
         brazoPrefab = GameObject.FindGameObjectWithTag("BrazoCaido");
         brazoScript = brazoPrefab.GetComponent<BrazoCaido>();
-        rotacionTotal = 0;
+        //rotacionTotal = 0;
         anguloAnterior = 0;
     }
 
@@ -25,20 +25,30 @@ public class uiGiratoria : MonoBehaviour
     {
         if (brazoScript.miniGameStarted)
         {
-            
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorldPos.z = 0f; // Asegurarse de que la posición Z sea 0 para un juego 2D
 
-            Vector2 direction = mousePosition - transform.position;
-            transform.up = direction;
+            Vector3 lookAtDirection = mouseWorldPos - this.transform.position;
+            this.transform.up = lookAtDirection;
 
-            float anguloActual = transform.eulerAngles.z;
-            float delta = Mathf.DeltaAngle(anguloAnterior, anguloActual);
 
-            // Suma progresiva (360 grados = +1)
-            brazoScript.rotacionTotal += delta / 360f;
 
-            anguloAnterior = anguloActual;
+
+            //Vector3 mousePosition = Input.mousePosition;
+            //mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+            //Vector2 direction = mousePosition - transform.position;
+            //Debug.Log("dirección = " + direction + "transform.u valor = " +transform.up);
+            //transform.up = direction;
+
+            //float anguloActual = transform.eulerAngles.z;
+            //Debug.Log("ángulo actual = " + anguloActual + " ángulo anterior = " + anguloAnterior);
+            //float delta = Mathf.DeltaAngle(anguloAnterior, anguloActual);
+
+            //// Suma progresiva (360 grados = +1)
+            //brazoScript.rotacionTotal += delta / 360f;
+
+            //anguloAnterior = anguloActual;
 
 
             //Vector3 mousePosition = Input.mousePosition;

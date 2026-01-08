@@ -46,10 +46,10 @@ public class BrazoCaido : MonoBehaviour
         rotacionTotal = 0;
         miniGameStarted = false;
         anguloAnterior = transform.eulerAngles.z;
-        if(progresoSlider != null && progresoSlider.maxValue <= rotacionMax )
-        {
-            progresoSlider.maxValue = rotacionMax;
-        }
+        //if(progresoSlider != null && progresoSlider.maxValue <= rotacionMax )
+        //{
+        //}
+        progresoSlider.maxValue = rotacionMax;
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
