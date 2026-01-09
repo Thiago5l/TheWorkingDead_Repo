@@ -79,33 +79,33 @@ public class TareasAleatorias : MonoBehaviour
             return;
         }
 
-        if (TareasPorNivel > PrefabsTareas.Length)
-            TareasPorNivel = PrefabsTareas.Length;
-
         List<GameObject> tareasDisponibles = new List<GameObject>(PrefabsTareas);
-        MezclarLista(tareasDisponibles);
-
         OrdenTareas.Clear();
         tareaToUI.Clear();
 
-        // Agregar Uwe con 50% de probabilidad
-        if (Uwe != null && Random.value < 0.5f && !tareasDisponibles.Contains(Uwe))
+        bool incluirUwe = (Uwe != null && Random.value < 0.5f);
+
+        if (incluirUwe)
         {
-            tareasDisponibles.Add(Uwe);
-            Debug.Log("Uwe agregado a la lista de tareas con probabilidad 50%");
+            OrdenTareas.Add(Uwe);
+            tareasDisponibles.Remove(Uwe);
+            Debug.Log("Uwe incluido en OrdenTareas (50%)");
         }
 
-        // Limitar a TareasPorNivel
-        int cantidad = Mathf.Min(TareasPorNivel, tareasDisponibles.Count);
+        MezclarLista(tareasDisponibles);
 
-        for (int i = 0; i < cantidad; i++)
+        int restantes = TareasPorNivel - OrdenTareas.Count;
+
+        for (int i = 0; i < restantes && i < tareasDisponibles.Count; i++)
         {
-            GameObject tarea = tareasDisponibles[i];
+            OrdenTareas.Add(tareasDisponibles[i]);
+        }
+
+        // Crear UI
+        foreach (GameObject tarea in OrdenTareas)
+        {
             if (tarea == null) continue;
 
-            OrdenTareas.Add(tarea);
-
-            // Crear UI y asignar nombre
             GameObject box = Instantiate(boxTarea, tareaContiner);
             TareaNombre tareaComp = tarea.GetComponent<TareaNombre>();
             string nombreTarea = tareaComp != null ? tareaComp.tareaNombre : tarea.name;
@@ -113,8 +113,9 @@ public class TareasAleatorias : MonoBehaviour
             tareaToUI[tarea] = box;
         }
 
-        Debug.Log($"Se generaron {OrdenTareas.Count} tareas aleatorias");
+        Debug.Log($"Se generaron {OrdenTareas.Count} tareas | Uwe incluido: {incluirUwe}");
     }
+
 
 
     private void MezclarLista(List<GameObject> lista)
