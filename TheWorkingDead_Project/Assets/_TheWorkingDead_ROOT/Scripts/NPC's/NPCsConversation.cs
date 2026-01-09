@@ -24,8 +24,10 @@ public class NPCsConversation : MonoBehaviour
 
     private void Awake()
     {
-        if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player");
+        PlayerController controller = Object.FindFirstObjectByType<PlayerController>();
+        if (controller != null)
+            player = controller.gameObject;
+
         if (taskFeedbackCanvas == null)
             taskFeedbackCanvas = FindAnyObjectByType<FadeCanvas>();
         if (taskmanager == null)

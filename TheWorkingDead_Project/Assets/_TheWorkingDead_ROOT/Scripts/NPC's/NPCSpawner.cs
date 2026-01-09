@@ -5,9 +5,6 @@ public class NPCSpawner : MonoBehaviour
 {
     public Transform[] spawnPoints;
 
-    // NPC fijo (primer spawn)
-    public GameObject fixedNPC;
-
     // NPCs disponibles para spawns aleatorios (no deben incluir el fijo)
     public GameObject[] randomNPCs;
 
@@ -27,15 +24,6 @@ public class NPCSpawner : MonoBehaviour
         List<GameObject> availableNPCs = new List<GameObject>(randomNPCs);
 
         int spawned = 0;
-
-        // First spawn: fixed NPC
-        if (fixedNPC != null && availablePoints.Count > 0 && spawned < npcCount)
-        {
-            Transform firstPoint = availablePoints[0];
-            Instantiate(fixedNPC, firstPoint.position, firstPoint.rotation);
-            availablePoints.RemoveAt(0);
-            spawned++;
-        }
 
         // Random NPCs without repetition
         while (spawned < npcCount &&

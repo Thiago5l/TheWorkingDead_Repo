@@ -20,6 +20,10 @@ public class TareasAleatorias : MonoBehaviour
     public List<GameObject> OrdenTareas = new List<GameObject>();
     public Dictionary<GameObject, GameObject> tareaToUI = new Dictionary<GameObject, GameObject>();
 
+    [Header("Configuración NPCs")]
+    public int maxNPCsEnTareas = 3; // número máximo de NPCs que se agregan a PrefabsTareas
+    public GameObject Uwe;
+
     void Start()
     {
         DetectarNPCsComoTareas();
@@ -42,8 +46,21 @@ public class TareasAleatorias : MonoBehaviour
         // Convierte PrefabsTareas a lista para agregar NPCs
         List<GameObject> prefabsList = new List<GameObject>(PrefabsTareas);
 
-        foreach (GameObject npc in npcs)
+        // Mezclar NPCs para seleccionar aleatoriamente
+        List<GameObject> npcsList = new List<GameObject>(npcs);
+        for (int i = npcsList.Count - 1; i > 0; i--)
         {
+            int j = Random.Range(0, i + 1);
+            GameObject temp = npcsList[i];
+            npcsList[i] = npcsList[j];
+            npcsList[j] = temp;
+        }
+
+        // Agregar solo hasta maxNPCsEnTareas NPCs
+        int count = Mathf.Min(maxNPCsEnTareas, npcsList.Count);
+        for (int i = 0; i < count; i++)
+        {
+            GameObject npc = npcsList[i];
             if (!prefabsList.Contains(npc))
             {
                 prefabsList.Add(npc);
@@ -51,12 +68,8 @@ public class TareasAleatorias : MonoBehaviour
         }
 
         PrefabsTareas = prefabsList.ToArray();
-        Debug.Log($"Se detectaron {npcs.Length} NPCs por tag y se añadieron a PrefabsTareas. Total prefabs: {PrefabsTareas.Length}");
+        Debug.Log($"Se detectaron {npcs.Length} NPCs, se agregaron {count} a PrefabsTareas. Total prefabs: {PrefabsTareas.Length}");
     }
-
-
-
-
 
     public void GenerarListaTareas()
     {
@@ -75,19 +88,34 @@ public class TareasAleatorias : MonoBehaviour
         OrdenTareas.Clear();
         tareaToUI.Clear();
 
-        for (int i = 0; i < TareasPorNivel; i++)
+        // Agregar Uwe con 50% de probabilidad
+        if (Uwe != null && Random.value < 0.5f && !tareasDisponibles.Contains(Uwe))
+        {
+            tareasDisponibles.Add(Uwe);
+            Debug.Log("Uwe agregado a la lista de tareas con probabilidad 50%");
+        }
+
+        // Limitar a TareasPorNivel
+        int cantidad = Mathf.Min(TareasPorNivel, tareasDisponibles.Count);
+
+        for (int i = 0; i < cantidad; i++)
         {
             GameObject tarea = tareasDisponibles[i];
+            if (tarea == null) continue;
+
             OrdenTareas.Add(tarea);
 
-            // Crear UI y asociarla directamente a la tarea
+            // Crear UI y asignar nombre
             GameObject box = Instantiate(boxTarea, tareaContiner);
-            box.GetComponent<BoxTarea>().SetText(tarea.GetComponent<TareaNombre>().tareaNombre);
+            TareaNombre tareaComp = tarea.GetComponent<TareaNombre>();
+            string nombreTarea = tareaComp != null ? tareaComp.tareaNombre : tarea.name;
+            box.GetComponent<BoxTarea>().SetText(nombreTarea);
             tareaToUI[tarea] = box;
         }
 
         Debug.Log($"Se generaron {OrdenTareas.Count} tareas aleatorias");
     }
+
 
     private void MezclarLista(List<GameObject> lista)
     {
