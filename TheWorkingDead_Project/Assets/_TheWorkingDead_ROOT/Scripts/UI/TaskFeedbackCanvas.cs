@@ -29,6 +29,8 @@ public class FadeCanvas : MonoBehaviour
     [SerializeField] private GameObject brazoL;
     public GameObject pfBrazoCaido;
     public bool brazoYaCaido;
+
+
     private bool loseTriggered = false;
 
 
@@ -73,23 +75,15 @@ public class FadeCanvas : MonoBehaviour
         {
 
             // Asegúrate de que brazoL no sea null
-            if (brazoL == null)
-                brazoL = GameObject.FindGameObjectWithTag("BrazoL");
+            if (brazoL == null) brazoL = GameObject.FindGameObjectWithTag("BrazoL");
 
-            GameObject nuevoBrazo = Instantiate(pfBrazoCaido, brazoL.transform.position, brazoL.transform.rotation);
+            pfBrazoCaido.transform.position = brazoL.transform.position;
+            brazoL.SetActive(false);
+            
+            //BrazoCaido script = pfBrazoCaido.GetComponent<BrazoCaido>();
 
-            BrazoCaido script = nuevoBrazo.GetComponent<BrazoCaido>();
-
-            // PASA TODAS LAS REFERENCIAS NECESARIAS
-            script.brazoL = brazoL; // referencia al brazo original
-            script.player = GameObject.FindGameObjectWithTag("Player"); // referencia al jugador
-            script.feedBackCanva = this.gameObject; // referencia al FadeCanvas
-
-            // Inicializa variables del minijuego si quieres
-            script.rotacionTotal = 0;
-            script.miniGameStarted = false;
-            script.progresoSlider.value = 0;
-
+            
+            pfBrazoCaido.SetActive(true);
             brazoYaCaido = true;
 
             //GameObject nuevoBrazo = Instantiate(pfBrazoCaido, brazoL.transform.position, brazoL.transform.rotation);

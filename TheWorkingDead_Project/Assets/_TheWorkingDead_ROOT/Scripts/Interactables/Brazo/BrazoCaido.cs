@@ -44,34 +44,22 @@ public class BrazoCaido : MonoBehaviour
     }
 
 
-    void OnEnable()
+  
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
         progresoSlider.value = 0;
         canvasTarea.SetActive(false);
         rotacionTotal = 0;
         miniGameStarted = false;
         anguloAnterior = transform.eulerAngles.z;
-        //if(progresoSlider != null && progresoSlider.maxValue <= rotacionMax )
-        //{
-        //}
         progresoSlider.maxValue = rotacionMax;
 
         //feedBackCanva = GameObject.FindGameObjectWithTag("Feedback");
         //player = GameObject.FindGameObjectWithTag("Player");
         //brazoL = GameObject.FindGameObjectWithTag("BrazoCaido");   
-        brazoL.gameObject.SetActive(false);
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-        
-    }
-
-    private void Awake()
-    {
-        
+        //brazoL.gameObject.SetActive(false);
+        pfBrazo.SetActive(false);
     }
 
     public void interactuar()
@@ -81,8 +69,11 @@ public class BrazoCaido : MonoBehaviour
             CanvasInteractableKey.SetActive(false);
             player.GetComponent<PlayerController>().playerOcupado = true;
             miniGameStarted = true;
+            rotacionTotal = 0;
+            progresoSlider.value = 0;
             canvasTarea.SetActive(true);
-            
+
+
         }
 
 
@@ -97,6 +88,7 @@ public class BrazoCaido : MonoBehaviour
         progresoSlider.value = rotacionTotal;
         if (rotacionTotal >= rotacionMax)
         {
+
             miniGameStarted = false;
             canvasTarea.SetActive(false);
             progresoSlider.value = progresoSlider.maxValue;
@@ -108,7 +100,11 @@ public class BrazoCaido : MonoBehaviour
             feedBackCanva.GetComponent<FadeCanvas>().brazoYaCaido = false;
             feedBackCanva.GetComponent<FadeCanvas>().PlayWin();
 
-            Destroy(pfBrazo);
+            rotacionTotal = 0;
+            progresoSlider.value = 0;
+            canvasTarea.GetComponentInChildren<uiGiratoria>().rotacionTotal = 0;
+
+            pfBrazo.SetActive(false);
         }
 
 
