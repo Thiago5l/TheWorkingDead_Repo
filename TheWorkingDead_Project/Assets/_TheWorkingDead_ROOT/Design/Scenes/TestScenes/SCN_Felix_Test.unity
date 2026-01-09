@@ -10651,6 +10651,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1048730158}
     - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
+      propertyPath: endPosition.x
+      value: -208
+      objectReference: {fileID: 0}
+    - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
+      propertyPath: endPosition.y
+      value: 185
+      objectReference: {fileID: 0}
+    - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: gregHeadImage
       value: 
       objectReference: {fileID: 1629927589}
@@ -10658,6 +10666,22 @@ PrefabInstance:
       propertyPath: ZombiedadSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
+      propertyPath: desiredDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
+      propertyPath: startPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
+      propertyPath: startPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
+      propertyPath: gregHeadTransform
+      value: 
+      objectReference: {fileID: 1048730159}
     - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: sliderCurrentImage
       value: 
@@ -32214,7 +32238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4270916453386138952, guid: d2fdcdde1650bc04b8e82cf5a435b8d0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -207
+      value: -206
       objectReference: {fileID: 0}
     - target: {fileID: 4270916453386138952, guid: d2fdcdde1650bc04b8e82cf5a435b8d0, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -32243,6 +32267,18 @@ PrefabInstance:
     - target: {fileID: 7596934074412999507, guid: d2fdcdde1650bc04b8e82cf5a435b8d0, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596934074412999507, guid: d2fdcdde1650bc04b8e82cf5a435b8d0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 4.7089
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596934074412999507, guid: d2fdcdde1650bc04b8e82cf5a435b8d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596934074412999507, guid: d2fdcdde1650bc04b8e82cf5a435b8d0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.35445
       objectReference: {fileID: 0}
     - target: {fileID: 7614206950521673510, guid: d2fdcdde1650bc04b8e82cf5a435b8d0, type: 3}
       propertyPath: zombieValue

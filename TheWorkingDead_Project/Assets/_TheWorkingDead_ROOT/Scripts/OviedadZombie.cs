@@ -21,9 +21,16 @@ public class OviedadZombie : MonoBehaviour
     [SerializeField] GameObject looseCanvas;
 
     [Header("Sprites")]
-    [SerializeField] Transform gregHeadTransform;
+    
     [SerializeField] Image gregHeadImage;
     [SerializeField] Sprite[] gregSprites;
+
+    [Header("For Sprite Movement")]
+    [SerializeField] Transform gregHeadTransform;
+    [SerializeField] Vector2 endPosition = new Vector2(0, 0);
+    [SerializeField] Vector2 startPosition;
+    [SerializeField] float desiredDuration = 3f;
+    [SerializeField] float elapsedTime;
 
     //[Header("Others")]
     //[SerializeField] Transform PlayerTransform;
@@ -36,6 +43,10 @@ public class OviedadZombie : MonoBehaviour
 
         zombiedadBar.maxValue = maxZombiedad;
         zombiedadBar.value = Zombiedad;
+
+        //
+
+        startPosition = gregHeadTransform.localPosition;
     }
     //-----//
     private void Update()
@@ -63,8 +74,6 @@ public class OviedadZombie : MonoBehaviour
         {
             gregHeadImage.sprite = gregSprites[0];
             Debug.Log("Good");
-
-            gregHeadTransform.DOMoveX(3f, 2f).SetLoops(5, LoopType.Yoyo);
         }
         if (Zombiedad <= 70.000f && Zombiedad >= 30.000f)
         {
@@ -76,6 +85,11 @@ public class OviedadZombie : MonoBehaviour
             gregHeadImage.sprite = gregSprites[2];
             Debug.Log("Bad");
         }
+        //-----//
+        elapsedTime += Time.deltaTime;
+        float percentageComplete = elapsedTime / desiredDuration;
+
+        gregHeadTransform.localPosition = Vector2.Lerp(startPosition, endPosition, percentageComplete);
     }
 
     //    #region General Variables
