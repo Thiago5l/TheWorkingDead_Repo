@@ -78,6 +78,7 @@ public class PCTextTask : MonoBehaviour
         {
             textToWrite = textsSelected[0];
             textUI.GetComponent<TextMeshProUGUI>().text = textToWrite;
+            taskFeedbackCanvas.PlayWin();
             ConfigurarTiempo();
         }
     }
@@ -95,7 +96,7 @@ public class PCTextTask : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("TaskPlayer") && !tareaAcabada)
+        if (other.CompareTag("TaskPlayerx") && !tareaAcabada)
         {
             PlayerCerca = true;
             GetComponent<MeshRenderer>().material = OutLine;

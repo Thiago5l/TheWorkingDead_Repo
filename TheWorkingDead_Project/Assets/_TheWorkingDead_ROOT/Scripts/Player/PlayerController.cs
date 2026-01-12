@@ -1,7 +1,9 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Parametres")]
     [SerializeField] float speed = 10f;
     [SerializeField] float speedcontainer = 10f;
+    [SerializeField] float speedbase = 10f;
     [SerializeField] float rotSpeed = 15f;
 
 
@@ -29,9 +32,20 @@ public class PlayerController : MonoBehaviour
     public bool playerOcupado;
     public bool  playerCerca;
     public GameObject TaskCollider;
-    public LayerMask taskLayer; 
+    public LayerMask taskLayer;
 
-
+    [Header("sprint parametres")]
+    [SerializeField]public float energeticas = 1;
+    [SerializeField]public float sprintspeed = 10f;
+    [SerializeField]public float sprinttime = 3f;
+    public bool isSprinting;
+    [SerializeField] EnergeticasUI energeticasUI;
+    [SerializeField] Canvas EstaminaUI;
+    [SerializeField] Image EstaminaFillImage;
+    float sprintTimer;
+    [SerializeField] Image EstaminaDelayedImage; // la barra roja
+    [SerializeField] float delaySpeed = 2f; // velocidad con la que la barra roja sigue
+    //[SerializeField] public GameObject sprintVFX;
     //variables referencia propias o internas
 
 
@@ -47,6 +61,8 @@ public class PlayerController : MonoBehaviour
         if(camTransform == null) camTransform = Camera.main.transform; //busca la cámara main si no tiene cam asignada
         PlayerRB.freezeRotation = true; //congelar rotación de rigid body
         speedcontainer = speed;
+        speedbase=speed;
+        //sprintVFX.SetActive(false);
     }
 
 
@@ -54,6 +70,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         TaskCollider= GameObject.FindGameObjectWithTag("TaskPlayer");
+        energeticasUI.SetEnergeticas((int)energeticas);
+        EstaminaUI.enabled = false;
     }
 
     // Update is called once per frame
@@ -68,7 +86,25 @@ public class PlayerController : MonoBehaviour
         {
             speed = speedcontainer;
         }
-        
+
+        if (isSprinting && EstaminaFillImage != null)
+        {
+            // Barra principal baja inmediatamente
+            sprintTimer -= Time.deltaTime;
+            float fillAmount = Mathf.Clamp01(sprintTimer / sprinttime);
+            EstaminaFillImage.fillAmount = fillAmount;
+
+            // Barra roja se interpola suavemente hacia la principal
+            if (EstaminaDelayedImage != null)
+            {
+                EstaminaDelayedImage.fillAmount = Mathf.Lerp(
+                    EstaminaDelayedImage.fillAmount,
+                    fillAmount,
+                    Time.deltaTime * delaySpeed
+                );
+            }
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -153,7 +189,58 @@ public class PlayerController : MonoBehaviour
         //elemento de visualización en editor opcional
 
     }
+    //#region sprint
+    //Coroutine sprintCoroutine;
+    //public void OnSprint(InputAction.CallbackContext context)
+    //{
+    //    if (context.performed)
+    //    {
+    //        if (energeticas <= 0 || isSprinting) return;
+    //        EstaminaUI.enabled = true;
+    //        sprintVFX.SetActive(true);
+    //        isSprinting = true;
+    //        speedcontainer = sprintspeed;
+    //        sprintTimer = sprinttime; // inicializa el temporizador
 
+    //        sprintCoroutine = StartCoroutine(StopSprintCoroutine());
+    //    }
+
+    //    if (context.canceled)
+    //    {
+    //        StopSprint();
+    //    }
+    //}
+
+    //void StopSprint()
+    //{
+    //    if (!isSprinting) return;
+
+    //    isSprinting = false;
+    //    speedcontainer = speedbase;
+
+    //    if (sprintCoroutine != null)
+    //    {
+    //        StopCoroutine(sprintCoroutine);
+    //        sprintCoroutine = null;
+    //    }
+
+    //    EstaminaUI.enabled = false;
+    //    sprintVFX.SetActive(false);
+    //    EstaminaFillImage.fillAmount = 1f;
+    //    if (EstaminaDelayedImage != null)
+    //        EstaminaDelayedImage.fillAmount = 1f;
+
+    //    energeticas--;
+    //    energeticasUI.SetEnergeticas((int)energeticas);
+    //}
+
+
+    //IEnumerator StopSprintCoroutine()
+    //{
+    //    yield return new WaitForSeconds(sprinttime);
+    //    StopSprint();
+    //}
+    //#endregion
     #region imput methods
     public void OnMove (InputAction.CallbackContext context) //context bontón físico
     {
