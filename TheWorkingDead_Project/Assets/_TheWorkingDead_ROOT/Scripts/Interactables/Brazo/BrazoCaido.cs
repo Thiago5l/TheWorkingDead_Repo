@@ -28,7 +28,6 @@ public class BrazoCaido : MonoBehaviour
     {
         if (other.CompareTag("TaskPlayer"))
         {
-            Debug.Log("Entra");
             playerCerca = true;
             CanvasInteractableKey.SetActive(true);
         }
@@ -37,7 +36,6 @@ public class BrazoCaido : MonoBehaviour
     {
         if (other.CompareTag("TaskPlayer"))
         {
-            Debug.Log("Sale");
             playerCerca = false;
             CanvasInteractableKey.SetActive(false);
         }

@@ -26,8 +26,7 @@ public class FadeCanvas : MonoBehaviour
     private bool fadeEnabled = false;
 
     [Header("Brazo caido")]
-    [SerializeField] private GameObject brazoL;
-    public GameObject pfBrazoCaido;
+    public GameObject managerBrazo;
     public bool brazoYaCaido;
 
 
@@ -71,29 +70,7 @@ public class FadeCanvas : MonoBehaviour
         Player.GetComponent<OviedadZombie>().Zombiedad -= penalizacion;
         StartFade(loseColor);
 
-        if (!brazoYaCaido)
-        {
-
-            // Asegúrate de que brazoL no sea null
-            if (brazoL == null) brazoL = GameObject.FindGameObjectWithTag("BrazoL");
-
-            pfBrazoCaido.transform.position = brazoL.transform.position;
-            brazoL.SetActive(false);
-            
-            //BrazoCaido script = pfBrazoCaido.GetComponent<BrazoCaido>();
-
-            
-            pfBrazoCaido.SetActive(true);
-            brazoYaCaido = true;
-
-            //GameObject nuevoBrazo = Instantiate(pfBrazoCaido, brazoL.transform.position, brazoL.transform.rotation);
-            //BrazoCaido script = nuevoBrazo.GetComponent<BrazoCaido>();
-            //script.brazoL = brazoL;
-            //script.player = GameObject.FindGameObjectWithTag("Player");
-            //script.feedBackCanva = this.gameObject;
-            //brazoYaCaido = true;
-        }
-
+        managerBrazo.GetComponent<BrazoManager>().BrazoSeCae();
         // OPCIONAL: permitir perder otra vez tras el fade
         StartCoroutine(ResetLose());
     }
