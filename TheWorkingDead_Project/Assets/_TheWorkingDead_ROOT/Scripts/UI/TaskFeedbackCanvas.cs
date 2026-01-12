@@ -9,15 +9,29 @@ public class FadeCanvas : MonoBehaviour
     public Image fadeImage;
     [SerializeField] GameObject Player;
 
-    [Header("Configuración")]
+    [Header("Configuracion Fade")]
     public float fadeDuration = 1f;
+    [Range(0f, 1f)] public float maxAlpha = 0.4f;
     public Color winColor = Color.green;
     public Color loseColor = Color.red;
-    [Range(0f, 1f)] public float maxAlpha = 0.4f;
+
+    [Header("Gameplay")]
     public float penalizacion;
     public float premio;
 
+    [Header("Bloqueo inicial")]
+    [SerializeField] private float fadeLockTime = 2f;
+
     private Coroutine currentFade;
+    private bool fadeEnabled = false;
+
+    [Header("Brazo caido")]
+    [SerializeField] private GameObject brazoL;
+    public GameObject pfBrazoCaido;
+    public bool brazoYaCaido;
+    private bool loseTriggered = false;
+
+
 
     private void Awake()
     {
@@ -28,17 +42,50 @@ public class FadeCanvas : MonoBehaviour
         canvasGroup.blocksRaycasts = false;
     }
 
-    public void PlayWin()
-    { Player.GetComponent<OviedadZombie>().Zombiedad += premio; StartFade(winColor); }
-    public void PlayLose() 
+    private void Start()
+    {
+        brazoYaCaido = false;
+        canvasGroup.alpha = 0f;
+        StartCoroutine(EnableFadeAfterDelay());
+    }
 
-        {
+    private IEnumerator EnableFadeAfterDelay()
+    {
+        yield return new WaitForSeconds(fadeLockTime);
+        fadeEnabled = true;
+    }
+
+    public void PlayWin()
+    {
+        Player.GetComponent<OviedadZombie>().Zombiedad += premio;
+        StartFade(winColor);
+    }
+
+    public void PlayLose()
+    {
+        if (loseTriggered) return;
+        loseTriggered = true;
+
         Player.GetComponent<OviedadZombie>().Zombiedad -= penalizacion;
         StartFade(loseColor);
-}
+        StartCoroutine(ResetLose());
+    }
+    private IEnumerator ResetLose()
+    {
+        yield return new WaitForSeconds(fadeDuration * 2f);
+        loseTriggered = false;
+    }
+
+
 
     private void StartFade(Color color)
     {
+        if (!fadeEnabled) return;
+
+        // LIMPIEZA FORZADA
+        canvasGroup.alpha = 0f;
+        canvasGroup.blocksRaycasts = false;
+
         if (currentFade != null)
             StopCoroutine(currentFade);
 
@@ -50,29 +97,34 @@ public class FadeCanvas : MonoBehaviour
         fadeImage.color = color;
         canvasGroup.blocksRaycasts = true;
 
-        float t = 0f;
-
-        // Fade In
-        while (t < fadeDuration)
+        try
         {
-            t += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(0f, maxAlpha, t / fadeDuration);
-            yield return null;
+            float t = 0f;
+
+            // Fade In
+            while (t < fadeDuration)
+            {
+                t += Time.deltaTime;
+                canvasGroup.alpha = Mathf.Lerp(0f, maxAlpha, t / fadeDuration);
+                yield return null;
+            }
+
+            canvasGroup.alpha = maxAlpha;
+            t = 0f;
+
+            // Fade Out
+            while (t < fadeDuration)
+            {
+                t += Time.deltaTime;
+                canvasGroup.alpha = Mathf.Lerp(maxAlpha, 0f, t / fadeDuration);
+                yield return null;
+            }
         }
-
-        canvasGroup.alpha = maxAlpha;
-        t = 0f;
-
-        // Fade Out
-        while (t < fadeDuration)
+        finally
         {
-            t += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(maxAlpha, 0f, t / fadeDuration);
-            yield return null;
+            canvasGroup.alpha = 0f;
+            canvasGroup.blocksRaycasts = false;
+            currentFade = null;
         }
-
-        canvasGroup.alpha = 0f;
-        canvasGroup.blocksRaycasts = false;
-        currentFade = null;
     }
 }

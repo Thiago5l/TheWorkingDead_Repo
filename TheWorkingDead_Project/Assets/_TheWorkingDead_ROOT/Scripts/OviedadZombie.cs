@@ -15,11 +15,12 @@ public class OviedadZombie : MonoBehaviour
     [SerializeField] public float Zombiedad;
     [SerializeField] public float maxZombiedad = 100;
     [SerializeField] public float ZombiedadSpeed = 100;
-
+    [SerializeField] public float Zombiedadocupadomultiplier = 0.25f;
+    private float zombiedadSpeedOriginal;
     [Header("Game Objects")]
     [SerializeField] Slider zombiedadBar;
     [SerializeField] GameObject looseCanvas;
-
+    [SerializeField] PlayerController playerController;
     [Header("Sprites")]
     
     [SerializeField] Image gregHeadImage;
@@ -39,7 +40,9 @@ public class OviedadZombie : MonoBehaviour
 
     void Start()
     {
+        zombiedadSpeedOriginal= ZombiedadSpeed;
         Zombiedad = maxZombiedad;
+        playerController = this.gameObject.GetComponent<PlayerController>();
 
         zombiedadBar.maxValue = maxZombiedad;
         zombiedadBar.value = Zombiedad;
@@ -91,6 +94,8 @@ public class OviedadZombie : MonoBehaviour
 
         gregHeadTransform.localPosition = Vector2.Lerp(startPosition, endPosition, percentageComplete);
     }
+    public void resetspeed()
+    { ZombiedadSpeed = zombiedadSpeedOriginal; }
 
     //    #region General Variables
     //    public float Zombiedad = 0;
@@ -107,7 +112,7 @@ public class OviedadZombie : MonoBehaviour
     //    {
     //        if (ZombiedadBar == null)
     //        {
-    //            // Busca el objeto "Fill" en la jerarquía
+    //            // Busca el objeto "Fill" en la jerarquÃ­a
     //            ZombiedadBar = GameObject.Find("Fill").GetComponent<Slider>();
     //        }
     //        float zValue = 1;

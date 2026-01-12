@@ -78,6 +78,7 @@ public class PCTextTask : MonoBehaviour
         {
             textToWrite = textsSelected[0];
             textUI.GetComponent<TextMeshProUGUI>().text = textToWrite;
+            taskFeedbackCanvas.PlayWin();
             ConfigurarTiempo();
         }
     }

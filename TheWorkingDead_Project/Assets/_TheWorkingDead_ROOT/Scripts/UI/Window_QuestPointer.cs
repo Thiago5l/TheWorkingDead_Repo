@@ -116,7 +116,6 @@ public class Window_QuestPointer : MonoBehaviour
         foreach (var t in tareas.OrdenTareas)
         {
             if (t == null) Debug.Log("Tarea NULL en la lista");
-            else Debug.Log("Tarea detectada: " + t.name);
         }
         return closest;
     }
