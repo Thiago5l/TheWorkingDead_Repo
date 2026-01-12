@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class Arcade_Minigame : MonoBehaviour
+public class Arcade_Minigame : TaskBase
 {
     public static Arcade_Minigame instance;
 
@@ -11,7 +11,7 @@ public class Arcade_Minigame : MonoBehaviour
     
     public GameObject taskCanvas;
     public TMP_Text EnemyCount; 
-    void Awake()
+    protected override void IniciarTarea()
     {
         if (instance == null)
             instance = this;
@@ -19,6 +19,8 @@ public class Arcade_Minigame : MonoBehaviour
             Destroy(gameObject);
         UpdateCounter();
     }
+    protected override void CancelarTarea()
+    { }
 
     public void EnemiesKilled()
     {
@@ -32,13 +34,12 @@ public class Arcade_Minigame : MonoBehaviour
 
         }
     }
-    
-
-  
     void UpdateCounter()
     {
         if (EnemyCount != null)
-            EnemyCount.text = enemiesKilled + "/" + enemiesToKill;
+        { EnemyCount.text = enemiesKilled + "/" + enemiesToKill; }
+        if (enemiesKilled >= enemiesToKill)
+        {Win();}
     }
 
 

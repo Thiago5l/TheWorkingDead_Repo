@@ -1,50 +1,85 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+
 public class ImpresoraTask : TaskBase
 {
-    [Header("Barra")]
-    [SerializeField] float value;
-    [SerializeField] float suma;
-    [SerializeField] float resta;
-    [SerializeField] float tiempo;
-    [SerializeField] GameObject taskBar;
+    [Header("Progress Bar")]
+    [SerializeField] private float valorInicial = 25f;
+    [SerializeField] private float suma = 10f;
+    [SerializeField] private float resta = 5f;
+    [SerializeField] private float tiempo = 0.5f;
+    [SerializeField] private Image fillTaskBar;
 
-    private bool interactuando;
+    [Header("Feedback")]
+    [SerializeField] private Image spacebarSprite;
+    [SerializeField] private float flashTime = 0.15f;
+
+    private float valor;
+
+    protected override void Start()
+    {
+        base.Start();
+        valor = valorInicial;
+        ActualizarBarra();
+    }
 
     protected override void IniciarTarea()
     {
-        interactuando = true;
-        taskBar.SetActive(true);
-        player.GetComponent<PlayerController>().playerOcupado = true;
-        StartCoroutine(Drain());
-    }
-
-    IEnumerator Drain()
-    {
-        while (value > 0 && value < 100)
-        {
-            yield return new WaitForSeconds(tiempo);
-            value -= resta;
-        }
-
-        if (value <= 0)
-            CancelarTarea();
-    }
-
-    public void Pulsar()
-    {
-        if (!interactuando) return;
-
-        value += suma;
-        if (value >= 100)
-            Completar();
+        valor = valorInicial;
+        ActualizarBarra();
+        StartCoroutine(DrainRoutine());
     }
 
     protected override void CancelarTarea()
     {
-        interactuando = false;
-        taskBar.SetActive(false);
-        player.GetComponent<PlayerController>().playerOcupado = false;
-        StopAllCoroutines();
+        CancelarBase();
+        valor = valorInicial;
+        ActualizarBarra();
+    }
+
+    private IEnumerator DrainRoutine()
+    {
+        while (interactuando && valor > 0f && valor < 100f)
+        {
+            yield return new WaitForSeconds(tiempo);
+            valor -= resta;
+            ActualizarBarra();
+        }
+
+        if (valor <= 0f)
+        {
+            CancelarTarea();
+        }
+        else if (valor >= 100f)
+        {
+            CompletarTarea();
+        }
+    }
+
+    public void Pulsar()
+    {
+        if (!interactuando || tareaAcabada) return;
+
+        valor += suma;
+        ActualizarBarra();
+        StartCoroutine(FlashRoutine());
+
+        if (valor >= 100f)
+        {
+            CompletarTarea();
+        }
+    }
+
+    private void ActualizarBarra()
+    {
+        fillTaskBar.fillAmount = valor / 100f;
+    }
+
+    private IEnumerator FlashRoutine()
+    {
+        spacebarSprite.fillAmount = 1f;
+        yield return new WaitForSeconds(flashTime);
+        spacebarSprite.fillAmount = 0f;
     }
 }

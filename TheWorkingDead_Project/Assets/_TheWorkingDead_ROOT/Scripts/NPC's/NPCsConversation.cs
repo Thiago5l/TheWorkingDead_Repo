@@ -1,86 +1,69 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DialogueEditor;
 
-public class NPCsConversation : MonoBehaviour
+public class NPCConversationTask : TaskBase
 {
-    [SerializeField] public List<NPCConversation> conversationsList = new List<NPCConversation>();
-    [SerializeField] public NPCConversation myConversation;
-    [SerializeField] private bool playerCerca;
-    [SerializeField] private bool tieneTarea;
-    [SerializeField] private bool canInteract = true;
-    [SerializeField] public GameObject player;
-    [SerializeField] public GameObject taskExclamation;
-    [SerializeField] private bool talking;
-    [SerializeField] private bool alrreadyTalked;
-    [SerializeField] public GameObject canvasinteractkey;
-    [SerializeField] TareasAleatorias taskmanager;
-    [SerializeField] private FadeCanvas taskFeedbackCanvas;
-    public float rotationSpeed = 5f; // Velocidad de giro
-    public bool girando = false;
-    //[SerializeField] public GameObject objectTareas; 
-    //private TareasAleatorias tareasScript;
+    [Header("Conversations")]
+    [SerializeField] private List<NPCConversation> conversationsList = new List<NPCConversation>();
+    [SerializeField] private NPCConversation myConversation;
 
-    private void Awake()
+    [Header("Feedback")]
+    [SerializeField] private FadeCanvas taskFeedbackCanvas;
+
+    [Header("Extras")]
+    [SerializeField] public float rotationSpeed = 5f;
+
+    private bool talking = false;
+    private bool alreadyTalked = false;
+    private bool girando = false;
+
+    protected void Awake()
     {
-        PlayerController controller = Object.FindFirstObjectByType<PlayerController>();
-        if (controller != null)
-            player = controller.gameObject;
+
+        if (player == null)
+            player = GameObject.FindWithTag("Player");
+
+        if (taskManager == null)
+            taskManager = FindAnyObjectByType<TareasAleatorias>();
+    }
+
+    protected override void Start()
+    {
+        base.Start();
 
         if (taskFeedbackCanvas == null)
             taskFeedbackCanvas = FindAnyObjectByType<FadeCanvas>();
-        if (taskmanager == null)
-            taskmanager = FindAnyObjectByType<TareasAleatorias>();
-    }
-    void Start()
-    {
-        canvasinteractkey.SetActive(false);
-        
-        taskExclamation.SetActive(true);
-        playerCerca = false;
-        canInteract = true;
-        alrreadyTalked = false;
-        talking = false;
+
+        if (taskExclamation != null) taskExclamation.SetActive(true);
+
         MezclarLista(conversationsList);
-        //myConversation = conversationsList[0];
-        bool tieneTarea = EstaEnListaDeTareas();
-
     }
 
-    void Update()
+    private void Update()
     {
-        tieneTarea = EstaEnListaDeTareas();
-        if (playerCerca&&!alrreadyTalked&&tieneTarea)
+        // Mostrar/hide exclamacion y canvas
+        if (playerCerca && !alreadyTalked && !tareaAcabada)
         {
-            taskExclamation.SetActive(false);
-            canvasinteractkey.SetActive(true);
+            if (taskExclamation != null) taskExclamation.SetActive(true);
+            canvasInteractKey?.SetActive(true);
         }
         else
         {
-            if (!alrreadyTalked&&tieneTarea)
-            {
-                canvasinteractkey.SetActive(false);
-                taskExclamation.SetActive(true); 
-            }
-            else
-            {
-                    taskExclamation.SetActive(false);
-                    canvasinteractkey.SetActive(false);
-            }
+            canvasInteractKey?.SetActive(false);
+            if (taskExclamation != null) taskExclamation.SetActive(!alreadyTalked && !tareaAcabada);
         }
+
+        // Girar hacia el jugador
         if (girando && player != null)
         {
-            // Calcula la dirección hacia el jugador solo en el plano XZ
             Vector3 direction = player.transform.position - transform.position;
-            direction.y = 0f; // Ignoramos la diferencia vertical
+            direction.y = 0f;
 
-            if (direction.magnitude > 0.01f) // Evita errores al estar muy cerca
+            if (direction.magnitude > 0.01f)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-                // Si está muy cerca de la rotación deseada, paramos de girar
                 if (Quaternion.Angle(transform.rotation, targetRotation) < 0.1f)
                 {
                     transform.rotation = targetRotation;
@@ -89,104 +72,93 @@ public class NPCsConversation : MonoBehaviour
             }
         }
     }
-    public bool EstaEnListaDeTareas()
+
+    public override void Interactuar()
     {
-        if (taskmanager == null)
-        {
-            Debug.LogWarning("TaskManager no asignado.");
-            return false;
-        }
+        if (!playerCerca || interactuando || tareaAcabada) return;
 
-        // Devuelve true si este GameObject está en la lista de tareas pendientes
-        return taskmanager.OrdenTareas.Contains(this.gameObject);
-    }
+        interactuando = true;
+        girando = true;
+        canvasInteractKey?.SetActive(false);
 
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("TaskPlayer") && canInteract)
-        {
-            playerCerca = true;
-        }
-    }
-
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("TaskPlayer"))
-        {
-            playerCerca = false;
-        }
-    }
-
-    public void Interact()
-    {
-        Debug.Log("hablando");
+        // Mezclar y seleccionar conversacion
+        MezclarLista(conversationsList);
+        myConversation = conversationsList[0];
 
         if (player == null)
         {
-            Debug.LogError("Player no asignado");
+            Debug.LogError("Player no asignado en NPCConversationTask");
             return;
         }
 
-        if (conversationsList == null || conversationsList.Count == 0)
+        // Activar playerOcupado
+        var controller = player.GetComponent<PlayerController>();
+        if (controller != null)
+            controller.playerOcupado = true;
+
+        // Iniciar la conversacion
+        if (ConversationManager.Instance != null && myConversation != null)
         {
-            Debug.LogError("No hay conversaciones");
-            return;
+            ConversationManager.Instance.StartConversation(myConversation);
         }
 
-        myConversation = conversationsList[0];
-
-        if (playerCerca && myConversation != null && !talking && !alrreadyTalked && tieneTarea)
-        {
-            girando = true;
-            MezclarLista(conversationsList);
-
-            if (ConversationManager.Instance != null)
-                ConversationManager.Instance.StartConversation(myConversation);
-            else
-                Debug.LogError("ConversationManager.Instance es NULL");
-
-            talking = true;
-
-            var controller = player.GetComponent<PlayerController>();
-            if (controller != null)
-                controller.playerOcupado = true;
-        }
+        talking = true;
     }
 
+    protected override void IniciarTarea()
+    {
+        // Vacío, la conversación ya maneja la lógica
+    }
+
+    protected override void CancelarTarea()
+    {
+        CancelarBase();
+        talking = false;
+        girando = false;
+
+        var controller = player?.GetComponent<PlayerController>();
+        if (controller != null)
+            controller.playerOcupado = false;
+    }
 
     public void FinalBueno()
     {
-        girando=false;
-        taskFeedbackCanvas.PlayWin();
-        Debug.Log("Final Bueno");
+        if (tareaAcabada) return;
 
-        player.GetComponent<PlayerController>().playerOcupado = false; 
-            taskExclamation.SetActive(false);
-            player.GetComponent<PlayerController>().playerOcupado = false;
-            talking = false;
-            alrreadyTalked = true;
-            taskmanager.CompletarTarea(this.gameObject);
+        girando = false;
+        talking = false;
+        alreadyTalked = true;
+        tareaAcabada = true;
 
+        taskFeedbackCanvas?.PlayWin();
+
+        var controller = player?.GetComponent<PlayerController>();
+        if (controller != null)
+            controller.playerOcupado = false;
+
+        CompletarTarea();
     }
 
     public void FinalMalo()
     {
+        if (tareaAcabada) return;
+
         girando = false;
-        taskFeedbackCanvas.PlayLose();
-        Debug.Log("Final Malo");    
-        player.GetComponent<PlayerController>().playerOcupado = false;
-            talking = false;
+        talking = false;
 
+        taskFeedbackCanvas?.PlayLose();
+
+        var controller = player?.GetComponent<PlayerController>();
+        if (controller != null)
+            controller.playerOcupado = false;
+
+        CancelarTarea();
     }
-
-
-    
-
 
     private void MezclarLista(List<NPCConversation> list)
     {
-        if (list.Count == 1) { return; }    
+        if (list.Count <= 1) return;
+
         for (int i = list.Count - 1; i > 0; i--)
         {
             int j = Random.Range(0, i + 1);
@@ -196,4 +168,17 @@ public class NPCsConversation : MonoBehaviour
         }
     }
 
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+        if (other.CompareTag("TaskPlayer"))
+            playerCerca = true;
+    }
+
+    protected override void OnTriggerExit(Collider other)
+    {
+        base.OnTriggerExit(other);
+        if (other.CompareTag("TaskPlayer"))
+            playerCerca = false;
+    }
 }
