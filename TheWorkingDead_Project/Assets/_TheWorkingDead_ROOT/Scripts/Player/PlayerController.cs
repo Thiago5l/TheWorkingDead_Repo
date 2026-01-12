@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     #region General Variables
     [Header("Editor References")]
     [SerializeField] Transform camTransform; //ref  transform cámara
-    
+
     [SerializeField] float TaskDetectorRad;
     [SerializeField] LayerMask interactablesLayer;
 
@@ -30,14 +30,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("task parametres")]
     public bool playerOcupado;
-    public bool  playerCerca;
+    public bool playerCerca;
     public GameObject TaskCollider;
     public LayerMask taskLayer;
 
     [Header("sprint parametres")]
-    [SerializeField]public float energeticas = 1;
-    [SerializeField]public float sprintspeed = 10f;
-    [SerializeField]public float sprinttime = 3f;
+    [SerializeField] public float sprintspeed = 10f;
+    [SerializeField] public float sprinttime = 3f;
     public bool isSprinting;
     [SerializeField] EnergeticasUI energeticasUI;
     [SerializeField] Canvas EstaminaUI;
@@ -45,9 +44,24 @@ public class PlayerController : MonoBehaviour
     float sprintTimer;
     [SerializeField] Image EstaminaDelayedImage; // la barra roja
     [SerializeField] float delaySpeed = 2f; // velocidad con la que la barra roja sigue
-    //[SerializeField] public GameObject sprintVFX;
-    //variables referencia propias o internas
+    [SerializeField] public GameObject sprintVFX;
 
+    [Header("snack parametres")]
+    [SerializeField] Snacks_UI snacks_UI;
+    [SerializeField] Image snackfill;
+    [SerializeField] public float snackzombiedadspeed = 2;
+    [SerializeField] public float snacktime = 0;
+    [SerializeField] float snackTimer;
+    [SerializeField] OviedadZombie obviedadZombie;
+    [SerializeField] public bool snackusado = false;
+
+    [Header("resources")]
+    [SerializeField] public float energeticas = 1;
+    [SerializeField] public int snacks = 1;
+    [SerializeField] public float coins = 1;
+
+    [Header("aires")]
+    [SerializeField] public int airesapagados = 0;
 
     Rigidbody PlayerRB;//ref a rigid boddy
     Vector2 moveImput;//almacén imput mov
@@ -58,11 +72,11 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         PlayerRB = GetComponent<Rigidbody>();
-        if(camTransform == null) camTransform = Camera.main.transform; //busca la cámara main si no tiene cam asignada
+        if (camTransform == null) camTransform = Camera.main.transform; //busca la cámara main si no tiene cam asignada
         PlayerRB.freezeRotation = true; //congelar rotación de rigid body
         speedcontainer = speed;
         speedbase=speed;
-        //sprintVFX.SetActive(false);
+        sprintVFX.SetActive(false);
     }
 
 
@@ -71,7 +85,14 @@ public class PlayerController : MonoBehaviour
     {
         TaskCollider= GameObject.FindGameObjectWithTag("TaskPlayer");
         energeticasUI.SetEnergeticas((int)energeticas);
+        snacks_UI.SetSnacks((int)snacks);
         EstaminaUI.enabled = false;
+        snackTimer = snacktime;
+        int snackIndex = snacks - 1; // si snacks = 3 -> índice = 2 (último)
+        if (snackIndex >= 0 && snackIndex < snacks_UI.icons.Count)
+            snackfill = snacks_UI.icons[snackIndex].GetComponent<Image>();
+        else
+            snackfill = null;
     }
 
     // Update is called once per frame
@@ -130,7 +151,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if(GroundCheck != null)
+        if (GroundCheck != null)
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(GroundCheck.position, groundCheckRadius);
@@ -147,7 +168,7 @@ public class PlayerController : MonoBehaviour
 
     void HandleMovement()
     {
-        
+
         //almacenar dirección z + x de la cámara
         Vector3 cameraForward = Camera.main.transform.forward;//almacena el origen frontal de la cámara
         Vector3 cameraRight = Camera.main.transform.right;//almacena el origen lateral de la cámara
@@ -168,15 +189,15 @@ public class PlayerController : MonoBehaviour
     void HandleRotation()
     {
         //si no existe imput, cerramos esta aplicación para ahorrar memoria
-        if(moveImput == Vector2.zero) return;
+        if (moveImput == Vector2.zero) return;
 
         //hay que revisar la dirección de movimiento actual del rigidbody
         Vector3 moveDirection = new Vector3(PlayerRB.linearVelocity.x, 0, PlayerRB.linearVelocity.z);
-        if (moveDirection == Vector3.zero ) return;
+        if (moveDirection == Vector3.zero) return;
 
         //almacenar la dirección del personaje según la dirección a la que se está moviendo
         Quaternion targetRotation = Quaternion.LookRotation(moveDirection); //si la dirección cambia bruscamente gira solo a esa dirección
-        
+
         //se aplica el giro
         //suavizar el efecto del giro mediante interpolación de angulos
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotSpeed * Time.fixedDeltaTime);//el fixed no es necesario pero es una capa de seguridad
@@ -189,58 +210,115 @@ public class PlayerController : MonoBehaviour
         //elemento de visualización en editor opcional
 
     }
-    //#region sprint
-    //Coroutine sprintCoroutine;
-    //public void OnSprint(InputAction.CallbackContext context)
-    //{
-    //    if (context.performed)
-    //    {
-    //        if (energeticas <= 0 || isSprinting) return;
-    //        EstaminaUI.enabled = true;
-    //        sprintVFX.SetActive(true);
-    //        isSprinting = true;
-    //        speedcontainer = sprintspeed;
-    //        sprintTimer = sprinttime; // inicializa el temporizador
+    #region sprint
+    Coroutine sprintCoroutine;
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (energeticas <= 0 || isSprinting) return;
+            EstaminaUI.enabled = true;
+            sprintVFX.SetActive(true);
+            isSprinting = true;
+            speedcontainer = sprintspeed;
+            sprintTimer = sprinttime; // inicializa el temporizador
 
-    //        sprintCoroutine = StartCoroutine(StopSprintCoroutine());
-    //    }
+            sprintCoroutine = StartCoroutine(StopSprintCoroutine());
+        }
 
-    //    if (context.canceled)
-    //    {
-    //        StopSprint();
-    //    }
-    //}
+        if (context.canceled)
+        {
+            StopSprint();
+        }
+    }
 
-    //void StopSprint()
-    //{
-    //    if (!isSprinting) return;
+    void StopSprint()
+    {
+        if (!isSprinting) return;
 
-    //    isSprinting = false;
-    //    speedcontainer = speedbase;
+        isSprinting = false;
+        speedcontainer = speedbase;
 
-    //    if (sprintCoroutine != null)
-    //    {
-    //        StopCoroutine(sprintCoroutine);
-    //        sprintCoroutine = null;
-    //    }
+        if (sprintCoroutine != null)
+        {
+            StopCoroutine(sprintCoroutine);
+            sprintCoroutine = null;
+        }
 
-    //    EstaminaUI.enabled = false;
-    //    sprintVFX.SetActive(false);
-    //    EstaminaFillImage.fillAmount = 1f;
-    //    if (EstaminaDelayedImage != null)
-    //        EstaminaDelayedImage.fillAmount = 1f;
+        EstaminaUI.enabled = false;
+        sprintVFX.SetActive(false);
+        EstaminaFillImage.fillAmount = 1f;
+        if (EstaminaDelayedImage != null)
+            EstaminaDelayedImage.fillAmount = 1f;
 
-    //    energeticas--;
-    //    energeticasUI.SetEnergeticas((int)energeticas);
-    //}
+        energeticas--;
+        energeticasUI.SetEnergeticas((int)energeticas);
+    }
 
 
-    //IEnumerator StopSprintCoroutine()
-    //{
-    //    yield return new WaitForSeconds(sprinttime);
-    //    StopSprint();
-    //}
-    //#endregion
+    IEnumerator StopSprintCoroutine()
+    {
+        yield return new WaitForSeconds(sprinttime);
+        StopSprint();
+    }
+    #endregion
+    #region snack
+    public void snack(InputAction.CallbackContext context)
+    {
+            if (!context.performed) return;
+            if (snackusado || snacks <= 0) return;
+
+            snackusado = true;
+
+            // Obtener el índice del último snack disponible
+            int snackIndex = snacks - 1; // si snacks = 3 -> índice = 2 (último)
+        if (snackIndex >= 0 && snackIndex < snacks_UI.icons.Count)
+            snackfill = snacks_UI.icons[snackIndex].GetComponent<Image>();
+        else
+            snackfill = null;
+
+        snackTimer = snacktime;
+            StartCoroutine(SnackCoroutine());
+            /////////
+        if (!context.performed) return;
+        {
+            Debug.Log("snackusado");
+
+            if (!snackusado && snacks>0)
+            {
+                snackTimer=snacktime;
+                Debug.Log("snackconsumido");
+                snackusado = true;
+                StartCoroutine(SnackCoroutine());
+            }
+        }
+    }
+    IEnumerator SnackCoroutine()
+    {
+        snackTimer = snacktime;
+        obviedadZombie.ZombiedadSpeed = snackzombiedadspeed;
+
+        // Mientras dure el snack
+        while (snackTimer > 0f)
+        {
+            snackTimer -= Time.deltaTime;
+            if (snackfill != null)
+                snackfill.fillAmount = snackTimer / snacktime;
+            yield return null;
+        }
+
+        // Reset del efecto
+        obviedadZombie.resetspeed();
+        snacks--;
+        snacks_UI.SetSnacks((int)snacks);
+        snackusado = false;
+
+        // seguridad
+        if (snackfill != null)
+            snackfill.fillAmount = 0f;
+    }
+
+    #endregion
     #region imput methods
     public void OnMove (InputAction.CallbackContext context) //context bontón físico
     {

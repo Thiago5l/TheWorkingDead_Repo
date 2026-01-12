@@ -26,10 +26,9 @@ public class FadeCanvas : MonoBehaviour
     private bool fadeEnabled = false;
 
     [Header("Brazo caido")]
-    public GameObject managerBrazo;
+    [SerializeField] private GameObject brazoL;
+    public GameObject pfBrazoCaido;
     public bool brazoYaCaido;
-
-
     private bool loseTriggered = false;
 
 
@@ -69,9 +68,6 @@ public class FadeCanvas : MonoBehaviour
 
         Player.GetComponent<OviedadZombie>().Zombiedad -= penalizacion;
         StartFade(loseColor);
-
-        managerBrazo.GetComponent<BrazoManager>().BrazoSeCae();
-        // OPCIONAL: permitir perder otra vez tras el fade
         StartCoroutine(ResetLose());
     }
     private IEnumerator ResetLose()
@@ -95,17 +91,6 @@ public class FadeCanvas : MonoBehaviour
 
         currentFade = StartCoroutine(Fade(color));
     }
-
-    //private void StartFade(Color color)
-    //{
-    //    if (!fadeEnabled) return;
-
-    //    if (currentFade != null)
-    //        StopCoroutine(currentFade);
-
-    //    currentFade = StartCoroutine(Fade(color));
-    //}
-
 
     private IEnumerator Fade(Color color)
     {
@@ -142,36 +127,4 @@ public class FadeCanvas : MonoBehaviour
             currentFade = null;
         }
     }
-
-
-    //private IEnumerator Fade(Color color)
-    //{
-    //    fadeImage.color = color;
-    //    canvasGroup.blocksRaycasts = true;
-
-    //    float t = 0f;
-
-    //    // Fade In
-    //    while (t < fadeDuration)
-    //    {
-    //        t += Time.deltaTime;
-    //        canvasGroup.alpha = Mathf.Lerp(0f, maxAlpha, t / fadeDuration);
-    //        yield return null;
-    //    }
-
-    //    canvasGroup.alpha = maxAlpha;
-    //    t = 0f;
-
-    //    // Fade Out
-    //    while (t < fadeDuration)
-    //    {
-    //        t += Time.deltaTime;
-    //        canvasGroup.alpha = Mathf.Lerp(maxAlpha, 0f, t / fadeDuration);
-    //        yield return null;
-    //    }
-
-    //    canvasGroup.alpha = 0f;
-    //    canvasGroup.blocksRaycasts = false;
-    //    currentFade = null;
-    //}
 }

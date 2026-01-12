@@ -2,170 +2,130 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Ordenador : MonoBehaviour
+public class OrdenadorTask : TaskBase
 {
-    #region Tareas aleatorias
-    [SerializeField] public GameObject objectTareas;
-    private TareasAleatorias tareasScript;
-    #endregion
+    [Header("Bar")]
+    [SerializeField] private float startValue = 25f;
+    [SerializeField] private float sumValue = 10f;
+    [SerializeField] private float restValue = 5f;
+    [SerializeField] private float tickTime = 0.5f;
+    [SerializeField] private Image taskBar;
 
-    #region Variables generales
-    [SerializeField] float ValueBarStart = 25;
-    [SerializeField] float SumValue;
-    [SerializeField] Slider TaskBar;
-    [SerializeField] GameObject Player;
-    [SerializeField] float restValue;
-    [SerializeField] float time;
-    [SerializeField] Material Mat;
-    [SerializeField] Material OutLine;
-    [SerializeField] public bool PlayerCerca;
-    [SerializeField] bool TareaActiva;
-    [SerializeField] bool TareaAcabada;
-    private float save;
-    [SerializeField] private float WinValue;
-    [SerializeField] public Image spacebarsprite;
-    [SerializeField] private float visibleTime = 0.2f;
-    [SerializeField] private float WinThreshold = 60f; // valor para completar la tarea
-    [SerializeField] public GameObject CanvasInteractableKey;
+    [Header("Win Zone")]
+    [SerializeField] private float winThreshold = 60f;
+    [SerializeField] private float winZoneMin = 65f;
+    [SerializeField] private float winZoneMax = 80f;
+
+    [Header("Feedback")]
+    [SerializeField] private Image spacebarSprite;
+    [SerializeField] private float flashTime = 0.2f;
     [SerializeField] private FadeCanvas taskFeedbackCanvas;
-    #endregion
 
-    void Start()
+    private float value;
+    private float winValue;
+
+    protected override void Start()
     {
-        tareasScript = objectTareas.GetComponent<TareasAleatorias>();
-        TareaActiva = true;
-        PlayerCerca = false;
-        TareaAcabada = false;
-        save = ValueBarStart;
-        TaskBar.value = ValueBarStart;
-        CanvasInteractableKey.SetActive(false);
+        base.Start();
+        value = startValue;
+        taskBar.fillAmount = startValue;
+        taskBar.gameObject.SetActive(false);
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override void IniciarTarea()
     {
-        if (other.CompareTag("TaskPlayer") && !TareaAcabada)
-        {
-            PlayerCerca = true;
-            GetComponent<MeshRenderer>().material = OutLine;
-            CanvasInteractableKey.SetActive(true);
-        }
+        value = startValue;
+        winValue = 0f;
+
+        taskBar.gameObject.SetActive(true);
+        UpdateBar();
+
+        StartCoroutine(DrainRoutine());
     }
 
-    private void OnTriggerExit(Collider other)
+    protected override void CancelarTarea()
     {
-        if (other.CompareTag("TaskPlayer") && !TareaAcabada)
-        {
-            PlayerCerca = false;
-            GetComponent<MeshRenderer>().material = Mat;
-            CanvasInteractableKey.SetActive(false);
-        }
+        CancelarBase();
+
+        value = startValue;
+        winValue = 0f;
+
+        taskBar.gameObject.SetActive(false);
+        UpdateBar();
     }
 
-    void Update()
+    private void Update()
     {
-        // Actualizar si la tarea sigue activa
-        TareaActiva = PlayerCerca && !TareaAcabada;
+        if (!interactuando || tareaAcabada) return;
 
-        // Actualizar barra
-        TaskBar.value = ValueBarStart;
-
-        // Completar tarea
-        if (WinValue >= WinThreshold && !TareaAcabada)
-        {
-            taskFeedbackCanvas.PlayWin();
-            CanvasInteractableKey.SetActive(false);
-            TareaAcabada = true;
-            Player.GetComponent<PlayerController>().playerOcupado = false;
-
-            ValueBarStart = save;
-            TaskBar.gameObject.SetActive(false);
-            GetComponent<MeshRenderer>().material = Mat;
-
-            // Completar en TareasAleatorias
-            tareasScript.CompletarTarea(this.gameObject);
-
-            StopAllCoroutines();
-            WinValue = 0;
-            TareaActiva = false;
-            this.enabled = false;
-        }
-
-        // Incremento de WinValue cuando la barra está en rango
-        if (ValueBarStart > 65 && ValueBarStart < 80)
-        {
-            StartCoroutine(IncrementWinValue(0.5f));
-        }
-        else
-        {
-            WinValue = 0;
-        }
-
-        // Fallo de tarea
-        if (ValueBarStart <= 0)
-        {
-            taskFeedbackCanvas.PlayLose();
-            Player.GetComponent<PlayerController>().playerOcupado = false;
-            ValueBarStart = save;
-            TareaActiva = false;
-            TaskBar.gameObject.SetActive(false);
-            WinValue = 0;
-            StopAllCoroutines();
-        }
-
-        // Limitar barra
-        if (ValueBarStart > 100) ValueBarStart = 100;
-    }
-
-    public void Interactuar()
-    {
-        if (TareaActiva && !TareaAcabada)
-        {
-            CanvasInteractableKey.SetActive(false);
-            Player.GetComponent<PlayerController>().playerOcupado = true;
-            TaskBar.gameObject.SetActive(true);
-            StartCoroutine(DecrementTaskBar(time));
-        }
+        UpdateBar();
+        CheckWinZone();
+        CheckFail();
     }
 
     public void TaskCode()
     {
-        if (TareaActiva && !TareaAcabada)
+        if (!interactuando || tareaAcabada) return;
+
+        value += sumValue;
+        value = Mathf.Clamp(value, 0f, 100f);
+
+        StartCoroutine(FlashRoutine());
+        UpdateBar();
+    }
+
+    private IEnumerator DrainRoutine()
+    {
+        while (interactuando && value > 0f && value < 100f)
         {
-            ValueBarStart += SumValue;
-            if (ValueBarStart > 100) ValueBarStart = 100;
-            StartCoroutine(FlashRoutine());
+            yield return new WaitForSeconds(tickTime);
+            value -= restValue;
+            UpdateBar();
         }
+    }
+
+    private void CheckWinZone()
+    {
+        if (value > winZoneMin && value < winZoneMax)
+        {
+            winValue += Time.deltaTime;
+
+            if (winValue >= winThreshold)
+            {
+                CompleteOrdenadorTask();
+            }
+        }
+        else
+        {
+            winValue = 0f;
+        }
+    }
+
+    private void CheckFail()
+    {
+        if (value <= 0f)
+        {
+            taskFeedbackCanvas.PlayLose();
+            CancelarTarea();
+        }
+    }
+
+    private void CompleteOrdenadorTask()
+    {
+        taskFeedbackCanvas.PlayWin();
+        taskBar.gameObject.SetActive(false);
+        CompletarTarea();
+    }
+
+    private void UpdateBar()
+    {
+        taskBar.fillAmount = Mathf.Clamp01(value / 100f);
     }
 
     private IEnumerator FlashRoutine()
     {
-        spacebarsprite.fillAmount = 1f;
-        yield return new WaitForSeconds(visibleTime);
-        spacebarsprite.fillAmount = 0f;
-    }
-
-    private IEnumerator IncrementWinValue(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        WinValue += 1;
-    }
-
-    private IEnumerator DecrementTaskBar(float duration)
-    {
-        while (ValueBarStart > 0 && ValueBarStart < 100)
-        {
-            yield return new WaitForSeconds(duration);
-            ValueBarStart -= restValue;
-        }
-    }
-    public void cerrar()
-    {
-        Player.GetComponent<PlayerController>().playerOcupado = false;
-        ValueBarStart = save;
-        TareaActiva = false;
-        TaskBar.gameObject.SetActive(false);
-        WinValue = 0;
-        StopAllCoroutines();
-        CanvasInteractableKey.SetActive(true);
+        spacebarSprite.fillAmount = 1f;
+        yield return new WaitForSeconds(flashTime);
+        spacebarSprite.fillAmount = 0f;
     }
 }
