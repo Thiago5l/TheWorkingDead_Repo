@@ -5948,6 +5948,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1101880788}
     m_Modifications:
+    - target: {fileID: 1049851401670576134, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1049851401670576134, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1049851401670576134, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1041687737}
+    - target: {fileID: 1049851401670576134, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1049851401670576134, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PresionarBotonPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 1049851401670576134, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SaimonSaysTaskUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1049851401670576134, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2404219471276129248, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6027,6 +6055,102 @@ PrefabInstance:
     - target: {fileID: 2404219471276129248, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5857672981737669601, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5857672981737669601, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5857672981737669601, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1041687737}
+    - target: {fileID: 5857672981737669601, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5857672981737669601, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PresionarBotonPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 5857672981737669601, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SaimonSaysTaskUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5857672981737669601, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5857672981737669601, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150703813875941030, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150703813875941030, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150703813875941030, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1041687737}
+    - target: {fileID: 7150703813875941030, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150703813875941030, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PresionarBotonPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150703813875941030, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SaimonSaysTaskUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150703813875941030, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150703813875941030, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7614371274454149100, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7614371274454149100, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7614371274454149100, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1041687737}
+    - target: {fileID: 7614371274454149100, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7614371274454149100, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PresionarBotonPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7614371274454149100, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SaimonSaysTaskUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7614371274454149100, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7614371274454149100, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7732268999494447495, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
       propertyPath: m_Name
@@ -7706,6 +7830,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4874585222054549714, guid: 93c3f28675ec9d94d8a27b375dc1f18b, type: 3}
   m_PrefabInstance: {fileID: 1237900352}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &190267657 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7150703813875941030, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+  m_PrefabInstance: {fileID: 153596554}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &191038439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7768,6 +7903,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5995226680237096359, guid: 6357f46476f1bfa41ba284235646d0a8, type: 3}
   m_PrefabInstance: {fileID: 191038439}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &191319154 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5857672981737669601, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+  m_PrefabInstance: {fileID: 153596554}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &192563888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8888,7 +9034,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1041687735}
   - {fileID: 127524296}
   - {fileID: 4857247679077546433}
   - {fileID: 1849098175}
@@ -11560,6 +11705,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1169685547649474326, guid: 473fc9917e087f9428dd8601e5347e2f, type: 3}
   m_PrefabInstance: {fileID: 1455240604}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &288849214 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1049851401670576134, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+  m_PrefabInstance: {fileID: 153596554}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &293840308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36041,7 +36197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7192288205431524021, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.9
+      value: -26.26
       objectReference: {fileID: 0}
     - target: {fileID: 7192288205431524021, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: m_LocalPosition.y
@@ -41268,6 +41424,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2d21b1abca2d6847a16706458af9818, type: 3}
+--- !u!114 &984870781 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7614371274454149100, guid: 1e0738b267f51e24bb0e9d488c1c9986, type: 3}
+  m_PrefabInstance: {fileID: 153596554}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &988828254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47690,11 +47857,15 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 227846886}
+    m_TransformParent: {fileID: 1984235137}
     m_Modifications:
     - target: {fileID: 1186187732323888109, guid: 882d26da8ba2a1347aa449bf5ea9126e, type: 3}
       propertyPath: m_Name
       value: "PF_M\xE1quina"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1186187732323888109, guid: 882d26da8ba2a1347aa449bf5ea9126e, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1963006322973028695, guid: 882d26da8ba2a1347aa449bf5ea9126e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -47743,6 +47914,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1186187732323888109, guid: 882d26da8ba2a1347aa449bf5ea9126e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1041687737}
+    - targetCorrespondingSourceObject: {fileID: 1186187732323888109, guid: 882d26da8ba2a1347aa449bf5ea9126e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1041687740}
+    - targetCorrespondingSourceObject: {fileID: 1186187732323888109, guid: 882d26da8ba2a1347aa449bf5ea9126e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1041687741}
   m_SourcePrefab: {fileID: 100100000, guid: 882d26da8ba2a1347aa449bf5ea9126e, type: 3}
 --- !u!4 &1041687735 stripped
 Transform:
@@ -47770,16 +47947,131 @@ MonoBehaviour:
   player: {fileID: 200637151}
   tareaAcabada: 0
   playerCerca: 0
-  buttonsList: []
+  buttonsList:
+  - button: {fileID: 288849214}
+    normalColor: {fileID: 0}
+    highlightColor: {fileID: 0}
+  - button: {fileID: 984870781}
+    normalColor: {fileID: 0}
+    highlightColor: {fileID: 0}
+  - button: {fileID: 190267657}
+    normalColor: {fileID: 0}
+    highlightColor: {fileID: 0}
+  - button: {fileID: 191319154}
+    normalColor: {fileID: 0}
+    highlightColor: {fileID: 0}
   intOrdenBotonesPlayer: 
   showTime: 0.5
   pauseTime: 0.3
   sequence: 
   secuenciaDeBotones: []
-  "tama\xF1oSequence": 0
+  "tama\xF1oSequence": 3
   rondasCompletadas: 0
-  rondasACompletar: 0
+  rondasACompletar: 1
   taskFeedbackCanvas: {fileID: 1835138751}
+--- !u!65 &1041687740
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041687736}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.04552482, y: 0.022538226, z: 0.027512772}
+  m_Center: {x: 0.009097372, y: 0.0014947136, z: 0.013789308}
+--- !u!114 &1041687741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041687736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: b170387b0d1a5e7469ffe8a8efcc2e64, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8bcc2bc2-d181-4c20-a1a0-f698d0a47466
+    m_ActionName: 'Gameplay/move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1041687737}
+        m_TargetAssemblyTypeName: SaimonSaysTaskUI, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f4849ce9-a55d-4440-94ca-83be3d2666d5
+    m_ActionName: 'Tareas/interactuar[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cb17e975-d734-4168-b93b-936ecddd7b50
+    m_ActionName: 'Tareas/SpaceSmash[/Keyboard/space,/Keyboard/f,/Keyboard/g]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1f2560eb-b304-4d92-9b0c-17e5ec5cdac7
+    m_ActionName: 'Tareas/DobleSmash[/Keyboard/f,/Keyboard/g]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1849122844}
+        m_TargetAssemblyTypeName: PCTextTask, Assembly-CSharp
+        m_MethodName: cerrar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 10cda578-ff8d-4ecb-88c7-c250e168d16f
+    m_ActionName: 'Tareas/cerrar[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1f53e712-dfad-408d-a160-5e2086285e0b
+    m_ActionName: 'Gameplay/Sprint[/Keyboard/leftShift]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7769d754-1e4d-4bb7-9938-0b3a4b91bc24
+    m_ActionName: 'Gameplay/Snack[/Keyboard/q]'
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Tareas
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!4 &1041690696 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1624494776778927060, guid: 0036742faf72e864cb647df385445f6a, type: 3}
@@ -49435,15 +49727,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 829065586514752800, guid: 7e74ac08791321d4b8e22b7ca0653459, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5475998
+      value: -29.6124
       objectReference: {fileID: 0}
     - target: {fileID: 829065586514752800, guid: 7e74ac08791321d4b8e22b7ca0653459, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.614204
+      value: 4.6142035
       objectReference: {fileID: 0}
     - target: {fileID: 829065586514752800, guid: 7e74ac08791321d4b8e22b7ca0653459, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.0299854
+      value: 5.029985
       objectReference: {fileID: 0}
     - target: {fileID: 829065586514752800, guid: 7e74ac08791321d4b8e22b7ca0653459, type: 3}
       propertyPath: m_LocalRotation.w
@@ -82876,6 +83168,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4056219890795033574, guid: ab90c668b426af940b8bdd2a3ea6ce17, type: 3}
   m_PrefabInstance: {fileID: 1302239946}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1849122844 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1661657979252112283, guid: ab90c668b426af940b8bdd2a3ea6ce17, type: 3}
+  m_PrefabInstance: {fileID: 1302239946}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849122840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d586c9286a2bdd64a90fafe10a69c2c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PCTextTask
 --- !u!1001 &1851426710
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -88226,6 +88529,7 @@ Transform:
   - {fileID: 1635333684}
   - {fileID: 1075061144}
   - {fileID: 746938441}
+  - {fileID: 1041687735}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1984607318
@@ -92375,11 +92679,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7657352899040066940, guid: b566ec9a8592b514590876fc31104439, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5475996
+      value: -29.612398
       objectReference: {fileID: 0}
     - target: {fileID: 7657352899040066940, guid: b566ec9a8592b514590876fc31104439, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.614204
+      value: 4.6142035
       objectReference: {fileID: 0}
     - target: {fileID: 7657352899040066940, guid: b566ec9a8592b514590876fc31104439, type: 3}
       propertyPath: m_LocalPosition.z
