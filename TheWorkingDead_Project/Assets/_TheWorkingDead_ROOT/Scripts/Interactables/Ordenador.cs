@@ -1,3 +1,4 @@
+using DG.Tweening.Core.Easing;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +7,7 @@ public class Ordenador : MonoBehaviour
 {
     #region Tareas aleatorias
     [SerializeField] public GameObject objectTareas;
-    private TareasAleatorias tareasScript;
+    private TareasAleatorias taskmanager;
     #endregion
 
     #region Variables generales
@@ -28,17 +29,29 @@ public class Ordenador : MonoBehaviour
     [SerializeField] private float WinThreshold = 60f; // valor para completar la tarea
     [SerializeField] public GameObject CanvasInteractableKey;
     [SerializeField] private FadeCanvas taskFeedbackCanvas;
+    public bool tieneTarea;
     #endregion
+    public bool EstaEnListaDeTareas()
+    {
+        if (taskmanager == null)
+        {
+            Debug.LogWarning("TaskManager no asignado.");
+            return false;
+        }
 
+        // Devuelve true si este GameObject está en la lista de tareas pendientes
+        return taskmanager.OrdenTareas.Contains(this.gameObject);
+    }
     void Start()
     {
-        tareasScript = objectTareas.GetComponent<TareasAleatorias>();
+        taskmanager = objectTareas.GetComponent<TareasAleatorias>();
         TareaActiva = true;
         PlayerCerca = false;
         TareaAcabada = false;
         save = ValueBarStart;
         TaskBar.value = ValueBarStart;
         CanvasInteractableKey.SetActive(false);
+        tieneTarea = EstaEnListaDeTareas();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -82,7 +95,7 @@ public class Ordenador : MonoBehaviour
             GetComponent<MeshRenderer>().material = Mat;
 
             // Completar en TareasAleatorias
-            tareasScript.CompletarTarea(this.gameObject);
+            taskmanager.CompletarTarea(this.gameObject);
 
             StopAllCoroutines();
             WinValue = 0;

@@ -23,6 +23,15 @@
                     "processors": "",
                     "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Snack",
+                    "type": "Button",
+                    "id": "7769d754-1e4d-4bb7-9938-0b3a4b91bc24",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -162,10 +171,21 @@
                     "name": "",
                     "id": "40d08085-5c07-4b21-97ad-5db038ef5ccd",
                     "path": "<Keyboard>/leftShift",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3f610a93-4c18-4080-a7dc-46889bd33d3a",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Snack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

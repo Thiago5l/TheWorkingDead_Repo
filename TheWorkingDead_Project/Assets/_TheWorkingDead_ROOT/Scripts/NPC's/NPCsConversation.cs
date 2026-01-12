@@ -8,6 +8,7 @@ public class NPCsConversation : MonoBehaviour
     [SerializeField] public List<NPCConversation> conversationsList = new List<NPCConversation>();
     [SerializeField] public NPCConversation myConversation;
     [SerializeField] private bool playerCerca;
+    [SerializeField] private bool tieneTarea;
     [SerializeField] private bool canInteract = true;
     [SerializeField] public GameObject player;
     [SerializeField] public GameObject taskExclamation;
@@ -21,6 +22,17 @@ public class NPCsConversation : MonoBehaviour
     //[SerializeField] public GameObject objectTareas; 
     //private TareasAleatorias tareasScript;
 
+    private void Awake()
+    {
+        PlayerController controller = Object.FindFirstObjectByType<PlayerController>();
+        if (controller != null)
+            player = controller.gameObject;
+
+        if (taskFeedbackCanvas == null)
+            taskFeedbackCanvas = FindAnyObjectByType<FadeCanvas>();
+        if (taskmanager == null)
+            taskmanager = FindAnyObjectByType<TareasAleatorias>();
+    }
     void Start()
     {
         canvasinteractkey.SetActive(false);
@@ -32,31 +44,29 @@ public class NPCsConversation : MonoBehaviour
         talking = false;
         MezclarLista(conversationsList);
         //myConversation = conversationsList[0];
-
+        bool tieneTarea = EstaEnListaDeTareas();
 
     }
 
     void Update()
     {
-        if (playerCerca&&!alrreadyTalked)
+        tieneTarea = EstaEnListaDeTareas();
+        if (playerCerca&&!alrreadyTalked&&tieneTarea)
         {
             taskExclamation.SetActive(false);
             canvasinteractkey.SetActive(true);
         }
         else
         {
-            if (!alrreadyTalked)
+            if (!alrreadyTalked&&tieneTarea)
             {
                 canvasinteractkey.SetActive(false);
                 taskExclamation.SetActive(true); 
             }
             else
             {
-                if (alrreadyTalked)
-                {
                     taskExclamation.SetActive(false);
                     canvasinteractkey.SetActive(false);
-                }
             }
         }
         if (girando && player != null)
@@ -79,6 +89,18 @@ public class NPCsConversation : MonoBehaviour
             }
         }
     }
+    public bool EstaEnListaDeTareas()
+    {
+        if (taskmanager == null)
+        {
+            Debug.LogWarning("TaskManager no asignado.");
+            return false;
+        }
+
+        // Devuelve true si este GameObject está en la lista de tareas pendientes
+        return taskmanager.OrdenTareas.Contains(this.gameObject);
+    }
+
 
     public void OnTriggerEnter(Collider other)
     {
@@ -98,28 +120,40 @@ public class NPCsConversation : MonoBehaviour
 
     public void Interact()
     {
-        Vector3 direction = player.transform.position - transform.position;
-        // Crea la rotación deseada (mirando al jugador)
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        // Aplica el giro suave
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        Debug.Log("hablando");
+
+        if (player == null)
+        {
+            Debug.LogError("Player no asignado");
+            return;
+        }
+
+        if (conversationsList == null || conversationsList.Count == 0)
+        {
+            Debug.LogError("No hay conversaciones");
+            return;
+        }
 
         myConversation = conversationsList[0];
-        if (playerCerca && myConversation != null && !talking && !alrreadyTalked)
+
+        if (playerCerca && myConversation != null && !talking && !alrreadyTalked && tieneTarea)
         {
             girando = true;
             MezclarLista(conversationsList);
-            
-            ConversationManager.Instance.StartConversation(myConversation);
-            talking = true;
-            player.GetComponent<PlayerController>().playerOcupado = true;
 
-        }
-        else
-        {
-            Debug.LogWarning("No hay conversación asignada");
+            if (ConversationManager.Instance != null)
+                ConversationManager.Instance.StartConversation(myConversation);
+            else
+                Debug.LogError("ConversationManager.Instance es NULL");
+
+            talking = true;
+
+            var controller = player.GetComponent<PlayerController>();
+            if (controller != null)
+                controller.playerOcupado = true;
         }
     }
+
 
     public void FinalBueno()
     {
