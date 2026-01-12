@@ -7,6 +7,9 @@ public abstract class TaskBase : MonoBehaviour
     [SerializeField] protected Material outline;
     [SerializeField] protected GameObject canvasInteractKey;
     [SerializeField] protected GameObject player;
+    [SerializeField] Renderer objRenderer;
+    [SerializeField] Color colorCerca = Color.green;
+    [SerializeField] Color colorLejos = Color.black;
 
     protected bool playerCerca;
     protected bool tareaAcabada;
@@ -23,6 +26,7 @@ public abstract class TaskBase : MonoBehaviour
             playerCerca = true;
             GetComponent<MeshRenderer>().material = outline;
             canvasInteractKey.SetActive(true);
+            CambiarColorOutline(colorCerca);
         }
     }
 
@@ -33,6 +37,16 @@ public abstract class TaskBase : MonoBehaviour
             playerCerca = false;
             GetComponent<MeshRenderer>().material = mat;
             canvasInteractKey.SetActive(false);
+            CambiarColorOutline(colorLejos);
+        }
+    }
+    void CambiarColorOutline(Color color)
+    {
+        Material[] mats = objRenderer.materials;
+
+        if (mats.Length > 1)
+        {
+            mats[1].SetColor("_ContourColor", color);
         }
     }
 
