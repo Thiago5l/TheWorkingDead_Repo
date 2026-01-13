@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
 
     #region General Variables
     [Header("Editor References")]
-    [SerializeField] Transform camTransform; //ref  transform c·mara
-    
+    [SerializeField] Transform camTransform; //ref  transform c√°mara
+
     [SerializeField] float TaskDetectorRad;
     [SerializeField] LayerMask interactablesLayer;
 
@@ -24,20 +24,19 @@ public class PlayerController : MonoBehaviour
 
 
     [Header("jump parametres")]
-    [SerializeField] Transform GroundCheck; //ref posiciÛn desde la que se detecta el suelo
-    [SerializeField] float groundCheckRadius = 0.2f; //rando detecciÛn
-    [SerializeField] LayerMask groundLayer; //capa detecciÛn suelo
+    [SerializeField] Transform GroundCheck; //ref posici√≥n desde la que se detecta el suelo
+    [SerializeField] float groundCheckRadius = 0.2f; //rando detecci√≥n
+    [SerializeField] LayerMask groundLayer; //capa detecci√≥n suelo
 
     [Header("task parametres")]
     public bool playerOcupado;
-    public bool  playerCerca;
+    public bool playerCerca;
     public GameObject TaskCollider;
     public LayerMask taskLayer;
 
     [Header("sprint parametres")]
-    [SerializeField]public float energeticas = 1;
-    [SerializeField]public float sprintspeed = 10f;
-    [SerializeField]public float sprinttime = 3f;
+    [SerializeField] public float sprintspeed = 10f;
+    [SerializeField] public float sprinttime = 3f;
     public bool isSprinting;
     [SerializeField] EnergeticasUI energeticasUI;
     [SerializeField] Canvas EstaminaUI;
@@ -45,21 +44,36 @@ public class PlayerController : MonoBehaviour
     float sprintTimer;
     [SerializeField] Image EstaminaDelayedImage; // la barra roja
     [SerializeField] float delaySpeed = 2f; // velocidad con la que la barra roja sigue
-    //[SerializeField] public GameObject sprintVFX;
-    //variables referencia propias o internas
+    [SerializeField] public GameObject sprintVFX;
 
+    [Header("snack parametres")]
+    [SerializeField] Snacks_UI snacks_UI;
+    [SerializeField] Image snackfill;
+    [SerializeField] public float snackzombiedadspeed = 2;
+    [SerializeField] public float snacktime = 0;
+    [SerializeField] float snackTimer;
+    [SerializeField] OviedadZombie obviedadZombie;
+    [SerializeField] public bool snackusado = false;
+
+    [Header("resources")]
+    [SerializeField] public float energeticas = 1;
+    [SerializeField] public int snacks = 1;
+    [SerializeField] public float coins = 1;
+
+    [Header("aires")]
+    [SerializeField] public int airesapagados = 0;
 
     Rigidbody PlayerRB;//ref a rigid boddy
-    Vector2 moveImput;//almacÈn imput mov
-    bool isGrounded;//determina si est·s tocando el suelo
+    Vector2 moveImput;//almac√©n imput mov
+    bool isGrounded;//determina si est√°s tocando el suelo
     bool TaskDetector;
     #endregion
 
     private void Awake()
     {
         PlayerRB = GetComponent<Rigidbody>();
-        if(camTransform == null) camTransform = Camera.main.transform; //busca la c·mara main si no tiene cam asignada
-        PlayerRB.freezeRotation = true; //congelar rotaciÛn de rigid body
+        if (camTransform == null) camTransform = Camera.main.transform; //busca la c√°mara main si no tiene cam asignada
+        PlayerRB.freezeRotation = true; //congelar rotaci√≥n de rigid body
         speedcontainer = speed;
         speedbase=speed;
         //sprintVFX.SetActive(false);
@@ -71,7 +85,14 @@ public class PlayerController : MonoBehaviour
     {
         TaskCollider= GameObject.FindGameObjectWithTag("TaskPlayer");
         energeticasUI.SetEnergeticas((int)energeticas);
+        snacks_UI.SetSnacks((int)snacks);
         EstaminaUI.enabled = false;
+        snackTimer = snacktime;
+        int snackIndex = snacks - 1; // si snacks = 3 -> √≠ndice = 2 (√∫ltimo)
+        if (snackIndex >= 0 && snackIndex < snacks_UI.icons.Count)
+            snackfill = snacks_UI.icons[snackIndex].GetComponent<Image>();
+        else
+            snackfill = null;
     }
 
     // Update is called once per frame
@@ -109,11 +130,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Verifica si el objeto est· en la layer deseada
+        // Verifica si el objeto est√° en la layer deseada
         if (((1 << other.gameObject.layer) & taskLayer) != 0)
         {
             playerCerca = true;
-            Debug.Log("Jugador entrÛ en el ·rea de Task (por layer)");
+            Debug.Log("Jugador entr√≥ en el √°rea de Task (por layer)");
         }
     }
 
@@ -122,7 +143,7 @@ public class PlayerController : MonoBehaviour
         if (((1 << other.gameObject.layer) & taskLayer) != 0)
         {
             playerCerca = false;
-            Debug.Log("Jugador saliÛ del ·rea de Task (por layer)");
+            Debug.Log("Jugador sali√≥ del √°rea de Task (por layer)");
         }
     }
 
@@ -130,7 +151,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if(GroundCheck != null)
+        if (GroundCheck != null)
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(GroundCheck.position, groundCheckRadius);
@@ -147,38 +168,38 @@ public class PlayerController : MonoBehaviour
 
     void HandleMovement()
     {
-        
-        //almacenar direcciÛn z + x de la c·mara
-        Vector3 cameraForward = Camera.main.transform.forward;//almacena el origen frontal de la c·mara
-        Vector3 cameraRight = Camera.main.transform.right;//almacena el origen lateral de la c·mara
 
-        //anular la orientaciÛn e y antes del c·lculo de la orientaciÛn de la c·mara aplicada a l movimiento
+        //almacenar direcci√≥n z + x de la c√°mara
+        Vector3 cameraForward = Camera.main.transform.forward;//almacena el origen frontal de la c√°mara
+        Vector3 cameraRight = Camera.main.transform.right;//almacena el origen lateral de la c√°mara
+
+        //anular la orientaci√≥n e y antes del c√°lculo de la orientaci√≥n de la c√°mara aplicada a l movimiento
         cameraForward.y = 0;
         cameraRight.y = 0;
-        cameraForward.Normalize(); //el valor del float es m·ximo 1 por lo que no afecta a la multiplicaciÛn de velocidad
-        cameraRight.Normalize(); //el valor del float es m·ximo 1 por lo que no afecta a la multiplicaciÛn de velocidad
+        cameraForward.Normalize(); //el valor del float es m√°ximo 1 por lo que no afecta a la multiplicaci√≥n de velocidad
+        cameraRight.Normalize(); //el valor del float es m√°ximo 1 por lo que no afecta a la multiplicaci√≥n de velocidad
 
-        //se calcula y almacena la direcciÛn x/z teniendo en cuenta la c·mara por el imput
+        //se calcula y almacena la direcci√≥n x/z teniendo en cuenta la c√°mara por el imput
         Vector3 moveDireccion = (cameraForward * moveImput.y + cameraRight * moveImput.x).normalized;
-        //una vez tenemos la direcciÛn +el imput se lo aplicamos al motor de aceleraciÛn del rigidbody
-        //todo esto sin afectar al eje y, porque eso se encargar· el salto
+        //una vez tenemos la direcci√≥n +el imput se lo aplicamos al motor de aceleraci√≥n del rigidbody
+        //todo esto sin afectar al eje y, porque eso se encargar√° el salto
         PlayerRB.linearVelocity = new Vector3(moveDireccion.x *speed, PlayerRB.linearVelocity.y, moveDireccion.z *speed);
     }
 
     void HandleRotation()
     {
-        //si no existe imput, cerramos esta aplicaciÛn para ahorrar memoria
-        if(moveImput == Vector2.zero) return;
+        //si no existe imput, cerramos esta aplicaci√≥n para ahorrar memoria
+        if (moveImput == Vector2.zero) return;
 
-        //hay que revisar la direcciÛn de movimiento actual del rigidbody
+        //hay que revisar la direcci√≥n de movimiento actual del rigidbody
         Vector3 moveDirection = new Vector3(PlayerRB.linearVelocity.x, 0, PlayerRB.linearVelocity.z);
-        if (moveDirection == Vector3.zero ) return;
+        if (moveDirection == Vector3.zero) return;
 
-        //almacenar la direcciÛn del personaje seg˙n la direcciÛn a la que se est· moviendo
-        Quaternion targetRotation = Quaternion.LookRotation(moveDirection); //si la direcciÛn cambia bruscamente gira solo a esa direcciÛn
-        
+        //almacenar la direcci√≥n del personaje seg√∫n la direcci√≥n a la que se est√° moviendo
+        Quaternion targetRotation = Quaternion.LookRotation(moveDirection); //si la direcci√≥n cambia bruscamente gira solo a esa direcci√≥n
+
         //se aplica el giro
-        //suavizar el efecto del giro mediante interpolaciÛn de angulos
+        //suavizar el efecto del giro mediante interpolaci√≥n de angulos
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotSpeed * Time.fixedDeltaTime);//el fixed no es necesario pero es una capa de seguridad
     }
 
@@ -186,63 +207,120 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(GroundCheck.position, groundCheckRadius, groundLayer);
 
-        //elemento de visualizaciÛn en editor opcional
+        //elemento de visualizaci√≥n en editor opcional
 
     }
-    //#region sprint
-    //Coroutine sprintCoroutine;
-    //public void OnSprint(InputAction.CallbackContext context)
-    //{
-    //    if (context.performed)
-    //    {
-    //        if (energeticas <= 0 || isSprinting) return;
-    //        EstaminaUI.enabled = true;
-    //        sprintVFX.SetActive(true);
-    //        isSprinting = true;
-    //        speedcontainer = sprintspeed;
-    //        sprintTimer = sprinttime; // inicializa el temporizador
+    #region sprint
+    Coroutine sprintCoroutine;
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (energeticas <= 0 || isSprinting) return;
+            EstaminaUI.enabled = true;
+            sprintVFX.SetActive(true);
+            isSprinting = true;
+            speedcontainer = sprintspeed;
+            sprintTimer = sprinttime; // inicializa el temporizador
 
-    //        sprintCoroutine = StartCoroutine(StopSprintCoroutine());
-    //    }
+            sprintCoroutine = StartCoroutine(StopSprintCoroutine());
+        }
 
-    //    if (context.canceled)
-    //    {
-    //        StopSprint();
-    //    }
-    //}
+        if (context.canceled)
+        {
+            StopSprint();
+        }
+    }
 
-    //void StopSprint()
-    //{
-    //    if (!isSprinting) return;
+    void StopSprint()
+    {
+        if (!isSprinting) return;
 
-    //    isSprinting = false;
-    //    speedcontainer = speedbase;
+        isSprinting = false;
+        speedcontainer = speedbase;
 
-    //    if (sprintCoroutine != null)
-    //    {
-    //        StopCoroutine(sprintCoroutine);
-    //        sprintCoroutine = null;
-    //    }
+        if (sprintCoroutine != null)
+        {
+            StopCoroutine(sprintCoroutine);
+            sprintCoroutine = null;
+        }
 
-    //    EstaminaUI.enabled = false;
-    //    sprintVFX.SetActive(false);
-    //    EstaminaFillImage.fillAmount = 1f;
-    //    if (EstaminaDelayedImage != null)
-    //        EstaminaDelayedImage.fillAmount = 1f;
+        EstaminaUI.enabled = false;
+        sprintVFX.SetActive(false);
+        EstaminaFillImage.fillAmount = 1f;
+        if (EstaminaDelayedImage != null)
+            EstaminaDelayedImage.fillAmount = 1f;
 
-    //    energeticas--;
-    //    energeticasUI.SetEnergeticas((int)energeticas);
-    //}
+        energeticas--;
+        energeticasUI.SetEnergeticas((int)energeticas);
+    }
 
 
-    //IEnumerator StopSprintCoroutine()
-    //{
-    //    yield return new WaitForSeconds(sprinttime);
-    //    StopSprint();
-    //}
-    //#endregion
+    IEnumerator StopSprintCoroutine()
+    {
+        yield return new WaitForSeconds(sprinttime);
+        StopSprint();
+    }
+    #endregion
+    #region snack
+    public void snack(InputAction.CallbackContext context)
+    {
+            if (!context.performed) return;
+            if (snackusado || snacks <= 0) return;
+
+            snackusado = true;
+
+            // Obtener el √≠ndice del √∫ltimo snack disponible
+            int snackIndex = snacks - 1; // si snacks = 3 -> √≠ndice = 2 (√∫ltimo)
+        if (snackIndex >= 0 && snackIndex < snacks_UI.icons.Count)
+            snackfill = snacks_UI.icons[snackIndex].GetComponent<Image>();
+        else
+            snackfill = null;
+
+        snackTimer = snacktime;
+            StartCoroutine(SnackCoroutine());
+            /////////
+        if (!context.performed) return;
+        {
+            Debug.Log("snackusado");
+
+            if (!snackusado && snacks>0)
+            {
+                snackTimer=snacktime;
+                Debug.Log("snackconsumido");
+                snackusado = true;
+                StartCoroutine(SnackCoroutine());
+            }
+        }
+    }
+    IEnumerator SnackCoroutine()
+    {
+        snackTimer = snacktime;
+        obviedadZombie.ZombiedadSpeed = snackzombiedadspeed;
+
+        // Mientras dure el snack
+        while (snackTimer > 0f)
+        {
+            snackTimer -= Time.deltaTime;
+            if (snackfill != null)
+                snackfill.fillAmount = snackTimer / snacktime;
+            yield return null;
+        }
+
+        // Reset del efecto
+        obviedadZombie.resetspeed();
+        snacks--;
+        snacks_UI.SetSnacks((int)snacks);
+        snackusado = false;
+
+        // seguridad
+        if (snackfill != null)
+            snackfill.fillAmount = 0f;
+    }
+
+    #endregion
     #region imput methods
-    public void OnMove (InputAction.CallbackContext context) //context bontÛn fÌsico
+    public void OnMove (InputAction.CallbackContext context) //context bont√≥n f√≠sico
     {
         if (!playerOcupado)
         {

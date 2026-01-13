@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Collections;
 using JetBrains.Annotations;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class OviedadZombie : MonoBehaviour
 {
@@ -21,10 +22,17 @@ public class OviedadZombie : MonoBehaviour
     [SerializeField] GameObject looseCanvas;
     [SerializeField] PlayerController playerController;
     [Header("Sprites")]
-    [SerializeField] Image gregHead;
+    
+    [SerializeField] Image gregHeadImage;
     [SerializeField] Sprite[] gregSprites;
-    [Header("Flags")]
-    private bool zombiedadReducida = false;
+
+    [Header("For Sprite Movement")]
+    [SerializeField] Transform gregHeadTransform;
+    [SerializeField] Vector2 endPosition = new Vector2(0, 0);
+    [SerializeField] Vector2 startPosition;
+    [SerializeField] float desiredDuration = 3f;
+    [SerializeField] float elapsedTime;
+
     //[Header("Others")]
     //[SerializeField] Transform PlayerTransform;
     //[SerializeField] Transform RespawnPoint;
@@ -38,7 +46,10 @@ public class OviedadZombie : MonoBehaviour
 
         zombiedadBar.maxValue = maxZombiedad;
         zombiedadBar.value = Zombiedad;
-        zombiedadReducida = false;
+
+        //
+
+        startPosition = gregHeadTransform.localPosition;
     }
     //-----//
     private void Update()
@@ -62,37 +73,29 @@ public class OviedadZombie : MonoBehaviour
             this.gameObject.GetComponent<PlayerController>().playerOcupado = true;
         }
         //-----//
-        if (Zombiedad >= 100f && Zombiedad <= 60.000f)
+        if (Zombiedad <= 100.000f && Zombiedad >= 70.000f)
         {
-            gregHead.sprite = gregSprites[0];
+            gregHeadImage.sprite = gregSprites[0];
             Debug.Log("Good");
         }
-        if (Zombiedad >= 60.000f && Zombiedad <= 25.000f)
+        if (Zombiedad <= 70.000f && Zombiedad >= 30.000f)
         {
-            gregHead.sprite = gregSprites[1];
+            gregHeadImage.sprite = gregSprites[1];
             Debug.Log("medium");
         }
-        if (Zombiedad >= 25.000f && Zombiedad <= 1f)
+        if (Zombiedad <= 30f && Zombiedad >= 0f)
         {
-            gregHead.sprite = gregSprites[2];
+            gregHeadImage.sprite = gregSprites[2];
             Debug.Log("Bad");
         }
-        // Reducir velocidad UNA VEZ
-        if (playerController.playerOcupado && !zombiedadReducida)
-        {
-            ZombiedadSpeed *= Zombiedadocupadomultiplier;
-            zombiedadReducida = true;
-        }
+        //-----//
+        elapsedTime += Time.deltaTime;
+        float percentageComplete = elapsedTime / desiredDuration;
 
-        // Restaurar velocidad UNA VEZ
-        if (!playerController.playerOcupado && zombiedadReducida)
-        {
-            ZombiedadSpeed = zombiedadSpeedOriginal;
-            zombiedadReducida = false;
-        }
-
-
+        gregHeadTransform.localPosition = Vector2.Lerp(startPosition, endPosition, percentageComplete);
     }
+    public void resetspeed()
+    { ZombiedadSpeed = zombiedadSpeedOriginal; }
 
     //    #region General Variables
     //    public float Zombiedad = 0;
@@ -109,7 +112,7 @@ public class OviedadZombie : MonoBehaviour
     //    {
     //        if (ZombiedadBar == null)
     //        {
-    //            // Busca el objeto "Fill" en la jerarquía
+    //            // Busca el objeto "Fill" en la jerarquÃ­a
     //            ZombiedadBar = GameObject.Find("Fill").GetComponent<Slider>();
     //        }
     //        float zValue = 1;
