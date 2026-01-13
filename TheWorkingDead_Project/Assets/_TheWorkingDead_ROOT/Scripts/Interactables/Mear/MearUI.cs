@@ -24,7 +24,7 @@ public class MearUI : MonoBehaviour
     public float distanciaDesvio;
     public bool izquierdaDerecha;
     private Ray ray;
-
+    public bool meandoDentro;
     private void Awake()
     {
         punteroRB = GetComponent<Rigidbody>();
@@ -35,12 +35,39 @@ public class MearUI : MonoBehaviour
         //sprintVFX.SetActive(false);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ZonaMear"))
+        {
+            Debug.Log("MUY BIEN MEANDO DENTRO");
+            meandoDentro = true;    
+            //scriptMear.tareaAcabada = true;
+            //scriptMear.tareaEmpezada = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ZonaMear"))
+        {
+            Debug.Log("ERES UN CERDO");
+            meandoDentro = false;
+        }
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         scriptMear = objetoRetrete.GetComponent<TareaMear>();
+        meandoDentro = false;
     }
 
+    void FixedUpdate()
+    {
+        if (scriptMear.tareaEmpezada)
+        {
+            HandleMovement();
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -49,7 +76,7 @@ public class MearUI : MonoBehaviour
             ray = new Ray(meandoGreg.transform.position, puntero.transform.position);
             Debug.DrawRay(ray.origin, ray.direction, Color.yellow);
             Physics.Raycast(ray);
-
+            HandleMovement();
         }
     }
     void HandleMovement()
