@@ -5,7 +5,8 @@ public class TareaMear : MonoBehaviour
 
     [SerializeField] private bool playerCerca;
     public GameObject canvasInteractableKey;
-
+    public bool tareaEmpezada;
+    public GameObject player;
 
 
 
@@ -30,14 +31,15 @@ public class TareaMear : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        tareaEmpezada = false;
     }
 
     public void Interactuar()
     {
-        if (playerCerca)
+        if (playerCerca && !tareaEmpezada)
         {
-
+            player.GetComponent<PlayerController>().playerOcupado = true;
+            tareaEmpezada = true;
         }
     }
     // Update is called once per frame
