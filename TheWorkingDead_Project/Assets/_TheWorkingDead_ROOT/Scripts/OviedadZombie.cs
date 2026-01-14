@@ -26,12 +26,12 @@ public class OviedadZombie : MonoBehaviour
     [SerializeField] Image gregHeadImage;
     [SerializeField] Sprite[] gregSprites;
 
-    [Header("For Sprite Movement")]
-    [SerializeField] Transform gregHeadTransform;
-    [SerializeField] Vector2 endPosition = new Vector2(0, 0);
-    [SerializeField] Vector2 startPosition;
-    [SerializeField] float desiredDuration = 3f;
-    [SerializeField] float elapsedTime;
+    //[Header("For Sprite Movement")]
+    //[SerializeField] Transform gregHeadTransform;
+    //[SerializeField] Vector2 endPosition = new Vector2(0, 0);
+    //[SerializeField] Vector2 startPosition;
+    //[SerializeField] float desiredDuration = 3f;
+    //[SerializeField] float elapsedTime;
 
     //[Header("Others")]
     //[SerializeField] Transform PlayerTransform;
@@ -49,7 +49,7 @@ public class OviedadZombie : MonoBehaviour
 
         //
 
-        startPosition = gregHeadTransform.localPosition;
+        //startPosition = gregHeadTransform.localPosition;
     }
     //-----//
     private void Update()
@@ -76,23 +76,23 @@ public class OviedadZombie : MonoBehaviour
         if (Zombiedad <= 100.000f && Zombiedad >= 70.000f)
         {
             gregHeadImage.sprite = gregSprites[0];
-            Debug.Log("Good");
+            //Debug.Log("Good");
         }
         if (Zombiedad <= 70.000f && Zombiedad >= 30.000f)
         {
             gregHeadImage.sprite = gregSprites[1];
-            Debug.Log("medium");
+            //Debug.Log("medium");
         }
         if (Zombiedad <= 30f && Zombiedad >= 0f)
         {
             gregHeadImage.sprite = gregSprites[2];
-            Debug.Log("Bad");
+            //Debug.Log("Bad");
         }
         //-----//
-        elapsedTime += Time.deltaTime;
-        float percentageComplete = elapsedTime / desiredDuration;
+        //elapsedTime += Time.deltaTime;
+        //float percentageComplete = elapsedTime / desiredDuration;
 
-        gregHeadTransform.localPosition = Vector2.Lerp(startPosition, endPosition, percentageComplete);
+        //gregHeadTransform.localPosition = Vector2.Lerp(startPosition, endPosition, percentageComplete);
     }
     public void resetspeed()
     { ZombiedadSpeed = zombiedadSpeedOriginal; }

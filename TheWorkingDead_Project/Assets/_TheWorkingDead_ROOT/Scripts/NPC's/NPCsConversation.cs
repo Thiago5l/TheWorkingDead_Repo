@@ -73,11 +73,8 @@ public class NPCConversationTask : TaskBase
         }
     }
 
-    public override void Interactuar()
+    protected override void IniciarTarea()
     {
-        if (!playerCerca || interactuando || tareaAcabada) return;
-
-        interactuando = true;
         girando = true;
         canvasInteractKey?.SetActive(false);
 
@@ -103,11 +100,6 @@ public class NPCConversationTask : TaskBase
         }
 
         talking = true;
-    }
-
-    protected override void IniciarTarea()
-    {
-        // Vacío, la conversación ya maneja la lógica
     }
 
     protected override void CancelarTarea()

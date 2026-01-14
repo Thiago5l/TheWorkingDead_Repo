@@ -49,11 +49,11 @@ public class ImpresoraTask : TaskBase
 
         if (valor <= 0f)
         {
-            CancelarTarea();
+            Loose();
         }
         else if (valor >= 100f)
         {
-            CompletarTarea();
+            Win();
         }
     }
 
@@ -67,7 +67,7 @@ public class ImpresoraTask : TaskBase
 
         if (valor >= 100f)
         {
-            CompletarTarea();
+            Win();
         }
     }
 

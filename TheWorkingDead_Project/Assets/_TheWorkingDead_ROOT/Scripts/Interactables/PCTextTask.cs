@@ -137,15 +137,14 @@ public class PCTextTask : TaskBase
 
     private void FailTask()
     {
-        taskFeedbackCanvas.PlayLose();
+        Loose();
         CancelarTarea();
     }
 
     private void CompleteTextTask()
     {
-        taskFeedbackCanvas.PlayWin();
+        Win();
         uiTarea.SetActive(false);
-        CompletarTarea();
     }
 
     private void UpdateColoredText()

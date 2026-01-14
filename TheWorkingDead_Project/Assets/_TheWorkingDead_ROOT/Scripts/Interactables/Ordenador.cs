@@ -105,14 +105,14 @@ public class OrdenadorTask : TaskBase
     {
         if (value <= 0f)
         {
-            taskFeedbackCanvas.PlayLose();
+            Loose();
             CancelarTarea();
         }
     }
 
     private void CompleteOrdenadorTask()
     {
-        taskFeedbackCanvas.PlayWin();
+        Win();
         taskBar.gameObject.SetActive(false);
         CompletarTarea();
     }

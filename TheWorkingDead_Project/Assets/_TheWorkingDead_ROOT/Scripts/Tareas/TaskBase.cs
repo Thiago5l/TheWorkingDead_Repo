@@ -16,17 +16,17 @@ public abstract class TaskBase : MonoBehaviour
     [SerializeField] protected Color colorCerca = Color.yellow;
     [SerializeField] protected Color colorLejos = Color.black;
 
-    protected bool playerCerca;
-    protected bool tareaAcabada;
-    protected bool interactuando;
+    [Header("Flags")]
+    public bool playerCerca;
+    public bool tareaAcabada;
+    public bool interactuando;
 
     private void LateUpdate()
     {
         if (taskExclamation != null && !playerCerca && !tareaAcabada)
             taskExclamation.SetActive(EstaEnListaDeTareas());
     }
-
-    private void Awake()
+    private void OnEnable()
     {
         if (player == null)
             player = GameObject.FindWithTag("Player");
@@ -34,8 +34,9 @@ public abstract class TaskBase : MonoBehaviour
             uiTarea = GameObject.FindWithTag("UiNpcConversation");
         if (taskManager == null)
             taskManager = FindAnyObjectByType<TareasAleatorias>();
+        if (feedbackcanvas == null)
+            feedbackcanvas = FindAnyObjectByType<FadeCanvas>();
     }
-
     protected virtual void Start()
     {
         if (uiTarea != null) uiTarea.SetActive(false);
@@ -44,13 +45,14 @@ public abstract class TaskBase : MonoBehaviour
         if (taskExclamation != null)
             taskExclamation.SetActive(EstaEnListaDeTareas());
         if (objRenderer == null) objRenderer = GetComponent<Renderer>();
+        tareaAcabada = false;
     }
 
     #region Trigger
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("TaskPlayer") || tareaAcabada) return;
+        if (!other.CompareTag("TaskPlayer")&&!tareaAcabada) return;
 
         playerCerca = true;
 
@@ -93,20 +95,24 @@ public abstract class TaskBase : MonoBehaviour
 
     public virtual void Interactuar()
     {
-        if (!playerCerca || tareaAcabada || interactuando) return;
+        if (playerCerca && !tareaAcabada && !interactuando)
+        {
 
-        interactuando = true;
-
-        if (player != null)
-            player.GetComponent<PlayerController>().playerOcupado = true;
-
-        if (canvasInteractKey != null)
-            canvasInteractKey.SetActive(false);
-
-        if (uiTarea != null)
             uiTarea.SetActive(true);
 
-        IniciarTarea();
+            interactuando = true;
+
+            if (player != null)
+            {
+                player.GetComponent<PlayerController>().playerOcupado = true;
+                
+            }
+               
+            if (canvasInteractKey != null)
+                canvasInteractKey.SetActive(false);
+
+            IniciarTarea();
+        }
     }
 
     #endregion
@@ -115,6 +121,7 @@ public abstract class TaskBase : MonoBehaviour
 
     protected void CompletarTarea()
     {
+        taskManager.CompletarTarea(this.gameObject);
         tareaAcabada = true;
         interactuando = false;
 
@@ -168,15 +175,18 @@ public abstract class TaskBase : MonoBehaviour
     #endregion
     #region win/loose
     protected void Win()
-    { 
+    {
+        tareaAcabada = true;
+        interactuando = false;
         feedbackcanvas.PlayWin();
         player.gameObject.GetComponent<PlayerController>().playerOcupado = false;
         uiTarea.gameObject.SetActive(false);
         interactuando = false;
         StopAllCoroutines();
+        CompletarTarea();
     }
     protected void Loose()
-    { 
+    {
         feedbackcanvas.PlayLose();
         player.gameObject.GetComponent<PlayerController>().playerOcupado = false;
         uiTarea.gameObject.SetActive(false);
