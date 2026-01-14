@@ -61,23 +61,23 @@ public class MearUI : MonoBehaviour
         meandoDentro = false;
     }
 
-    void FixedUpdate()
-    {
-        if (scriptMear.tareaEmpezada)
-        {
-            HandleMovement();
-        }
-    }
+    //void FixedUpdate()
+    //{
+    //    if (scriptMear.tareaEmpezada)
+    //    {
+    //        HandleMovement();
+    //    }
+    //}
     // Update is called once per frame
     void Update()
     {
-        if (scriptMear.tareaEmpezada)
-        {
-            ray = new Ray(meandoGreg.transform.position, puntero.transform.position);
-            Debug.DrawRay(ray.origin, ray.direction, Color.yellow);
-            Physics.Raycast(ray);
-            HandleMovement();
-        }
+        //if (scriptMear.tareaEmpezada)
+        //{
+        //    ray = new Ray(meandoGreg.transform.position, puntero.transform.position);
+        //    Debug.DrawRay(ray.origin, ray.direction, Color.yellow);
+        //    Physics.Raycast(ray);
+        //    HandleMovement();
+        //}
     }
     void HandleMovement()
     {
@@ -100,11 +100,10 @@ public class MearUI : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext context) //context bontón físico
     {
-        if (!scriptMear.tareaEmpezada)
-        {
+        
+        
             moveImput = context.ReadValue<Vector2>();
-        }
-
+        
 
     }
 }
