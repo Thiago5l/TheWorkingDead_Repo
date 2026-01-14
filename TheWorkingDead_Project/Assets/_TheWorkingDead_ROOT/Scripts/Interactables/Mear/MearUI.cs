@@ -25,6 +25,7 @@ public class MearUI : MonoBehaviour
     public bool izquierdaDerecha;
     private Ray ray;
     public bool meandoDentro;
+
     private void Awake()
     {
         punteroRB = GetComponent<Rigidbody>();
@@ -32,78 +33,21 @@ public class MearUI : MonoBehaviour
         punteroRB.freezeRotation = true; //congelar rotación de rigid body
         speedcontainer = speed;
         speedbase = speed;
-        //sprintVFX.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("ZonaMear"))
-        {
-            Debug.Log("MUY BIEN MEANDO DENTRO");
-            meandoDentro = true;    
-            //scriptMear.tareaAcabada = true;
-            //scriptMear.tareaEmpezada = false;
-        }
-    }
+  
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("ZonaMear"))
-        {
-            Debug.Log("ERES UN CERDO");
-            meandoDentro = false;
-        }
-    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         scriptMear = objetoRetrete.GetComponent<TareaMear>();
-        meandoDentro = false;
+        meandoDentro = false; 
     }
-
-    //void FixedUpdate()
-    //{
-    //    if (scriptMear.tareaEmpezada)
-    //    {
-    //        HandleMovement();
-    //    }
-    //}
-    // Update is called once per frame
+    //Update is called once per frame
     void Update()
     {
-        //if (scriptMear.tareaEmpezada)
-        //{
-        //    ray = new Ray(meandoGreg.transform.position, puntero.transform.position);
-        //    Debug.DrawRay(ray.origin, ray.direction, Color.yellow);
-        //    Physics.Raycast(ray);
-        //    HandleMovement();
-        //}
-    }
-    void HandleMovement()
-    {
-
-        //almacenar dirección z + x de la cámara
-        Vector3 cameraForward = Camera.main.transform.forward;//almacena el origen frontal de la cámara
-        Vector3 cameraRight = Camera.main.transform.right;//almacena el origen lateral de la cámara
-
-        //anular la orientación e y antes del cálculo de la orientación de la cámara aplicada a l movimiento
-        cameraForward.y = 0;
-        cameraRight.y = 0;
-        cameraForward.Normalize(); //el valor del float es máximo 1 por lo que no afecta a la multiplicación de velocidad
-        cameraRight.Normalize(); //el valor del float es máximo 1 por lo que no afecta a la multiplicación de velocidad
-
-        //se calcula y almacena la dirección x/z teniendo en cuenta la cámara por el imput
-        Vector3 moveDireccion = (cameraForward * moveImput.y + cameraRight * moveImput.x).normalized;
-        //una vez tenemos la dirección +el imput se lo aplicamos al motor de aceleración del rigidbody
-        //todo esto sin afectar al eje y, porque eso se encargará el salto
-        punteroRB.linearVelocity = new Vector3(moveDireccion.x * speed, punteroRB.linearVelocity.y, moveDireccion.z * speed);
-    }
-    public void OnMove(InputAction.CallbackContext context) //context bontón físico
-    {
-        
-        
-            moveImput = context.ReadValue<Vector2>();
-        
-
+        ray = new Ray(meandoGreg.transform.position, puntero.transform.position);
+        Debug.DrawRay(ray.origin, ray.direction, Color.yellow);
+        Physics.Raycast(ray);
     }
 }
