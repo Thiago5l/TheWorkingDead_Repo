@@ -26979,7 +26979,6 @@ MonoBehaviour:
   - conversation: {fileID: 1667250149}
     UIconversation: {fileID: 1030727086}
   UniversalUI: {fileID: 537540880}
-  canvasInteractKey: {fileID: 537540880}
   player: {fileID: 200637151}
 --- !u!1001 &804623070
 PrefabInstance:
@@ -27871,6 +27870,10 @@ PrefabInstance:
     - target: {fileID: 6147284871494750852, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
       propertyPath: m_Name
       value: PF_CanvasDialogos
+      objectReference: {fileID: 0}
+    - target: {fileID: 6147284871494750852, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8599298503263268028, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
       propertyPath: m_Pivot.x
