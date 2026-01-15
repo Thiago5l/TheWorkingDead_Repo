@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerTutorial : MonoBehaviour
 {
 
 
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("tutorial")]
     public bool tutorialroom;
-    public bool playedvendingmachine;
+    public bool playedvendingmachine=false;
     #endregion
 
     private void Awake()

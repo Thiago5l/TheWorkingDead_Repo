@@ -1,6 +1,7 @@
 using DialogueEditor;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 [System.Serializable]
@@ -16,15 +17,56 @@ public class TutorialDialogueManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] GameObject UniversalUI;
+    [SerializeField] GameObject TasksUitutorial;
     private GameObject currentConversationUI;
     private NPCConversation currentConversation;
 
-    [Header("Player")]
-    [SerializeField] private GameObject player;
-
+    [Header("References")]
+    [SerializeField] PlayerController PlayerController;
+    [SerializeField] VendingMachine VendingMachine;
+    [SerializeField] CoinManager CoinManager;
+    [SerializeField] VendingMachine vendingMachine;
+    [Header("Flags")]
+    public bool taskopened;
+    public bool playedtareas;
+    public bool playedvendingmachine;
     private void Start()
     {
+        TasksUitutorial.SetActive(false);
+        taskopened = false;
+        PlayerController.playerOcupado=true;
         IniciarDialogo(0);
+    }
+    private bool dialogo3Iniciado = false;
+    private bool dialogo4Iniciado = false;
+    private bool dialogo5Iniciado = false;
+    private void Update()
+    {
+        if (playedtareas && taskopened && !dialogo3Iniciado)
+        {
+            dialogo3Iniciado = true;
+            Debug.Log("playeddialogos");
+            PlayDialogos();
+        }
+        if (playedtareas && taskopened && PlayerController.tutorialroom && !dialogo4Iniciado)
+        {
+            dialogo4Iniciado=true;
+            Debug.Log("playedtienda");
+            PlayTienda();
+        }
+        if (Input.GetKeyDown(KeyCode.Tab) && !taskopened)
+        {
+            taskopened = true;
+            if (currentConversationUI != null)
+                currentConversationUI.SetActive(false);
+        }
+        if ((PlayerController.snacks > 0 || PlayerController.energeticas > 0) && !dialogo5Iniciado && !vendingMachine.shopCanvas.activeSelf)
+        {
+            dialogo5Iniciado = true;
+            Debug.Log("playeditems");
+            PlayItems();
+        }
+
     }
     public void IniciarDialogo(int index = 0)
     {
@@ -42,10 +84,13 @@ public class TutorialDialogueManager : MonoBehaviour
     }
     IEnumerator StartConversationNextFrame(NPCConversation conv)
     {
-        yield return null;
+        while (ConversationManager.Instance.IsConversationActive)
+        {
+            yield return null;
+        }
+
         ConversationManager.Instance.StartConversation(conv);
     }
-
 
     public void Final()
     {
@@ -56,6 +101,7 @@ public class TutorialDialogueManager : MonoBehaviour
         currentConversation = null;
         UniversalUI.SetActive(false);
     }
+    #region playdialogues
     public void PlayZombiedad()
     {
     IniciarDialogo(1);
@@ -79,6 +125,88 @@ public class TutorialDialogueManager : MonoBehaviour
         // Inicia la nueva conversación (índice 2)
         IniciarDialogo(2);
     }
+    public void PlayDialogos()
+    {
+        // Finaliza la conversación actual si hay alguna activa
+        if (currentConversationUI != null)
+        {
+            currentConversationUI.SetActive(false);
+        }
+
+        if (currentConversation != null)
+        {
+            ConversationManager.Instance.EndConversation(); // Finaliza la conversación actual
+            currentConversation = null;
+        }
+
+        currentConversationUI = null;
+
+        IniciarDialogo(3);
+    }
+    public void PlayTienda()
+    {
+        // Finaliza la conversación actual si hay alguna activa
+        if (currentConversationUI != null)
+        {
+            currentConversationUI.SetActive(false);
+        }
+
+        if (currentConversation != null)
+        {
+            ConversationManager.Instance.EndConversation(); // Finaliza la conversación actual
+            currentConversation = null;
+        }
+
+        currentConversationUI = null;
+
+        IniciarDialogo(4);
+    }
+    public void PlayItems()
+    {
+        StartCoroutine(PlayItemsCoroutine());
+    }
+
+    IEnumerator PlayItemsCoroutine()
+    {
+        // Cierra UI actual
+        if (currentConversationUI != null)
+            currentConversationUI.SetActive(false);
+
+        if (currentConversation != null)
+        {
+            ConversationManager.Instance.EndConversation();
+            currentConversation = null;
+        }
+
+        currentConversationUI = null;
+
+        // Espera un frame
+        yield return null;
+
+        // Inicia el diálogo
+        IniciarDialogo(5);
+    }
+
+    #endregion
+    #region flagvoids
+    public void playerocupadofalse()
+    { PlayerController.playerOcupado=false; }
+    public void playerocupadotrue()
+    { PlayerController.playerOcupado=true; }
+    public void playedtareastrue()
+    {  playedtareas=true; }
+    public void taskuitutorial()
+    { TasksUitutorial.SetActive(true); }
+    public void changevendingmachinecolor()
+    { VendingMachine.CambiarColorOutline(Color.yellow);
+        PlayerController.coins=5;
+    }
+    public void playedvendingmachines()
+    {
+        playedvendingmachine=true;
+    }
+    
+    #endregion
 
 
 }
