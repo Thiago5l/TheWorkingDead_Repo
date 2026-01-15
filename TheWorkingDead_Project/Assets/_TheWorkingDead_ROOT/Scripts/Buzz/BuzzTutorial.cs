@@ -8,13 +8,7 @@ public class BuzzTutorial : MonoBehaviour
     public TextMeshProUGUI textComponent;
 
     public string[] startDialogue;
-    public string[] zombiedadDialogue;
-    public string[] energéticasDialogue;
-    public string[] snacksDialogue;
     public string[] interactDialogue;
-    public string[] tasksDialogue;
-    public string[] npcDialogue;
-    public string[] vendingDialogue;
 
     private string[] currentLines;
 
@@ -32,15 +26,6 @@ public class BuzzTutorial : MonoBehaviour
     private float originalFixedDeltaTime;
 
     public ActiveBuzz ActiveBuzz;
-
-    [Header("Dialogue UI")]
-    public GameObject startDialogueUI;
-    public GameObject interactDialogueUI;
-    public GameObject tasksDialogueUI;
-    public GameObject npcDialogueUI;
-    public GameObject vendingDialogueUI;
-
-    private GameObject currentDialogueUI;
 
     void OnEnable()
     {
@@ -72,23 +57,23 @@ public class BuzzTutorial : MonoBehaviour
         }
     }
 
-    public void PlayStartDialogue()
-    {
-        if (!startDialoguePlayed)
-        {
-            startDialoguePlayed = true;
-            currentDialogueUI = startDialogueUI;
-            PlayDialogue(startDialogue);
-        }
-    }
-
     public void PlayInteractDialogue()
     {
         if (!interactDialoguePlayed)
         {
+            Debug.Log("Playing interact dialogue");
             interactDialoguePlayed = true;
-            currentDialogueUI = interactDialogueUI;
             PlayDialogue(interactDialogue);
+        }
+    }
+
+    public void PlayStartDialogue()
+    {
+        if (!startDialoguePlayed)
+        {
+            Debug.Log("Playing start dialogue");
+            startDialoguePlayed = true;
+            PlayDialogue(startDialogue);
         }
     }
 
@@ -96,9 +81,6 @@ public class BuzzTutorial : MonoBehaviour
     {
         currentLines = linesToPlay;
         index = 0;
-
-        if (currentDialogueUI != null)
-            currentDialogueUI.SetActive(true);
 
         textComponent.text = "";
 
@@ -131,17 +113,14 @@ public class BuzzTutorial : MonoBehaviour
             Time.timeScale = 1f;
             Time.fixedDeltaTime = originalFixedDeltaTime;
             currentLines = null;
+            //Chat, añade aqui que espere 1 segundo
 
-            StartCoroutine(EndDialogueCoroutine());
+            StartCoroutine(SetActivatedCoroutine());
         }
     }
-    private IEnumerator EndDialogueCoroutine()
+    private IEnumerator SetActivatedCoroutine()
     {
-        yield return new WaitForSecondsRealtime(1f); // espera 1 segundo
-
-        if (currentDialogueUI != null)
-            currentDialogueUI.SetActive(false);
-
+        yield return new WaitForSecondsRealtime(0.1f);
         ActiveBuzz.objectActivated = false;
         this.gameObject.SetActive(false);
     }
