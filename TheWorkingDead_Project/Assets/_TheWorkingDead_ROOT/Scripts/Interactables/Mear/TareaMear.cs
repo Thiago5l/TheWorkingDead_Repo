@@ -8,7 +8,7 @@ public class TareaMear : TaskBase
     public GameObject canvasTarea;
     void Update()
     {
-        if(canvasTarea.GetComponent<MearUI>().meandoDentro)
+        if (canvasTarea.GetComponent<MearUI>().meandoDentro)
         {
             StartCoroutine(VaciarBarra());
         }
@@ -32,13 +32,13 @@ public class TareaMear : TaskBase
     protected override void IniciarTarea()
     {
         Debug.Log("TareaIniciada");
-        BarraMear.value = BarraMear.maxValue;
+        //BarraMear.value = BarraMear.maxValue;
     }
     protected override void CancelarTarea()
     { }
     IEnumerator VaciarBarra()
     {
         yield return new WaitForSeconds(2f);
-        BarraMear.value -= BarraMear.maxValue*0.02f;
+        BarraMear.value -= BarraMear.maxValue * 0.02f;
     }
 }

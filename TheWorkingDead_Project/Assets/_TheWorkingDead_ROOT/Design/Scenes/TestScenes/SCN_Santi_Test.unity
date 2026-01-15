@@ -30350,6 +30350,10 @@ PrefabInstance:
       propertyPath: taskManager
       value: 
       objectReference: {fileID: 1032389578}
+    - target: {fileID: 1947769378806050061, guid: f5a9c153bf726f644a115fc709b1c830, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3356033595724801989, guid: f5a9c153bf726f644a115fc709b1c830, type: 3}
       propertyPath: m_Name
       value: PF_TaskMear
@@ -32932,7 +32936,7 @@ SceneRoots:
   - {fileID: 326527999}
   - {fileID: 2069793063}
   - {fileID: 1717159585}
-  - {fileID: 1993078060}
   - {fileID: 670174472}
+  - {fileID: 1993078060}
   - {fileID: 2132765658}
   - {fileID: 7242452622328631494}

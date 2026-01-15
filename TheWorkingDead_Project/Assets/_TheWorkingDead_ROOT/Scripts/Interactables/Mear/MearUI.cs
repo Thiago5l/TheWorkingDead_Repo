@@ -1,121 +1,363 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class MearUI : MonoBehaviour
 {
-    [Header("Editor References")]
-    [SerializeField] Transform camTransform; //ref  transform cámara
-
-    [Header("Movement Parametres")]
-    [SerializeField] float speed = 10f;
-    Vector2 moveInput;//almacén imput mov
-    Rigidbody punteroRB;//ref a rigid boddy
 
 
+    // -----------------------------
+    // UI
+    // -----------------------------
+    [Header("UI References")]
+    [SerializeField] private RectTransform punteroRT;
+    [SerializeField] private LineRenderer line;
+    public Slider barraMear;
 
-    public GameObject objetoRetrete;
-    [SerializeField] private TareaMear scriptMear;
-    public GameObject meandoGreg;
-    public GameObject puntero;
-    public GameObject retreteUI;
-    public float tiempoBarra;
-    public Slider BarraMear;
-    public float tiempoDesvio;
-    public bool izquierdaDerecha;
-    private Ray ray;
+    // -----------------------------
+    // WORLD
+    // -----------------------------
+    [Header("World References")]
+    public Transform meandoGreg;
+
+    // -----------------------------
+    // MOVIMIENTO
+    // -----------------------------
+    [Header("Movimiento")]
+    [SerializeField] private float speed = 300f;
+    [SerializeField] private float autoForce = 150f;
+    [SerializeField] private float tiempoDesvio = 1.5f;
+    [SerializeField] private float limiteX = 400f;
+
+    // -----------------------------
+    // PARÁBOLA
+    // -----------------------------
+    [Header("Parábola")]
+    [SerializeField] private int segments = 30;
+    [SerializeField] private float height = 2f;
+
+    // -----------------------------
+    // BARRA
+    // -----------------------------
+    [Header("Barra")]
+    [SerializeField] private float tiempoBarra = 0.5f;
+
+    // -----------------------------
+    // ESTADO
+    // -----------------------------
+    private Vector2 punteroPos;
+    private float direccionAuto = 1f;
+    private float timerDesvio;
+    private float timerBarra;
     public bool meandoDentro;
 
-    private void Awake()
+    // -----------------------------
+    // UNITY
+    // -----------------------------
+    private void Start()
     {
-        punteroRB = GetComponent<Rigidbody>();
-        if (camTransform == null) camTransform = Camera.main.transform; //busca la cámara main si no tiene cam asignada
-        punteroRB.freezeRotation = true; //congelar rotación de rigid body
+        punteroPos = punteroRT.anchoredPosition;
     }
 
+    private void Update()
+    {
+        MoverPuntero();
+        //ControlDesvio();
+        ControlBarra();
+        DibujarParabola();
+        if (Input.anyKey)
+        {
+            Debug.Log("Hay input");
+        }
+    }
+
+    // -----------------------------
+    // MOVIMIENTO PUNTERO
+    // -----------------------------
+    private void MoverPuntero()
+    {
+        float input = 0f;
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+            input = -1f;
+        if (Input.GetKey(KeyCode.RightArrow))
+            input = 1f;
+
+        punteroPos.x += input * speed * Time.deltaTime;
+        punteroPos.x += direccionAuto * autoForce * Time.deltaTime;
+
+        punteroPos.x = Mathf.Clamp(punteroPos.x, -limiteX, limiteX);
+
+        punteroRT.anchoredPosition = punteroPos;
+    }
+
+    // -----------------------------
+    // DESVÍO AUTOMÁTICO
+    // -----------------------------
+    //private void ControlDesvio()
+    //{
+    //    timerDesvio += Time.deltaTime;
+
+    //    if (timerDesvio >= tiempoDesvio)
+    //    {
+    //        direccionAuto = Random.value > 0.5f ? 1f : -1f;
+    //        timerDesvio = 0f;
+    //    }
+    //}
+
+    // -----------------------------
+    // BARRA DE PROGRESO
+    // -----------------------------
+    private void ControlBarra()
+    {
+        timerBarra += Time.deltaTime;
+        if (timerBarra < tiempoBarra) return;
+
+        timerBarra = 0f;
+
+        float delta = barraMear.maxValue * 0.02f;
+        barraMear.value += meandoDentro ? delta : -delta;
+    }
+
+    // -----------------------------
+    // PARÁBOLA VISUAL
+    // -----------------------------
+    private void DibujarParabola()
+    {
+        if (!line || !meandoGreg) return;
+
+        line.positionCount = segments + 1;
+
+        Vector3 start = meandoGreg.position;
+
+        Vector3 end;
+        RectTransformUtility.ScreenPointToWorldPointInRectangle(
+            punteroRT,
+            punteroRT.position,
+            Camera.main,
+            out end
+        );
+
+        for (int i = 0; i <= segments; i++)
+        {
+            float t = i / (float)segments;
+            Vector3 pos = Vector3.Lerp(start, end, t);
+            pos.y += Mathf.Sin(t * Mathf.PI) * height;
+            line.SetPosition(i, pos);
+        }
+    }
+
+    // -----------------------------
+    // ZONA RETRETE
+    // -----------------------------
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("RetreteZonaMear"))
-        {
+        if (other.CompareTag("RetreteZonaMear"))
             meandoDentro = true;
-        }
     }
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("RetreteZonaMear"))
-        {
+        if (other.CompareTag("RetreteZonaMear"))
             meandoDentro = false;
-        }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        scriptMear = objetoRetrete.GetComponent<TareaMear>();
-        meandoDentro = false; 
-    }
-    //Update is called once per frame
-    void Update()
-    {
-        StartCoroutine(Desviar());
-        if (meandoDentro)
-        {
-            Debug.Log("Dentro");
-            StopCoroutine(BajarBarra());
-            StartCoroutine(SubirBarra());
-        }
-        if (!meandoDentro)
-        {
-            Debug.Log("Fuera");
-            StopCoroutine(SubirBarra());
-            StartCoroutine(BajarBarra());
-        }
-        
-        ray = new Ray(meandoGreg.transform.position, puntero.transform.position);
-        Debug.DrawRay(ray.origin, ray.direction, Color.yellow);
-        Physics.Raycast(ray);
-    }
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        moveInput = context.ReadValue<Vector2>();
-    }
+    //[Header("UI References")]
+    //public RectTransform punteroRT;
+    //public LineRenderer line;
 
-    void FixedUpdate()
-    {
-        punteroRB.linearVelocity = new Vector2(moveInput.x * speed, punteroRB.linearVelocity.y);
-    }
-    IEnumerator BajarBarra()
-    {
-        yield return new WaitForSeconds(tiempoBarra);
-        BarraMear.value -= BarraMear.maxValue * 0.02f;
-    }
-    IEnumerator SubirBarra()
-    {
-        yield return new WaitForSeconds(tiempoBarra);
-        BarraMear.value += BarraMear.maxValue * 0.02f;
-    }
-    IEnumerator Desviar()
-    {
-        if (izquierdaDerecha)
-        {
-            punteroRB.AddForce(Vector3.right * (speed/2), ForceMode.VelocityChange);
-            izquierdaDerecha = false;
-        }
-        if (!izquierdaDerecha)
-        {
-            punteroRB.AddForce(Vector3.left * (speed/2), ForceMode.VelocityChange);
-            izquierdaDerecha = true;
-        }
-        yield return new WaitForSeconds(tiempoDesvio);
-        if(izquierdaDerecha)
-        {
-         izquierdaDerecha = false;
-        }
-        else
-        {
-         izquierdaDerecha = true;
-        }
-    }
+    //[Header("World References")]
+    //public Transform meandoGreg;
+    //public Transform retreteZona;
+
+    //[Header("Movimiento")]
+    //public float speed = 300f;
+    //public float autoForce = 150f;
+    //public float tiempoDesvio = 1.5f;
+
+    //[Header("Parábola")]
+    //public int segments = 30;
+    //public float height = 2f;
+
+    //[Header("Barra")]
+    //public Slider BarraMear;
+    //public float tiempoBarra = 0.5f;
+
+    //public bool meandoDentro;
+    //float direccionAuto = 1f;
+    //float timerDesvio;
+    //float timerBarra;
+
+    //Vector2 punteroPos;
+
+
+    //public GameObject objetoRetrete;
+    //[SerializeField] private TareaMear scriptMear;
+
+    //public GameObject puntero;
+    //public GameObject retreteUI;
+
+    //public bool izquierdaDerecha;
+    //private Ray ray;
+    ///// <summary>
+    ///// //////////////////////////////////////////////////////////////////////--------
+    ///// </summary>
+
+    //private void Awake()
+    //{
+    //    punteroRT = puntero.GetComponent<RectTransform>();
+
+    //}
+    //void Start()
+    //{
+    //    punteroPos = punteroRT.anchoredPosition;
+    //    meandoDentro = false;
+    //}
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("RetreteZonaMear"))
+    //    {
+    //        meandoDentro = true;
+    //    }
+    //}
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("RetreteZonaMear"))
+    //    {
+    //        meandoDentro = false;
+    //    }
+    //}
+
+    //// Start is called once before the first execution of Update after the MonoBehaviour is created
+    ////Update is called once per frame
+    //void Update()
+    //{
+    //    MoverPuntero();
+    //    ControlDesvio();
+    //    ControlBarra();
+    //    DrawParabola();
+
+    //}
+    //// -----------------------------
+    //// MOVIMIENTO UI
+    //// -----------------------------
+    //void MoverPuntero()
+    //{
+    //    float input = 0f;
+
+    //    if (Input.GetKey(KeyCode.LeftArrow))
+    //        input = -1f;
+    //    if (Input.GetKey(KeyCode.RightArrow))
+    //        input = 1f;
+
+    //    punteroPos.x += input * speed * Time.deltaTime;
+    //    punteroPos.x += direccionAuto * autoForce * Time.deltaTime;
+
+    //    //LIMITES
+    //    punteroPos.x = Mathf.Clamp(punteroPos.x, -400f, 400f);
+
+    //    punteroRT.anchoredPosition = punteroPos;
+
+
+
+    //}
+
+    //// -----------------------------
+    //// DESVIACIÓN AUTOMÁTICA
+    //// -----------------------------
+    //void ControlDesvio()
+    //{
+    //    timerDesvio += Time.deltaTime;
+
+    //    if (timerDesvio >= tiempoDesvio)
+    //    {
+    //        direccionAuto *= Random.Range(-1, 1);
+    //        timerDesvio = 0f;
+    //    }
+    //}
+
+    //// -----------------------------
+    //// CONTROL DE BARRA
+    //// -----------------------------
+    //void ControlBarra()
+    //{
+    //    timerBarra += Time.deltaTime;
+
+    //    if (timerBarra < tiempoBarra)
+    //        return;
+
+    //    timerBarra = 0f;
+
+    //    if (meandoDentro)
+    //    {
+    //        BarraMear.value += BarraMear.maxValue * 0.02f;
+    //    }
+    //    else
+    //    {
+    //        BarraMear.value -= BarraMear.maxValue * 0.02f;
+    //    }
+    //}
+
+    //// -----------------------------
+    //// PARÁBOLA VISUAL
+    //// -----------------------------
+    //void DrawParabola()
+    //{
+    //    if (line == null || meandoGreg == null)
+    //        return;
+
+    //    line.positionCount = segments + 1;
+
+    //    Vector3 start = meandoGreg.position;
+    //    Vector3 end;
+    //    RectTransformUtility.ScreenPointToWorldPointInRectangle(
+    //        punteroRT,
+    //        punteroRT.position,
+    //        Camera.main,
+    //        out end
+    //    );
+
+    //    for (int i = 0; i <= segments; i++)
+    //    {
+    //        float t = i / (float)segments;
+    //        Vector3 pos = Vector3.Lerp(start, end, t);
+    //        pos.y += Mathf.Sin(t * Mathf.PI) * height;
+
+    //        line.SetPosition(i, pos);
+    //    }
+    //}
+
+
+
+    ////IEnumerator BajarBarra()
+    ////{
+    ////    yield return new WaitForSeconds(tiempoBarra);
+    ////    BarraMear.value -= BarraMear.maxValue * 0.02f;
+    ////}
+    ////IEnumerator SubirBarra()
+    ////{
+    ////    yield return new WaitForSeconds(tiempoBarra);
+    ////    BarraMear.value += BarraMear.maxValue * 0.02f;
+    ////}
+    ////IEnumerator Desviar()
+    ////{
+    ////    if (izquierdaDerecha)
+    ////    {
+    ////        //izquierdaDerecha = false;
+    ////    }
+    ////    //new WaitForSeconds(tiempoDesvio);
+    ////    if (!izquierdaDerecha)
+    ////    {
+    ////        //izquierdaDerecha = true;
+    ////    }
+    ////    yield return new WaitForSeconds(tiempoDesvio);
+    ////    if(izquierdaDerecha)
+    ////    {
+    ////        izquierdaDerecha = false;
+    ////    }
+    ////    else
+    ////    {
+    ////        izquierdaDerecha = true;
+    ////    }
+    ////}
 
 }
