@@ -1,6 +1,7 @@
+using DialogueEditor;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DialogueEditor;
 
 [System.Serializable]
 public class TutorialConversationUI
@@ -27,20 +28,24 @@ public class TutorialDialogueManager : MonoBehaviour
     }
     public void IniciarDialogo(int index = 0)
     {
-        Debug.Log("dialogo iniciado");
         UniversalUI.SetActive(true);
         if (index < 0 || index >= conversations.Count) return;
 
         var data = conversations[index];
-
         currentConversation = data.conversation;
         currentConversationUI = data.UIconversation;
 
         if (currentConversationUI != null)
             currentConversationUI.SetActive(true);
 
-        ConversationManager.Instance.StartConversation(currentConversation);
+        StartCoroutine(StartConversationNextFrame(currentConversation));
     }
+    IEnumerator StartConversationNextFrame(NPCConversation conv)
+    {
+        yield return null;
+        ConversationManager.Instance.StartConversation(conv);
+    }
+
 
     public void Final()
     {
@@ -53,8 +58,27 @@ public class TutorialDialogueManager : MonoBehaviour
     }
     public void PlayZombiedad()
     {
-    Final();
     IniciarDialogo(1);
     }
+    public void PlayTareas()
+    {
+        // Finaliza la conversación actual si hay alguna activa
+        if (currentConversationUI != null)
+        {
+            currentConversationUI.SetActive(false);
+        }
+
+        if (currentConversation != null)
+        {
+            ConversationManager.Instance.EndConversation(); // Finaliza la conversación actual
+            currentConversation = null;
+        }
+
+        currentConversationUI = null;
+
+        // Inicia la nueva conversación (índice 2)
+        IniciarDialogo(2);
+    }
+
 
 }
