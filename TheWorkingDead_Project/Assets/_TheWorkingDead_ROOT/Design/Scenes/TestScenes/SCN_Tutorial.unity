@@ -11884,6 +11884,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1995861600684920816, guid: 9d9d2bb0c21c4974da020382c68c4cdf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2570977827317027701, guid: 9d9d2bb0c21c4974da020382c68c4cdf, type: 3}
       propertyPath: m_Name
       value: BuzzCanvaTutorial
@@ -31566,9 +31570,17 @@ PrefabInstance:
       value: 0.0000000037252907
       objectReference: {fileID: 0}
     - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
+      propertyPath: volume
+      value: 
+      objectReference: {fileID: 1650376805}
+    - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: gregHead
       value: 
       objectReference: {fileID: 1629927587}
+    - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
+      propertyPath: Zombiedad
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: looseCanvas
       value: 
@@ -31583,8 +31595,12 @@ PrefabInstance:
       objectReference: {fileID: 1629927587}
     - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: ZombiedadSpeed
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 875105508}
     - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: gregSprites.Array.size
       value: 3
@@ -31603,7 +31619,7 @@ PrefabInstance:
       objectReference: {fileID: -2126553561, guid: b6fd49e9ebac80a4ba83c92aa5a120b1, type: 3}
     - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: Zombiedadocupadomultiplier
-      value: 0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3901302506987814512, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: LooseCanvas
@@ -66825,6 +66841,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1169685547649474326, guid: 473fc9917e087f9428dd8601e5347e2f, type: 3}
   m_PrefabInstance: {fileID: 1649930420}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1650376805 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 649479820625348135, guid: a2ed1bca0b763ca4bbcc81fc98935cbb, type: 3}
+  m_PrefabInstance: {fileID: 1871346305}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1650708955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85568,14 +85595,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1480685236}
     m_Modifications:
-    - target: {fileID: 628018262749369970, guid: d2fdcdde1650bc04b8e82cf5a435b8d0, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 1922268875400359849, guid: d2fdcdde1650bc04b8e82cf5a435b8d0, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.54
-      objectReference: {fileID: 0}
     - target: {fileID: 1946902666640954290, guid: d2fdcdde1650bc04b8e82cf5a435b8d0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -85587,10 +85606,6 @@ PrefabInstance:
     - target: {fileID: 2785688786313313403, guid: d2fdcdde1650bc04b8e82cf5a435b8d0, type: 3}
       propertyPath: m_Name
       value: zombiedadBar
-      objectReference: {fileID: 0}
-    - target: {fileID: 3869233775481121015, guid: d2fdcdde1650bc04b8e82cf5a435b8d0, type: 3}
-      propertyPath: m_Value
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4270916453386138952, guid: d2fdcdde1650bc04b8e82cf5a435b8d0, type: 3}
       propertyPath: m_Pivot.x
@@ -85683,10 +85698,6 @@ PrefabInstance:
     - target: {fileID: 7596934074412999507, guid: d2fdcdde1650bc04b8e82cf5a435b8d0, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8189134305620185926, guid: d2fdcdde1650bc04b8e82cf5a435b8d0, type: 3}
-      propertyPath: m_FillAmount
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
