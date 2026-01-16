@@ -108,23 +108,11 @@ public class TutorialDialogueManager : MonoBehaviour
     }
     public void PlayTareas()
     {
-        // Finaliza la conversación actual si hay alguna activa
-        if (currentConversationUI != null)
-        {
-            currentConversationUI.SetActive(false);
-        }
-
-        if (currentConversation != null)
-        {
-            ConversationManager.Instance.EndConversation(); // Finaliza la conversación actual
-            currentConversation = null;
-        }
-
-        currentConversationUI = null;
-
-        // Inicia la nueva conversación (índice 2)
-        IniciarDialogo(2);
+        StartCoroutine(CambiarDialogoCoroutine(2));
     }
+
+
+
     public void PlayDialogos()
     {
         // Finaliza la conversación actual si hay alguna activa
@@ -186,6 +174,33 @@ public class TutorialDialogueManager : MonoBehaviour
         // Inicia el diálogo
         IniciarDialogo(5);
     }
+    IEnumerator CambiarDialogoCoroutine(int index)
+    {
+        if (ConversationManager.Instance.IsConversationActive)
+            ConversationManager.Instance.EndConversation();
+
+        while (ConversationManager.Instance.IsConversationActive)
+            yield return null;
+
+        if (currentConversationUI != null)
+            currentConversationUI.SetActive(false);
+
+        currentConversationUI = null;
+        currentConversation = null;
+
+        IniciarDialogo(index);
+    }
+
+    public void DesactivarUIDialogo(int index)
+    {
+        if (index < 0 || index >= conversations.Count)
+            return;
+
+        var ui = conversations[index].UIconversation;
+
+        if (ui != null && ui.activeSelf)
+            ui.SetActive(false);
+    }
 
     #endregion
     #region flagvoids
@@ -205,6 +220,8 @@ public class TutorialDialogueManager : MonoBehaviour
     {
         playedvendingmachine=true;
     }
+    public void Desactivarui1()
+    { DesactivarUIDialogo(1); }
     
     #endregion
 
