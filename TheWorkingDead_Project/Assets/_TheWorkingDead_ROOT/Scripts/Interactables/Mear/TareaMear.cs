@@ -6,20 +6,19 @@ public class TareaMear : TaskBase
 {
     public Slider BarraMear;
     public GameObject canvasTarea;
+    public FadeCanvas FadeCanvas;
     void Update()
     {
-        if (canvasTarea.GetComponent<MearUI>().meandoDentro)
-        {
-            StartCoroutine(VaciarBarra());
-        }
-        if (!canvasTarea.GetComponent<MearUI>().meandoDentro || tareaAcabada)
-        {
-            StopCoroutine(VaciarBarra());
-        }
+        
 
-        if (BarraMear.value <= 0 && !tareaAcabada)
+        if (BarraMear.value >= BarraMear.maxValue)
         {
+            Win();
             tareaAcabada = true;
+        }
+        if (BarraMear.value <= BarraMear.minValue)
+        {
+            Loose();
         }
 
         if (tareaAcabada)

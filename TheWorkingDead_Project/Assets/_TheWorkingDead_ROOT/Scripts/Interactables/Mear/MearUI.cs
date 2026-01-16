@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class MearUI : MonoBehaviour
 {
@@ -12,28 +13,34 @@ public class MearUI : MonoBehaviour
     [SerializeField] private RectTransform punteroRT;
     [SerializeField] private LineRenderer line;
     public Slider barraMear;
+    [SerializeField] private RectTransform zonaMearRT;
 
     // -----------------------------
     // WORLD
     // -----------------------------
     [Header("World References")]
-    public Transform meandoGreg;
+    public RectTransform meandoGreg;
 
     // -----------------------------
     // MOVIMIENTO
     // -----------------------------
     [Header("Movimiento")]
     [SerializeField] private float speed = 300f;
-    [SerializeField] private float autoForce = 150f;
-    [SerializeField] private float tiempoDesvio = 1.5f;
+    //[SerializeField] private float autoForce = 150f;
+    //[SerializeField] private float tiempoDesvio = 1.5f;
     [SerializeField] private float limiteX = 400f;
 
     // -----------------------------
     // PARÁBOLA
     // -----------------------------
     [Header("Parábola")]
+    [SerializeField] private float fuerza = 10f;
+    [SerializeField] private float gravedad = 9.8f;
+    [SerializeField] private float distanciaMax = 5f;
+
     [SerializeField] private int segments = 30;
     [SerializeField] private float height = 2f;
+
 
     // -----------------------------
     // BARRA
@@ -56,6 +63,7 @@ public class MearUI : MonoBehaviour
     private void Start()
     {
         punteroPos = punteroRT.anchoredPosition;
+        barraMear.value = barraMear.maxValue / 2f;
     }
 
     private void Update()
@@ -83,7 +91,7 @@ public class MearUI : MonoBehaviour
             input = 1f;
 
         punteroPos.x += input * speed * Time.deltaTime;
-        punteroPos.x += direccionAuto * autoForce * Time.deltaTime;
+        //punteroPos.x += direccionAuto * autoForce * Time.deltaTime;
 
         punteroPos.x = Mathf.Clamp(punteroPos.x, -limiteX, limiteX);
 
@@ -109,42 +117,88 @@ public class MearUI : MonoBehaviour
     // -----------------------------
     private void ControlBarra()
     {
-        timerBarra += Time.deltaTime;
-        if (timerBarra < tiempoBarra) return;
+        float velocidad = barraMear.maxValue * tiempoBarra;
 
-        timerBarra = 0f;
+        bool dentro = PunteroDentroZona();
 
-        float delta = barraMear.maxValue * 0.02f;
-        barraMear.value += meandoDentro ? delta : -delta;
+        if (dentro)
+            barraMear.value += velocidad * Time.deltaTime;
+        else
+            barraMear.value -= velocidad * Time.deltaTime;
+
+        barraMear.value = Mathf.Clamp(barraMear.value, 0f, barraMear.maxValue);
+        //float velocidad = barraMear.maxValue * 0.4f;
+
+        //if (meandoDentro)
+        //    barraMear.value += velocidad * Time.deltaTime;
+        //if (!meandoDentro)
+        //    barraMear.value -= velocidad * Time.deltaTime;
+
+        //barraMear.value = Mathf.Clamp(barraMear.value, 0f, barraMear.maxValue);
     }
-
+    private bool PunteroDentroZona()
+    {
+        return RectTransformUtility.RectangleContainsScreenPoint(
+            zonaMearRT,
+            punteroRT.position,
+            null
+        );
+    }
     // -----------------------------
     // PARÁBOLA VISUAL
     // -----------------------------
+
     private void DibujarParabola()
     {
-        if (!line || !meandoGreg) return;
+        if (!line || !punteroRT || !meandoGreg) return;
 
-        line.positionCount = segments + 1;
+        line.useWorldSpace = false;
+        line.positionCount = segments;
 
-        Vector3 start = meandoGreg.position;
+        Vector3 start = punteroRT.TransformPoint(punteroRT.rect.center);
+        Vector3 end = meandoGreg.TransformPoint(meandoGreg.rect.center);
 
-        Vector3 end;
-        RectTransformUtility.ScreenPointToWorldPointInRectangle(
-            punteroRT,
-            punteroRT.position,
-            Camera.main,
-            out end
-        );
+        Vector3 control = (start + end) * 0.5f + Vector3.up * height;
 
-        for (int i = 0; i <= segments; i++)
+        for (int i = 0; i < segments; i++)
         {
-            float t = i / (float)segments;
-            Vector3 pos = Vector3.Lerp(start, end, t);
-            pos.y += Mathf.Sin(t * Mathf.PI) * height;
+            float t = i / (float)(segments - 1);
+            Vector3 pos = Bezier(start, control, end, t);
             line.SetPosition(i, pos);
         }
     }
+
+    Vector3 Bezier(Vector3 a, Vector3 b, Vector3 c, float t)
+    {
+        Vector3 ab = Vector3.Lerp(a, b, t);
+        Vector3 bc = Vector3.Lerp(b, c, t);
+        return Vector3.Lerp(ab, bc, t);
+    }
+
+    //private void DibujarParabola()
+    //{
+    //    if (!line || !meandoGreg) return;
+
+    //    line.positionCount = segments + 1;
+
+    //    Vector3 start = meandoGreg.position;
+
+    //    Vector3 end;
+    //    RectTransformUtility.ScreenPointToWorldPointInRectangle(
+    //        punteroRT,
+    //        punteroRT.position,
+    //        Camera.main,
+    //        out end
+    //    );
+
+    //    for (int i = 0; i <= segments; i++)
+    //    {
+    //        float t = i / (float)segments;
+    //        Vector3 pos = Vector3.Lerp(start, end, t);
+    //        pos.y += Mathf.Sin(t * Mathf.PI) * height;
+    //        line.SetPosition(i, pos);
+    //    }
+    //}
 
     // -----------------------------
     // ZONA RETRETE
@@ -160,6 +214,25 @@ public class MearUI : MonoBehaviour
         if (other.CompareTag("RetreteZonaMear"))
             meandoDentro = false;
     }
+
+    IEnumerator BajarBarra()
+    {
+        yield return new WaitForSeconds(tiempoBarra);
+        barraMear.value -= barraMear.maxValue * 0.01f;
+    }
+    IEnumerator SubirBarra()
+    {
+        yield return new WaitForSeconds(tiempoBarra);
+        barraMear.value += barraMear.maxValue * 0.01f;
+    }
+
+
+
+
+
+
+
+
 
     //[Header("UI References")]
     //public RectTransform punteroRT;
@@ -328,16 +401,16 @@ public class MearUI : MonoBehaviour
 
 
 
-    ////IEnumerator BajarBarra()
-    ////{
-    ////    yield return new WaitForSeconds(tiempoBarra);
-    ////    BarraMear.value -= BarraMear.maxValue * 0.02f;
-    ////}
-    ////IEnumerator SubirBarra()
-    ////{
-    ////    yield return new WaitForSeconds(tiempoBarra);
-    ////    BarraMear.value += BarraMear.maxValue * 0.02f;
-    ////}
+    //IEnumerator BajarBarra()
+    //{
+    //    yield return new WaitForSeconds(tiempoBarra);
+    //    barraMear.value -= barraMear.maxValue * 0.01f;
+    //}
+    //IEnumerator SubirBarra()
+    //{
+    //    yield return new WaitForSeconds(tiempoBarra);
+    //    barraMear.value += barraMear.maxValue * 0.01f;
+    //}
     ////IEnumerator Desviar()
     ////{
     ////    if (izquierdaDerecha)
