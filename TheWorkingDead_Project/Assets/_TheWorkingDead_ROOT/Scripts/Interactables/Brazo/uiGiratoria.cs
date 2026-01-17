@@ -12,6 +12,9 @@ public class uiGiratoria : MonoBehaviour
     public float rotacionTotal;
     private float anguloAnterior;
 
+    private float porcentajeTamaño;
+    [SerializeField] private float scaleMax = 1.5f; // tamaño máximo
+    //private Vector3 escalaOriginal;
 
     private Quaternion targetRotation;
 
@@ -25,6 +28,7 @@ public class uiGiratoria : MonoBehaviour
         anguloAnterior = 0;
         scalaOriginal = this.transform.localScale;
         targetRotation = transform.rotation;
+        
     }
 
     // Update is called once per frame
@@ -51,48 +55,61 @@ public class uiGiratoria : MonoBehaviour
         rotacionTotal += delta / 360f;
         // if (rotacionTotal < 0) rotacionTotal = rotacionTotal * -1;
         anguloAnterior = anguloActual;
-        
 
-        float porcentajeTam = (progresoSlider.maxValue / progresoSlider.value) * 100;
-        this.gameObject.transform.localScale *= porcentajeTam;
-        if (this.gameObject.transform.localScale.x < scalaOriginal.x) this.gameObject.transform.localScale = scalaOriginal;
+
+
+        float valorBarra = brazoScript.progresoSlider.value;
+        float maxValueBarra = brazoScript.progresoSlider.maxValue;
+        porcentajeTamaño = (valorBarra * maxValueBarra) / 100;
+        if (porcentajeTamaño < 1)
+        {
+            porcentajeTamaño += 1;
+        }
+        this.transform.localScale = scalaOriginal * porcentajeTamaño;
+
+        //float scaleAmount = Mathf.Abs(anguloActual)* scaleFactor;
+        //scaleAmount = Mathf.Min(scaleAmount, maxScale - initialScale.x);
+        //Vector3 newScale = initialScale + Vector3.one * scaleAmount;
+        //this.transform.localScale = newScale;
+        //this.gameObject.transform.localScale *= porcentajeTam;
+        //if (this.gameObject.transform.localScale.x < scalaOriginal.x) this.gameObject.transform.localScale = scalaOriginal;
 
         //if (brazoScript.miniGameStarted)
         //{
         //    //Vector3 mouseWorldPos = Input.mousePosition;
         //    //mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            //    //Vector2 lookAtDirection = new Vector2(mouseWorldPos.x - this.transform.position.x, mouseWorldPos.y - this.transform.position.y); // mouseWorldPos - this.transform.position;
-            //    //this.transform.up = lookAtDirection;
+        //    //Vector2 lookAtDirection = new Vector2(mouseWorldPos.x - this.transform.position.x, mouseWorldPos.y - this.transform.position.y); // mouseWorldPos - this.transform.position;
+        //    //this.transform.up = lookAtDirection;
 
 
 
-            //    //Vector3 mousePosition = Input.mousePosition;
-            //    //mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        //    //Vector3 mousePosition = Input.mousePosition;
+        //    //mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-            //    //Vector2 direction = mousePosition - transform.position;
-            //    //Debug.Log("dirección = " + direction + "transform.u valor = " +transform.up);
-            //    //transform.up = direction;
+        //    //Vector2 direction = mousePosition - transform.position;
+        //    //Debug.Log("dirección = " + direction + "transform.u valor = " +transform.up);
+        //    //transform.up = direction;
 
-            //    //float anguloActual = transform.eulerAngles.z;
-            //    //Debug.Log("ángulo actual = " + anguloActual + " ángulo anterior = " + anguloAnterior);
-            //    //float delta = Mathf.DeltaAngle(anguloAnterior, anguloActual);
+        //    //float anguloActual = transform.eulerAngles.z;
+        //    //Debug.Log("ángulo actual = " + anguloActual + " ángulo anterior = " + anguloAnterior);
+        //    //float delta = Mathf.DeltaAngle(anguloAnterior, anguloActual);
 
-            //    //// Suma progresiva (360 grados = +1)
-            //    //brazoScript.rotacionTotal += delta / 360f;
+        //    //// Suma progresiva (360 grados = +1)
+        //    //brazoScript.rotacionTotal += delta / 360f;
 
-            //    //anguloAnterior = anguloActual;
+        //    //anguloAnterior = anguloActual;
 
 
-            //    //Vector3 mousePosition = Input.mousePosition;
-            //    //mousePosition = Camera.main.ScreenToWorldPoint(mousePosition); // Distancia desde la cámara
+        //    //Vector3 mousePosition = Input.mousePosition;
+        //    //mousePosition = Camera.main.ScreenToWorldPoint(mousePosition); // Distancia desde la cámara
 
-            //    //Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
-            //    //// Lógica que se ejecuta cuando el juego ha comenzado
-            //    //transform.up = direction;
-            //}
+        //    //Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
+        //    //// Lógica que se ejecuta cuando el juego ha comenzado
+        //    //transform.up = direction;
+        //}
 
-            //// Smoothly rotate towards the target rotation
-            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        //// Smoothly rotate towards the target rotation
+        //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 }

@@ -4,6 +4,9 @@ using UnityEngine.UI;
 using System.Collections;
 using JetBrains.Annotations;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class OviedadZombie : MonoBehaviour
 {
@@ -21,10 +24,33 @@ public class OviedadZombie : MonoBehaviour
     [SerializeField] GameObject looseCanvas;
     [SerializeField] PlayerController playerController;
     [Header("Sprites")]
-    [SerializeField] Image gregHead;
+    
+    [SerializeField] Image gregHeadImage;
     [SerializeField] Sprite[] gregSprites;
-    [Header("Flags")]
-    private bool zombiedadReducida = false;
+
+    [Header("Box volume")]
+    [SerializeField] Volume volume;
+    ChromaticAberration chromaticAberration;
+    Vignette vignette;
+    Coroutine mediumEffectCoroutine;
+
+    [SerializeField] float mediumChromaticTarget = 0.3f;
+    [SerializeField] float mediumVignetteTarget = 0.4f;
+    [SerializeField] float transitionDuration = 0.5f;
+
+    bool playshake;
+    bool playhighshake;
+    RectTransform zombiedadBarRect;
+    Vector2 originalBarPos;
+
+
+    //[Header("For Sprite Movement")]
+    //[SerializeField] Transform gregHeadTransform;
+    //[SerializeField] Vector2 endPosition = new Vector2(0, 0);
+    //[SerializeField] Vector2 startPosition;
+    //[SerializeField] float desiredDuration = 3f;
+    //[SerializeField] float elapsedTime;
+
     //[Header("Others")]
     //[SerializeField] Transform PlayerTransform;
     //[SerializeField] Transform RespawnPoint;
@@ -32,69 +58,158 @@ public class OviedadZombie : MonoBehaviour
 
     void Start()
     {
+
         zombiedadSpeedOriginal= ZombiedadSpeed;
         Zombiedad = maxZombiedad;
         playerController = this.gameObject.GetComponent<PlayerController>();
 
         zombiedadBar.maxValue = maxZombiedad;
         zombiedadBar.value = Zombiedad;
-        zombiedadReducida = false;
+
+        volume.profile.TryGet(out chromaticAberration);
+        volume.profile.TryGet(out vignette);
+
+        if (vignette != null)
+        {
+            vignette.intensity.overrideState = true;
+        }
+        zombiedadBarRect = zombiedadBar.GetComponent<RectTransform>();
+        originalBarPos = zombiedadBarRect.anchoredPosition;
+
+        //
+
+        //startPosition = gregHeadTransform.localPosition;
     }
     //-----//
     private void Update()
     {
-        if (Zombiedad > 100f)
-        {
-            Zombiedad = 100f;
-        }
+        // Limitar Zombiedad
+        Zombiedad = Mathf.Clamp(Zombiedad - ZombiedadSpeed * Time.deltaTime, 0f, 100f);
 
-        if (Zombiedad < 0f)
-        {
-            Zombiedad = 0f;
-        }
+        // Actualizar slider suavemente
+        zombiedadBar.value = Mathf.Lerp(zombiedadBar.value, Zombiedad, Time.deltaTime * 5f);
 
-        Zombiedad -= ZombiedadSpeed * Time.deltaTime; 
-        zombiedadBar.value = Zombiedad;
-
+        // Revisar si perdi贸
         if (Zombiedad <= 0f)
         {
             looseCanvas.SetActive(true);
-            this.gameObject.GetComponent<PlayerController>().playerOcupado = true;
-        }
-        //-----//
-        if (Zombiedad >= 100f && Zombiedad <= 60.000f)
-        {
-            gregHead.sprite = gregSprites[0];
-            Debug.Log("Good");
-        }
-        if (Zombiedad >= 60.000f && Zombiedad <= 25.000f)
-        {
-            gregHead.sprite = gregSprites[1];
-            Debug.Log("medium");
-        }
-        if (Zombiedad >= 25.000f && Zombiedad <= 1f)
-        {
-            gregHead.sprite = gregSprites[2];
-            Debug.Log("Bad");
-        }
-        // Reducir velocidad UNA VEZ
-        if (playerController.playerOcupado && !zombiedadReducida)
-        {
-            ZombiedadSpeed *= Zombiedadocupadomultiplier;
-            zombiedadReducida = true;
+            playerController.playerOcupado = true;
+            return; // nada m谩s que hacer
         }
 
-        // Restaurar velocidad UNA VEZ
-        if (!playerController.playerOcupado && zombiedadReducida && !playerController.snackusado)
+        // Estados de zombiedad
+
+        if (Zombiedad >= 50f)
         {
-            resetspeed();
-            zombiedadReducida = false;
+            gregHeadImage.sprite = gregSprites[0];
+            chromaticAberration.intensity.value = 0f;
+            vignette.intensity.value = 0.3f;
+
+                StopShakeZombiedadBar();
+        }
+        else if (Zombiedad >= 25f)
+        {
+            gregHeadImage.sprite = gregSprites[1];
+
+            if (mediumEffectCoroutine == null)
+                mediumEffectCoroutine = StartCoroutine(MediumEffectTransition());
+                ShakeZombiedadBar();
+        }
+        else
+        {
+            gregHeadImage.sprite = gregSprites[2];
+            chromaticAberration.intensity.value = 0.4f + Mathf.PingPong(Time.time * 3f, 0.3f);
+            vignette.intensity.value = 0.4f + Mathf.PingPong(Time.time * 0.5f, 0.1f);
+
+                ShakeZombiedadBarHigh();
         }
 
 
     }
+
     public void resetspeed()
     { ZombiedadSpeed = zombiedadSpeedOriginal; }
+    IEnumerator MediumEffectTransition()
+    {
+        float startChromatic = chromaticAberration.intensity.value;
+        float startVignette = vignette.intensity.value;
+
+        float elapsed = 0f;
+
+        while (elapsed < transitionDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / transitionDuration;
+
+            chromaticAberration.intensity.value =
+                Mathf.Lerp(startChromatic, mediumChromaticTarget, t);
+
+            vignette.intensity.value =
+                Mathf.Lerp(startVignette, mediumVignetteTarget, t);
+
+            yield return null;
+        }
+
+        chromaticAberration.intensity.value = mediumChromaticTarget;
+        vignette.intensity.value = mediumVignetteTarget;
+    }
+    Tween shakeTween;
+
+    void ShakeZombiedadBar()
+    {
+        StopShakeZombiedadBar(); // detiene cualquier shake previo
+
+        shakeTween = zombiedadBarRect.DOShakeAnchorPos(
+            1f,   // duraci贸n de un ciclo
+            2f,   // fuerza
+            5,    // vibraciones
+            90f,  // randomness
+            false,
+            true
+        )
+        .SetLoops(-1, LoopType.Yoyo) // Yoyo para volver siempre al original
+        .OnKill(() => {
+            // Restaurar posici贸n original al detener
+            zombiedadBarRect.anchoredPosition = originalBarPos;
+        });
+    }
+
+
+    void ShakeZombiedadBarHigh()
+    {
+        StopShakeZombiedadBar();
+
+        shakeTween = zombiedadBarRect.DOShakeAnchorPos(
+            1f,
+            4f,
+            10,
+            90f,
+            false,
+            true
+        )
+        .SetLoops(-1, LoopType.Yoyo)
+        .OnKill(() => {
+            zombiedadBarRect.anchoredPosition = originalBarPos;
+        });
+    }
+
+
+
+    void StopShakeZombiedadBar()
+    {
+        if (shakeTween != null)
+        {
+            shakeTween.Kill();
+            shakeTween = null;
+            // El OnKill() restaurar谩 la posici贸n autom谩ticamente
+        }
+    }
+
+
+
+
+
+
 
     //    #region General Variables
     //    public float Zombiedad = 0;
@@ -111,7 +226,7 @@ public class OviedadZombie : MonoBehaviour
     //    {
     //        if (ZombiedadBar == null)
     //        {
-    //            // Busca el objeto "Fill" en la jerarqu韆
+    //            // Busca el objeto "Fill" en la jerarqu铆a
     //            ZombiedadBar = GameObject.Find("Fill").GetComponent<Slider>();
     //        }
     //        float zValue = 1;

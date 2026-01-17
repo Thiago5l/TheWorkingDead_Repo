@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Burst.Intrinsics;
 using UnityEngine;
 
@@ -7,29 +8,22 @@ public class MiniGamePlayer : MonoBehaviour
     public float speed = 5f;
     public float minX = -4f;
     public float maxX = 4f;
-
+    bool canshoot=true;
     public GameObject bulletPrefab;
     public Transform firePoint;
-    
-    void Start()
-    {
-        
-    }
 
-    
     void Update()
     {
         Move();
-        Shoot();
     }
 
     void Move()
     {
         float input = 0f;
         
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow)||Input.GetKey(KeyCode.A))
             input = -1f;
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow)||Input.GetKey(KeyCode.D))
             input = 1f;
         
         Vector3 pos = transform.localPosition;
@@ -40,8 +34,10 @@ public class MiniGamePlayer : MonoBehaviour
 
     void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (canshoot) 
         {
+            canshoot = false;
+            StartCoroutine(CanShootCoroutine());
             GameObject bullet = Instantiate(bulletPrefab);
 
             bullet.transform.SetParent(firePoint.parent, false);
@@ -55,7 +51,10 @@ public class MiniGamePlayer : MonoBehaviour
 
             bullet.transform.SetSiblingIndex(firePoint.GetSiblingIndex() + 1);
         }
-        
-        
+    }
+    IEnumerator CanShootCoroutine()
+    {
+        yield return new WaitForSeconds(0.3f);
+        canshoot = true;
     }
 }

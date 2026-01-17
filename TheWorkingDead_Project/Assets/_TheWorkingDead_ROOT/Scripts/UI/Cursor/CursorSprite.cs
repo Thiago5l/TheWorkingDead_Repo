@@ -1,17 +1,32 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class CursorSprite : MonoBehaviour
 {
     public Texture2D cursorT;
-
+    public Texture2D cursorClick;
+    
     private Vector2 cursorHotSpot;
 
-    private void Start()
+    void Start()
     {
+        //no tocar esto que hace que el cursor si funcione
         Cursor.visible = true;
+        //
 
         cursorHotSpot = new Vector2(cursorT.width / 2, cursorT.height / 2);
         Cursor.SetCursor(cursorT, cursorHotSpot, CursorMode.Auto);
+    }
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Cursor.SetCursor(cursorClick, cursorHotSpot, CursorMode.Auto);
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            Cursor.SetCursor(cursorT, cursorHotSpot, CursorMode.Auto);
+        }
     }
 }
