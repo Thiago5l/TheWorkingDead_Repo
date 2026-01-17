@@ -52578,14 +52578,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 875105504}
     - target: {fileID: 977609638488973, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
-      propertyPath: chaseDelay
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 977609638488973, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
-      propertyPath: sightRange
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 977609638488973, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
       propertyPath: looseCanvas
       value: 
       objectReference: {fileID: 891191520}
@@ -52593,25 +52585,17 @@ PrefabInstance:
       propertyPath: playerObject
       value: 
       objectReference: {fileID: 200637151}
-    - target: {fileID: 977609638488973, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
-      propertyPath: alwaysChaseAtStart
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7517235681251064650, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7517235681251064650, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7997392375358048578, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 7997392375358048578, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8269600359859842607, guid: f04b68fcc057ae846811813d3fa65118, type: 3}
       propertyPath: m_LocalPosition.x
