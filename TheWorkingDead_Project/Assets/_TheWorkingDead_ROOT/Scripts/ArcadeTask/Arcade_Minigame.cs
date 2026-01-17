@@ -9,7 +9,6 @@ public class Arcade_Minigame : TaskBase
     public int enemiesToKill = 3;
     private int enemiesKilled = 0;
     
-    public GameObject taskCanvas;
     public TMP_Text EnemyCount; 
     protected override void IniciarTarea()
     {
@@ -26,13 +25,6 @@ public class Arcade_Minigame : TaskBase
     {
         enemiesKilled++;
         UpdateCounter();
-
-        if (enemiesKilled >= enemiesToKill)
-        {
-            taskCanvas.SetActive(false);
-          
-
-        }
     }
     void UpdateCounter()
     {
