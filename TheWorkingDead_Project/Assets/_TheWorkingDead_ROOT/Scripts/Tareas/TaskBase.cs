@@ -23,8 +23,8 @@ public abstract class TaskBase : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (taskExclamation != null && !playerCerca && !tareaAcabada)
-            taskExclamation.SetActive(EstaEnListaDeTareas());
+        ActualizarCanvasInteract();
+        ActualizarExclamacion();
     }
     private void OnEnable()
     {
@@ -42,8 +42,6 @@ public abstract class TaskBase : MonoBehaviour
         if (uiTarea != null) uiTarea.SetActive(false);
         if (particles != null) particles.SetActive(true);
         if (canvasInteractKey != null) canvasInteractKey.SetActive(false);
-        if (taskExclamation != null)
-            taskExclamation.SetActive(EstaEnListaDeTareas());
         if (objRenderer == null) objRenderer = GetComponent<Renderer>();
         tareaAcabada = false;
     }
@@ -56,16 +54,6 @@ public abstract class TaskBase : MonoBehaviour
 
         playerCerca = true;
 
-        // Mostrar canvas solo si está en la lista
-        if (EstaEnListaDeTareas())
-            canvasInteractKey?.SetActive(true);
-        else
-            canvasInteractKey?.SetActive(false);
-
-        // Ocultar exclamación siempre al acercarse
-        if (taskExclamation != null)
-            taskExclamation.SetActive(false);
-
         CambiarColorOutline(colorCerca);
     }
 
@@ -75,13 +63,6 @@ public abstract class TaskBase : MonoBehaviour
 
         playerCerca = false;
 
-        // Ocultar canvas interactivo
-        if (canvasInteractKey != null)
-            canvasInteractKey.SetActive(false);
-
-        // Mostrar exclamación solo si está en la lista y no completada
-        if (EstaEnListaDeTareas() && !tareaAcabada)
-            taskExclamation?.SetActive(true);
 
         CambiarColorOutline(colorLejos);
 
@@ -95,21 +76,18 @@ public abstract class TaskBase : MonoBehaviour
 
     public virtual void Interactuar()
     {
+        if (!EstaEnListaDeTareas()) return;
+
         if (playerCerca && !tareaAcabada && !interactuando)
         {
-
             uiTarea.SetActive(true);
 
             interactuando = true;
 
             if (player != null)
-            {
                 player.GetComponent<PlayerController>().playerOcupado = true;
-                
-            }
-               
-            if (canvasInteractKey != null)
-                canvasInteractKey.SetActive(false);
+
+            canvasInteractKey?.SetActive(false);
 
             IniciarTarea();
         }
@@ -128,12 +106,10 @@ public abstract class TaskBase : MonoBehaviour
         if (particles != null) particles.SetActive(false);
         if (uiTarea != null) uiTarea.SetActive(false);
         if (canvasInteractKey != null) canvasInteractKey.SetActive(false);
-        if (taskExclamation != null) taskExclamation.SetActive(false);
         if (player != null) player.GetComponent<PlayerController>().playerOcupado = false;
 
         StopAllCoroutines();
         this.enabled = false;
-        ActualizarExclamacion();
     }
 
     protected void CancelarBase()
@@ -145,12 +121,24 @@ public abstract class TaskBase : MonoBehaviour
         if (player != null) player.GetComponent<PlayerController>().playerOcupado = false;
 
         StopAllCoroutines();
-        ActualizarExclamacion();
     }
 
     #endregion
 
     #region Visual
+
+    void ActualizarCanvasInteract()
+    {
+        if (canvasInteractKey == null) return;
+
+        bool mostrar =
+            playerCerca &&
+            EstaEnListaDeTareas() &&
+            !tareaAcabada &&
+            !interactuando;
+
+        canvasInteractKey.SetActive(mostrar);
+    }
 
     protected void CambiarColorOutline(Color color)
     {
@@ -166,11 +154,19 @@ public abstract class TaskBase : MonoBehaviour
         return taskManager != null && taskManager.OrdenTareas.Contains(this.gameObject);
     }
 
-    protected void ActualizarExclamacion()
+    void ActualizarExclamacion()
     {
-        if (taskExclamation != null)
-            taskExclamation.SetActive(EstaEnListaDeTareas() && !playerCerca && !tareaAcabada);
+        if (taskExclamation == null) return;
+
+        bool mostrar =
+            EstaEnListaDeTareas() &&
+            !playerCerca &&
+            !tareaAcabada &&
+            !interactuando;
+
+        taskExclamation.SetActive(mostrar);
     }
+
 
     #endregion
     #region win/loose

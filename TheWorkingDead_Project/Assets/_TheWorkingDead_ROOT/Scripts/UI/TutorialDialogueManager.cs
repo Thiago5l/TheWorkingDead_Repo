@@ -215,6 +215,7 @@ public class TutorialDialogueManager : MonoBehaviour
     public void changevendingmachinecolor()
     { VendingMachine.CambiarColorOutline(Color.yellow);
         PlayerController.coins=5;
+        CoinManager.Updatecoins();
     }
     public void playedvendingmachines()
     {

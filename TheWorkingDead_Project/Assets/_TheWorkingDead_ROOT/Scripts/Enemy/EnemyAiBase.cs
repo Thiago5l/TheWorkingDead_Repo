@@ -74,6 +74,9 @@ public class EnemyAiBase : MonoBehaviour
     [SerializeField, Range(0, 360)] private float viewAngle = 120f; // angulo de vision del enemigo
     [SerializeField] private float viewDistance = 10f;             // distancia maxima de vision
     [SerializeField] private LayerMask obstacleMask;               // para raycast de obstaculos
+    [Header("Vision Cone")]
+    public VisionCone visionCone;
+
 
     #endregion
 
@@ -177,14 +180,55 @@ public class EnemyAiBase : MonoBehaviour
         {
             yield return new WaitForSeconds(aiUpdateFrequency);
 
-            targetInSightRange = useSightRange ? Physics.CheckSphere(transform.position, sightRange, targetLayer) : true;
-            targetInAttackRange = Physics.CheckSphere(transform.position, attackRange, targetLayer);
+            targetInSightRange = useSightRange && IsTargetInSight();
+            targetInAttackRange = Vector3.Distance(transform.position, target.position) <= attackRange;
 
-            if (targetInSightRange && targetInAttackRange) AttackTarget();
-            else if (targetInSightRange && !targetInAttackRange) ChaseTarget();
-            else Patrolling();
+            if (targetInSightRange && targetInAttackRange)
+                AttackTarget();
+            else if (targetInSightRange && !targetInAttackRange)
+                ChaseTarget();
+            else
+                Patrolling();
         }
     }
+
+    private bool IsTargetInSight()
+    {
+        if (target == null || visionCone == null) return false;
+
+        // Origen del raycast a la altura del ojo del enemigo
+        Vector3 rayOrigin = transform.position + Vector3.up * 0.5f;
+
+        // Apuntar al centro del jugador
+        Vector3 targetCenter = target.position + Vector3.up * 0.5f;
+        Vector3 directionToTarget = (targetCenter - rayOrigin).normalized;
+        float distanceToTarget = Vector3.Distance(rayOrigin, targetCenter);
+
+        // Usar la distancia del cono de visión
+        float maxDistance = visionCone.viewDistance;
+        if (distanceToTarget > maxDistance) return false;
+
+        // Usar el ángulo del cono de visión
+        float angleToTarget = Vector3.Angle(transform.forward, directionToTarget);
+        if (angleToTarget > visionCone.viewAngle / 2f) return false;
+
+        // Raycast para verificar obstáculos
+        RaycastHit hit;
+        if (Physics.Raycast(rayOrigin, directionToTarget, out hit, maxDistance))
+        {
+            if (((1 << hit.collider.gameObject.layer) & targetLayer) != 0 || hit.collider.transform.IsChildOf(target))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
+
+
     #endregion
 
     #region AI Behaviors
@@ -305,7 +349,24 @@ public class EnemyAiBase : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
+
+        // Cono de visión
+        Gizmos.color = Color.cyan;
+        Vector3 forward = transform.forward * viewDistance;
+        Quaternion leftRayRotation = Quaternion.Euler(0, -viewAngle / 2f, 0);
+        Quaternion rightRayRotation = Quaternion.Euler(0, viewAngle / 2f, 0);
+        Vector3 leftRayDirection = leftRayRotation * forward;
+        Vector3 rightRayDirection = rightRayRotation * forward;
+
+        Gizmos.DrawRay(transform.position + Vector3.up * 1.0f, leftRayDirection);
+        Gizmos.DrawRay(transform.position + Vector3.up * 1.0f, rightRayDirection);
+
+        // Línea directa al jugador
+        if (target != null)
+            Gizmos.DrawLine(transform.position + Vector3.up * 1.0f, target.position + Vector3.up * 1.0f);
     }
+
+
     #endregion
 }
 

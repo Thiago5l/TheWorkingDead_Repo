@@ -55,6 +55,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] OviedadZombie obviedadZombie;
     [SerializeField] public bool snackusado = false;
 
+    [Header("Save Data")]
+    [SerializeField] PlayerData playerData;
+
     [Header("resources")]
     [SerializeField] public float energeticas = 1;
     [SerializeField] public int snacks = 1;
@@ -75,6 +78,10 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        if (playerData != null)
+        {
+            playerData.ApplyToPlayer(this);
+        }
         PlayerRB = GetComponent<Rigidbody>();
         if (camTransform == null) camTransform = Camera.main.transform; //busca la cámara main si no tiene cam asignada
         PlayerRB.freezeRotation = true; //congelar rotación de rigid body
@@ -132,6 +139,14 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+    public void FromPLayerToPLayerData()
+    {
+        if (playerData != null)
+        {
+            playerData.CopyFromPlayer(this);
+        }
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
