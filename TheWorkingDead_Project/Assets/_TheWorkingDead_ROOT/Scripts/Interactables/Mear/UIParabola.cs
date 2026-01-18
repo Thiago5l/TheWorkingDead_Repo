@@ -14,6 +14,8 @@ public class UIParabola : Graphic
     public float height = 150f;
     public float thickness = 4f;
 
+    float distanceAnterior;
+
     protected override void OnPopulateMesh(VertexHelper vh)
     {
         vh.Clear();
@@ -75,9 +77,29 @@ public class UIParabola : Graphic
     }
 
 #if UNITY_EDITOR
+
+    protected override void Awake()
+    {
+        distanceAnterior = Vector2.Distance(WorldToLocal(start.position), WorldToLocal(end.position));
+    }
     void Update()
     {
         SetVerticesDirty(); // refresca en tiempo real
+        float distance = Vector2.Distance(WorldToLocal(start.position), WorldToLocal(end.position));
+        height = distance / 2f; // ajusta la altura en función de la distancia
+
+        //if (distance > distanceAnterior)
+        //{
+        //    height = height+1; // ajusta la altura en función de la distancia
+        //    distanceAnterior = distance;
+        //    SetVerticesDirty();
+        //}
+        //if (distance < distanceAnterior)
+        //{
+        //    height = height-1; // ajusta la altura en función de la distancia
+        //    distanceAnterior = distance;
+        //    SetVerticesDirty();
+        //}
     }
 #endif
 }
