@@ -77,6 +77,8 @@ public class EnemyAiBase : MonoBehaviour
     [Header("Vision Cone")]
     public VisionCone visionCone;
 
+    [SerializeField] private Collider enemyCollider;
+
 
     #endregion
 
@@ -84,6 +86,9 @@ public class EnemyAiBase : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+
+        if (enemyCollider == null)
+            enemyCollider = GetComponent<Collider>();
 
         if (target == null)
         {
@@ -181,7 +186,8 @@ public class EnemyAiBase : MonoBehaviour
             yield return new WaitForSeconds(aiUpdateFrequency);
 
             targetInSightRange = useSightRange && IsTargetInSight();
-            targetInAttackRange = Vector3.Distance(transform.position, target.position) <= attackRange;
+            targetInAttackRange = Vector3.Distance(EyePosition, target.position) <= attackRange;
+
 
             if (targetInSightRange && targetInAttackRange)
                 AttackTarget();
@@ -192,31 +198,37 @@ public class EnemyAiBase : MonoBehaviour
         }
     }
 
+    private Vector3 EyePosition => enemyCollider.bounds.center;
+
     private bool IsTargetInSight()
     {
-        if (target == null || visionCone == null) return false;
+        if (target == null || enemyCollider == null)
+            return false;
 
-        // Origen del raycast a la altura del ojo del enemigo
-        Vector3 rayOrigin = transform.position + Vector3.up * 0.5f;
+        Vector3 origin = EyePosition;
 
-        // Apuntar al centro del jugador
-        Vector3 targetCenter = target.position + Vector3.up * 0.5f;
-        Vector3 directionToTarget = (targetCenter - rayOrigin).normalized;
-        float distanceToTarget = Vector3.Distance(rayOrigin, targetCenter);
+        Collider targetCol = target.GetComponent<Collider>();
+        Vector3 targetCenter = targetCol != null
+            ? targetCol.bounds.center
+            : target.position;
 
-        // Usar la distancia del cono de visión
-        float maxDistance = visionCone.viewDistance;
-        if (distanceToTarget > maxDistance) return false;
+        Vector3 dir = (targetCenter - origin).normalized;
+        float distance = Vector3.Distance(origin, targetCenter);
 
-        // Usar el ángulo del cono de visión
-        float angleToTarget = Vector3.Angle(transform.forward, directionToTarget);
-        if (angleToTarget > visionCone.viewAngle / 2f) return false;
+        // USAR sightRange (no viewDistance)
+        if (distance > sightRange)
+            return false;
 
-        // Raycast para verificar obstáculos
-        RaycastHit hit;
-        if (Physics.Raycast(rayOrigin, directionToTarget, out hit, maxDistance))
+        float angle = Vector3.Angle(transform.forward, dir);
+        if (angle > viewAngle * 0.5f)
+            return false;
+
+        // Raycast SOLO contra obstáculos + player
+        if (Physics.Raycast(origin, dir, out RaycastHit hit, sightRange,
+            obstacleMask | targetLayer))
         {
-            if (((1 << hit.collider.gameObject.layer) & targetLayer) != 0 || hit.collider.transform.IsChildOf(target))
+            if (hit.collider.transform == target ||
+                hit.collider.transform.IsChildOf(target))
             {
                 return true;
             }
@@ -224,6 +236,8 @@ public class EnemyAiBase : MonoBehaviour
 
         return false;
     }
+
+
 
 
 
@@ -344,27 +358,38 @@ public class EnemyAiBase : MonoBehaviour
     #region Gizmos
     private void OnDrawGizmosSelected()
     {
+        Collider col = GetComponent<Collider>();
+        if (col == null) return;
+
+        Vector3 origin = col.bounds.center;
+
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(origin, attackRange);
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
+        Gizmos.DrawWireSphere(origin, sightRange);
 
-        // Cono de visión
         Gizmos.color = Color.cyan;
         Vector3 forward = transform.forward * viewDistance;
-        Quaternion leftRayRotation = Quaternion.Euler(0, -viewAngle / 2f, 0);
-        Quaternion rightRayRotation = Quaternion.Euler(0, viewAngle / 2f, 0);
-        Vector3 leftRayDirection = leftRayRotation * forward;
-        Vector3 rightRayDirection = rightRayRotation * forward;
 
-        Gizmos.DrawRay(transform.position + Vector3.up * 1.0f, leftRayDirection);
-        Gizmos.DrawRay(transform.position + Vector3.up * 1.0f, rightRayDirection);
+        Quaternion leftRot = Quaternion.Euler(0, -viewAngle / 2f, 0);
+        Quaternion rightRot = Quaternion.Euler(0, viewAngle / 2f, 0);
 
-        // Línea directa al jugador
+        Gizmos.DrawRay(origin, leftRot * forward);
+        Gizmos.DrawRay(origin, rightRot * forward);
+
         if (target != null)
-            Gizmos.DrawLine(transform.position + Vector3.up * 1.0f, target.position + Vector3.up * 1.0f);
+        {
+            Collider targetCol = target.GetComponent<Collider>();
+            Vector3 targetCenter = targetCol != null
+                ? targetCol.bounds.center
+                : target.position;
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(origin, targetCenter);
+        }
     }
+
 
 
     #endregion

@@ -35813,7 +35813,7 @@ PrefabInstance:
       objectReference: {fileID: 1629927587}
     - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: ZombiedadSpeed
-      value: 3.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3886985495476869994, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: gregSprites.Array.size
@@ -91574,7 +91574,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 0.2
-  m_NavMeshData: {fileID: 23800000, guid: 8954f092b7bb9b843a339c35654df2d2, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 04946e51291a33945a813d0ee9dc17b9, type: 2}
   m_BuildHeightMesh: 1
 --- !u!1001 &2070437971
 PrefabInstance:
@@ -95655,6 +95655,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1970997372175022292, guid: d43f4be89ad08094692c10efaf885d83, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1112284729, guid: 2cc06de90390fb54493e462533162c55, type: 3}
     - target: {fileID: 3831404605157639451, guid: d43f4be89ad08094692c10efaf885d83, type: 3}
       propertyPath: playerController
       value: 
@@ -96133,9 +96137,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4177540135787082820, guid: 1d2ebab8df8c1db4fa6ece2849b5e143, type: 3}
+      propertyPath: winCanvas
+      value: 
+      objectReference: {fileID: 1550445824}
+    - target: {fileID: 4177540135787082820, guid: 1d2ebab8df8c1db4fa6ece2849b5e143, type: 3}
       propertyPath: PlayerController
       value: 
       objectReference: {fileID: 875105508}
+    - target: {fileID: 5482786222629205485, guid: 1d2ebab8df8c1db4fa6ece2849b5e143, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
