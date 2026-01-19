@@ -53,7 +53,7 @@ public abstract class TaskBase : MonoBehaviour
         if (!other.CompareTag("TaskPlayer")&&!tareaAcabada) return;
 
         playerCerca = true;
-
+        if (EstaEnListaDeTareas())
         CambiarColorOutline(colorCerca);
     }
 
@@ -99,6 +99,8 @@ public abstract class TaskBase : MonoBehaviour
 
     protected void CompletarTarea()
     {
+        if (taskExclamation != null)
+            taskExclamation.SetActive(false);
         taskManager.CompletarTarea(this.gameObject);
         tareaAcabada = true;
         interactuando = false;
@@ -158,14 +160,20 @@ public abstract class TaskBase : MonoBehaviour
     {
         if (taskExclamation == null) return;
 
+        if (tareaAcabada)
+        {
+            taskExclamation.SetActive(false);
+            return;
+        }
+
         bool mostrar =
             EstaEnListaDeTareas() &&
             !playerCerca &&
-            !tareaAcabada &&
             !interactuando;
 
         taskExclamation.SetActive(mostrar);
     }
+
 
 
     #endregion
@@ -180,6 +188,8 @@ public abstract class TaskBase : MonoBehaviour
         interactuando = false;
         StopAllCoroutines();
         CompletarTarea();
+        if (taskExclamation != null)
+            taskExclamation.SetActive(false);
     }
     protected void Loose()
     {

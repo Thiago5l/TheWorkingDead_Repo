@@ -27441,6 +27441,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 3938495861499272599, guid: c090672cda48fb349a4b9416bddc23d6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.059
+      objectReference: {fileID: 0}
     - target: {fileID: 4892289370393319862, guid: c090672cda48fb349a4b9416bddc23d6, type: 3}
       propertyPath: m_Name
       value: PF_AAC (4)
@@ -50973,7 +50977,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a8c9eff6a64a0d2418443401b7773931, type: 3}
+  m_Sprite: {fileID: 217228366, guid: 2cc06de90390fb54493e462533162c55, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -62071,6 +62075,10 @@ PrefabInstance:
     - target: {fileID: 1661657979252112283, guid: ab90c668b426af940b8bdd2a3ea6ce17, type: 3}
       propertyPath: 'textsToSelect.Array.data[4]'
       value: Empleadodelmes
+      objectReference: {fileID: 0}
+    - target: {fileID: 2576012016362398855, guid: ab90c668b426af940b8bdd2a3ea6ce17, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3230163931020222432, guid: ab90c668b426af940b8bdd2a3ea6ce17, type: 3}
       propertyPath: m_LocalScale.x
@@ -96055,6 +96063,10 @@ PrefabInstance:
     - target: {fileID: 1319507889210441641, guid: 1d2ebab8df8c1db4fa6ece2849b5e143, type: 3}
       propertyPath: m_Name
       value: WinCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319507889210441641, guid: 1d2ebab8df8c1db4fa6ece2849b5e143, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2266928963377375987, guid: 1d2ebab8df8c1db4fa6ece2849b5e143, type: 3}
       propertyPath: m_Pivot.x
