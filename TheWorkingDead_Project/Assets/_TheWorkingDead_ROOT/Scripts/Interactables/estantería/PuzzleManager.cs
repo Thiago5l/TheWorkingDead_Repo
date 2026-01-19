@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class PuzzleManager : MonoBehaviour
 {
     [Header("Game Elements")]
-    [Range(2f, 8f)]
+    [Range(1, 6)]
     [SerializeField] private int dificultad;
     [SerializeField] private Transform holder;
     [SerializeField] private Transform piezasPF;
@@ -33,7 +33,7 @@ public class PuzzleManager : MonoBehaviour
     public Slider timeSlider;
     [SerializeField] float maxTime;
     private float time;
-    [SerializeField] bool tiempoStart;
+    public bool tiempoStart;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -45,12 +45,12 @@ public class PuzzleManager : MonoBehaviour
         time = maxTime;
         win = false;
         loose = false;
-        if (imageTextures.Count == 1)
-        {
-            levelSelectPanel.gameObject.SetActive(false);
-            StartPuzzle(imageTextures[0]);
-            return;
-        }
+        //if (imageTextures.Count == 1)
+        //{
+        //    levelSelectPanel.gameObject.SetActive(false);
+        //    StartPuzzle(imageTextures[0]);
+        //    return;
+        //}
 
         foreach (Texture2D texture in imageTextures) 
         {
@@ -68,7 +68,7 @@ public class PuzzleManager : MonoBehaviour
         dimensiones = GetDimensions(texture, dificultad);
         CrearPiezasDePuzzle(texture);
         ColocarSoloAlgunasPiezas();
-        //Scatter();
+        Scatter();
     }
     Vector2Int GetDimensions(Texture2D texture, int dificultad)
     {
@@ -172,25 +172,25 @@ public class PuzzleManager : MonoBehaviour
         }
     }
 
-    //void Scatter()
-    //{
-    //    float orthoHeight = Camera.main.orthographicSize;
-    //    float screenAspect= (float)Screen.width / Screen.height;
-    //    float orthoWidth = (screenAspect + orthoHeight);
+    void Scatter()
+    {
+        float orthoHeight = Camera.main.orthographicSize;
+        float screenAspect = (float)Screen.width / Screen.height;
+        float orthoWidth = (screenAspect + orthoHeight);
 
-    //    float piezaWidth = width * holder.localScale.x;
-    //    float piezaHeight = height * holder.localScale.y;
+        float piezaWidth = width * holder.localScale.x;
+        float piezaHeight = height * holder.localScale.y;
 
-    //    orthoHeight -= piezaHeight;
-    //    piezaWidth -= piezaWidth;
+        orthoHeight -= piezaHeight;
+        piezaWidth -= piezaWidth;
 
-    //    foreach(Transform pieza in piezas)
-    //    {
-    //        float x = Random.Range(-orthoWidth, orthoWidth);
-    //        float y = Random.Range(-orthoHeight, orthoHeight);
-    //        pieza.position = new Vector3(x, y, -1);
-    //    }
-    //}
+        foreach (Transform pieza in piezas)
+        {
+            float x = Random.Range(-orthoWidth, orthoWidth);
+            float y = Random.Range(-orthoHeight, orthoHeight);
+            pieza.position = new Vector3(x, y, -1);
+        }
+    }
     // Update is called once per frame
     void Update()
     {

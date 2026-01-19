@@ -30,6 +30,12 @@ public class MearUI : MonoBehaviour
     //[SerializeField] private float tiempoDesvio = 1.5f;
     [SerializeField] private float limiteX = 400f;
 
+    [Header("Desvío automático")]
+    [SerializeField] private float autoForce = 150f;
+    [SerializeField] private float tiempoDesvio = 1.5f;
+
+    private float direccionAuto = 1f;   // -1 izquierda | 1 derecha
+    private float timerDesvio;
     // -----------------------------
     // PARÁBOLA
     // -----------------------------
@@ -52,8 +58,8 @@ public class MearUI : MonoBehaviour
     // ESTADO
     // -----------------------------
     private Vector2 punteroPos;
-    private float direccionAuto = 1f;
-    private float timerDesvio;
+    //private float direccionAuto = 1f;
+    //private float timerDesvio;
     private float timerBarra;
     public bool meandoDentro;
 
@@ -68,8 +74,10 @@ public class MearUI : MonoBehaviour
 
     private void Update()
     {
+
         MoverPuntero();
         //ControlDesvio();
+        DesvioAutomatico();
         ControlBarra();
         DibujarParabola();
         if (Input.anyKey)
@@ -91,7 +99,7 @@ public class MearUI : MonoBehaviour
             input = 1f;
 
         punteroPos.x += input * speed * Time.deltaTime;
-        //punteroPos.x += direccionAuto * autoForce * Time.deltaTime;
+        punteroPos.x += direccionAuto * autoForce * Time.deltaTime;
 
         punteroPos.x = Mathf.Clamp(punteroPos.x, -limiteX, limiteX);
 
@@ -111,6 +119,24 @@ public class MearUI : MonoBehaviour
     //        timerDesvio = 0f;
     //    }
     //}
+
+    private void DesvioAutomatico()
+    {
+        // Mueve el puntero automáticamente
+        punteroPos.x += direccionAuto * autoForce * Time.deltaTime;
+
+        // Contador de cambio de dirección
+        timerDesvio += Time.deltaTime;
+
+        if (timerDesvio >= tiempoDesvio)
+        {
+            // Cambia de dirección (izq <-> der)
+            direccionAuto *= -1f;
+
+            // Reinicia el temporizador
+            timerDesvio = 0f;
+        }
+    }
 
     // -----------------------------
     // BARRA DE PROGRESO

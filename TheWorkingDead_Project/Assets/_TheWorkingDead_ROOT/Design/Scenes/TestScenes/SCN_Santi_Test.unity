@@ -31871,10 +31871,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 336946582088945165, guid: d64b2c1e9a23acf40bcd61191091fa25, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1.2073059
-      objectReference: {fileID: 0}
     - target: {fileID: 1668423894564690230, guid: d64b2c1e9a23acf40bcd61191091fa25, type: 3}
       propertyPath: m_Name
       value: PF_TaskOrdenar
@@ -31906,6 +31902,10 @@ PrefabInstance:
     - target: {fileID: 6272953638693777171, guid: d64b2c1e9a23acf40bcd61191091fa25, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798199174594841552, guid: d64b2c1e9a23acf40bcd61191091fa25, type: 3}
+      propertyPath: dificultad
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6798199174594841552, guid: d64b2c1e9a23acf40bcd61191091fa25, type: 3}
       propertyPath: 'imageTextures.Array.data[0]'
