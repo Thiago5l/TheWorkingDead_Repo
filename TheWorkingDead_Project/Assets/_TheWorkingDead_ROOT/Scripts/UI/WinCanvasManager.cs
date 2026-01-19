@@ -3,11 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class WinCanvasManager : MonoBehaviour
 {
-    public GameObject winCanvas;
     public PlayerController PlayerController;
     private void OnEnable()
     {
-        winCanvas.LeanMoveLocalY(0, 1f).setEaseOutExpo().setIgnoreTimeScale(true).delay = 0.1f;
         Time.timeScale = 0f;
     }
     public void LoadNextScene()
@@ -18,6 +16,7 @@ public class WinCanvasManager : MonoBehaviour
         // Si existe la siguiente escena
         if (nextIndex < SceneManager.sceneCountInBuildSettings)
         {
+            PlayerController.coins++;
             PlayerController.FromPLayerToPLayerData();
             SceneManager.LoadScene(nextIndex);
         }
