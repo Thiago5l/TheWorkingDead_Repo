@@ -26,7 +26,8 @@ public class FadeCanvas : MonoBehaviour
     private bool fadeEnabled = false;
 
     [Header("Brazo caido")]
-    public GameObject managerBrazo;
+    public BrazoManager managerBrazo;
+    float probabilidad = 0.25f; 
     public bool brazoYaCaido;
 
 
@@ -69,8 +70,10 @@ public class FadeCanvas : MonoBehaviour
 
         Player.GetComponent<OviedadZombie>().Zombiedad -= penalizacion;
         StartFade(loseColor);
-
-        managerBrazo.GetComponent<BrazoManager>().BrazoSeCae();
+        if (Random.value <= probabilidad)
+        { managerBrazo.BrazoSeCae();
+            brazoYaCaido=true;
+        }
         // OPCIONAL: permitir perder otra vez tras el fade
         StartCoroutine(ResetLose());
     }
