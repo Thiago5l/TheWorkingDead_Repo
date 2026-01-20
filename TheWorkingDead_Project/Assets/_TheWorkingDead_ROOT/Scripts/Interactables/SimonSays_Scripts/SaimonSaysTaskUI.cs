@@ -9,6 +9,7 @@ public class SimonButton
     public Button button;
     public Sprite normalColor;
     public Sprite highlightColor;
+    
 
 }
 
@@ -31,6 +32,7 @@ public class SaimonSaysTaskUI : TaskBase
     [SerializeField] int rondasCompletadas =0;
     [SerializeField] public int rondasACompletar;
 
+    public GameObject playerBloqueado;
 
     [SerializeField] private FadeCanvas taskFeedbackCanvas;
 
@@ -119,7 +121,7 @@ public class SaimonSaysTaskUI : TaskBase
     IEnumerator ShowSequence()
     {
         yield return new WaitForSeconds(1f);
-
+        playerBloqueado.gameObject.SetActive(true);
         for (int i = 0; i < sequence.Count; i++)
         {
             int index = sequence[i];
@@ -138,7 +140,9 @@ public class SaimonSaysTaskUI : TaskBase
         //    yield return new WaitForSeconds(pauseTime);
         //}
 
+        playerBloqueado.gameObject.SetActive(false);
         playerTurn = true;
+        
     }
 
     public void PresionarBotonPlayer(int index)
