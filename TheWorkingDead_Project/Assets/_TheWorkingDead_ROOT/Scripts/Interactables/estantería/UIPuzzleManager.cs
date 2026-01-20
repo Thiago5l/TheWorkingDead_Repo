@@ -17,6 +17,12 @@ public class UIPuzzleManager : MonoBehaviour
 
     [Header("Puzzle")]
     public List<Sprite> puzzleSprites;
+
+    [Header("Siluetas del puzzle (ordenadas)")]
+    public List<Sprite> silhouetteSprites;
+    [Range(0.1f, 1f)]
+    public float silhouetteScale = 0.9f;
+
     [Header("Tamaño de piezas")]
     [Range(0.5f, 2f)]
     [SerializeField] private float scalePieza = 1f;
@@ -54,8 +60,14 @@ public class UIPuzzleManager : MonoBehaviour
             Debug.LogError("El numero de sprites debe coincidir con el numero de slots");
             return;
         }
+        if (puzzleSprites.Count != manualSlots.Count || silhouetteSprites.Count != manualSlots.Count)
+        {
+            Debug.LogError("Sprites, siluetas y slots deben coincidir en cantidad");
+            return;
+        }
 
         CrearPiezas();
+        AsignarSiluetasASlots();
         ColocarSoloAlgunas();
         //AjustarBackground();
     }
@@ -127,6 +139,11 @@ public class UIPuzzleManager : MonoBehaviour
             piece.isCorrect = true;
             piezasCorrectas++;
 
+            // Ocultar silueta (hijo)
+            Transform sil = targetSlot.Find("Silhouette");
+            if (sil != null)
+                sil.gameObject.SetActive(false);
+
             if (piezasCorrectas == manualSlots.Count)
             {
                 win = true;
@@ -134,6 +151,27 @@ public class UIPuzzleManager : MonoBehaviour
             }
         }
     }
+
+    //public void TrySnap(PuzzlePieceUI piece)
+    //{
+    //    RectTransform rt = piece.GetComponent<RectTransform>();
+    //    RectTransform targetSlot = manualSlots[piece.pieceIndex];
+
+    //    float snapDistance = pieceWidth * 0.4f;
+
+    //    if (Vector2.Distance(rt.anchoredPosition, targetSlot.anchoredPosition) < snapDistance)
+    //    {
+    //        rt.anchoredPosition = targetSlot.anchoredPosition;
+    //        piece.isCorrect = true;
+    //        piezasCorrectas++;
+
+    //        if (piezasCorrectas == manualSlots.Count)
+    //        {
+    //            win = true;
+    //            Debug.Log("PUZZLE COMPLETADO");
+    //        }
+    //    }
+    //}
 
     //void AjustarBackground()
     //{
@@ -149,7 +187,53 @@ public class UIPuzzleManager : MonoBehaviour
 
     //    background.anchoredPosition = holder.anchoredPosition;
     //}
+    void AsignarSiluetasASlots()
+    {
+        for (int i = 0; i < manualSlots.Count; i++)
+        {
+            RectTransform slot = manualSlots[i];
 
+            GameObject silhouetteGO = new GameObject("Silhouette");
+            silhouetteGO.transform.SetParent(slot);
+            silhouetteGO.transform.localScale = Vector3.one;
+
+            RectTransform silRT = silhouetteGO.AddComponent<RectTransform>();
+            silRT.anchorMin = silRT.anchorMax = silRT.pivot = new Vector2(0.5f, 0.5f);
+            silRT.anchoredPosition = Vector2.zero;
+
+            Image silImage = silhouetteGO.AddComponent<Image>();
+            silImage.sprite = silhouetteSprites[i];
+            silImage.raycastTarget = false;
+            silImage.preserveAspect = true;
+
+            // Tamaño nativo del sprite
+            silImage.SetNativeSize();
+            Vector3 tamañoSil = Vector3.one;
+            silRT.localScale = new Vector3(tamañoSil.x * silhouetteScale, tamañoSil.y /** silhouetteScale*//*(silhouetteScale * 1.5f)*/, tamañoSil.z);
+            // Ajuste visual de la silueta
+            silImage.color = new Color(0f, 0f, 0f, 180f);
+        }
+    }
+
+
+
+
+    //void AsignarSiluetasASlots()
+    //{
+    //    for (int i = 0; i < manualSlots.Count; i++)
+    //    {
+    //        Image slotImage = manualSlots[i].GetComponent<Image>();
+
+    //        if (slotImage == null)
+    //        {
+    //            Debug.LogError("El slot necesita un componente Image");
+    //            continue;
+    //        }
+
+    //        slotImage.sprite = silhouetteSprites[i];
+    //        slotImage.color = new Color(1f, 1f, 1f, 0.4f); // semi-transparente
+    //    }
+    //}
     void Update()
     {
         if (!tiempoStart || win || loose)
