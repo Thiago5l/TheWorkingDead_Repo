@@ -5,28 +5,35 @@ using UnityEngine.UI;
 
 public class TaskOrdenar : TaskBase
 {
-    [SerializeField] UIPuzzleManager puzzleManager;
+    [SerializeField] UIPuzzleManager uiPuzzleManager;
+    [SerializeField] GameObject gameObject;
 
     // Update is called once per frame
     void Update()
     {
-        if(puzzleManager.win == true)
+        if(uiPuzzleManager.win == true)
         {
-            puzzleManager.tiempoStart = false;
+            uiPuzzleManager.tiempoStart = false;
+            gameObject.gameObject.SetActive(false);
             Win();
         }
-        if(puzzleManager.loose == true)
+        if(uiPuzzleManager.loose == true)
         {
-            puzzleManager.tiempoStart = false;
+            uiPuzzleManager.tiempoStart = false;
+            uiPuzzleManager.tiempoStart = false;
             Loose();
         }
     }
     protected override void IniciarTarea()
     {
-        puzzleManager.tiempoStart = true;
+        uiPuzzleManager.tiempoStart = true;
         Debug.Log("TareaIniciada");
         //BarraMear.value = BarraMear.maxValue;
     }
     protected override void CancelarTarea()
-    { puzzleManager.tiempoStart = false; }
+    { 
+        uiPuzzleManager.tiempoStart = false;
+        uiPuzzleManager.tiempoStart = false;
+
+    }
 }
