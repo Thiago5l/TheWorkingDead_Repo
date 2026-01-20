@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TaskOrdenar : TaskBase
 {
     [SerializeField] UIPuzzleManager uiPuzzleManager;
-    [SerializeField] GameObject gameObject;
+    [SerializeField] GameObject UIgameObject;
 
     // Update is called once per frame
     void Update()
@@ -14,13 +14,13 @@ public class TaskOrdenar : TaskBase
         if(uiPuzzleManager.win == true)
         {
             uiPuzzleManager.tiempoStart = false;
-            gameObject.gameObject.SetActive(false);
+            UIgameObject.gameObject.SetActive(false);
             Win();
         }
         if(uiPuzzleManager.loose == true)
         {
             uiPuzzleManager.tiempoStart = false;
-            uiPuzzleManager.tiempoStart = false;
+            
             Loose();
         }
     }
@@ -33,7 +33,6 @@ public class TaskOrdenar : TaskBase
     protected override void CancelarTarea()
     { 
         uiPuzzleManager.tiempoStart = false;
-        uiPuzzleManager.tiempoStart = false;
-
+        UIgameObject.gameObject.SetActive(false);
     }
 }

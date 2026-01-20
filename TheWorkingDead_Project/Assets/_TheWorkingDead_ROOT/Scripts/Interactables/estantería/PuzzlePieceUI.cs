@@ -1,25 +1,25 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class PuzzlePieceUI : MonoBehaviour,
     IPointerDownHandler,
-    IPointerUpHandler,
-    IDragHandler
+    IDragHandler,
+    IPointerUpHandler
 {
-    public UIPuzzleManager manager;
-    public int pieceIndex;
+    [HideInInspector] public UIPuzzleManager manager;
+    [HideInInspector] public int pieceIndex;
+
     public bool isCorrect;
 
     private RectTransform rectTransform;
-    private Canvas canvas;
+    private RectTransform parentRect;
     private bool dragging;
     private Vector2 offset;
 
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        canvas = manager.canvas;
+        parentRect = rectTransform.parent as RectTransform;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -30,7 +30,7 @@ public class PuzzlePieceUI : MonoBehaviour,
         rectTransform.SetAsLastSibling();
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            manager.canvasRect,
+            parentRect,
             eventData.position,
             eventData.pressEventCamera,
             out Vector2 mousePos
@@ -44,7 +44,7 @@ public class PuzzlePieceUI : MonoBehaviour,
         if (!dragging || isCorrect) return;
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            manager.canvasRect,
+            parentRect,
             eventData.position,
             eventData.pressEventCamera,
             out Vector2 mousePos
