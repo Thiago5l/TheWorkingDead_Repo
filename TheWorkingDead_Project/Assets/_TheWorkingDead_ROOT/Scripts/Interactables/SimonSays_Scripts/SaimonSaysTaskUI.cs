@@ -24,7 +24,6 @@ public class SaimonSaysTaskUI : TaskBase
     [SerializeField] float pauseTime = 0.3f;
     
     [SerializeField] List<int> sequence = new List<int>();
-    [SerializeField] List<SimonButton> secuenciaDeBotones = new List<SimonButton>();
     [SerializeField] int tamañoSequence;
     int playerIndex;
     bool playerTurn;
@@ -34,20 +33,18 @@ public class SaimonSaysTaskUI : TaskBase
 
     public GameObject playerBloqueado;
 
-    [SerializeField] private FadeCanvas taskFeedbackCanvas;
 
     protected override void IniciarTarea()
     { InicioDeJuego(); }
     protected override void CancelarTarea()
     {
-        CancelarBase(); // hace todo lo genérico
+        CancelarBase();
 
-        // lógica específica de Simon Says
         sequence.Clear();
-        secuenciaDeBotones.Clear();
         intOrdenBotonesPlayer.Clear();
         playerTurn = false;
     }
+
 
 
     // Update is called once per frame
@@ -83,11 +80,7 @@ public class SaimonSaysTaskUI : TaskBase
             else
             {
                 //Game Over
-                uiTarea.SetActive(false);
-                player.gameObject.GetComponent<PlayerController>().playerOcupado = false;
-                tareaAcabada = false;
-                taskFeedbackCanvas.PlayLose();
-                Debug.Log("Game Over");
+                Loose();
 
             }
             intOrdenBotonesPlayer.Clear();
@@ -98,21 +91,16 @@ public class SaimonSaysTaskUI : TaskBase
     void InicioDeJuego()
     {
         sequence.Clear();
-        secuenciaDeBotones.Clear();
-        for (int i = 0; i <tamañoSequence; i++)
-        {
 
+        for (int i = 0; i < tamañoSequence; i++)
+        {
             int randomBtton = Random.Range(0, buttonsList.Count);
             sequence.Add(randomBtton);
         }
-        for (int i = 0; i < sequence.Count; i++)
-        {
-            secuenciaDeBotones.Add(buttonsList[sequence[i]]);
-        }
 
         MostrarSecuencia();
-
     }
+
 
     public void MostrarSecuencia()
     {
@@ -164,22 +152,19 @@ public class SaimonSaysTaskUI : TaskBase
         }
         if (rondasCompletadas == rondasACompletar)
         {
-            StopAllCoroutines();
-            uiTarea.SetActive(false);
-            tareaAcabada = true;
-            taskFeedbackCanvas.PlayWin();
-            Debug.Log("Tarea Completada!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11");
+            Win();
         }
     }
 
 
     void HighlightButton(int index)
     {
-        secuenciaDeBotones[index].button.image.sprite = secuenciaDeBotones[index].highlightColor;
+        buttonsList[index].button.image.sprite = buttonsList[index].highlightColor;
     }
 
     void ResetButton(int index)
     {
-        secuenciaDeBotones[index].button.image.sprite = secuenciaDeBotones[index].normalColor;
+        buttonsList[index].button.image.sprite = buttonsList[index].normalColor;
     }
+
 }

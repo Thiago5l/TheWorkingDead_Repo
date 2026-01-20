@@ -5,8 +5,6 @@ using UnityEngine.UI;
 public class TareaMear : TaskBase
 {
     public Slider BarraMear;
-    public GameObject canvasTarea;
-    public FadeCanvas FadeCanvas;
     void Update()
     {
         
@@ -24,7 +22,6 @@ public class TareaMear : TaskBase
         if (tareaAcabada)
         {
             tareaAcabada = true;
-            canvasTarea.SetActive(false);
             player.GetComponent<PlayerController>().playerOcupado = false;
         }
     }

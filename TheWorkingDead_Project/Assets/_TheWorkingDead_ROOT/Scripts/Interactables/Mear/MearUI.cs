@@ -93,9 +93,9 @@ public class MearUI : MonoBehaviour
     {
         float input = 0f;
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow)|| Input.GetKey(KeyCode.A))
             input = -1f;
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.D))
             input = 1f;
 
         punteroPos.x += input * speed * Time.deltaTime;
