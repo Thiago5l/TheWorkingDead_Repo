@@ -54,7 +54,7 @@ public class BrazoCaido : MonoBehaviour
         progresoSlider.maxValue = rotacionMax;
 
         //feedBackCanva = GameObject.FindGameObjectWithTag("Feedback");
-        //player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         //brazoL = GameObject.FindGameObjectWithTag("BrazoCaido");   
         //brazoL.gameObject.SetActive(false);
         pfBrazo.SetActive(false);
@@ -93,6 +93,7 @@ public class BrazoCaido : MonoBehaviour
 
             // Aquí va la lógica para completar el minijuego
             player.GetComponent<PlayerController>().playerOcupado = false;
+            if (brazoL == null) brazoL = GameObject.FindGameObjectWithTag("BrazoL");
             brazoL.gameObject.SetActive(true);
 
             feedBackCanva.GetComponent<FadeCanvas>().brazoYaCaido = false;
