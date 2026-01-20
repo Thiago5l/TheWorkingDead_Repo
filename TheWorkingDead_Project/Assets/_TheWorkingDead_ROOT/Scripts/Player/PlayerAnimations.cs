@@ -25,8 +25,10 @@ public class PlayerAnimations : MonoBehaviour
 
         Vector3 velocidadCaminado = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
         float velocidad = velocidadCaminado.magnitude;
-        if (velocidad > velocidadUmbral)
-            anim.SetFloat("Movimiento", 1f);
+        if (velocidad > velocidadUmbral && velocidad<2.1f)
+            anim.SetFloat("Movimiento", 0.5f);
+        else if (velocidad >= 2.1f)
+            anim.SetFloat("Movimiento", 01f);
         else
             anim.SetFloat("Movimiento", 0f);
     }
