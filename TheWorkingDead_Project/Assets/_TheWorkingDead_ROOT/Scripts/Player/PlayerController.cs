@@ -55,6 +55,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] OviedadZombie obviedadZombie;
     [SerializeField] public bool snackusado = false;
 
+    [Header("Save Data")]
+    [SerializeField] PlayerData playerData;
+
     [Header("resources")]
     [SerializeField] public float energeticas = 1;
     [SerializeField] public int snacks = 1;
@@ -67,10 +70,18 @@ public class PlayerController : MonoBehaviour
     Vector2 moveImput;//almacén imput mov
     bool isGrounded;//determina si estás tocando el suelo
     bool TaskDetector;
+
+    [Header("tutorial")]
+    public bool tutorialroom;
+    public bool playedvendingmachine;
     #endregion
 
     private void Awake()
     {
+        if (playerData != null)
+        {
+            playerData.ApplyToPlayer(this);
+        }
         PlayerRB = GetComponent<Rigidbody>();
         if (camTransform == null) camTransform = Camera.main.transform; //busca la cámara main si no tiene cam asignada
         PlayerRB.freezeRotation = true; //congelar rotación de rigid body
@@ -83,6 +94,7 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        tutorialroom = false;
         TaskCollider= GameObject.FindGameObjectWithTag("TaskPlayer");
         energeticasUI.SetEnergeticas((int)energeticas);
         snacks_UI.SetSnacks((int)snacks);
@@ -127,6 +139,14 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+    public void FromPLayerToPLayerData()
+    {
+        if (playerData != null)
+        {
+            playerData.CopyFromPlayer(this);
+        }
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -136,6 +156,8 @@ public class PlayerController : MonoBehaviour
             playerCerca = true;
             Debug.Log("Jugador entró en el área de Task (por layer)");
         }
+        if (other.gameObject.CompareTag("Roomcollider"))
+        { tutorialroom=true; }
     }
 
     private void OnTriggerExit(Collider other)

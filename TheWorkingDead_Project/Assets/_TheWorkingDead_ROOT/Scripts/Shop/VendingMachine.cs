@@ -5,7 +5,7 @@ public class VendingMachine : MonoBehaviour
 {
     public bool shopActive;
 
-    [SerializeField] private GameObject shopCanvas;
+    [SerializeField] public GameObject shopCanvas;
     [SerializeField] PlayerController PlayerController;
     [Header("outline")]
     [SerializeField] Renderer objRenderer;
@@ -58,7 +58,7 @@ public class VendingMachine : MonoBehaviour
             PlayerController.playerOcupado=false;
         }
     }
-    void CambiarColorOutline(Color color)
+    public void CambiarColorOutline(Color color)
     {
         Material[] mats = objRenderer.materials;
 
