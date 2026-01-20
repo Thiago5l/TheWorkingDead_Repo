@@ -28,7 +28,7 @@ public class TareaMear : TaskBase
     protected override void IniciarTarea()
     {
         Debug.Log("TareaIniciada");
-        //BarraMear.value = BarraMear.maxValue;
+        BarraMear.value = BarraMear.maxValue/4;
     }
     protected override void CancelarTarea()
     { }
