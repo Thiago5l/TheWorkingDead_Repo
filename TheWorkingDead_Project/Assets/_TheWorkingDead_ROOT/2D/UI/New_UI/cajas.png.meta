@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bc68c7d965aae5542a5964486531b030
+guid: 82618b743111c8f4b9ae2544d04f9a09
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -149,12 +149,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cages_0
+      name: cajas_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 69
-        width: 1293
+        x: 27
+        y: 68
+        width: 1294
         height: 1288
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -164,20 +164,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8c46a8ed8941ee45800e61d7918e659
-      internalID: -1456438619
+      spriteID: 7b1eac48851de1645be0e9e42af7fb21
+      internalID: -2100499464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cages_1
+      name: cajas_1
       rect:
         serializedVersion: 2
-        x: 1354
-        y: 849
-        width: 413
-        height: 216
+        x: 1409
+        y: 888
+        width: 368
+        height: 228
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,20 +186,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d8630c883f2f6b4e8a0c2e2c017a4b1
-      internalID: -873748507
+      spriteID: 90238564bf5c5b442b0ae3c9e45af6da
+      internalID: 574372986
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cages_2
+      name: cajas_2
       rect:
         serializedVersion: 2
-        x: 1808
-        y: 771
-        width: 359
-        height: 274
+        x: 1864
+        y: 899
+        width: 337
+        height: 278
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a505fa68f2e80747960b8c0ab4dd95c
-      internalID: 795711311
+      spriteID: 881048afca7ce9d488ba53d2a5e03c13
+      internalID: 1978107542
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cages_3
+      name: cajas_3
       rect:
         serializedVersion: 2
-        x: 1336
-        y: 514
-        width: 428
-        height: 286
+        x: 2312
+        y: 852
+        width: 429
+        height: 287
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -230,42 +230,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2203689abe8e2a54f8483cbde809ee55
-      internalID: -152353692
+      spriteID: 936be55e2c7d1044aa09e099745af88d
+      internalID: -1800374822
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cages_4
+      name: cajas_4
       rect:
         serializedVersion: 2
-        x: 1786
-        y: 429
-        width: 437
-        height: 311
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3c40d37b3bee2374b92cf75c238c5a7f
-      internalID: 522504545
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cages_5
-      rect:
-        serializedVersion: 2
-        x: 1354
-        y: 260
+        x: 2758
+        y: 860
         width: 422
-        height: 218
+        height: 337
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -274,20 +252,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71e569c1dba20b248a32a81535c76667
-      internalID: 976339053
+      spriteID: 1b851abc4eac2a04fb5c5140a09c9a3d
+      internalID: -1670675784
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cages_6
+      name: cajas_5
       rect:
         serializedVersion: 2
-        x: 1800
-        y: 92
-        width: 500
-        height: 289
+        x: 1425
+        y: 529
+        width: 345
+        height: 155
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -296,20 +274,42 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b54e812db7f09248ac27361797c07f1
-      internalID: -703185890
+      spriteID: ab6f5a0e466006943aab87ec4a328cad
+      internalID: 1670129341
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cages_7
+      name: cajas_6
       rect:
         serializedVersion: 2
-        x: 1368
-        y: 38
-        width: 383
-        height: 187
+        x: 1824
+        y: 483
+        width: 366
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60169143eed13a04aa261a6b7cab3e4b
+      internalID: -780030523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cajas_8
+      rect:
+        serializedVersion: 2
+        x: 2294
+        y: 485
+        width: 414
+        height: 237
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -318,8 +318,140 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c40c760a1331adf409c1ae75383b1c7e
-      internalID: -1193000890
+      spriteID: 4a90a535fdcd2b4438919781eba1035d
+      internalID: -393297118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cajas_9
+      rect:
+        serializedVersion: 2
+        x: 2725
+        y: 454
+        width: 436
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4c192c3e81055540af3f60d9bbbfa3c
+      internalID: 1061351669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cajas_10
+      rect:
+        serializedVersion: 2
+        x: 2711
+        y: 502
+        width: 5
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3f1ec02ecc867b488231746c464e77a
+      internalID: -65435802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cajas_12
+      rect:
+        serializedVersion: 2
+        x: 1490
+        y: 209
+        width: 255
+        height: 195
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12769e8d344cf5140ac98077e9f648fc
+      internalID: -821031904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cajas_13
+      rect:
+        serializedVersion: 2
+        x: 2386
+        y: 171
+        width: 338
+        height: 257
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90705fdc1c0558d4085420b6458207af
+      internalID: -1458771840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cajas_14
+      rect:
+        serializedVersion: 2
+        x: 2743
+        y: 154
+        width: 405
+        height: 234
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bac4005fe2ce8e40a6f078c143ad74c
+      internalID: -1787882920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cajas_15
+      rect:
+        serializedVersion: 2
+        x: 1829
+        y: 195
+        width: 348
+        height: 166
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0359659f21857ad42a5630df81dc9a86
+      internalID: 359688800
       vertices: []
       indices: 
       edges: []
@@ -328,7 +460,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c19c5f8b0b92c4443a696e7172ab91dd
+    spriteID: d8d416efaa1aa07428e65d190f478d9d
     internalID: 0
     vertices: []
     indices: 
@@ -340,14 +472,24 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      cages_0: -1456438619
-      cages_1: -873748507
-      cages_2: 795711311
-      cages_3: -152353692
-      cages_4: 522504545
-      cages_5: 976339053
-      cages_6: -703185890
-      cages_7: -1193000890
+      cajas_0: -2100499464
+      cajas_1: 574372986
+      cajas_10: -65435802
+      cajas_11: -2047669957
+      cajas_12: -821031904
+      cajas_13: -1458771840
+      cajas_14: -1787882920
+      cajas_15: 359688800
+      cajas_16: 311958911
+      cajas_17: 910261171
+      cajas_2: 1978107542
+      cajas_3: -1800374822
+      cajas_4: -1670675784
+      cajas_5: 1670129341
+      cajas_6: -780030523
+      cajas_7: 954216277
+      cajas_8: -393297118
+      cajas_9: 1061351669
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
