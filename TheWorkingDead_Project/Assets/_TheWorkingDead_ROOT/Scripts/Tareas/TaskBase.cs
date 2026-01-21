@@ -32,6 +32,8 @@ public abstract class TaskBase : MonoBehaviour
             player = GameObject.FindWithTag("Player");
         if (uiTarea == null)
             uiTarea = GameObject.FindWithTag("UiNpcConversation");
+        if (uiTarea == null)
+            uiTarea = GameObject.FindWithTag("BrazoCaidoFeedback");
         if (taskManager == null)
             taskManager = FindAnyObjectByType<TareasAleatorias>();
         if (feedbackcanvas == null)
@@ -78,18 +80,22 @@ public abstract class TaskBase : MonoBehaviour
     {
         if (!EstaEnListaDeTareas()) return;
 
-        if (playerCerca && !tareaAcabada && !interactuando)
+        if (!feedbackcanvas.brazoYaCaido)
         {
-            uiTarea.SetActive(true);
+            if (playerCerca && !tareaAcabada && !interactuando)
+            {
+                uiTarea.SetActive(true);
 
-            interactuando = true;
+                interactuando = true;
 
-            if (player != null)
-                player.GetComponent<PlayerController>().playerOcupado = true;
+                if (player != null)
+                    player.GetComponent<PlayerController>().playerOcupado = true;
 
-            canvasInteractKey?.SetActive(false);
+                canvasInteractKey?.SetActive(false);
 
-            IniciarTarea();
+                IniciarTarea();
+            }
+
         }
     }
 

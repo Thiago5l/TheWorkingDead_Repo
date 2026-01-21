@@ -1,38 +1,55 @@
- using System.Collections;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-
 
 public class TaskOrdenar : TaskBase
 {
     [SerializeField] UIPuzzleManager uiPuzzleManager;
     [SerializeField] GameObject UIgameObject;
 
-    // Update is called once per frame
+    private bool resultadoEnviado = false;
+
     void Update()
     {
-        if(uiPuzzleManager.win == true)
+        if (resultadoEnviado) return;
+
+        if (uiPuzzleManager.win)
         {
+            resultadoEnviado = true;
+
             uiPuzzleManager.tiempoStart = false;
-            UIgameObject.gameObject.SetActive(false);
+            UIgameObject.SetActive(false);
+
             Win();
         }
-        if(uiPuzzleManager.loose == true)
+        else if (uiPuzzleManager.loose)
         {
+            resultadoEnviado = true;
+
             uiPuzzleManager.tiempoStart = false;
-            
+            UIgameObject.SetActive(false);
+
             Loose();
         }
     }
+
     protected override void IniciarTarea()
     {
+        resultadoEnviado = false;
+
+        uiPuzzleManager.win = false;
+        uiPuzzleManager.loose = false;
+
         uiPuzzleManager.tiempoStart = true;
+
         Debug.Log("TareaIniciada");
-        //BarraMear.value = BarraMear.maxValue;
     }
+
     protected override void CancelarTarea()
-    { 
+    {
+        resultadoEnviado = false;
+
         uiPuzzleManager.tiempoStart = false;
-        UIgameObject.gameObject.SetActive(false);
+        UIgameObject.SetActive(false);
     }
 }
