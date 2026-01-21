@@ -122,13 +122,7 @@ public class NPCConversationTask : TaskBase
         alreadyTalked = true;
         tareaAcabada = true;
 
-        taskFeedbackCanvas?.PlayWin();
-
-        var controller = player?.GetComponent<PlayerController>();
-        if (controller != null)
-            controller.playerOcupado = false;
-
-        CompletarTarea();
+        Win();
     }
 
     public void FinalMalo()
@@ -138,13 +132,11 @@ public class NPCConversationTask : TaskBase
         girando = false;
         talking = false;
 
-        taskFeedbackCanvas?.PlayLose();
+        Loose();
 
         var controller = player?.GetComponent<PlayerController>();
         if (controller != null)
             controller.playerOcupado = false;
-
-        CancelarTarea();
     }
 
     private void MezclarLista(List<NPCConversation> list)

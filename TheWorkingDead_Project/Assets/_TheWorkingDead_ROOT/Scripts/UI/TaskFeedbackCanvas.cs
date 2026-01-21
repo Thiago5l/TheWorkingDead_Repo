@@ -14,7 +14,7 @@ public class FadeCanvas : MonoBehaviour
     [Range(0f, 1f)] public float maxAlpha = 0.4f;
     public Color winColor = Color.green;
     public Color loseColor = Color.red;
-
+    private bool loseTriggered = false;
     [Header("Gameplay")]
     public float penalizacion;
     public float premio;
@@ -30,11 +30,8 @@ public class FadeCanvas : MonoBehaviour
     float probabilidad = 0.25f; 
     public bool brazoYaCaido;
 
-
-    private bool loseTriggered = false;
-
-
-
+    [Header("Brazo caido feedback")]
+    public GameObject brazofeedback;
     private void Awake()
     {
         if (!canvasGroup) canvasGroup = GetComponent<CanvasGroup>();
@@ -66,24 +63,32 @@ public class FadeCanvas : MonoBehaviour
     public void PlayLose()
     {
         if (loseTriggered) return;
-        loseTriggered = true;
+
+        loseTriggered = true; 
 
         Player.GetComponent<OviedadZombie>().Zombiedad -= penalizacion;
         StartFade(loseColor);
-        if (Random.value <= probabilidad)
-        { managerBrazo.BrazoSeCae();
-            brazoYaCaido=true;
+
+        if (Random.value <= probabilidad && !brazoYaCaido)
+        {
+            managerBrazo.BrazoSeCae();
+            brazoYaCaido = true;
         }
-        // OPCIONAL: permitir perder otra vez tras el fade
+
         StartCoroutine(ResetLose());
     }
+
     private IEnumerator ResetLose()
     {
         yield return new WaitForSeconds(fadeDuration * 2f);
         loseTriggered = false;
     }
 
-
+    private void Update()
+    {
+        if (brazoYaCaido) { brazofeedback.SetActive(true); }
+        else {brazofeedback.SetActive(false); }
+    }
 
     private void StartFade(Color color)
     {

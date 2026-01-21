@@ -38,8 +38,10 @@ public class PCTextTask : TaskBase
         insertedText.text = string.Empty;
         insertedText.ActivateInputField();
 
+        GenerateTextList();  
         NextWord();
     }
+
 
     protected override void CancelarTarea()
     {
