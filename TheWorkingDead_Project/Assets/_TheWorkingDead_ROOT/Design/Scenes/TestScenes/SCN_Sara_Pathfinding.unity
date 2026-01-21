@@ -2715,10 +2715,14 @@ MonoBehaviour:
   tareas: {fileID: 1032389578}
   heightAboveGround: 0.2
   showDistance: 2
-  maxShowDistance: 15
-  navMeshSampleRadius: 2
+  maxShowDistance: 50
+  navMeshSampleRadius: 3
   offsetFromPlayer: 0.5
-  lineWidth: 0.1
+  lineWidth: 0.5
+  textureScrollSpeed: 1
+  tileSizeInWorld: 1
+  segmentLength: 0.5
+  playerOffsetFactor: 0.2
 --- !u!120 &62090966
 LineRenderer:
   serializedVersion: 2
@@ -2777,8 +2781,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.2
+        time: 0.022321403
+        value: 0.68913037
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -2786,8 +2790,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: 0.2
+        time: 0.99553573
+        value: 0.68913037
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -2830,7 +2834,7 @@ LineRenderer:
     numCornerVertices: 1
     numCapVertices: 1
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
@@ -49484,7 +49488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 829065586514752800, guid: 7e74ac08791321d4b8e22b7ca0653459, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.3523853
+      value: -3.352406
       objectReference: {fileID: 0}
     - target: {fileID: 829065586514752800, guid: 7e74ac08791321d4b8e22b7ca0653459, type: 3}
       propertyPath: m_LocalPosition.y
@@ -49492,7 +49496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 829065586514752800, guid: 7e74ac08791321d4b8e22b7ca0653459, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.029994
+      value: 6.029982
       objectReference: {fileID: 0}
     - target: {fileID: 829065586514752800, guid: 7e74ac08791321d4b8e22b7ca0653459, type: 3}
       propertyPath: m_LocalRotation.w
@@ -92033,7 +92037,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7657352899040066940, guid: b566ec9a8592b514590876fc31104439, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.3523853
+      value: -3.3524063
       objectReference: {fileID: 0}
     - target: {fileID: 7657352899040066940, guid: b566ec9a8592b514590876fc31104439, type: 3}
       propertyPath: m_LocalPosition.y
@@ -92041,7 +92045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7657352899040066940, guid: b566ec9a8592b514590876fc31104439, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.029994
+      value: 6.0299826
       objectReference: {fileID: 0}
     - target: {fileID: 7657352899040066940, guid: b566ec9a8592b514590876fc31104439, type: 3}
       propertyPath: m_LocalRotation.w
