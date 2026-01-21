@@ -21,7 +21,7 @@ public class UIPuzzleManager : MonoBehaviour
     [Header("Siluetas del puzzle (ordenadas)")]
     public List<Sprite> silhouetteSprites;
     [Range(0.1f, 1f)]
-    public float silhouetteScale = 0.9f;
+    public float silhouetteScale = 0.25f;
 
     [Header("Tamaño de piezas")]
     [Range(0.5f, 2f)]
@@ -209,7 +209,7 @@ public class UIPuzzleManager : MonoBehaviour
             // Tamaño nativo del sprite
             silImage.SetNativeSize();
             Vector3 tamañoSil = Vector3.one;
-            silRT.localScale = new Vector3(tamañoSil.x * silhouetteScale, tamañoSil.y /** silhouetteScale*//*(silhouetteScale * 1.5f)*/, tamañoSil.z);
+            silRT.localScale = new Vector3(tamañoSil.x * silhouetteScale, tamañoSil.y * silhouetteScale/*(silhouetteScale * 1.5f)*/, tamañoSil.z);
             // Ajuste visual de la silueta
             silImage.color = new Color(0f, 0f, 0f, 180f);
         }

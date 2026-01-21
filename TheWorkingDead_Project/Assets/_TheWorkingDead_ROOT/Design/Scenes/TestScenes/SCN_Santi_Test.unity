@@ -11244,8 +11244,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 885910522093123537, guid: d64b2c1e9a23acf40bcd61191091fa25, type: 3}
-      propertyPath: scalePieza
-      value: 2
+      propertyPath: silhouetteScale
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1668423894564690230, guid: d64b2c1e9a23acf40bcd61191091fa25, type: 3}
       propertyPath: m_Name
@@ -26118,6 +26118,7 @@ MonoBehaviour:
   "tama\xF1oSequence": 4
   rondasCompletadas: 0
   rondasACompletar: 3
+  playerBloqueado: {fileID: 0}
   taskFeedbackCanvas: {fileID: 1835138751}
 --- !u!65 &1786823403
 BoxCollider:
