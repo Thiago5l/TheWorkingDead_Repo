@@ -1188,7 +1188,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -175114690, guid: ec9dea82b3501fa4eb280c51244e1e72, type: 3}
+  m_Sprite: {fileID: -175114690, guid: 00129e1ec191f7e4e9ae0f3b7bd53a34, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2777,8 +2777,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NewCursor
   cursorImage: {fileID: 613583168}
   cursorSprites:
-  - {fileID: -175114690, guid: ec9dea82b3501fa4eb280c51244e1e72, type: 3}
-  - {fileID: -842889416, guid: 2675bc7db677fe1409cfc5f28df0acfa, type: 3}
+  - {fileID: -175114690, guid: 00129e1ec191f7e4e9ae0f3b7bd53a34, type: 3}
+  - {fileID: -842889416, guid: 9e5266a9c6af46646a498c22dec768f1, type: 3}
 --- !u!114 &2141665286
 MonoBehaviour:
   m_ObjectHideFlags: 0

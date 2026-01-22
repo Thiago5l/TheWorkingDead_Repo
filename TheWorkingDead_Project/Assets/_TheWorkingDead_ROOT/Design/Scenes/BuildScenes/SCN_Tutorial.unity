@@ -11974,8 +11974,7 @@ PrefabInstance:
       propertyPath: PlayerController
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9082341690831857292, guid: 9d9d2bb0c21c4974da020382c68c4cdf, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6668881165445961282, guid: 9d9d2bb0c21c4974da020382c68c4cdf, type: 3}
@@ -22735,8 +22734,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33db34a80eff8a343815f760b2b5df64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorSprite
-  cursorT: {fileID: 2800000, guid: adb937a4fc7dbdb49ba02874876bb663, type: 3}
-  cursorClick: {fileID: 0}
+  cursorT: {fileID: 2800000, guid: ec9dea82b3501fa4eb280c51244e1e72, type: 3}
+  cursorClick: {fileID: 2800000, guid: 2675bc7db677fe1409cfc5f28df0acfa, type: 3}
 --- !u!1001 &623383074
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27284,6 +27283,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5462162111488885013, guid: f73c8b087e039b4478776984bd05b71a, type: 3}
   m_PrefabInstance: {fileID: 1713008055}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &767242066 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2509338701353282518, guid: c895b96e54d2a494abf51ad2700debf4, type: 3}
+  m_PrefabInstance: {fileID: 1788811601}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ab5a7e944de77c4585c889df5b65a0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BrazoManager
 --- !u!1001 &768639297
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32803,7 +32813,8 @@ PrefabInstance:
       value: 0.05076185
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3246658262875312355, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7192288205431524021, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       insertIndex: -1
@@ -45498,7 +45509,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a8c9eff6a64a0d2418443401b7773931, type: 3}
+  m_Sprite: {fileID: 217228366, guid: 2cc06de90390fb54493e462533162c55, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -81700,7 +81711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5893971475962172341, guid: d575ee7301a753f4192830fedeaecbe1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -5.0000305
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 7932488830418489979, guid: d575ee7301a753f4192830fedeaecbe1, type: 3}
       propertyPath: m_UiScaleMode
@@ -86455,6 +86466,14 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 200637151}
+    - target: {fileID: 4075629932873182550, guid: b103e7f6ddbc45641a5a53cf180bac49, type: 3}
+      propertyPath: managerBrazo
+      value: 
+      objectReference: {fileID: 767242066}
+    - target: {fileID: 4075629932873182550, guid: b103e7f6ddbc45641a5a53cf180bac49, type: 3}
+      propertyPath: brazofeedback
+      value: 
+      objectReference: {fileID: 1464326730}
     - target: {fileID: 7373024484177029023, guid: b103e7f6ddbc45641a5a53cf180bac49, type: 3}
       propertyPath: m_Name
       value: FeedbackCanvas

@@ -30,13 +30,26 @@ public class TutorialDialogueManager : MonoBehaviour
     public bool taskopened;
     public bool playedtareas;
     public bool playedvendingmachine;
-    private void Start()
+    private IEnumerator Start()
     {
+        Debug.Log("START TUTORIAL MANAGER");
+
         TasksUitutorial.SetActive(false);
         taskopened = false;
-        PlayerController.playerOcupado=true;
+
+        PlayerController.playerOcupado = true;
+
+        // esperar a Dialogue Editor
+        while (ConversationManager.Instance == null)
+            yield return null;
+
+        // esperar 1 frame extra (muy importante)
+        yield return null;
+
         IniciarDialogo(0);
     }
+
+
     private bool dialogo3Iniciado = false;
     private bool dialogo4Iniciado = false;
     private bool dialogo5Iniciado = false;

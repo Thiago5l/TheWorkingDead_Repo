@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
     [Header("snack parametres")]
     [SerializeField] Snacks_UI snacks_UI;
     [SerializeField] Image snackfill;
-    [SerializeField] public float snackzombiedadspeed = 2;
+    [SerializeField] public float snackzombiedadspeed = 0.5f;
     [SerializeField] public float snacktime = 0;
     [SerializeField] float snackTimer;
     [SerializeField] OviedadZombie obviedadZombie;
@@ -85,6 +86,12 @@ public class PlayerController : MonoBehaviour
         if (playerData != null)
         {
             playerData.ApplyToPlayer(this);
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            coins = 1;
+            energeticas = 0;
+            snacks = 0;
         }
         PlayerRB = GetComponent<Rigidbody>();
         if (camTransform == null) camTransform = Camera.main.transform; //busca la cámara main si no tiene cam asignada
