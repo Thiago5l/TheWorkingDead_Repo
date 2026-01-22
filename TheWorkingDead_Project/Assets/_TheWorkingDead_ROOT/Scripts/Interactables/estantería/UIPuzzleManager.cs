@@ -37,9 +37,9 @@ public class UIPuzzleManager : MonoBehaviour
 
     [Header("Tiempo")]
     public Slider timeSlider;
-    [SerializeField] private float maxTime = 60f;
+    public float maxTime = 60f;
 
-    private float time;
+    public float time;
     public bool tiempoStart;
     public bool win;
     public bool loose;
@@ -76,8 +76,6 @@ public class UIPuzzleManager : MonoBehaviour
     {
         piezas.Clear();
 
-        //pieceWidth = manualSlots[0].rect.width;
-        //pieceHeight = manualSlots[0].rect.height;
         pieceWidth = manualSlots[0].rect.width * scalePieza;
         pieceHeight = manualSlots[0].rect.height * scalePieza;
 
@@ -96,7 +94,25 @@ public class UIPuzzleManager : MonoBehaviour
 
             piezas.Add(pieza);
         }
+
+        // Después de crear todas las piezas, colocarlas aleatoriamente
+        ColocarPiezasAleatorias();
     }
+    void ColocarPiezasAleatorias()
+    {
+        List<RectTransform> piezasDisponibles = new List<RectTransform>(piezas);
+
+        foreach (RectTransform pieza in piezasDisponibles)
+        {
+            pieza.anchoredPosition = new Vector2(
+                Random.Range(-panelDist.rect.width / 2f, panelDist.rect.width / 2f),
+                Random.Range(-panelDist.rect.height / 2f, panelDist.rect.height / 2f)
+            );
+        }
+
+        piezasCorrectas = 0; // Todavía ninguna pieza está en su lugar
+    }
+
 
     void ColocarSoloAlgunas()
     {

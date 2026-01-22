@@ -74,6 +74,10 @@ public class PlayerController : MonoBehaviour
     [Header("tutorial")]
     public bool tutorialroom;
     public bool playedvendingmachine;
+
+    [Header("Sprint Cooldown")]
+    [SerializeField] float sprintCooldown = 0.5f; // medio segundo
+    bool canSprint = true; // controla si se puede iniciar sprint
     #endregion
 
     private void Awake()
@@ -234,11 +238,13 @@ public class PlayerController : MonoBehaviour
     }
     #region sprint
     Coroutine sprintCoroutine;
+    bool wassprinting = false;
     public void OnSprint(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            if (energeticas <= 0 || isSprinting) return;
+            if (!canSprint || energeticas <= 0 || isSprinting) return;
+
             EstaminaUI.enabled = true;
             sprintVFX.SetActive(true);
             isSprinting = true;
@@ -247,12 +253,8 @@ public class PlayerController : MonoBehaviour
 
             sprintCoroutine = StartCoroutine(StopSprintCoroutine());
         }
-
-        if (context.canceled)
-        {
-            StopSprint();
-        }
     }
+
 
     void StopSprint()
     {
@@ -275,6 +277,15 @@ public class PlayerController : MonoBehaviour
 
         energeticas--;
         energeticasUI.SetEnergeticas((int)energeticas);
+        wassprinting = false;
+        // Inicia cooldown
+        canSprint = false;
+        StartCoroutine(SprintCooldownCoroutine());
+    }
+    IEnumerator SprintCooldownCoroutine()
+    {
+        yield return new WaitForSeconds(sprintCooldown);
+        canSprint = true; // ya se puede sprintar otra vez
     }
 
 
