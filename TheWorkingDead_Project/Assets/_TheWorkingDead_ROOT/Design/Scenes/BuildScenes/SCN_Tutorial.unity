@@ -119,101 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &4952604
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4952606}
-  - component: {fileID: 4952607}
-  - component: {fileID: 4952605}
-  m_Layer: 0
-  m_Name: ConversationEventInfo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &4952605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4952604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NodeEventHolder
-  Event:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 803781125}
-        m_TargetAssemblyTypeName: TutorialDialogueManager, Assembly-CSharp
-        m_MethodName: PlayTareas
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 803781125}
-        m_TargetAssemblyTypeName: TutorialDialogueManager, Assembly-CSharp
-        m_MethodName: Final
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  NodeID: 1
-  TMPFont: {fileID: 0}
-  Icon: {fileID: 21300000, guid: b5d44cdd8cc775643bb4ced9f2a5e530, type: 3}
-  Audio: {fileID: 0}
---- !u!4 &4952606
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4952604}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -399.99997, y: -224.99998, z: 0}
-  m_LocalScale: {x: 0.41666663, y: 0.41666663, z: 0.41666663}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 34671559}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4952607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4952604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NodeEventHolder
-  Event:
-    m_PersistentCalls:
-      m_Calls: []
-  NodeID: 0
-  TMPFont: {fileID: 0}
-  Icon: {fileID: 21300000, guid: b5d44cdd8cc775643bb4ced9f2a5e530, type: 3}
-  Audio: {fileID: 0}
 --- !u!1 &9714336
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,96 +929,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1169685547649474326, guid: 473fc9917e087f9428dd8601e5347e2f, type: 3}
   m_PrefabInstance: {fileID: 30937225}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &34671557
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 34671559}
-  - component: {fileID: 34671558}
-  m_Layer: 0
-  m_Name: Dialogo_BarraZombiedad (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &34671558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34671557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83189876d4d389f43b7dd2e925aa112e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NPCConversation
-  CurrentIDCounter: 6
-  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":1}],"EditorInfo":{"isRoot":true,"xPos":35.5,"yPos":135},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"Ojo
-    con que deszcubran que erez un zombie, ezta gene oz tiene mucho miedo","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"Buzz","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":37,"yPos":260},"ID":1,"ParamActions":[],"TMPFontGUID":null,"Text":"ezzta
-    barra ez el tiempo que tienez para hacer una tarea y que zigan penzando que erez
-    un humano, zi te pillan eztaz doble muerto ","parentUIDs":[0],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"Buzz","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
-  saveVersion: 110
-  DefaultName: 
-  DefaultSprite: {fileID: 0}
-  DefaultFont: {fileID: 0}
-  NodeSerializedDataList:
-  - {fileID: 4952607}
-  - {fileID: 4952605}
-  ContinueFont: {fileID: 0}
-  EndConversationFont: {fileID: 0}
-  Event:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 803781125}
-        m_TargetAssemblyTypeName: TutorialDialogueManager, Assembly-CSharp
-        m_MethodName: PlayTareas
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 803781125}
-        m_TargetAssemblyTypeName: TutorialDialogueManager, Assembly-CSharp
-        m_MethodName: Final
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!224 &34671559
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34671557}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4952606}
-  m_Father: {fileID: 307445799}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &36212990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2325,7 +2140,6 @@ GameObject:
   - component: {fileID: 66258325}
   - component: {fileID: 66258324}
   - component: {fileID: 66258323}
-  - component: {fileID: 66258322}
   m_Layer: 0
   m_Name: UiTutorial
   m_TagString: Untagged
@@ -2345,7 +2159,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1030727089}
+  - {fileID: 706564733}
   - {fileID: 1060318140}
   m_Father: {fileID: 326527999}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2354,18 +2168,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!225 &66258322
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 66258320}
-  m_Enabled: 1
-  m_Alpha: 0.55
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!114 &66258323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2427,7 +2229,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!1001 &69316421
 PrefabInstance:
@@ -4866,9 +4668,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NPCConversation
   CurrentIDCounter: 8
-  json: "{\"Options\":[],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":1}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":163.5,\"yPos\":22},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Te
-    veo con el coco mazz podr\xEDo que la \xFAltima vezzz que pazazzte por aqu\xED\",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Buzz\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":163,\"yPos\":148},\"ID\":1,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Como
-    veo que zi te queda algun pelo de tonto, voy a ezzplicarte como va esto\",\"parentUIDs\":[0],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Buzz\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0}]}"
+  json: "{\"Options\":[],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":1}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":39,\"yPos\":44},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Tiene'
+    el coco m\xE1' podr\xEDo' que un mel\xF3n olvidao' al sol desde la \xFAltima
+    ve' que no vimo'.\",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Buzz\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":38.5,\"yPos\":171},\"ID\":1,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Cuidao'
+    con la barra eh, pero ante' voy a explica' c\xF3mo va el tinglao por si se ta'
+    olvidao'.\",\"parentUIDs\":[0],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Buzz\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0}]}"
   saveVersion: 110
   DefaultName: 
   DefaultSprite: {fileID: 0}
@@ -5423,7 +5227,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   NodeID: 0
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: ed5101580c438844ebd4a7338998e4d8, type: 2}
   Icon: {fileID: 21300000, guid: b5d44cdd8cc775643bb4ced9f2a5e530, type: 3}
   Audio: {fileID: 0}
 --- !u!4 &150708911 stripped
@@ -5481,9 +5285,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NPCConversation
   CurrentIDCounter: 7
-  json: "{\"Options\":[],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":5}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":-65,\"yPos\":22},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Vez
-    y completa la primera tarea, conzizte en hablar con el in\xFAtil que tienes delante\",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Buzz\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-59.5,\"yPos\":164},\"ID\":5,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ten
-    cuidado, depende de lo que rezpondaz ze enterara de que erez un zombie o no\",\"parentUIDs\":[0],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Buzz\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0}]}"
+  json: "{\"Options\":[],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":5}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":218,\"yPos\":92},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"V\xE9
+    pa' la primera faena, parece que tiene' que escuch\xE1' al barre-playah' que
+    tiene' ah\xED.\",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Buzz\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":214.5,\"yPos\":216},\"ID\":5,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Pero
+    ten cuidao' e intenta parece' humano...\",\"parentUIDs\":[0],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Buzz\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0}]}"
   saveVersion: 110
   DefaultName: 
   DefaultSprite: {fileID: 0}
@@ -5495,7 +5300,19 @@ MonoBehaviour:
   EndConversationFont: {fileID: 0}
   Event:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 803781125}
+        m_TargetAssemblyTypeName: TutorialDialogueManager, Assembly-CSharp
+        m_MethodName: playerocupadofalse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &153596554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11199,7 +11016,6 @@ RectTransform:
   m_Children:
   - {fileID: 130451587}
   - {fileID: 761832894}
-  - {fileID: 34671559}
   - {fileID: 1995693608}
   - {fileID: 153160157}
   - {fileID: 412379543}
@@ -14992,11 +14808,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NPCConversation
   CurrentIDCounter: 7
-  json: "{\"Options\":[],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":5}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":163.5,\"yPos\":22},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ahora,
-    toma 5 eurillos, no son pa porros, ves a la tienda y compra energ\xE9ticas o
-    snacks\",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Buzz\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":169,\"yPos\":164},\"ID\":5,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Cada
-    uno tiene unaz ventajaz al zer uzado, la energetica ze uza al mantener shift
-    y el snack al apretar la Q, puedez revizarlo en el men\xFA de pauza\",\"parentUIDs\":[0],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Buzz\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0}]}"
+  json: "{\"Options\":[],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":5}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":232.5,\"yPos\":22},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Con
+    lo' dinero' que tiene', vete pa' la m\xE1quina y compra' una' latica' o algo
+    pa' come'.\",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Buzz\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":238,\"yPos\":164},\"ID\":5,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"La
+    latica se usa manteniendo el \\\"Shift\\\" y la comia' apretando la \\\"Q\\\",
+    pue' revisarlo to en el men\xFA de pausa \\\"Esc\\\", por si la' mosca'.\",\"parentUIDs\":[0],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Buzz\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0}]}"
   saveVersion: 110
   DefaultName: 
   DefaultSprite: {fileID: 0}
@@ -16682,7 +16498,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   NodeID: 5
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: ed5101580c438844ebd4a7338998e4d8, type: 2}
   Icon: {fileID: 21300000, guid: b5d44cdd8cc775643bb4ced9f2a5e530, type: 3}
   Audio: {fileID: 0}
 --- !u!114 &452787921
@@ -16701,7 +16517,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   NodeID: 0
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: ed5101580c438844ebd4a7338998e4d8, type: 2}
   Icon: {fileID: 21300000, guid: b5d44cdd8cc775643bb4ced9f2a5e530, type: 3}
   Audio: {fileID: 0}
 --- !u!1001 &453242574
@@ -22601,6 +22417,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6233684330067271433, guid: 9eb9285cab7b1e5468755b4698cc1085, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25274,6 +25094,88 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5367383099781315543, guid: ace22f4a4fbc2d2488e6c45943cc783a, type: 3}
   m_PrefabInstance: {fileID: 1479241686}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &706564732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 706564733}
+  - component: {fileID: 706564736}
+  - component: {fileID: 706564735}
+  - component: {fileID: 706564734}
+  m_Layer: 0
+  m_Name: frame_flecha_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &706564733
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706564732}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10.05}
+  m_LocalScale: {x: 2.1382506, y: 2.1382506, z: 2.1382506}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1030727089}
+  - {fileID: 735674814}
+  m_Father: {fileID: 66258321}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -59.7, y: 111.2}
+  m_SizeDelta: {x: 613.49, y: 395.8}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &706564734
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706564732}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!95 &706564735
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706564732}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3acf72e59659d5749bdf89c01225074e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!222 &706564736
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706564732}
+  m_CullTransparentMesh: 1
 --- !u!1001 &707339904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25975,6 +25877,117 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7755367983960129191, guid: 7aa7888291d72104494b81ac01930e6a, type: 3}
   m_PrefabInstance: {fileID: 1010587115}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &735674813
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 735674814}
+  - component: {fileID: 735674818}
+  - component: {fileID: 735674817}
+  - component: {fileID: 735674816}
+  - component: {fileID: 735674815}
+  m_Layer: 0
+  m_Name: frame_flecha_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &735674814
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735674813}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 706564733}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 35.1, y: 1.08}
+  m_SizeDelta: {x: 613.49, y: 395.8}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &735674815
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735674813}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!95 &735674816
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735674813}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3acf72e59659d5749bdf89c01225074e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &735674817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735674813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 442c493df8fa4204ebfb1f83924e8ce6, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &735674818
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735674813}
+  m_CullTransparentMesh: 1
 --- !u!1001 &735686171
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27110,10 +27123,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NPCConversation
   CurrentIDCounter: 5
-  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":1}],"EditorInfo":{"isRoot":true,"xPos":34.5,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"Ojo
-    con que deszcubran que erez un zombie, ezta gene oz tiene mucho miedo","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"Buzz","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":36,"yPos":147},"ID":1,"ParamActions":[],"TMPFontGUID":null,"Text":"ezzta
-    barra ez el tiempo que tienez para hacer una tarea y que zigan penzando que erez
-    un humano, zi te pillan eztaz doble muerto ","parentUIDs":[0],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"Buzz","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
+  json: "{\"Options\":[],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":1}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":232.5,\"yPos\":22},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ojico'
+    con que se den cuenta de que est\xE1' m\xE1' all\xED que aqu\xED...\",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Buzz\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":233,\"yPos\":149},\"ID\":1,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Pos'
+    la barra de antes marca lo que te queda pa' hacer las tarea' del d\xEDa.\",\"parentUIDs\":[0],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Buzz\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0}]}"
   saveVersion: 110
   DefaultName: 
   DefaultSprite: {fileID: 0}
@@ -28461,7 +28473,7 @@ MonoBehaviour:
   - conversation: {fileID: 130451588}
     UIconversation: {fileID: 0}
   - conversation: {fileID: 761832895}
-    UIconversation: {fileID: 1030727086}
+    UIconversation: {fileID: 706564732}
   - conversation: {fileID: 1995693609}
     UIconversation: {fileID: 1060318139}
   - conversation: {fileID: 153160158}
@@ -29166,7 +29178,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   NodeID: 5
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: ed5101580c438844ebd4a7338998e4d8, type: 2}
   Icon: {fileID: 21300000, guid: b5d44cdd8cc775643bb4ced9f2a5e530, type: 3}
   Audio: {fileID: 0}
 --- !u!114 &828060380
@@ -29185,7 +29197,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   NodeID: 0
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: ed5101580c438844ebd4a7338998e4d8, type: 2}
   Icon: {fileID: 21300000, guid: b5d44cdd8cc775643bb4ced9f2a5e530, type: 3}
   Audio: {fileID: 0}
 --- !u!1001 &828311205
@@ -29533,6 +29545,10 @@ PrefabInstance:
     - target: {fileID: 6147284871494750852, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
       propertyPath: m_Name
       value: PF_CanvasDialogos
+      objectReference: {fileID: 0}
+    - target: {fileID: 6147284871494750852, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8599298503263268028, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
       propertyPath: m_Pivot.x
@@ -36026,7 +36042,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   NodeID: 5
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: ed5101580c438844ebd4a7338998e4d8, type: 2}
   Icon: {fileID: 21300000, guid: b5d44cdd8cc775643bb4ced9f2a5e530, type: 3}
   Audio: {fileID: 0}
 --- !u!114 &987793153
@@ -36045,7 +36061,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   NodeID: 0
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: ed5101580c438844ebd4a7338998e4d8, type: 2}
   Icon: {fileID: 21300000, guid: b5d44cdd8cc775643bb4ced9f2a5e530, type: 3}
   Audio: {fileID: 0}
 --- !u!1001 &988828254
@@ -42318,13 +42334,14 @@ GameObject:
   - component: {fileID: 1030727089}
   - component: {fileID: 1030727088}
   - component: {fileID: 1030727087}
+  - component: {fileID: 1030727090}
   m_Layer: 0
   m_Name: Ui_Zombiedad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1030727087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42339,7 +42356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -42370,18 +42387,30 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1030727086}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -274}
+  m_LocalScale: {x: 0.46767202, y: 0.46767202, z: 0.46767202}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 66258321}
+  m_Father: {fileID: 706564733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 27.920013, y: -52.005127}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1030727090
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030727086}
+  m_Enabled: 1
+  m_Alpha: 0.55
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1031479705
 GameObject:
   m_ObjectHideFlags: 0
@@ -42443,7 +42472,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   NodeID: 1
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: ed5101580c438844ebd4a7338998e4d8, type: 2}
   Icon: {fileID: 21300000, guid: b5d44cdd8cc775643bb4ced9f2a5e530, type: 3}
   Audio: {fileID: 0}
 --- !u!114 &1031479708
@@ -42462,7 +42491,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   NodeID: 0
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: ed5101580c438844ebd4a7338998e4d8, type: 2}
   Icon: {fileID: 21300000, guid: b5d44cdd8cc775643bb4ced9f2a5e530, type: 3}
   Audio: {fileID: 0}
 --- !u!1 &1032389576
@@ -43253,6 +43282,7 @@ GameObject:
   - component: {fileID: 1060318140}
   - component: {fileID: 1060318142}
   - component: {fileID: 1060318141}
+  - component: {fileID: 1060318143}
   m_Layer: 0
   m_Name: Ui_Tareas
   m_TagString: Untagged
@@ -43317,6 +43347,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060318139}
   m_CullTransparentMesh: 1
+--- !u!225 &1060318143
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060318139}
+  m_Enabled: 1
+  m_Alpha: 0.55
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1061916393
 GameObject:
   m_ObjectHideFlags: 0
@@ -44084,7 +44126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 829065586514752800, guid: 7e74ac08791321d4b8e22b7ca0653459, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.13540058
+      value: -0.13538145
       objectReference: {fileID: 0}
     - target: {fileID: 829065586514752800, guid: 7e74ac08791321d4b8e22b7ca0653459, type: 3}
       propertyPath: m_LocalPosition.y
@@ -44092,7 +44134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 829065586514752800, guid: 7e74ac08791321d4b8e22b7ca0653459, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.0799861
+      value: 1.0799966
       objectReference: {fileID: 0}
     - target: {fileID: 829065586514752800, guid: 7e74ac08791321d4b8e22b7ca0653459, type: 3}
       propertyPath: m_LocalRotation.w
@@ -46777,6 +46819,10 @@ PrefabInstance:
     - target: {fileID: 1319507889210441641, guid: 1d2ebab8df8c1db4fa6ece2849b5e143, type: 3}
       propertyPath: m_Name
       value: WinCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319507889210441641, guid: 1d2ebab8df8c1db4fa6ece2849b5e143, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2266928963377375987, guid: 1d2ebab8df8c1db4fa6ece2849b5e143, type: 3}
       propertyPath: m_Pivot.x
@@ -59457,7 +59503,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_TargetDisplay: 0
 --- !u!1001 &1433451948
 PrefabInstance:
@@ -74982,7 +75028,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   NodeID: 1
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: ed5101580c438844ebd4a7338998e4d8, type: 2}
   Icon: {fileID: 21300000, guid: b5d44cdd8cc775643bb4ced9f2a5e530, type: 3}
   Audio: {fileID: 0}
 --- !u!114 &1873572282
@@ -75001,7 +75047,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   NodeID: 0
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: ed5101580c438844ebd4a7338998e4d8, type: 2}
   Icon: {fileID: 21300000, guid: b5d44cdd8cc775643bb4ced9f2a5e530, type: 3}
   Audio: {fileID: 0}
 --- !u!1001 &1874450774
@@ -76691,11 +76737,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NPCConversation
   CurrentIDCounter: 7
-  json: "{\"Options\":[],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":5}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":163.5,\"yPos\":22},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ahora
-    ezperimenta y uza la q para conzumir el snack, lo que realentizara la barra de
-    zombiedad o manten shift para conzumir la energ\xE9tica y ezprintar\",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Buzz\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":164,\"yPos\":164},\"ID\":5,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Por
-    \xFAltimo acaba la tarea que te queda que ez la imprezora que hay en la ziguiente
-    habitaci\xF3n\",\"parentUIDs\":[0],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Buzz\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0}]}"
+  json: "{\"Options\":[],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":5}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":232.5,\"yPos\":22},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ara'
+    aprieta \\\"Q\\\" pa' come' y la barra de detecci\xF3n ir\xE1 m\xE1' despacico'
+    o mant\xE9n \\\"Shift\\\" pa' beber y corre' m\xE1' r\xE1pido. \",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Buzz\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":233,\"yPos\":165},\"ID\":5,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Por
+    ultimo, ves pa' el cacharro ese que escupe papele' en el cuarto de al lao'.\",\"parentUIDs\":[0],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Buzz\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0}]}"
   saveVersion: 110
   DefaultName: 
   DefaultSprite: {fileID: 0}
@@ -76707,7 +76752,19 @@ MonoBehaviour:
   EndConversationFont: {fileID: 0}
   Event:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1647060186}
+        m_TargetAssemblyTypeName: DoorAnimatorManager, Assembly-CSharp
+        m_MethodName: opendoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1931485724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79502,9 +79559,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NPCConversation
   CurrentIDCounter: 5
-  json: "{\"Options\":[],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[],\"EditorInfo\":{\"isRoot\":true,\"xPos\":69,\"yPos\":287},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Para
-    ver que tareaz tienez, pulza tab y verazz la lizta de tareaz, tambi\xE9n te marcar\xE1
-    tambien la tarea maz cercana\",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Buzz\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0}]}"
+  json: "{\"Options\":[],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[],\"EditorInfo\":{\"isRoot\":true,\"xPos\":-65,\"yPos\":22},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Pa'
+    ojea' la' tarea', manten  \\\"Tabulador\\\", adem\xE1' te pinta una' flecha'
+    pa' seguirla, as\xED no te pierde'.\",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Buzz\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0}]}"
   saveVersion: 110
   DefaultName: 
   DefaultSprite: {fileID: 0}
@@ -79515,7 +79572,31 @@ MonoBehaviour:
   EndConversationFont: {fileID: 0}
   Event:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 803781125}
+        m_TargetAssemblyTypeName: TutorialDialogueManager, Assembly-CSharp
+        m_MethodName: taskuitutorial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 803781125}
+        m_TargetAssemblyTypeName: TutorialDialogueManager, Assembly-CSharp
+        m_MethodName: playedtareastrue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1996028043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -81604,7 +81685,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5893971475962172341, guid: d575ee7301a753f4192830fedeaecbe1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -5
+      value: -5.0000305
       objectReference: {fileID: 0}
     - target: {fileID: 7932488830418489979, guid: d575ee7301a753f4192830fedeaecbe1, type: 3}
       propertyPath: m_UiScaleMode
@@ -82874,7 +82955,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7657352899040066940, guid: b566ec9a8592b514590876fc31104439, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.13540061
+      value: -0.13538146
       objectReference: {fileID: 0}
     - target: {fileID: 7657352899040066940, guid: b566ec9a8592b514590876fc31104439, type: 3}
       propertyPath: m_LocalPosition.y
@@ -82882,7 +82963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7657352899040066940, guid: b566ec9a8592b514590876fc31104439, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.0799861
+      value: 1.0799966
       objectReference: {fileID: 0}
     - target: {fileID: 7657352899040066940, guid: b566ec9a8592b514590876fc31104439, type: 3}
       propertyPath: m_LocalRotation.w
