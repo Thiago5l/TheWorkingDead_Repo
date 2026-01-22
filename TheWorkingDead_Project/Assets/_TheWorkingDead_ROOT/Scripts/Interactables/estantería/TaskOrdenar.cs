@@ -40,9 +40,7 @@ public class TaskOrdenar : TaskBase
         uiPuzzleManager.win = false;
         uiPuzzleManager.loose = false;
 
-        uiPuzzleManager.time = uiPuzzleManager.maxTime;
         uiPuzzleManager.tiempoStart = true;
-
 
         Debug.Log("TareaIniciada");
     }

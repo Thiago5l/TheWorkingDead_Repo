@@ -37,9 +37,9 @@ public class UIPuzzleManager : MonoBehaviour
 
     [Header("Tiempo")]
     public Slider timeSlider;
-    public float maxTime = 60f;
+    [SerializeField] private float maxTime = 60f;
 
-    public float time;
+    private float time;
     public bool tiempoStart;
     public bool win;
     public bool loose;
@@ -194,7 +194,8 @@ public class UIPuzzleManager : MonoBehaviour
             RectTransform slot = manualSlots[i];
 
             GameObject silhouetteGO = new GameObject("Silhouette");
-            silhouetteGO.transform.SetParent(slot, false);
+            silhouetteGO.transform.SetParent(slot);
+            silhouetteGO.transform.localScale = Vector3.one;
 
             RectTransform silRT = silhouetteGO.AddComponent<RectTransform>();
             silRT.anchorMin = silRT.anchorMax = silRT.pivot = new Vector2(0.5f, 0.5f);
@@ -204,13 +205,15 @@ public class UIPuzzleManager : MonoBehaviour
             silImage.sprite = silhouetteSprites[i];
             silImage.raycastTarget = false;
             silImage.preserveAspect = true;
-            silImage.color = new Color(0f, 0f, 0f, 180f);
 
+            // Tamaño nativo del sprite
             silImage.SetNativeSize();
-            silRT.sizeDelta *= silhouetteScale;
+            Vector3 tamañoSil = Vector3.one;
+            silRT.localScale = new Vector3(tamañoSil.x * silhouetteScale, tamañoSil.y * silhouetteScale/*(silhouetteScale * 1.5f)*/, tamañoSil.z);
+            // Ajuste visual de la silueta
+            silImage.color = new Color(0f, 0f, 0f, 180f);
         }
     }
-
 
 
 
