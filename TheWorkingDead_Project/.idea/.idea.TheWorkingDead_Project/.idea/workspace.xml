@@ -15,6 +15,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/_TheWorkingDead_ROOT/Scripts/ArcadeTask/MiniGameBullet.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_TheWorkingDead_ROOT/Scripts/ReciclajeTask/DragUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_TheWorkingDead_ROOT/Scripts/ReciclajeTask/SpawnerReciclajeUI.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -102,6 +104,7 @@
       <workItem from="1768671852496" duration="3409000" />
       <workItem from="1768676111026" duration="6690000" />
       <workItem from="1769016869128" duration="5066000" />
+      <workItem from="1769103517401" duration="7133000" />
     </task>
     <servers />
   </component>
