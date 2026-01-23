@@ -17,7 +17,7 @@ public class OviedadZombie : MonoBehaviour
     [SerializeField] public float Zombiedad;
     [SerializeField] public float maxZombiedad = 100;
     [SerializeField] public float ZombiedadSpeed = 100;
-    [SerializeField] public float Zombiedadocupadospeed = 0.25f;
+    [SerializeField] float Zombiedadocupadospeed = 0.5f;
     private float zombiedadSpeedOriginal;
     [Header("Game Objects")]
     [SerializeField] Slider zombiedadBar;
@@ -42,6 +42,7 @@ public class OviedadZombie : MonoBehaviour
     bool playhighshake;
     RectTransform zombiedadBarRect;
     Vector2 originalBarPos;
+    public bool snackActivo = false;
 
 
     //[Header("For Sprite Movement")]
@@ -85,7 +86,7 @@ public class OviedadZombie : MonoBehaviour
     {
         if (playerController.playerOcupado)
             ZombiedadSpeed = Zombiedadocupadospeed;
-        else if (!playerController.playerOcupado)
+        else if (!playerController.playerOcupado&&!snackActivo)
             resetspeed();
 
         // Limitar Zombiedad

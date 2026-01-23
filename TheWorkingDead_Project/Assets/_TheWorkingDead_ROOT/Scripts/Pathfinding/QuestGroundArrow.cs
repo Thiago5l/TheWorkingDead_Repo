@@ -8,6 +8,8 @@ public class QuestGroundArrowSmooth : MonoBehaviour
     [Header("Referencias")]
     [SerializeField] private Transform playerTransform;
     [SerializeField] private TareasAleatorias tareas;
+    [SerializeField] private Transform brazol;
+    [SerializeField] private FadeCanvas fadeCanvas;
 
     [Header("Configuración Flecha")]
     [SerializeField] private float heightAboveGround = 0.2f;
@@ -61,19 +63,24 @@ public class QuestGroundArrowSmooth : MonoBehaviour
             return;
         }
 
-        Transform targetTask = GetNextActiveTask();
+        Transform targetTask;
+
+        // Si el brazo está caído, el target es el brazo
+        if (fadeCanvas != null && fadeCanvas.brazoYaCaido)
+        {
+            targetTask = brazol;
+        }
+        else
+        {
+            targetTask = GetNextActiveTask();
+        }
+
         if (targetTask == null)
         {
             lineRenderer.enabled = false;
             return;
         }
 
-        float distanceToTask = Vector3.Distance(playerTransform.position, targetTask.position);
-        if (distanceToTask < showDistance || distanceToTask > maxShowDistance)
-        {
-            lineRenderer.enabled = false;
-            return;
-        }
 
         lineRenderer.enabled = true;
 

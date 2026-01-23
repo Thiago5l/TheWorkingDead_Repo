@@ -35,6 +35,7 @@ public class TaskOrdenar : TaskBase
 
     protected override void IniciarTarea()
     {
+        uiPuzzleManager.time=uiPuzzleManager.maxTime;
         resultadoEnviado = false;
 
         uiPuzzleManager.win = false;

@@ -76,7 +76,6 @@ public class UIParabola : Graphic
         return local;
     }
 
-#if UNITY_EDITOR
 
     protected override void Awake()
     {
@@ -101,5 +100,4 @@ public class UIParabola : Graphic
         //    SetVerticesDirty();
         //}
     }
-#endif
 }

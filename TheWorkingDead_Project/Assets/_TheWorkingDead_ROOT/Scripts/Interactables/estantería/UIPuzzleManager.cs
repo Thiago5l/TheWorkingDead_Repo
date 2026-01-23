@@ -37,9 +37,9 @@ public class UIPuzzleManager : MonoBehaviour
 
     [Header("Tiempo")]
     public Slider timeSlider;
-    [SerializeField] private float maxTime = 60f;
+    public float maxTime = 60f;
 
-    private float time;
+    public float time;
     public bool tiempoStart;
     public bool win;
     public bool loose;
@@ -76,18 +76,28 @@ public class UIPuzzleManager : MonoBehaviour
     {
         piezas.Clear();
 
-        //pieceWidth = manualSlots[0].rect.width;
-        //pieceHeight = manualSlots[0].rect.height;
-        pieceWidth = manualSlots[0].rect.width * scalePieza;
-        pieceHeight = manualSlots[0].rect.height * scalePieza;
-
         for (int i = 0; i < puzzleSprites.Count; i++)
         {
             RectTransform pieza = Instantiate(piezaPrefab, holder);
-            pieza.sizeDelta = new Vector2(pieceWidth, pieceHeight);
 
             Image img = pieza.GetComponent<Image>();
             img.sprite = puzzleSprites[i];
+            img.preserveAspect = true;
+
+            // tamaño real del sprite
+            img.SetNativeSize();
+
+            // ===== ESCALAR PARA QUE ENCAJE CON LA SILUETA =====
+            RectTransform slot = manualSlots[i];
+
+            float scaleX = slot.rect.width / pieza.rect.width;
+            float scaleY = slot.rect.height / pieza.rect.height;
+
+            float scale = Mathf.Min(scaleX, scaleY);
+
+            pieza.localScale = Vector3.one * scale * scalePieza;
+
+            // ==================================================
 
             PuzzlePieceUI pieceUI = pieza.GetComponent<PuzzlePieceUI>();
             pieceUI.manager = this;
@@ -96,7 +106,25 @@ public class UIPuzzleManager : MonoBehaviour
 
             piezas.Add(pieza);
         }
+
+        ColocarPiezasAleatorias();
     }
+
+    void ColocarPiezasAleatorias()
+    {
+        List<RectTransform> piezasDisponibles = new List<RectTransform>(piezas);
+
+        foreach (RectTransform pieza in piezasDisponibles)
+        {
+            pieza.anchoredPosition = new Vector2(
+                Random.Range(-panelDist.rect.width / 2f, panelDist.rect.width / 2f),
+                Random.Range(-panelDist.rect.height / 2f, panelDist.rect.height / 2f)
+            );
+        }
+
+        piezasCorrectas = 0; // Todavía ninguna pieza está en su lugar
+    }
+
 
     void ColocarSoloAlgunas()
     {

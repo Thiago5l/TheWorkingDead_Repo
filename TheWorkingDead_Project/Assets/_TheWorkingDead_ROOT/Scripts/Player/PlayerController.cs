@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
     [Header("snack parametres")]
     [SerializeField] Snacks_UI snacks_UI;
     [SerializeField] Image snackfill;
-    [SerializeField] public float snackzombiedadspeed = 2;
+    [SerializeField] public float snackzombiedadspeed = 0.5f;
     [SerializeField] public float snacktime = 0;
     [SerializeField] float snackTimer;
     [SerializeField] OviedadZombie obviedadZombie;
@@ -74,6 +75,10 @@ public class PlayerController : MonoBehaviour
     [Header("tutorial")]
     public bool tutorialroom;
     public bool playedvendingmachine;
+
+    [Header("Sprint Cooldown")]
+    [SerializeField] float sprintCooldown = 0.5f; // medio segundo
+    bool canSprint = true; // controla si se puede iniciar sprint
     #endregion
 
     private void Awake()
@@ -81,6 +86,12 @@ public class PlayerController : MonoBehaviour
         if (playerData != null)
         {
             playerData.ApplyToPlayer(this);
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            coins = 1;
+            energeticas = 0;
+            snacks = 0;
         }
         PlayerRB = GetComponent<Rigidbody>();
         if (camTransform == null) camTransform = Camera.main.transform; //busca la cámara main si no tiene cam asignada
@@ -115,7 +126,7 @@ public class PlayerController : MonoBehaviour
         {
             speed = 0;
         }
-        else
+        else if (!obviedadZombie.snackActivo)
         {
             speed = speedcontainer;
         }
@@ -234,11 +245,13 @@ public class PlayerController : MonoBehaviour
     }
     #region sprint
     Coroutine sprintCoroutine;
+    bool wassprinting = false;
     public void OnSprint(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            if (energeticas <= 0 || isSprinting) return;
+            if (!canSprint || energeticas <= 0 || isSprinting) return;
+
             EstaminaUI.enabled = true;
             sprintVFX.SetActive(true);
             isSprinting = true;
@@ -247,12 +260,8 @@ public class PlayerController : MonoBehaviour
 
             sprintCoroutine = StartCoroutine(StopSprintCoroutine());
         }
-
-        if (context.canceled)
-        {
-            StopSprint();
-        }
     }
+
 
     void StopSprint()
     {
@@ -275,6 +284,15 @@ public class PlayerController : MonoBehaviour
 
         energeticas--;
         energeticasUI.SetEnergeticas((int)energeticas);
+        wassprinting = false;
+        // Inicia cooldown
+        canSprint = false;
+        StartCoroutine(SprintCooldownCoroutine());
+    }
+    IEnumerator SprintCooldownCoroutine()
+    {
+        yield return new WaitForSeconds(sprintCooldown);
+        canSprint = true; // ya se puede sprintar otra vez
     }
 
 
@@ -287,40 +305,30 @@ public class PlayerController : MonoBehaviour
     #region snack
     public void snack(InputAction.CallbackContext context)
     {
-            if (!context.performed) return;
-            if (snackusado || snacks <= 0) return;
+        if (!context.performed) return;     // solo cuando se presiona el botón
+        if (snackusado || snacks <= 0) return; // evita usar otro snack
 
-            snackusado = true;
+        snackusado = true; // marca que un snack está en uso
 
-            // Obtener el índice del último snack disponible
-            int snackIndex = snacks - 1; // si snacks = 3 -> índice = 2 (último)
-        if (snackIndex >= 0 && snackIndex < snacks_UI.icons.Count)
-            snackfill = snacks_UI.icons[snackIndex].GetComponent<Image>();
-        else
-            snackfill = null;
+        // seleccionar icono
+        int snackIndex = snacks - 1;
+        snackfill = (snackIndex >= 0 && snackIndex < snacks_UI.icons.Count)
+            ? snacks_UI.icons[snackIndex].GetComponent<Image>()
+            : null;
 
         snackTimer = snacktime;
-            StartCoroutine(SnackCoroutine());
-            /////////
-        if (!context.performed) return;
-        {
-            Debug.Log("snackusado");
+        StartCoroutine(SnackCoroutine());
 
-            if (!snackusado && snacks>0)
-            {
-                snackTimer=snacktime;
-                Debug.Log("snackconsumido");
-                snackusado = true;
-                StartCoroutine(SnackCoroutine());
-            }
-        }
+        Debug.Log("Snack usado");
     }
     IEnumerator SnackCoroutine()
     {
         snackTimer = snacktime;
-        obviedadZombie.ZombiedadSpeed = snackzombiedadspeed;
+        obviedadZombie.snackActivo = true;
 
-        // Mientras dure el snack
+        float originalSpeed = obviedadZombie.ZombiedadSpeed; // guardamos
+        obviedadZombie.ZombiedadSpeed *= 0.25f; // reducimos velocidad
+
         while (snackTimer > 0f)
         {
             snackTimer -= Time.deltaTime;
@@ -329,16 +337,18 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
-        // Reset del efecto
-        obviedadZombie.resetspeed();
+        // Reset seguro
+        obviedadZombie.ZombiedadSpeed = originalSpeed;
+        obviedadZombie.snackActivo = false;
+
         snacks--;
         snacks_UI.SetSnacks((int)snacks);
         snackusado = false;
 
-        // seguridad
         if (snackfill != null)
             snackfill.fillAmount = 0f;
     }
+
 
     #endregion
     #region imput methods

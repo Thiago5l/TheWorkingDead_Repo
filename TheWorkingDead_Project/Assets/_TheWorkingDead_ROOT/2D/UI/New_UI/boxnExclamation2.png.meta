@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2675bc7db677fe1409cfc5f28df0acfa
+guid: 24b5f888644a40449a6384ff3e41f4fe
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -54,7 +54,7 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 7
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -149,13 +149,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cursor_Clicked_0
+      name: boxnExclamation2_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 18
-        width: 466
-        height: 389
+        x: 9
+        y: 619
+        width: 1390
+        height: 443
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,8 +164,162 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b890a41411225dd46a8f0dfe8184240a
-      internalID: -842889416
+      spriteID: b27312d72add4f54cb4a6b75165a4ba3
+      internalID: 110609008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boxnExclamation2_1
+      rect:
+        serializedVersion: 2
+        x: 1506
+        y: 714
+        width: 271
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dcf8af17f5512441b7ca03500504bb9
+      internalID: 1004451146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boxnExclamation2_2
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 270
+        width: 928
+        height: 326
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc23c84582a49b14a8ae7fab187d4c6c
+      internalID: -1699619817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boxnExclamation2_3
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 307
+        width: 269
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb8182d3930bf9f4f997b6862d46bfe8
+      internalID: 445835086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boxnExclamation2_4
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 370
+        width: 231
+        height: 295
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58a60cd05815d75419a00400f9b5bcf9
+      internalID: 1516724542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boxnExclamation2_5
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 71
+        width: 664
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d19420c5bc115c4a869383aab1530b3
+      internalID: -1768014309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boxnExclamation2_6
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 67
+        width: 664
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d20c76b404d48a4884c1ad3d9d30c60
+      internalID: 1776432219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boxnExclamation2_7
+      rect:
+        serializedVersion: 2
+        x: 1558
+        y: 41
+        width: 289
+        height: 307
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96b2b29541cf10f48819b6582185b046
+      internalID: -1758721389
       vertices: []
       indices: 
       edges: []
@@ -174,7 +328,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b2c91836ec0b32942acc8d76e3c0fe5d
+    spriteID: 16de96c106d2684458ef4e3e10f1e1d7
     internalID: 0
     vertices: []
     indices: 
@@ -186,7 +340,14 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Cursor_Clicked_0: -842889416
+      boxnExclamation2_0: 110609008
+      boxnExclamation2_1: 1004451146
+      boxnExclamation2_2: -1699619817
+      boxnExclamation2_3: 445835086
+      boxnExclamation2_4: 1516724542
+      boxnExclamation2_5: -1768014309
+      boxnExclamation2_6: 1776432219
+      boxnExclamation2_7: -1758721389
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

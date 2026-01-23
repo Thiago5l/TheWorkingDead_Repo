@@ -53,10 +53,12 @@ public abstract class TaskBase : MonoBehaviour
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("TaskPlayer")&&!tareaAcabada) return;
-
-        playerCerca = true;
-        if (EstaEnListaDeTareas())
-        CambiarColorOutline(colorCerca);
+        if (!feedbackcanvas.brazoYaCaido)
+        {
+            playerCerca = true;
+            if (EstaEnListaDeTareas())
+                CambiarColorOutline(colorCerca);
+        }
     }
 
     protected virtual void OnTriggerExit(Collider other)
