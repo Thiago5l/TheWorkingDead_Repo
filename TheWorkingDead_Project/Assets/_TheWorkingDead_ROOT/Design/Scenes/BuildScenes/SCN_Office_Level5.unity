@@ -18136,6 +18136,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_TaskKey_Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7764882338032784115, guid: a0f4d7d66fdc47c449b71ce6c756bb94, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7786835661777455867, guid: a0f4d7d66fdc47c449b71ce6c756bb94, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1

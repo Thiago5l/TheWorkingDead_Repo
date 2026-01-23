@@ -44767,9 +44767,11 @@ MonoBehaviour:
   boxTarea: {fileID: 4450916536924301904, guid: 35605ada0f016194198092f3730aff33, type: 3}
   tareaContiner: {fileID: 2121438063}
   OrdenTareas:
-  - {fileID: 829853577}
+  - {fileID: 0}
+  - {fileID: 0}
+  tareasObligatorias:
   - {fileID: 9120860583668444841}
-  tareasObligatorias: []
+  - {fileID: 829853577}
   maxNPCsEnTareas: 1
   Uwe: {fileID: 746938434}
   wincanvas: {fileID: 1550445824}
@@ -61664,14 +61666,6 @@ PrefabInstance:
       propertyPath: feedbackcanvas
       value: 
       objectReference: {fileID: 1835138751}
-    - target: {fileID: 1661657979252112283, guid: ab90c668b426af940b8bdd2a3ea6ce17, type: 3}
-      propertyPath: timePerCharacter
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1661657979252112283, guid: ab90c668b426af940b8bdd2a3ea6ce17, type: 3}
-      propertyPath: sizeTextsSelected
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 1661657979252112283, guid: ab90c668b426af940b8bdd2a3ea6ce17, type: 3}
       propertyPath: taskFeedbackCanvas
       value: 

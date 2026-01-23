@@ -10,7 +10,7 @@ public class WinCanvasManager : MonoBehaviour
     private RectTransform panel;
     private Vector2 startPos;
     private Vector2 endPos;
-
+    public float offset = 900f;
     private void Awake()
     {
         // Toma automáticamente el RectTransform del mismo objeto
@@ -19,38 +19,12 @@ public class WinCanvasManager : MonoBehaviour
 
     private void OnEnable()
     {
-        // Pausar el juego mientras el panel esté activo
         Time.timeScale = 0f;
 
-        // Lanza la animación
-        StartCoroutine(SlideUpFromBottom());
+        panel = GetComponent<RectTransform>();
+
+        StartCoroutine(EntradaDesdeAbajo());
     }
-
-    private IEnumerator SlideUpFromBottom()
-    {
-        // Espera un frame para que Unity calcule correctamente la posición final
-        yield return null;
-
-        // Guardar posición final y calcular posición inicial fuera de pantalla
-        endPos = panel.anchoredPosition;
-        startPos = endPos + Vector2.down * 800f; // Ajusta 800 según la distancia que quieras que venga de abajo
-        panel.anchoredPosition = startPos;
-
-        float t = 0f;
-
-        while (t < 1f)
-        {
-            t += Time.unscaledDeltaTime / duration;
-
-            // Suavizado para efecto más natural
-            float smooth = Mathf.SmoothStep(0f, 1f, t);
-            panel.anchoredPosition = Vector2.Lerp(startPos, endPos, smooth);
-            yield return null;
-        }
-
-        panel.anchoredPosition = endPos; // Asegura posición final exacta
-    }
-
     public void LoadNextScene()
     {
         int currentIndex = SceneManager.GetActiveScene().buildIndex;
@@ -66,6 +40,29 @@ public class WinCanvasManager : MonoBehaviour
         {
             Debug.Log("No hay más escenas en el Build");
         }
+    }
+    IEnumerator EntradaDesdeAbajo()
+    {
+        //  esperar a que el Canvas calcule layout
+        yield return null;
+        yield return new WaitForEndOfFrame();
+
+        // ahora sí existe la posición real
+        endPos = panel.anchoredPosition;
+
+        startPos = endPos + Vector2.down * offset;
+        panel.anchoredPosition = startPos;
+
+        float t = 0f;
+
+        while (t < 1f)
+        {
+            t += Time.unscaledDeltaTime / duration;
+            panel.anchoredPosition = Vector2.Lerp(startPos, endPos, Mathf.SmoothStep(0, 1, t));
+            yield return null;
+        }
+
+        panel.anchoredPosition = endPos;
     }
 
     private void OnDisable()

@@ -42,6 +42,7 @@ public class OviedadZombie : MonoBehaviour
     bool playhighshake;
     RectTransform zombiedadBarRect;
     Vector2 originalBarPos;
+    public bool snackActivo = false;
 
 
     //[Header("For Sprite Movement")]
@@ -85,7 +86,7 @@ public class OviedadZombie : MonoBehaviour
     {
         if (playerController.playerOcupado)
             ZombiedadSpeed = Zombiedadocupadospeed;
-        else if (!playerController.playerOcupado)
+        else if (!playerController.playerOcupado&&!snackActivo)
             resetspeed();
 
         // Limitar Zombiedad

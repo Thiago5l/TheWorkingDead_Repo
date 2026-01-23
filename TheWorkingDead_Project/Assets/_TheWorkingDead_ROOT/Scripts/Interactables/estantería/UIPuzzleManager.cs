@@ -76,16 +76,28 @@ public class UIPuzzleManager : MonoBehaviour
     {
         piezas.Clear();
 
-        pieceWidth = manualSlots[0].rect.width * scalePieza;
-        pieceHeight = manualSlots[0].rect.height * scalePieza;
-
         for (int i = 0; i < puzzleSprites.Count; i++)
         {
             RectTransform pieza = Instantiate(piezaPrefab, holder);
-            pieza.sizeDelta = new Vector2(pieceWidth, pieceHeight);
 
             Image img = pieza.GetComponent<Image>();
             img.sprite = puzzleSprites[i];
+            img.preserveAspect = true;
+
+            // tamaño real del sprite
+            img.SetNativeSize();
+
+            // ===== ESCALAR PARA QUE ENCAJE CON LA SILUETA =====
+            RectTransform slot = manualSlots[i];
+
+            float scaleX = slot.rect.width / pieza.rect.width;
+            float scaleY = slot.rect.height / pieza.rect.height;
+
+            float scale = Mathf.Min(scaleX, scaleY);
+
+            pieza.localScale = Vector3.one * scale * scalePieza;
+
+            // ==================================================
 
             PuzzlePieceUI pieceUI = pieza.GetComponent<PuzzlePieceUI>();
             pieceUI.manager = this;
@@ -95,9 +107,9 @@ public class UIPuzzleManager : MonoBehaviour
             piezas.Add(pieza);
         }
 
-        // Después de crear todas las piezas, colocarlas aleatoriamente
         ColocarPiezasAleatorias();
     }
+
     void ColocarPiezasAleatorias()
     {
         List<RectTransform> piezasDisponibles = new List<RectTransform>(piezas);

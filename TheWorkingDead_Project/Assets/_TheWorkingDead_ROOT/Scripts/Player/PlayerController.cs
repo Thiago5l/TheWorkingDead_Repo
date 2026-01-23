@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
         {
             speed = 0;
         }
-        else
+        else if (!obviedadZombie.snackActivo)
         {
             speed = speedcontainer;
         }
@@ -305,40 +305,30 @@ public class PlayerController : MonoBehaviour
     #region snack
     public void snack(InputAction.CallbackContext context)
     {
-            if (!context.performed) return;
-            if (snackusado || snacks <= 0) return;
+        if (!context.performed) return;     // solo cuando se presiona el botón
+        if (snackusado || snacks <= 0) return; // evita usar otro snack
 
-            snackusado = true;
+        snackusado = true; // marca que un snack está en uso
 
-            // Obtener el índice del último snack disponible
-            int snackIndex = snacks - 1; // si snacks = 3 -> índice = 2 (último)
-        if (snackIndex >= 0 && snackIndex < snacks_UI.icons.Count)
-            snackfill = snacks_UI.icons[snackIndex].GetComponent<Image>();
-        else
-            snackfill = null;
+        // seleccionar icono
+        int snackIndex = snacks - 1;
+        snackfill = (snackIndex >= 0 && snackIndex < snacks_UI.icons.Count)
+            ? snacks_UI.icons[snackIndex].GetComponent<Image>()
+            : null;
 
         snackTimer = snacktime;
-            StartCoroutine(SnackCoroutine());
-            /////////
-        if (!context.performed) return;
-        {
-            Debug.Log("snackusado");
+        StartCoroutine(SnackCoroutine());
 
-            if (!snackusado && snacks>0)
-            {
-                snackTimer=snacktime;
-                Debug.Log("snackconsumido");
-                snackusado = true;
-                StartCoroutine(SnackCoroutine());
-            }
-        }
+        Debug.Log("Snack usado");
     }
     IEnumerator SnackCoroutine()
     {
         snackTimer = snacktime;
-        obviedadZombie.ZombiedadSpeed = snackzombiedadspeed;
+        obviedadZombie.snackActivo = true;
 
-        // Mientras dure el snack
+        float originalSpeed = obviedadZombie.ZombiedadSpeed; // guardamos
+        obviedadZombie.ZombiedadSpeed *= 0.25f; // reducimos velocidad
+
         while (snackTimer > 0f)
         {
             snackTimer -= Time.deltaTime;
@@ -347,16 +337,18 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
-        // Reset del efecto
-        obviedadZombie.resetspeed();
+        // Reset seguro
+        obviedadZombie.ZombiedadSpeed = originalSpeed;
+        obviedadZombie.snackActivo = false;
+
         snacks--;
         snacks_UI.SetSnacks((int)snacks);
         snackusado = false;
 
-        // seguridad
         if (snackfill != null)
             snackfill.fillAmount = 0f;
     }
+
 
     #endregion
     #region imput methods
