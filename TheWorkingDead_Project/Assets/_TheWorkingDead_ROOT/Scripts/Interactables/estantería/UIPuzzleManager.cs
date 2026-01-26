@@ -159,15 +159,14 @@ public class UIPuzzleManager : MonoBehaviour
         RectTransform rt = piece.GetComponent<RectTransform>();
         RectTransform targetSlot = manualSlots[piece.pieceIndex];
 
-        float snapDistance = pieceWidth * 0.4f;
+        float snapDistance = 50f;
 
-        if (Vector2.Distance(rt.anchoredPosition, targetSlot.anchoredPosition) < snapDistance)
+        if (Vector2.Distance(rt.position, targetSlot.position) < snapDistance)
         {
-            rt.anchoredPosition = targetSlot.anchoredPosition;
+            rt.position = targetSlot.position;
             piece.isCorrect = true;
             piezasCorrectas++;
 
-            // Ocultar silueta (hijo)
             Transform sil = targetSlot.Find("Silhouette");
             if (sil != null)
                 sil.gameObject.SetActive(false);
@@ -179,6 +178,7 @@ public class UIPuzzleManager : MonoBehaviour
             }
         }
     }
+
 
     //public void TrySnap(PuzzlePieceUI piece)
     //{
