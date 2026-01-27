@@ -3,30 +3,35 @@ using UnityEngine;
 
 public class NPCSpawner : MonoBehaviour
 {
+    [Header("Spawn Points")]
     public Transform[] spawnPoints;
+    public Transform[] spawnPointsSit;
 
-    // NPCs disponibles para spawns aleatorios (no deben incluir el fijo)
+    [Header("NPCs")]
     public GameObject[] randomNPCs;
+    public GameObject[] randomNPCsSit;
 
-    // Numero total de NPCs a spawnear (incluye el fijo)
-    public int npcCount = 3;
-    private void Awake()
+    [Header("Cantidad")]
+    public int npcStandingCount = 3;
+    public int npcSittingCount = 2;
+
+    private void Start()
     {
-        SpawnNPCs();
+        SpawnNPCs(spawnPoints, randomNPCs, npcStandingCount);
+        SpawnNPCs(spawnPointsSit, randomNPCsSit, npcSittingCount);
     }
 
-    void SpawnNPCs()
+    void SpawnNPCs(Transform[] points, GameObject[] npcs, int count)
     {
-        if (spawnPoints.Length == 0 || npcCount <= 0)
+        if (points.Length == 0 || npcs.Length == 0 || count <= 0)
             return;
 
-        List<Transform> availablePoints = new List<Transform>(spawnPoints);
-        List<GameObject> availableNPCs = new List<GameObject>(randomNPCs);
+        List<Transform> availablePoints = new List<Transform>(points);
+        List<GameObject> availableNPCs = new List<GameObject>(npcs);
 
         int spawned = 0;
 
-        // Random NPCs without repetition
-        while (spawned < npcCount &&
+        while (spawned < count &&
                availablePoints.Count > 0 &&
                availableNPCs.Count > 0)
         {
@@ -39,7 +44,6 @@ public class NPCSpawner : MonoBehaviour
             availableNPCs.RemoveAt(npcIndex);
 
             Instantiate(npc, point.position, point.rotation);
-
             spawned++;
         }
     }
