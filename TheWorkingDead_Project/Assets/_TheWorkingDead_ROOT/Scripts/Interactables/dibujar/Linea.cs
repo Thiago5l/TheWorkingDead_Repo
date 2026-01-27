@@ -10,6 +10,7 @@ public class Linea : MonoBehaviour
     [Range(0f, 100f)]
     [SerializeField] private float grosorLinea = 5f;
 
+
     [SerializeField] float distanciaMinima = 5f;
 
     void Awake()
@@ -39,5 +40,9 @@ public class Linea : MonoBehaviour
         linea.positionCount = puntos.Count;
         linea.SetPosition(puntos.Count - 1, punto);
         ultimoPunto = punto;
+    }
+    public List<Vector2> ObtenerPuntos()
+    {
+        return puntos;
     }
 }
