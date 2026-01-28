@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using System.Collections.Generic;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
@@ -24,6 +25,8 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        // Forzar rebuild para rectTransform din·micos
+        LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform.parent as RectTransform);
         posicionInicial = rectTransform.anchoredPosition;
         canvasGroup.blocksRaycasts = false;
     }
@@ -71,8 +74,11 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             ObjetoReciclable objReciclable = GetComponent<ObjetoReciclable>();
             if (objReciclable != null)
             {
-                if (objReciclable.tipoCorrecto == contenedorLocal.tipoAceptado)
+                if (objReciclable.EsTipoCorrecto(contenedorLocal.tipoAceptado))
                 {
+                    // Matar tweens antes de destruir
+                    contenedorLocal.KillTween();
+
                     contenedorLocal.Felicidad();
                     Destroy(gameObject);
                     correcto = true;
@@ -83,11 +89,10 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
                 }
             }
 
-            contenedorLocal.RestaurarTamano(); // ‚Üê FIX CLAVE
+            contenedorLocal.RestaurarTamano();
         }
 
         if (!correcto)
             rectTransform.anchoredPosition = posicionInicial;
     }
-
 }

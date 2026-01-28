@@ -5424,8 +5424,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.64, y: 0.26}
-  m_AnchoredPosition: {x: 136.93997, y: 48}
-  m_SizeDelta: {x: 128.92003, y: 0}
+  m_AnchoredPosition: {x: 142.46179, y: 27.860352}
+  m_SizeDelta: {x: 139.9638, y: 11.2782}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &451538269
 MonoBehaviour:
@@ -13736,7 +13736,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 367873422, guid: 6d21a57808f10154587e8f3c7ae57132, type: 3}
+  m_Sprite: {fileID: 1753975346, guid: 6e16ba820b9121844a890c94ffa97d3f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -22055,7 +22055,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 310713747, guid: 6d21a57808f10154587e8f3c7ae57132, type: 3}
+  m_Sprite: {fileID: 1655805614, guid: 6e16ba820b9121844a890c94ffa97d3f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -24919,7 +24919,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1340262063, guid: 6d21a57808f10154587e8f3c7ae57132, type: 3}
+  m_Sprite: {fileID: 917183082, guid: 6e16ba820b9121844a890c94ffa97d3f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -26016,7 +26016,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 397145216, guid: 6d21a57808f10154587e8f3c7ae57132, type: 3}
+  m_Sprite: {fileID: 245869702, guid: 6e16ba820b9121844a890c94ffa97d3f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -28166,7 +28166,7 @@ MonoBehaviour:
   - {fileID: 7804781049469542789, guid: 466565afb80947145ac01d7dcbd6f318, type: 3}
   - {fileID: 8367229862626870395, guid: 4403855e594155148b62bb900d23eabe, type: 3}
   - {fileID: 3993512807769272015, guid: b13b980ce7d177948a06822be6028800, type: 3}
-  - {fileID: 1598205058954457491, guid: 586b83cc05c896544a0f32659fbba5c6, type: 3}
+  - {fileID: 5143920804710793607, guid: 67dc292c771510b43967ac280a5f6a36, type: 3}
   - {fileID: 8426489392765850062, guid: 874ebfe895c89e549956021adb88cb9e, type: 3}
   - {fileID: 6215520904824365129, guid: 0c01b1f642a802541a6dabfb93a02e8c, type: 3}
   - {fileID: 5531356306594155199, guid: a1e0dc70a95c62544a6eb9acf5a73744, type: 3}
@@ -28176,9 +28176,9 @@ MonoBehaviour:
   - {fileID: 8835157833508598469, guid: 5446922a03491644ebda4e127b8e625d, type: 3}
   - {fileID: 459309378447216022, guid: f7d65a91da8d04b4798c3a09b0f8a18b, type: 3}
   - {fileID: 4812735701734601809, guid: e0d1e6d68c421534fa4ce7fcdd3a6366, type: 3}
+  - {fileID: 6716213428209597330, guid: 92d66a287391c1c43b2a857420abaa49, type: 3}
   areaSpawn: {fileID: 451538268}
   cantidadPorRonda: 5
-  padding: 30
   spacing: 20
 --- !u!1001 &1810131043
 PrefabInstance:

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6d21a57808f10154587e8f3c7ae57132
+guid: 6e16ba820b9121844a890c94ffa97d3f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -81,7 +81,59 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
     buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -97,13 +149,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BasuraSpritesDef_0
+      name: cosasmas_0
       rect:
         serializedVersion: 2
-        x: 52
+        x: 351
         y: 2176
-        width: 411
-        height: 230
+        width: 412
+        height: 229
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,20 +164,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f13d7170d1955c249bb6e1cca309c23c
-      internalID: -1878935687
+      spriteID: fe24b943be90c17449d4a5dd052ccda6
+      internalID: 2016851036
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BasuraSpritesDef_1
+      name: cosasmas_1
       rect:
         serializedVersion: 2
-        x: 531
-        y: 2179
+        x: 832
+        y: 2178
         width: 201
-        height: 205
+        height: 207
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,17 +186,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc100785cbd3cdf43a745f9634b285b5
-      internalID: 1686641683
+      spriteID: 04dd57e1e484faf44beed62cae0db753
+      internalID: -1689248016
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BasuraSpritesDef_2
+      name: cosasmas_2
       rect:
         serializedVersion: 2
-        x: 836
+        x: 1136
         y: 2168
         width: 200
         height: 191
@@ -156,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e0bb2d8f958a40438e8c6555debb498
-      internalID: -518399062
+      spriteID: 104c5927317995446ad5648107bc8647
+      internalID: 933022032
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BasuraSpritesDef_3
+      name: cosasmas_3
       rect:
         serializedVersion: 2
-        x: 1123
-        y: 2162
-        width: 372
-        height: 201
+        x: 1422
+        y: 2161
+        width: 374
+        height: 203
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,173 +230,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 915e9a7809239f74c945e2c4c6b1cc3a
-      internalID: -1405580283
+      spriteID: 31d222312b55a344fb69030ef36e3e7c
+      internalID: -210845671
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BasuraSpritesDef_4
+      name: cosasmas_4
       rect:
         serializedVersion: 2
-        x: 1553
+        x: 1853
         y: 2078
         width: 377
-        height: 311
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4cbb1f50966d22a48b215cd25d88d6ff
-      internalID: -392562536
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BasuraSpritesDef_5
-      rect:
-        serializedVersion: 2
-        x: 2034
-        y: 1907
-        width: 291
-        height: 474
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: addb610ea75763c40b1bf17a8da30466
-      internalID: 265823296
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BasuraSpritesDef_6
-      rect:
-        serializedVersion: 2
-        x: 2446
-        y: 1973
-        width: 241
-        height: 206
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ad88525ed6c730948877a58a73e2d53e
-      internalID: -1372966520
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BasuraSpritesDef_7
-      rect:
-        serializedVersion: 2
-        x: 2780
-        y: 2103
-        width: 307
-        height: 273
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e9252176a8f420147956c98fc2195dff
-      internalID: -612080989
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BasuraSpritesDef_8
-      rect:
-        serializedVersion: 2
-        x: 14
-        y: 1755
-        width: 268
-        height: 399
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1b10dff29ef6400498bef495f962693c
-      internalID: -411902794
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BasuraSpritesDef_9
-      rect:
-        serializedVersion: 2
-        x: 414
-        y: 1686
-        width: 322
-        height: 323
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3f8be8b74bd043e4fb1eb409d42de1c7
-      internalID: 763314069
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BasuraSpritesDef_10
-      rect:
-        serializedVersion: 2
-        x: 784
-        y: 1620
-        width: 404
-        height: 491
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 238184850124ca24fbac94027ebaa630
-      internalID: -407028754
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BasuraSpritesDef_11
-      rect:
-        serializedVersion: 2
-        x: 1241
-        y: 1732
-        width: 326
         height: 310
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -354,20 +252,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfc0adc511e21204fac110b20e581ab4
-      internalID: -1732919810
+      spriteID: 58c0f3f9924778f4ca022ec07e98b952
+      internalID: 1946793331
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BasuraSpritesDef_12
+      name: cosasmas_5
       rect:
         serializedVersion: 2
-        x: 1638
-        y: 1590
-        width: 285
-        height: 386
+        x: 2333
+        y: 1906
+        width: 293
+        height: 475
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -376,20 +274,174 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e66b89a089306f4a9c390639c6c1a47
-      internalID: -702289602
+      spriteID: 8b1a6a87243adb24098fb5cc98f3ac70
+      internalID: -1118121389
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BasuraSpritesDef_13
+      name: cosasmas_6
+      rect:
+        serializedVersion: 2
+        x: 2746
+        y: 1971
+        width: 243
+        height: 209
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 805d8df453888b04999a862f871deee3
+      internalID: 1679454552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cosasmas_7
+      rect:
+        serializedVersion: 2
+        x: 3080
+        y: 2102
+        width: 308
+        height: 274
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edfe446bef94e0347a7643a40daf82d2
+      internalID: -1543360093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cosasmas_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 1815
+        width: 267
+        height: 317
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ad427ca66b396740989a711e53f2d67
+      internalID: 774388165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cosasmas_9
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 1816
+        width: 265
+        height: 288
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4985aaee3b809c4e9c0ee41b594cfb8
+      internalID: 776219493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cosasmas_10
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 1686
+        width: 321
+        height: 323
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f73996c82c61e243b282b2a169395fe
+      internalID: -1173335803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cosasmas_11
+      rect:
+        serializedVersion: 2
+        x: 1085
+        y: 1620
+        width: 403
+        height: 491
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8936367554d199a458041f02588cd64d
+      internalID: -591655767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cosasmas_12
+      rect:
+        serializedVersion: 2
+        x: 1541
+        y: 1730
+        width: 327
+        height: 312
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d486ae4085b3cc459d3a6a16333c5b6
+      internalID: -446532041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cosasmas_13
       rect:
         serializedVersion: 2
         x: 1939
-        y: 1516
-        width: 206
-        height: 269
+        y: 1589
+        width: 284
+        height: 388
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -398,18 +450,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25454604bb50ab241afc86dca849c935
-      internalID: 1972533702
+      spriteID: 4caf98a4cca3be348b21e196d49d1219
+      internalID: -1903421779
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BasuraSpritesDef_14
+      name: cosasmas_14
       rect:
         serializedVersion: 2
-        x: 2265
-        y: 1511
+        x: 2565
+        y: 1510
         width: 247
         height: 332
       alignment: 0
@@ -420,20 +472,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e0227dab2404be4ba72aab89ec8ebe3
-      internalID: -1833884075
+      spriteID: 73fa413adad1c1243a9b5cbcec9fc221
+      internalID: 1103043047
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BasuraSpritesDef_15
+      name: cosasmas_15
       rect:
         serializedVersion: 2
-        x: 2768
-        y: 1639
+        x: 3068
+        y: 1637
         width: 269
-        height: 371
+        height: 374
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -442,20 +494,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6485ae2ed9a6b94397e334d8dff2264
-      internalID: -962107058
+      spriteID: 84597541f8054a34b9cfe54718a9ff26
+      internalID: -802270751
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BasuraSpritesDef_16
+      name: cosasmas_16
       rect:
         serializedVersion: 2
-        x: 46
-        y: 1122
-        width: 256
-        height: 599
+        x: 344
+        y: 1123
+        width: 259
+        height: 597
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -464,19 +516,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3db3614e6cb6eb54a871e185fd9bff8b
-      internalID: -102313068
+      spriteID: c7174249a0892a140b9a5ecef96aa6a5
+      internalID: 1938494137
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BasuraSpritesDef_17
+      name: cosasmas_17
       rect:
         serializedVersion: 2
-        x: 362
+        x: 663
         y: 1057
-        width: 363
+        width: 361
         height: 484
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -486,20 +538,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 485f91745e50bf04c9ffa2d94b822ec9
-      internalID: 1304431417
+      spriteID: 4e9b82c5ed154b240815c55222dbb32f
+      internalID: -1033240712
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BasuraSpritesDef_18
+      name: cosasmas_18
       rect:
         serializedVersion: 2
-        x: 870
-        y: 1038
-        width: 464
-        height: 468
+        x: 2238
+        y: 1515
+        width: 209
+        height: 270
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -508,64 +560,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 213c81cd00e862549bbb99f7bd02f63a
-      internalID: -547256636
+      spriteID: e2b65a5291eb29a40960399f94d375bd
+      internalID: -806286274
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BasuraSpritesDef_19
+      name: cosasmas_19
       rect:
         serializedVersion: 2
-        x: 1433
-        y: 1123
-        width: 407
-        height: 386
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8f7703b8d0ba9f0409bf0bb1a79ac6b1
-      internalID: 1315650935
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BasuraSpritesDef_20
-      rect:
-        serializedVersion: 2
-        x: 1908
-        y: 1112
-        width: 721
-        height: 325
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3907ef9a404f09645aa2b134bda981b3
-      internalID: 1552281361
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BasuraSpritesDef_21
-      rect:
-        serializedVersion: 2
-        x: 2730
-        y: 1127
+        x: 3030
+        y: 1128
         width: 367
-        height: 438
+        height: 437
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -574,20 +582,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ffdf6eacb9545b429893a4b4bdd4084
-      internalID: -728921828
+      spriteID: b3759ba753caf0c40a2a16ed220e7046
+      internalID: 712177112
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BasuraSpritesDef_22
+      name: cosasmas_20
       rect:
         serializedVersion: 2
-        x: 0
-        y: 11
-        width: 794
-        height: 1001
+        x: 1169
+        y: 1038
+        width: 467
+        height: 469
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -596,20 +604,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d630c98b5563f96478627110c3903b8c
-      internalID: 310713747
+      spriteID: cfaf2d75a49ba854cae532e633a14b56
+      internalID: -1837618231
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BasuraSpritesDef_23
+      name: cosasmas_21
       rect:
         serializedVersion: 2
-        x: 819
-        y: 11
-        width: 756
-        height: 958
+        x: 1734
+        y: 1123
+        width: 406
+        height: 385
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -618,20 +626,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26827e3e4a0c4bd44af24d4b47b2e227
-      internalID: 367873422
+      spriteID: f66986a8d72101a4398a4fc82c59a7be
+      internalID: 53388563
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BasuraSpritesDef_24
+      name: cosasmas_22
       rect:
         serializedVersion: 2
-        x: 1572
-        y: 626
-        width: 6
-        height: 56
+        x: 2207
+        y: 1112
+        width: 722
+        height: 326
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -640,19 +648,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77c23b3c2a9ccdc42bdf78eab1c9fdb1
-      internalID: 1811939680
+      spriteID: 2998636639ed86f49bb77a2dc8ff898c
+      internalID: -404098464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BasuraSpritesDef_25
+      name: cosasmas_23
       rect:
         serializedVersion: 2
-        x: 1604
-        y: 5
-        width: 798
+        x: 298
+        y: 12
+        width: 795
         height: 1000
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -662,20 +670,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 217bcccae8b334e4ca60d6798d3b5bf6
-      internalID: 397145216
+      spriteID: a9f1a122e7da3ee43a670730db6b1c97
+      internalID: 1655805614
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BasuraSpritesDef_26
+      name: cosasmas_24
       rect:
         serializedVersion: 2
-        x: 2402
-        y: 14
-        width: 821
-        height: 999
+        x: 1119
+        y: 12
+        width: 756
+        height: 957
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -684,8 +692,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f42abc3331a5cd54d8ef88318ec50f37
-      internalID: -1340262063
+      spriteID: f4e4f19e9edac8142afac6c12f9fc79d
+      internalID: 1753975346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cosasmas_25
+      rect:
+        serializedVersion: 2
+        x: 1871
+        y: 627
+        width: 7
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57903a37ed5f24e42ad21d1406c33dbe
+      internalID: 247632429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cosasmas_26
+      rect:
+        serializedVersion: 2
+        x: 1902
+        y: 5
+        width: 801
+        height: 1001
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1be157c1ffcc804fbe7c0de3d9ecc7d
+      internalID: 245869702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cosasmas_27
+      rect:
+        serializedVersion: 2
+        x: 2703
+        y: 14
+        width: 820
+        height: 1000
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d30ceeb636581e40a3585d25b4cc225
+      internalID: 917183082
       vertices: []
       indices: 
       edges: []
@@ -694,7 +768,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 16cf00a6c3a932d49897b209f9a57b91
+    spriteID: b96fbfe7f974aab40ac18ae350a05afc
     internalID: 0
     vertices: []
     indices: 
@@ -706,33 +780,34 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      BasuraSpritesDef_0: -1878935687
-      BasuraSpritesDef_1: 1686641683
-      BasuraSpritesDef_10: -407028754
-      BasuraSpritesDef_11: -1732919810
-      BasuraSpritesDef_12: -702289602
-      BasuraSpritesDef_13: 1972533702
-      BasuraSpritesDef_14: -1833884075
-      BasuraSpritesDef_15: -962107058
-      BasuraSpritesDef_16: -102313068
-      BasuraSpritesDef_17: 1304431417
-      BasuraSpritesDef_18: -547256636
-      BasuraSpritesDef_19: 1315650935
-      BasuraSpritesDef_2: -518399062
-      BasuraSpritesDef_20: 1552281361
-      BasuraSpritesDef_21: -728921828
-      BasuraSpritesDef_22: 310713747
-      BasuraSpritesDef_23: 367873422
-      BasuraSpritesDef_24: 1811939680
-      BasuraSpritesDef_25: 397145216
-      BasuraSpritesDef_26: -1340262063
-      BasuraSpritesDef_3: -1405580283
-      BasuraSpritesDef_4: -392562536
-      BasuraSpritesDef_5: 265823296
-      BasuraSpritesDef_6: -1372966520
-      BasuraSpritesDef_7: -612080989
-      BasuraSpritesDef_8: -411902794
-      BasuraSpritesDef_9: 763314069
+      cosasmas_0: 2016851036
+      cosasmas_1: -1689248016
+      cosasmas_10: -1173335803
+      cosasmas_11: -591655767
+      cosasmas_12: -446532041
+      cosasmas_13: -1903421779
+      cosasmas_14: 1103043047
+      cosasmas_15: -802270751
+      cosasmas_16: 1938494137
+      cosasmas_17: -1033240712
+      cosasmas_18: -806286274
+      cosasmas_19: 712177112
+      cosasmas_2: 933022032
+      cosasmas_20: -1837618231
+      cosasmas_21: 53388563
+      cosasmas_22: -404098464
+      cosasmas_23: 1655805614
+      cosasmas_24: 1753975346
+      cosasmas_25: 247632429
+      cosasmas_26: 245869702
+      cosasmas_27: 917183082
+      cosasmas_3: -210845671
+      cosasmas_4: 1946793331
+      cosasmas_5: -1118121389
+      cosasmas_6: 1679454552
+      cosasmas_7: -1543360093
+      cosasmas_8: 774388165
+      cosasmas_9: 776219493
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

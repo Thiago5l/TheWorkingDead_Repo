@@ -1,6 +1,14 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjetoReciclable : MonoBehaviour
 {
-    public TipoReciclaje tipoCorrecto;
+    [Header("Tipos correctos")]
+    public List<TipoReciclaje> tiposCorrectos = new List<TipoReciclaje>();
+
+    // Devuelve true si contiene este tipo
+    public bool EsTipoCorrecto(TipoReciclaje tipo)
+    {
+        return tiposCorrectos.Contains(tipo);
+    }
 }

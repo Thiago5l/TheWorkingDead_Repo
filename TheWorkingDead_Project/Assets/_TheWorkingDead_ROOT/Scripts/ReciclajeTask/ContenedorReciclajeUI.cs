@@ -19,10 +19,14 @@ public class ContenedorReciclajeUI : MonoBehaviour
         posOriginal = rectTransform.anchoredPosition;
     }
 
-    void KillTween()
+    // 🔹 Ahora público para que DragUI lo pueda llamar
+    public void KillTween()
     {
         if (tweenActivo != null && tweenActivo.IsActive())
+        {
             tweenActivo.Kill();
+            tweenActivo = null;
+        }
     }
 
     public void Agrandar()
@@ -69,14 +73,12 @@ public class ContenedorReciclajeUI : MonoBehaviour
         KillTween();
 
         Sequence seq = DOTween.Sequence();
-
-        // Temblor lateral rápido real
         seq.Append(rectTransform.DOShakeAnchorPos(
-            0.18f, 
-            new Vector2(25f, 0f), 
-            25, 
-            90f, 
-            false, 
+            0.18f,
+            new Vector2(25f, 0f),
+            25,
+            90f,
+            false,
             true
         ));
 
@@ -88,5 +90,10 @@ public class ContenedorReciclajeUI : MonoBehaviour
         });
 
         tweenActivo = seq;
+    }
+
+    private void OnDestroy()
+    {
+        KillTween();
     }
 }

@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-
 
 public class SpawnerReciclajeUI : MonoBehaviour
 {
@@ -9,8 +7,7 @@ public class SpawnerReciclajeUI : MonoBehaviour
     public RectTransform areaSpawn;
 
     public int cantidadPorRonda = 5;
-    public float padding = 30f;
-    public float spacing = 20f;
+    public float spacing = 20f; // Espacio entre objetos
 
     void Start()
     {
@@ -21,41 +18,41 @@ public class SpawnerReciclajeUI : MonoBehaviour
     {
         if (todosLosObjetosUI.Count == 0 || areaSpawn == null) return;
 
+        // Hacer copia para no repetir objetos
         List<GameObject> copia = new List<GameObject>(todosLosObjetosUI);
+        int cantidad = Mathf.Min(cantidadPorRonda, copia.Count);
 
-        float x = -areaSpawn.rect.width / 2 + padding;
-        float y = areaSpawn.rect.height / 2 - padding;
-
-        float filaAlturaMax = 0f;
-
-        for (int i = 0; i < cantidadPorRonda; i++)
+        // Calcular ancho total para centrar
+        float totalWidth = 0f;
+        List<RectTransform> tempRTs = new List<RectTransform>();
+        for (int i = 0; i < cantidad; i++)
         {
-            if (copia.Count == 0) break;
+            GameObject prefab = copia[i];
+            RectTransform rtPrefab = prefab.GetComponent<RectTransform>();
+            if (rtPrefab == null) continue;
 
-            int prefabIndex = Random.Range(0, copia.Count);
-            GameObject prefab = copia[prefabIndex];
-            copia.RemoveAt(prefabIndex);
+            totalWidth += rtPrefab.rect.width;
+            if (i < cantidad - 1) totalWidth += spacing;
+            tempRTs.Add(rtPrefab);
+        }
+
+        float startX = -totalWidth / 2f;
+        float x = startX;
+
+        for (int i = 0; i < cantidad; i++)
+        {
+            // Elegir prefab aleatorio y eliminarlo para no repetir
+            int index = Random.Range(0, copia.Count);
+            GameObject prefab = copia[index];
+            copia.RemoveAt(index);
 
             GameObject obj = Instantiate(prefab, areaSpawn);
             RectTransform rt = obj.GetComponent<RectTransform>();
+            tempRTs.Add(rt);
 
-            LayoutRebuilder.ForceRebuildLayoutImmediate(rt);
-
-            float w = rt.rect.width;
-            float h = rt.rect.height;
-
-            // Salto de lÃ­nea si no cabe
-            if (x + w > areaSpawn.rect.width / 2 - padding)
-            {
-                x = -areaSpawn.rect.width / 2 + padding;
-                y -= filaAlturaMax + spacing;
-                filaAlturaMax = 0f;
-            }
-
-            rt.anchoredPosition = new Vector2(x + w / 2, y - h / 2);
-
-            x += w + spacing;
-            filaAlturaMax = Mathf.Max(filaAlturaMax, h);
+            // Posición horizontal en línea recta, centrada
+            rt.anchoredPosition = new Vector2(x + rt.rect.width / 2f, 0f);
+            x += rt.rect.width + spacing;
         }
     }
 }
