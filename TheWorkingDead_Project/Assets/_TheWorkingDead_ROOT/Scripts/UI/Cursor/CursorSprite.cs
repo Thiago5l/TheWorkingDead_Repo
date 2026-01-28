@@ -5,8 +5,12 @@ using UnityEngine.UI;
 public class CursorSprite : MonoBehaviour
 {
     public Texture2D cursorT;
+    private Texture2D cursorTSave;
     public Texture2D cursorClick;
+    private Texture2D cursorClickSave;
     
+    public Texture2D cursorRotu;
+
     private Vector2 cursorHotSpot;
 
     void Start()

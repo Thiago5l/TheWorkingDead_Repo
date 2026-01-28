@@ -27853,9 +27853,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5192768173483166479, guid: 8eda1191c8f6efb4584118350c30f162, type: 3}
+      propertyPath: distanciaMinima
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8540461143797974818, guid: 8eda1191c8f6efb4584118350c30f162, type: 3}
       propertyPath: grosor
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8540461143797974818, guid: 8eda1191c8f6efb4584118350c30f162, type: 3}
       propertyPath: colorLinea.b
@@ -75372,6 +75376,10 @@ PrefabInstance:
       propertyPath: taskManager
       value: 
       objectReference: {fileID: 1032389578}
+    - target: {fileID: 8494436993374190957, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
+      propertyPath: uIGameObject
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8494436993374190957, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
       propertyPath: feedbackcanvas
       value: 
