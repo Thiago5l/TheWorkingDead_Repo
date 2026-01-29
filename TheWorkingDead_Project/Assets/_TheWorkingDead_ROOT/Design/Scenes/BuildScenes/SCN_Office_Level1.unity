@@ -32831,6 +32831,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 326527999}
     m_Modifications:
+    - target: {fileID: 2913302478915279113, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_fontSize
+      value: 29.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2913302478915279113, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ed5101580c438844ebd4a7338998e4d8, type: 2}
+    - target: {fileID: 2913302478915279113, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 9061282338312122784, guid: ed5101580c438844ebd4a7338998e4d8, type: 2}
+    - target: {fileID: 2913302478915279113, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2913302478915279113, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_IsTextObjectScaleStatic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5372837729093730713, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_fontSize
+      value: 22.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5372837729093730713, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ed5101580c438844ebd4a7338998e4d8, type: 2}
+    - target: {fileID: 5372837729093730713, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 9061282338312122784, guid: ed5101580c438844ebd4a7338998e4d8, type: 2}
+    - target: {fileID: 5372837729093730713, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6147284871494750852, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
       propertyPath: m_Name
       value: PF_CanvasDialogos
@@ -47423,7 +47459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 829065586514752800, guid: 7e74ac08791321d4b8e22b7ca0653459, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.22759964
+      value: -3.2544231
       objectReference: {fileID: 0}
     - target: {fileID: 829065586514752800, guid: 7e74ac08791321d4b8e22b7ca0653459, type: 3}
       propertyPath: m_LocalPosition.y
@@ -47431,7 +47467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 829065586514752800, guid: 7e74ac08791321d4b8e22b7ca0653459, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.219985
+      value: 3.2978058
       objectReference: {fileID: 0}
     - target: {fileID: 829065586514752800, guid: 7e74ac08791321d4b8e22b7ca0653459, type: 3}
       propertyPath: m_LocalRotation.w
@@ -91078,7 +91114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7657352899040066940, guid: b566ec9a8592b514590876fc31104439, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.22759944
+      value: -3.254423
       objectReference: {fileID: 0}
     - target: {fileID: 7657352899040066940, guid: b566ec9a8592b514590876fc31104439, type: 3}
       propertyPath: m_LocalPosition.y
@@ -91086,7 +91122,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7657352899040066940, guid: b566ec9a8592b514590876fc31104439, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.2199855
+      value: 3.2978058
       objectReference: {fileID: 0}
     - target: {fileID: 7657352899040066940, guid: b566ec9a8592b514590876fc31104439, type: 3}
       propertyPath: m_LocalRotation.w
