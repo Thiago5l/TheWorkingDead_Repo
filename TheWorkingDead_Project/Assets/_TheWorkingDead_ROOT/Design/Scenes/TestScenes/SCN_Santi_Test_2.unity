@@ -32437,10 +32437,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1928370268}
     - target: {fileID: 885910522093123537, guid: d64b2c1e9a23acf40bcd61191091fa25, type: 3}
-      propertyPath: maxTime
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 885910522093123537, guid: d64b2c1e9a23acf40bcd61191091fa25, type: 3}
       propertyPath: panelDist
       value: 
       objectReference: {fileID: 616193564}
@@ -32476,10 +32472,6 @@ PrefabInstance:
       propertyPath: 'manualSlots.Array.data[5]'
       value: 
       objectReference: {fileID: 753000568}
-    - target: {fileID: 885910522093123537, guid: d64b2c1e9a23acf40bcd61191091fa25, type: 3}
-      propertyPath: 'silhouetteSprites.Array.data[2]'
-      value: 
-      objectReference: {fileID: 1670129341, guid: 82618b743111c8f4b9ae2544d04f9a09, type: 3}
     - target: {fileID: 1668423894564690230, guid: d64b2c1e9a23acf40bcd61191091fa25, type: 3}
       propertyPath: m_Name
       value: PF_TaskOrdenar
@@ -34798,91 +34790,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3491279941596715678, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
   m_PrefabInstance: {fileID: 1641561972}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &876584356 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8494436993374190957, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
-  m_PrefabInstance: {fileID: 1641561972}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 876584354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4e533d81875c2b4a9fc03dbf2aa9149, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TaskDibujarManager
---- !u!114 &876584358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 876584354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: b170387b0d1a5e7469ffe8a8efcc2e64, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8bcc2bc2-d181-4c20-a1a0-f698d0a47466
-    m_ActionName: 'Gameplay/move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 876584356}
-        m_TargetAssemblyTypeName: TaskDibujarManager, Assembly-CSharp
-        m_MethodName: Interactuar
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: f4849ce9-a55d-4440-94ca-83be3d2666d5
-    m_ActionName: 'Tareas/interactuar[/Keyboard/e]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: cb17e975-d734-4168-b93b-936ecddd7b50
-    m_ActionName: 'Tareas/SpaceSmash[/Keyboard/space,/Keyboard/f,/Keyboard/g]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1f2560eb-b304-4d92-9b0c-17e5ec5cdac7
-    m_ActionName: 'Tareas/DobleSmash[/Keyboard/f,/Keyboard/g]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 10cda578-ff8d-4ecb-88c7-c250e168d16f
-    m_ActionName: 'Tareas/cerrar[/Keyboard/escape]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1f53e712-dfad-408d-a160-5e2086285e0b
-    m_ActionName: 'Gameplay/Sprint[/Keyboard/leftShift]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7769d754-1e4d-4bb7-9938-0b3a4b91bc24
-    m_ActionName: 'Gameplay/Snack[/Keyboard/q]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: db2d44c6-5aec-4f64-af78-77d508057410
-    m_ActionName: 'Tareas/Move[/Keyboard/leftArrow,/Keyboard/rightArrow]'
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Tareas
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!4 &876758498 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5995226680237096359, guid: 6357f46476f1bfa41ba284235646d0a8, type: 3}
@@ -45201,6 +45108,7 @@ MonoBehaviour:
   - {fileID: 0}
   tareasObligatorias:
   - {fileID: 1160209559}
+  - {fileID: 876584354}
   maxNPCsEnTareas: 1
   Uwe: {fileID: 746938434}
   wincanvas: {fileID: 1550445824}
@@ -75320,9 +75228,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_TaskDibujar
       objectReference: {fileID: 0}
-    - target: {fileID: 3491279941596715678, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
-      propertyPath: m_Layer
-      value: 8
+    - target: {fileID: 5280802730712380623, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8187816678293471858, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -75377,9 +75285,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1032389578}
     - target: {fileID: 8494436993374190957, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
+      propertyPath: cursorSprite
+      value: 
+      objectReference: {fileID: 621974018}
+    - target: {fileID: 8494436993374190957, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
       propertyPath: uIGameObject
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1205228441}
     - target: {fileID: 8494436993374190957, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
       propertyPath: feedbackcanvas
       value: 
@@ -75387,10 +75299,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3491279941596715678, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 876584358}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
 --- !u!1001 &1642715908
 PrefabInstance:

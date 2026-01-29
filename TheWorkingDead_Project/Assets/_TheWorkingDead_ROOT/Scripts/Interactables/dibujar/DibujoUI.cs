@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,9 @@ public class DibujoUI : MonoBehaviour
     private Texture2D textura;
     private Vector2 ultimoPunto;
 
+    public List<Vector2> puntosDibujados = new List<Vector2>();
+    //public ValidadorDibujoUI validador;
+
     void Start()
     {
         textura = new Texture2D(texturaAncho, texturaAlto, TextureFormat.RGBA32, false);
@@ -26,24 +30,59 @@ public class DibujoUI : MonoBehaviour
         textura.Apply();
 
         rawImage.texture = textura;
+        //validador.dibujoJugador = textura;
     }
+    //void Start()
+    //{
+    //    textura = new Texture2D(texturaAncho, texturaAlto, TextureFormat.RGBA32, false);
+    //    textura.filterMode = FilterMode.Point;
+
+    //    Color[] pixeles = new Color[texturaAncho * texturaAlto];
+    //    for (int i = 0; i < pixeles.Length; i++)
+    //        pixeles[i] = Color.clear;
+
+    //    textura.SetPixels(pixeles);
+    //    textura.Apply();
+
+    //    rawImage.texture = textura;
+    //}
 
     void Update()
     {
+
         if (Input.GetMouseButtonDown(0))
         {
-            if (!RectTransformUtility.RectangleContainsScreenPoint(
-                rawImage.rectTransform, Input.mousePosition)) return;
-
+            puntosDibujados.Clear();
             ultimoPunto = ObtenerPosicion();
+            puntosDibujados.Add(ultimoPunto);
         }
 
         if (Input.GetMouseButton(0))
         {
             Vector2 puntoActual = ObtenerPosicion();
             DibujarLinea(ultimoPunto, puntoActual);
+            puntosDibujados.Add(puntoActual);
             ultimoPunto = puntoActual;
         }
+
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    if (!RectTransformUtility.RectangleContainsScreenPoint(
+        //        rawImage.rectTransform, Input.mousePosition)) return;
+
+        //    ultimoPunto = ObtenerPosicion();
+        //}
+
+        //if (Input.GetMouseButton(0))
+        //{
+        //    Vector2 puntoActual = ObtenerPosicion();
+        //    DibujarLinea(ultimoPunto, puntoActual);
+        //    ultimoPunto = puntoActual;
+        //}
+        //if (Input.GetMouseButtonUp(0))
+        //{
+        //    validador.Validar();
+        //}
     }
 
     Vector2 ObtenerPosicion()

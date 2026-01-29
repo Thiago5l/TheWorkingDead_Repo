@@ -9,7 +9,7 @@ public class CursorSprite : MonoBehaviour
     public Texture2D cursorClick;
     private Texture2D cursorClickSave;
     
-    public Texture2D cursorRotu;
+    //public Texture2D cursorRotu;
 
     private Vector2 cursorHotSpot;
 
@@ -32,5 +32,25 @@ public class CursorSprite : MonoBehaviour
         {
             Cursor.SetCursor(cursorT, cursorHotSpot, CursorMode.Auto);
         }
+    }
+
+    public void CambiarCursor(Texture2D newCursor)
+    {
+        if (cursorT != newCursor)
+        {
+            cursorTSave = cursorT;
+            cursorClickSave = cursorClick;
+
+            cursorClick = newCursor;
+            cursorT = newCursor;
+
+            Cursor.SetCursor(cursorT, cursorHotSpot, CursorMode.Auto);
+        }
+    }
+
+    public void CursorToNormalState()
+    {
+        cursorClick = cursorClickSave;
+        cursorT = cursorTSave;
     }
 }
