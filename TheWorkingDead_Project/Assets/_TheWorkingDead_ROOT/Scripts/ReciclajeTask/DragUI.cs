@@ -1,23 +1,26 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using System.Collections.Generic;
+using DG.Tweening;
 
 [RequireComponent(typeof(CanvasGroup))]
-public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private RectTransform rectTransform;
     private Canvas canvas;
     private Vector2 posicionInicial;
     private CanvasGroup canvasGroup;
+    private Tween scaleTween;
 
     private ContenedorReciclajeUI contenedorActual = null;
+    private Vector3 scaleOriginal;
 
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         canvas = GetComponentInParent<Canvas>();
+        scaleOriginal = rectTransform.localScale;
 
         if (canvas == null)
             Debug.LogError("DragUI debe estar dentro de un Canvas.");
@@ -25,8 +28,6 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        // Forzar rebuild para rectTransform dinámicos
-        LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform.parent as RectTransform);
         posicionInicial = rectTransform.anchoredPosition;
         canvasGroup.blocksRaycasts = false;
     }
@@ -39,24 +40,20 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         EventSystem.current.RaycastAll(eventData, results);
 
         ContenedorReciclajeUI nuevoContenedor = null;
-
         foreach (var r in results)
         {
             nuevoContenedor = r.gameObject.GetComponent<ContenedorReciclajeUI>();
-            if (nuevoContenedor == null)
-                nuevoContenedor = r.gameObject.GetComponentInParent<ContenedorReciclajeUI>();
+            if (nuevoContenedor == null) nuevoContenedor = r.gameObject.GetComponentInParent<ContenedorReciclajeUI>();
             if (nuevoContenedor != null) break;
         }
 
         if (nuevoContenedor != contenedorActual)
         {
-            if (contenedorActual != null)
-                contenedorActual.RestaurarTamano();
+            if (contenedorActual != null) contenedorActual.RestaurarTamano();
 
             contenedorActual = nuevoContenedor;
 
-            if (contenedorActual != null)
-                contenedorActual.Agrandar();
+            if (contenedorActual != null) contenedorActual.Agrandar();
         }
     }
 
@@ -65,7 +62,6 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         canvasGroup.blocksRaycasts = true;
 
         bool correcto = false;
-
         var contenedorLocal = contenedorActual;
         contenedorActual = null;
 
@@ -74,12 +70,10 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             ObjetoReciclable objReciclable = GetComponent<ObjetoReciclable>();
             if (objReciclable != null)
             {
-                if (objReciclable.EsTipoCorrecto(contenedorLocal.tipoAceptado))
+                if (objReciclable.tiposCorrectos.Contains(contenedorLocal.tipoAceptado))
                 {
-                    // Matar tweens antes de destruir
-                    contenedorLocal.KillTween();
-
                     contenedorLocal.Felicidad();
+                    if (scaleTween != null) scaleTween.Kill();
                     Destroy(gameObject);
                     correcto = true;
                 }
@@ -94,5 +88,22 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
         if (!correcto)
             rectTransform.anchoredPosition = posicionInicial;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (scaleTween != null) scaleTween.Kill();
+        scaleTween = rectTransform.DOScale(scaleOriginal * 1.15f, 0.15f).SetUpdate(true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (scaleTween != null) scaleTween.Kill();
+        scaleTween = rectTransform.DOScale(scaleOriginal, 0.15f).SetUpdate(true);
+    }
+
+    private void OnDestroy()
+    {
+        if (scaleTween != null) scaleTween.Kill();
     }
 }

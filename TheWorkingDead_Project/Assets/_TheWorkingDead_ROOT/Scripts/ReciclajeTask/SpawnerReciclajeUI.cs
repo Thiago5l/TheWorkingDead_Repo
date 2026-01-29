@@ -1,13 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnerReciclajeUI : MonoBehaviour
 {
+    [Header("Prefabs de objetos a spawnear")]
     public List<GameObject> todosLosObjetosUI;
+
+    [Header("Área donde se spawnean los objetos")]
     public RectTransform areaSpawn;
 
+    [Header("Cantidad por ronda")]
     public int cantidadPorRonda = 5;
-    public float spacing = 20f; // Espacio entre objetos
+
+    [Header("Espacio entre objetos")]
+    public float spacing = 20f;
 
     void Start()
     {
@@ -16,24 +23,34 @@ public class SpawnerReciclajeUI : MonoBehaviour
 
     void GenerarObjetos()
     {
-        if (todosLosObjetosUI.Count == 0 || areaSpawn == null) return;
+        if (todosLosObjetosUI == null || todosLosObjetosUI.Count == 0 || areaSpawn == null)
+            return;
 
-        // Hacer copia para no repetir objetos
         List<GameObject> copia = new List<GameObject>(todosLosObjetosUI);
         int cantidad = Mathf.Min(cantidadPorRonda, copia.Count);
 
-        // Calcular ancho total para centrar
-        float totalWidth = 0f;
-        List<RectTransform> tempRTs = new List<RectTransform>();
+        List<RectTransform> objetosInstanciados = new List<RectTransform>();
+        List<float> anchos = new List<float>();
+
         for (int i = 0; i < cantidad; i++)
         {
-            GameObject prefab = copia[i];
-            RectTransform rtPrefab = prefab.GetComponent<RectTransform>();
-            if (rtPrefab == null) continue;
+            int index = Random.Range(0, copia.Count);
+            GameObject prefab = copia[index];
+            copia.RemoveAt(index);
 
-            totalWidth += rtPrefab.rect.width;
+            GameObject obj = Instantiate(prefab, areaSpawn);
+            RectTransform rt = obj.GetComponent<RectTransform>();
+            UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(rt);
+
+            objetosInstanciados.Add(rt);
+            anchos.Add(rt.rect.width);
+        }
+
+        float totalWidth = 0f;
+        for (int i = 0; i < cantidad; i++)
+        {
+            totalWidth += anchos[i];
             if (i < cantidad - 1) totalWidth += spacing;
-            tempRTs.Add(rtPrefab);
         }
 
         float startX = -totalWidth / 2f;
@@ -41,18 +58,11 @@ public class SpawnerReciclajeUI : MonoBehaviour
 
         for (int i = 0; i < cantidad; i++)
         {
-            // Elegir prefab aleatorio y eliminarlo para no repetir
-            int index = Random.Range(0, copia.Count);
-            GameObject prefab = copia[index];
-            copia.RemoveAt(index);
+            RectTransform rt = objetosInstanciados[i];
+            float width = anchos[i];
 
-            GameObject obj = Instantiate(prefab, areaSpawn);
-            RectTransform rt = obj.GetComponent<RectTransform>();
-            tempRTs.Add(rt);
-
-            // Posición horizontal en línea recta, centrada
-            rt.anchoredPosition = new Vector2(x + rt.rect.width / 2f, 0f);
-            x += rt.rect.width + spacing;
+            rt.anchoredPosition = new Vector2(x + width / 2f, 0f);
+            x += width + spacing;
         }
     }
 }

@@ -13,6 +13,9 @@ public class TooltipPorObjetoUI : MonoBehaviour
     public int fontSizeFijo = 24;
     public Vector2 padding = new Vector2(10f, 5f);
 
+    [Header("Máximo ancho del tooltip")]
+    public float anchoMaximo = 300f;
+
     [Header("Color del texto")]
     public Color colorTexto = Color.white;
 
@@ -21,7 +24,7 @@ public class TooltipPorObjetoUI : MonoBehaviour
     [Range(0f, 1f)]
     public float grosorBorde = 0.2f;
 
-    [Header("Imagen de fondo (opcional)")]
+    [Header("Imagen de fondo opcional")]
     public Sprite fondoImagen;
 
     private GameObject tooltipGO;
@@ -46,13 +49,11 @@ public class TooltipPorObjetoUI : MonoBehaviour
         canvasGroup = tooltipGO.AddComponent<CanvasGroup>();
         canvasGroup.alpha = 0f;
 
-        // Fondo
         Image bg = tooltipGO.AddComponent<Image>();
         if (fondoImagen != null)
         {
             bg.sprite = fondoImagen;
             bg.type = Image.Type.Sliced;
-            bg.pixelsPerUnitMultiplier = 1f;
         }
         else
         {
@@ -61,10 +62,8 @@ public class TooltipPorObjetoUI : MonoBehaviour
         bg.raycastTarget = false;
 
         tooltipRT = tooltipGO.GetComponent<RectTransform>();
-        tooltipRT.pivot = new Vector2(0, 1);
-        tooltipRT.sizeDelta = new Vector2(200, 50);
+        tooltipRT.pivot = new Vector2(0.5f, 1f);
 
-        // Texto
         GameObject textGO = new GameObject("TextoTooltip");
         textGO.transform.SetParent(tooltipGO.transform, false);
 
@@ -73,7 +72,7 @@ public class TooltipPorObjetoUI : MonoBehaviour
         tooltipTMP.fontSize = fontSizeFijo;
         tooltipTMP.color = colorTexto;
         tooltipTMP.alignment = TextAlignmentOptions.Center;
-        tooltipTMP.enableAutoSizing = false;
+        tooltipTMP.enableWordWrapping = true;
         tooltipTMP.raycastTarget = false;
 
         tooltipTMP.fontSharedMaterial.EnableKeyword("OUTLINE_ON");
@@ -90,47 +89,48 @@ public class TooltipPorObjetoUI : MonoBehaviour
     void Update()
     {
         if (tooltipGO == null) return;
+        if (!gameObject.activeInHierarchy) return;
 
         Canvas canvas = GetComponentInParent<Canvas>();
         Camera cam = canvas.renderMode == RenderMode.ScreenSpaceCamera ? canvas.worldCamera : null;
 
+        RectTransform targetRT = GetComponent<RectTransform>();
         Vector2 localMousePos;
         bool dentro = RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            GetComponent<RectTransform>(),
+            targetRT,
             Input.mousePosition,
             cam,
             out localMousePos
-        ) && GetComponent<RectTransform>().rect.Contains(localMousePos);
+        ) && targetRT.rect.Contains(localMousePos);
 
         if (dentro)
         {
             tooltipTMP.text = nombreObjeto;
-
-            Vector2 textSize = tooltipTMP.GetPreferredValues(nombreObjeto);
-            tooltipRT.sizeDelta = new Vector2(textSize.x + padding.x * 2f, textSize.y + padding.y * 2f);
+            tooltipTMP.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, anchoMaximo - padding.x * 2f);
+            Vector2 textSize = tooltipTMP.GetPreferredValues(nombreObjeto, anchoMaximo, 1000f);
+            tooltipRT.sizeDelta = new Vector2(Mathf.Min(textSize.x + padding.x * 2f, anchoMaximo), textSize.y + padding.y * 2f);
 
             tooltipGO.transform.SetAsLastSibling();
 
             if (fadeTween != null) fadeTween.Kill();
-            fadeTween = canvasGroup.DOFade(1f, 0.2f);
+            fadeTween = canvasGroup.DOFade(1f, 0.2f).SetUpdate(true);
         }
         else
         {
             if (fadeTween != null) fadeTween.Kill();
-            fadeTween = canvasGroup.DOFade(0f, 0.2f);
+            fadeTween = canvasGroup.DOFade(0f, 0.2f).SetUpdate(true);
         }
 
         if (canvasGroup.alpha > 0f)
         {
             Vector2 pos = Input.mousePosition;
-
             float width = tooltipRT.sizeDelta.x;
             float height = tooltipRT.sizeDelta.y;
-            float screenW = Screen.width;
-            float screenH = Screen.height;
 
-            if (pos.x + width > screenW) pos.x = screenW - width;
-            if (pos.y - height < 0) pos.y = height;
+            tooltipRT.pivot = new Vector2(0.5f, 1f);
+
+            pos.x = Mathf.Clamp(pos.x, width / 2f, Screen.width - width / 2f);
+            pos.y = Mathf.Clamp(pos.y, height, Screen.height);
 
             tooltipGO.transform.position = pos;
         }
@@ -138,6 +138,7 @@ public class TooltipPorObjetoUI : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (fadeTween != null) fadeTween.Kill();
         if (tooltipGO != null) Destroy(tooltipGO);
     }
 }
