@@ -24023,6 +24023,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_Task_Uwe
       objectReference: {fileID: 0}
+    - target: {fileID: 2178203904353654713, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: CoinManager
+      value: 
+      objectReference: {fileID: 1431659689}
+    - target: {fileID: 2178203904353654713, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 875105508}
+    - target: {fileID: 2400775659782221659, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3021385092628256507, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 200637151}
+    - target: {fileID: 3021385092628256507, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: uiTarea
+      value: 
+      objectReference: {fileID: 1070020305}
+    - target: {fileID: 3021385092628256507, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: taskManager
+      value: 
+      objectReference: {fileID: 1032389578}
+    - target: {fileID: 3021385092628256507, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: feedbackcanvas
+      value: 
+      objectReference: {fileID: 1835138751}
     - target: {fileID: 4538083110403998884, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.79
@@ -29161,6 +29189,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f73c8b087e039b4478776984bd05b71a, type: 3}
+--- !u!1 &725964973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8801737909558012902, guid: ab90c668b426af940b8bdd2a3ea6ce17, type: 3}
+  m_PrefabInstance: {fileID: 1302239946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &726908868 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7664328120252731679, guid: 667131c84607333408b4f5738f51ce57, type: 3}
@@ -45934,7 +45967,7 @@ MonoBehaviour:
   OrdenTareas:
   - {fileID: 0}
   tareasObligatorias:
-  - {fileID: 1160209559}
+  - {fileID: 1849122840}
   maxNPCsEnTareas: 1
   Uwe: {fileID: 1173674809}
   wincanvas: {fileID: 1550445824}
@@ -47600,6 +47633,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1169685547649474326, guid: 473fc9917e087f9428dd8601e5347e2f, type: 3}
   m_PrefabInstance: {fileID: 785243255}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1070020305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6147284871494750852, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+  m_PrefabInstance: {fileID: 842277892}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1070749763 stripped
 Transform:
@@ -63201,9 +63239,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1835138751}
     - target: {fileID: 1661657979252112283, guid: ab90c668b426af940b8bdd2a3ea6ce17, type: 3}
+      propertyPath: timePerCharacter
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1661657979252112283, guid: ab90c668b426af940b8bdd2a3ea6ce17, type: 3}
       propertyPath: canvasInteractKey
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 725964973}
     - target: {fileID: 1661657979252112283, guid: ab90c668b426af940b8bdd2a3ea6ce17, type: 3}
       propertyPath: sizeTextsSelected
       value: 1
@@ -63222,7 +63264,7 @@ PrefabInstance:
       objectReference: {fileID: 1302239948}
     - target: {fileID: 1661657979252112283, guid: ab90c668b426af940b8bdd2a3ea6ce17, type: 3}
       propertyPath: textsToSelect.Array.size
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1661657979252112283, guid: ab90c668b426af940b8bdd2a3ea6ce17, type: 3}
       propertyPath: 'textsToSelect.Array.data[4]'
@@ -63258,7 +63300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1661657979252112283, guid: ab90c668b426af940b8bdd2a3ea6ce17, type: 3}
       propertyPath: 'textsToSelect.Array.data[12]'
-      value: Grargh
+      value: argh
       objectReference: {fileID: 0}
     - target: {fileID: 1661657979252112283, guid: ab90c668b426af940b8bdd2a3ea6ce17, type: 3}
       propertyPath: 'textsToSelect.Array.data[13]'
@@ -63347,6 +63389,10 @@ PrefabInstance:
     - target: {fileID: 8509408983250941510, guid: ab90c668b426af940b8bdd2a3ea6ce17, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801737909558012902, guid: ab90c668b426af940b8bdd2a3ea6ce17, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9033287153282510076, guid: ab90c668b426af940b8bdd2a3ea6ce17, type: 3}
       propertyPath: m_Name
