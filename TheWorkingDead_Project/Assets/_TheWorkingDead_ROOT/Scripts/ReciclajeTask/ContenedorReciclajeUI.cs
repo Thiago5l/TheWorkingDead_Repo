@@ -8,7 +8,6 @@ public class ContenedorReciclajeUI : MonoBehaviour
     private RectTransform rectTransform;
     private Vector3 scaleOriginal;
     private Vector2 posOriginal;
-
     private Tween tweenActivo;
     private bool bloqueado = false;
 
@@ -19,32 +18,24 @@ public class ContenedorReciclajeUI : MonoBehaviour
         posOriginal = rectTransform.anchoredPosition;
     }
 
-    // 🔹 Ahora público para que DragUI lo pueda llamar
-    public void KillTween()
+    void KillTween()
     {
         if (tweenActivo != null && tweenActivo.IsActive())
-        {
             tweenActivo.Kill();
-            tweenActivo = null;
-        }
     }
 
     public void Agrandar()
     {
         if (bloqueado) return;
-
         KillTween();
-        tweenActivo = rectTransform.DOScale(scaleOriginal * 1.15f, 0.15f)
-            .SetUpdate(true);
+        tweenActivo = rectTransform.DOScale(scaleOriginal * 1.1f, 0.12f).SetUpdate(true);
     }
 
     public void RestaurarTamano()
     {
         if (bloqueado) return;
-
         KillTween();
-        tweenActivo = rectTransform.DOScale(scaleOriginal, 0.15f)
-            .SetUpdate(true);
+        tweenActivo = rectTransform.DOScale(scaleOriginal, 0.12f).SetUpdate(true);
     }
 
     public void Felicidad()
@@ -53,10 +44,11 @@ public class ContenedorReciclajeUI : MonoBehaviour
         KillTween();
 
         Sequence seq = DOTween.Sequence();
-        seq.Append(rectTransform.DOScale(scaleOriginal * 0.85f, 0.18f));
-        seq.Join(rectTransform.DOAnchorPosY(posOriginal.y + 40f, 0.18f));
-        seq.Append(rectTransform.DOScale(scaleOriginal, 0.18f));
-        seq.Join(rectTransform.DOAnchorPosY(posOriginal.y, 0.18f));
+
+        seq.Append(rectTransform.DOScale(scaleOriginal * 0.9f, 0.1f).SetEase(Ease.OutQuad));
+        seq.Join(rectTransform.DOAnchorPosY(posOriginal.y + 15f, 0.1f).SetEase(Ease.OutQuad));
+        seq.Append(rectTransform.DOScale(scaleOriginal, 0.12f).SetEase(Ease.OutBack));
+        seq.Join(rectTransform.DOAnchorPosY(posOriginal.y, 0.12f).SetEase(Ease.OutBack));
 
         tweenActivo = seq;
         seq.OnComplete(() =>
@@ -73,15 +65,8 @@ public class ContenedorReciclajeUI : MonoBehaviour
         KillTween();
 
         Sequence seq = DOTween.Sequence();
-        seq.Append(rectTransform.DOShakeAnchorPos(
-            0.18f,
-            new Vector2(25f, 0f),
-            25,
-            90f,
-            false,
-            true
-        ));
-
+        seq.Append(rectTransform.DOShakeAnchorPos(0.25f, new Vector2(35f, 10f), 35, 90f, false, true));
+        seq.Join(rectTransform.DOScale(scaleOriginal * 1.05f, 0.12f).SetLoops(2, LoopType.Yoyo).SetEase(Ease.Flash));
         seq.OnComplete(() =>
         {
             rectTransform.anchoredPosition = posOriginal;
@@ -90,10 +75,5 @@ public class ContenedorReciclajeUI : MonoBehaviour
         });
 
         tweenActivo = seq;
-    }
-
-    private void OnDestroy()
-    {
-        KillTween();
     }
 }

@@ -14,6 +14,9 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     private ContenedorReciclajeUI contenedorActual = null;
     private Vector3 scaleOriginal;
+    private TooltipPorObjetoUI tooltip;
+
+    public bool estaArrastrando { get; private set; } = false;
 
     void Awake()
     {
@@ -21,6 +24,8 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         canvasGroup = GetComponent<CanvasGroup>();
         canvas = GetComponentInParent<Canvas>();
         scaleOriginal = rectTransform.localScale;
+
+        tooltip = GetComponent<TooltipPorObjetoUI>();
 
         if (canvas == null)
             Debug.LogError("DragUI debe estar dentro de un Canvas.");
@@ -30,6 +35,10 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     {
         posicionInicial = rectTransform.anchoredPosition;
         canvasGroup.blocksRaycasts = false;
+        estaArrastrando = true;
+
+        if (tooltip != null)
+            tooltip.OcultarTooltip();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -50,9 +59,7 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         if (nuevoContenedor != contenedorActual)
         {
             if (contenedorActual != null) contenedorActual.RestaurarTamano();
-
             contenedorActual = nuevoContenedor;
-
             if (contenedorActual != null) contenedorActual.Agrandar();
         }
     }
@@ -60,6 +67,7 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = true;
+        estaArrastrando = false;
 
         bool correcto = false;
         var contenedorLocal = contenedorActual;
@@ -82,12 +90,14 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
                     contenedorLocal.Tremble();
                 }
             }
-
-            contenedorLocal.RestaurarTamano();
         }
 
         if (!correcto)
+        {
+            if (scaleTween != null) scaleTween.Kill();
+            scaleTween = rectTransform.DOScale(scaleOriginal, 0.07f).SetUpdate(true);
             rectTransform.anchoredPosition = posicionInicial;
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)

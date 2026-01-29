@@ -91,6 +91,14 @@ public class TooltipPorObjetoUI : MonoBehaviour
         if (tooltipGO == null) return;
         if (!gameObject.activeInHierarchy) return;
 
+        // No mostrar tooltip si se está arrastrando
+        DragUI drag = GetComponent<DragUI>();
+        if (drag != null && drag.estaArrastrando)
+        {
+            canvasGroup.alpha = 0f;
+            return;
+        }
+
         Canvas canvas = GetComponentInParent<Canvas>();
         Camera cam = canvas.renderMode == RenderMode.ScreenSpaceCamera ? canvas.worldCamera : null;
 
@@ -127,13 +135,18 @@ public class TooltipPorObjetoUI : MonoBehaviour
             float width = tooltipRT.sizeDelta.x;
             float height = tooltipRT.sizeDelta.y;
 
-            tooltipRT.pivot = new Vector2(0.5f, 1f);
-
             pos.x = Mathf.Clamp(pos.x, width / 2f, Screen.width - width / 2f);
             pos.y = Mathf.Clamp(pos.y, height, Screen.height);
 
             tooltipGO.transform.position = pos;
         }
+    }
+
+    public void OcultarTooltip()
+    {
+        if (fadeTween != null) fadeTween.Kill();
+        if (canvasGroup != null)
+            canvasGroup.alpha = 0f;
     }
 
     private void OnDestroy()

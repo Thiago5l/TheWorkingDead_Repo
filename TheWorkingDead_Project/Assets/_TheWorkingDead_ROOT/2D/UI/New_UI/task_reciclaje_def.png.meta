@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6e16ba820b9121844a890c94ffa97d3f
+guid: f28379dbcbffa3b4aaed9911fcc71a33
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -149,7 +149,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cosasmas_0
+      name: task_reciclaje_def_0
       rect:
         serializedVersion: 2
         x: 351
@@ -164,14 +164,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe24b943be90c17449d4a5dd052ccda6
-      internalID: 2016851036
+      spriteID: 19bd0d2314bd67f498df998c4c75c8aa
+      internalID: -1933466779
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_1
+      name: task_reciclaje_def_1
       rect:
         serializedVersion: 2
         x: 832
@@ -186,14 +186,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04dd57e1e484faf44beed62cae0db753
-      internalID: -1689248016
+      spriteID: d094c4ee6fef95347bd4c15a2b489504
+      internalID: 1835398310
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_2
+      name: task_reciclaje_def_2
       rect:
         serializedVersion: 2
         x: 1136
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 104c5927317995446ad5648107bc8647
-      internalID: 933022032
+      spriteID: 84e53458e65a3b64bbebcdcf5fc58768
+      internalID: 826142020
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_3
+      name: task_reciclaje_def_3
       rect:
         serializedVersion: 2
         x: 1422
@@ -230,14 +230,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31d222312b55a344fb69030ef36e3e7c
-      internalID: -210845671
+      spriteID: 144cec0ef5c0a3040b666a5eb4e82b5a
+      internalID: -1498735527
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_4
+      name: task_reciclaje_def_4
       rect:
         serializedVersion: 2
         x: 1853
@@ -252,14 +252,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58c0f3f9924778f4ca022ec07e98b952
-      internalID: 1946793331
+      spriteID: b7d88bbb4ba8f7a4da050215f4ad687e
+      internalID: 1504700277
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_5
+      name: task_reciclaje_def_5
       rect:
         serializedVersion: 2
         x: 2333
@@ -274,14 +274,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b1a6a87243adb24098fb5cc98f3ac70
-      internalID: -1118121389
+      spriteID: bdac26605f4162241bdb1af7c21f9261
+      internalID: -1583148517
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_6
+      name: task_reciclaje_def_6
       rect:
         serializedVersion: 2
         x: 2746
@@ -296,14 +296,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 805d8df453888b04999a862f871deee3
-      internalID: 1679454552
+      spriteID: 245b0e45b21495e48ba142b84a08cfa0
+      internalID: 1623390693
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_7
+      name: task_reciclaje_def_7
       rect:
         serializedVersion: 2
         x: 3080
@@ -318,14 +318,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edfe446bef94e0347a7643a40daf82d2
-      internalID: -1543360093
+      spriteID: bffd9e0bf93ea184caf77b25c5129c49
+      internalID: 1206116416
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_8
+      name: task_reciclaje_def_8
       rect:
         serializedVersion: 2
         x: 64
@@ -340,14 +340,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ad427ca66b396740989a711e53f2d67
-      internalID: 774388165
+      spriteID: f1a38b3ec018f53488fd0ede7f3a111f
+      internalID: 1540250536
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_9
+      name: task_reciclaje_def_9
       rect:
         serializedVersion: 2
         x: 389
@@ -362,14 +362,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4985aaee3b809c4e9c0ee41b594cfb8
-      internalID: 776219493
+      spriteID: 549d86e87f985604a9a2c428378ac762
+      internalID: -723295769
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_10
+      name: task_reciclaje_def_10
       rect:
         serializedVersion: 2
         x: 714
@@ -384,14 +384,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f73996c82c61e243b282b2a169395fe
-      internalID: -1173335803
+      spriteID: 66cb95bcb0f77854aa7254e578a29356
+      internalID: 1180903752
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_11
+      name: task_reciclaje_def_11
       rect:
         serializedVersion: 2
         x: 1085
@@ -406,14 +406,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8936367554d199a458041f02588cd64d
-      internalID: -591655767
+      spriteID: bc65c3e128ecff2478a58df1ef9e0bcb
+      internalID: 126737896
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_12
+      name: task_reciclaje_def_12
       rect:
         serializedVersion: 2
         x: 1541
@@ -428,14 +428,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d486ae4085b3cc459d3a6a16333c5b6
-      internalID: -446532041
+      spriteID: aa0f217819a84214da822d05232353b2
+      internalID: 320295488
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_13
+      name: task_reciclaje_def_13
       rect:
         serializedVersion: 2
         x: 1939
@@ -450,14 +450,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4caf98a4cca3be348b21e196d49d1219
-      internalID: -1903421779
+      spriteID: 24c6d114076ef1141a51eff78c390aec
+      internalID: 1670396143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_14
+      name: task_reciclaje_def_14
       rect:
         serializedVersion: 2
         x: 2565
@@ -472,14 +472,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73fa413adad1c1243a9b5cbcec9fc221
-      internalID: 1103043047
+      spriteID: 9b71a3194badaab4f9738683660ccb86
+      internalID: 2143791740
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_15
+      name: task_reciclaje_def_15
       rect:
         serializedVersion: 2
         x: 3068
@@ -494,14 +494,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84597541f8054a34b9cfe54718a9ff26
-      internalID: -802270751
+      spriteID: f6aadfb39f1ea3246b666d6c565152c5
+      internalID: 2101878833
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_16
+      name: task_reciclaje_def_16
       rect:
         serializedVersion: 2
         x: 344
@@ -516,14 +516,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7174249a0892a140b9a5ecef96aa6a5
-      internalID: 1938494137
+      spriteID: c50cd55ec1b0b3d4baf44d98b72cfb84
+      internalID: 1572704612
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_17
+      name: task_reciclaje_def_17
       rect:
         serializedVersion: 2
         x: 663
@@ -538,14 +538,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e9b82c5ed154b240815c55222dbb32f
-      internalID: -1033240712
+      spriteID: 1dfcbfb70d8322d4e9778949fc826806
+      internalID: -1116079292
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_18
+      name: task_reciclaje_def_18
       rect:
         serializedVersion: 2
         x: 2238
@@ -560,14 +560,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2b65a5291eb29a40960399f94d375bd
-      internalID: -806286274
+      spriteID: fba0671bc01e3aa4caddf394211890a9
+      internalID: -750077951
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_19
+      name: task_reciclaje_def_19
       rect:
         serializedVersion: 2
         x: 3030
@@ -582,14 +582,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3759ba753caf0c40a2a16ed220e7046
-      internalID: 712177112
+      spriteID: 09dc6a8e873fccb49b9efa73ebbffa05
+      internalID: -1482117693
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_20
+      name: task_reciclaje_def_20
       rect:
         serializedVersion: 2
         x: 1169
@@ -604,14 +604,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfaf2d75a49ba854cae532e633a14b56
-      internalID: -1837618231
+      spriteID: 1af362514d5de42439ed5a568a421311
+      internalID: 1985010966
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_21
+      name: task_reciclaje_def_21
       rect:
         serializedVersion: 2
         x: 1734
@@ -626,14 +626,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f66986a8d72101a4398a4fc82c59a7be
-      internalID: 53388563
+      spriteID: 3db3d0e29a7eae84aa8e84d77fbd2d0c
+      internalID: -794847413
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_22
+      name: task_reciclaje_def_22
       rect:
         serializedVersion: 2
         x: 2207
@@ -648,19 +648,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2998636639ed86f49bb77a2dc8ff898c
-      internalID: -404098464
+      spriteID: 53512ad661d11eb4a88cf582d2d88258
+      internalID: 107141776
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_23
+      name: task_reciclaje_def_23
       rect:
         serializedVersion: 2
-        x: 298
+        x: 110
         y: 12
-        width: 795
+        width: 796
         height: 1000
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -670,17 +670,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9f1a122e7da3ee43a670730db6b1c97
-      internalID: 1655805614
+      spriteID: 8734e961f1ce0b7448be87a4d36b216c
+      internalID: -696255122
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_24
+      name: task_reciclaje_def_24
       rect:
         serializedVersion: 2
-        x: 1119
+        x: 1024
         y: 12
         width: 756
         height: 957
@@ -692,17 +692,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4e4f19e9edac8142afac6c12f9fc79d
-      internalID: 1753975346
+      spriteID: 1f752f441b7e82b4a8d0a885495dea51
+      internalID: -819669110
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_25
+      name: task_reciclaje_def_25
       rect:
         serializedVersion: 2
-        x: 1871
+        x: 1777
         y: 627
         width: 7
         height: 55
@@ -714,19 +714,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57903a37ed5f24e42ad21d1406c33dbe
-      internalID: 247632429
+      spriteID: 847f026956e701c4cba0387b4b635706
+      internalID: -754879387
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_26
+      name: task_reciclaje_def_26
       rect:
         serializedVersion: 2
-        x: 1902
+        x: 1863
         y: 5
-        width: 801
+        width: 797
         height: 1001
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -736,19 +736,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1be157c1ffcc804fbe7c0de3d9ecc7d
-      internalID: 245869702
+      spriteID: 3a41f99f9aed87144b11bd9a7157465c
+      internalID: -2041752403
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cosasmas_27
+      name: task_reciclaje_def_27
       rect:
         serializedVersion: 2
-        x: 2703
+        x: 2706
         y: 14
-        width: 820
+        width: 817
         height: 1000
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -758,8 +758,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d30ceeb636581e40a3585d25b4cc225
-      internalID: 917183082
+      spriteID: 704c3a2ffd59e8142b2d44040b653413
+      internalID: 455154814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: task_reciclaje_def_28
+      rect:
+        serializedVersion: 2
+        x: 2660
+        y: 597
+        width: 5
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 871c27d4c1ba2894093774df57d53450
+      internalID: -1603590623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: task_reciclaje_def_29
+      rect:
+        serializedVersion: 2
+        x: 1808
+        y: 549
+        width: 7
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 317fd3f17085cfc4c96412f4528675c1
+      internalID: 937839385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: task_reciclaje_def_30
+      rect:
+        serializedVersion: 2
+        x: 1811
+        y: 138
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a85b9ebc993894b44bfee04dedad4587
+      internalID: -66264655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: task_reciclaje_def_31
+      rect:
+        serializedVersion: 2
+        x: 1809
+        y: 124
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfbdf97bb73ca6048a8a95d7834c1b31
+      internalID: -726351169
       vertices: []
       indices: 
       edges: []
@@ -768,7 +856,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b96fbfe7f974aab40ac18ae350a05afc
+    spriteID: 9421034c3f9137548a19c5376ff578fd
     internalID: 0
     vertices: []
     indices: 
@@ -780,34 +868,38 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      cosasmas_0: 2016851036
-      cosasmas_1: -1689248016
-      cosasmas_10: -1173335803
-      cosasmas_11: -591655767
-      cosasmas_12: -446532041
-      cosasmas_13: -1903421779
-      cosasmas_14: 1103043047
-      cosasmas_15: -802270751
-      cosasmas_16: 1938494137
-      cosasmas_17: -1033240712
-      cosasmas_18: -806286274
-      cosasmas_19: 712177112
-      cosasmas_2: 933022032
-      cosasmas_20: -1837618231
-      cosasmas_21: 53388563
-      cosasmas_22: -404098464
-      cosasmas_23: 1655805614
-      cosasmas_24: 1753975346
-      cosasmas_25: 247632429
-      cosasmas_26: 245869702
-      cosasmas_27: 917183082
-      cosasmas_3: -210845671
-      cosasmas_4: 1946793331
-      cosasmas_5: -1118121389
-      cosasmas_6: 1679454552
-      cosasmas_7: -1543360093
-      cosasmas_8: 774388165
-      cosasmas_9: 776219493
+      task_reciclaje_def_0: -1933466779
+      task_reciclaje_def_1: 1835398310
+      task_reciclaje_def_10: 1180903752
+      task_reciclaje_def_11: 126737896
+      task_reciclaje_def_12: 320295488
+      task_reciclaje_def_13: 1670396143
+      task_reciclaje_def_14: 2143791740
+      task_reciclaje_def_15: 2101878833
+      task_reciclaje_def_16: 1572704612
+      task_reciclaje_def_17: -1116079292
+      task_reciclaje_def_18: -750077951
+      task_reciclaje_def_19: -1482117693
+      task_reciclaje_def_2: 826142020
+      task_reciclaje_def_20: 1985010966
+      task_reciclaje_def_21: -794847413
+      task_reciclaje_def_22: 107141776
+      task_reciclaje_def_23: -696255122
+      task_reciclaje_def_24: -819669110
+      task_reciclaje_def_25: -754879387
+      task_reciclaje_def_26: -2041752403
+      task_reciclaje_def_27: 455154814
+      task_reciclaje_def_28: -1603590623
+      task_reciclaje_def_29: 937839385
+      task_reciclaje_def_3: -1498735527
+      task_reciclaje_def_30: -66264655
+      task_reciclaje_def_31: -726351169
+      task_reciclaje_def_4: 1504700277
+      task_reciclaje_def_5: -1583148517
+      task_reciclaje_def_6: 1623390693
+      task_reciclaje_def_7: 1206116416
+      task_reciclaje_def_8: 1540250536
+      task_reciclaje_def_9: -723295769
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
