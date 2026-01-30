@@ -6,7 +6,7 @@ public class NewCursor : MonoBehaviour
 {
     public RectTransform cursorImage;
     public Sprite[] cursorSprites;
-
+    public Sprite[] cursorSpritesSave;
     void Start()
     {
         Cursor.visible = false;
@@ -32,5 +32,26 @@ public class NewCursor : MonoBehaviour
         {
             cursorImage.GetComponent<Image>().sprite = cursorSprites[0];
         }
+    }
+
+    public void CambiarCursor(Sprite newCursor)
+    {
+        if (cursorSprites[0] != newCursor)
+        {
+            cursorSpritesSave = cursorSprites;
+
+
+            for (int i = 0; i < cursorSprites.Length; i++)
+            {
+                cursorSprites[i] = newCursor;
+            }
+
+            
+        }
+    }
+
+    public void CursorToNormalState()
+    {
+        cursorSprites = cursorSpritesSave;
     }
 }

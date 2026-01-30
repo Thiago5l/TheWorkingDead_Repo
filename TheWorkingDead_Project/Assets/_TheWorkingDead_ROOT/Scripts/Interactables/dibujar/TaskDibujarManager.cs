@@ -9,6 +9,9 @@ public class TaskDibujarManager : TaskBase
     [SerializeField] private GameObject uIGameObject;
     [SerializeField] private Texture2D rotulador;
     [SerializeField] private CursorSprite cursorSprite;
+    [SerializeField] private CursorSprite NewCursor;
+    [SerializeField] private Sprite cursorRotu;
+
     [SerializeField] private DibujoUI dibujoUI;
     [SerializeField] private bool isTaskActive;
     // Start is called once before the first execution of Update after the MonoBehaviour is created

@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class ZonaLineaUI : MonoBehaviour
 {
     public RectTransform zona;
     [Range(0f, 1f)] public float porcentajeNecesario = 0.7f;
     public bool completada;
+    [SerializeField] private GameObject imagenTrazo;
 
     public void Validar(List<Vector2> puntosScreen)
     {
@@ -30,6 +32,7 @@ public class ZonaLineaUI : MonoBehaviour
         if (progreso >= porcentajeNecesario)
         {
             completada = true;
+            imagenTrazo.SetActive(false);
             Debug.Log($"{zona.name} COMPLETADA");
         }
     }
