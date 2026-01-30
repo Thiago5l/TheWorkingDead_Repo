@@ -11,6 +11,7 @@ public class TaskDibujarManager : TaskBase
     //[SerializeField] private CursorSprite cursorSprite;
     [SerializeField] private NewCursor newCursor;
     [SerializeField] private Sprite cursorRotu;
+    [SerializeField] private Image cursorDef;
     [SerializeField] private RectTransform saverLineas;
 
     [SerializeField] private DibujoUI dibujoUI;

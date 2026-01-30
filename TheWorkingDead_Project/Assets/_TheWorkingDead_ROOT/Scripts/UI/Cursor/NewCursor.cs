@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -7,10 +8,21 @@ public class NewCursor : MonoBehaviour
     public RectTransform cursorImage;
     public Sprite[] cursorSprites;
     public Sprite[] cursorSpritesSave;
+    public Image cursorDef;
     void Start()
     {
+        
         Cursor.visible = false;
         cursorImage.GetComponent<Image>().raycastTarget = false;
+        cursorSpritesSave = (Sprite[])cursorSprites.Clone();
+
+        //cursorSpritesSave = new Sprite[cursorSprites.Length];
+        //cursorSprites.CopyTo(cursorSpritesSave, 0);
+        //for (int i = 0; i < cursorSprites.Length; i++)
+        //{
+        //    cursorSpritesSave[i] = cursorSprites[i];
+
+        //}
     }
 
     void Update()
@@ -38,9 +50,9 @@ public class NewCursor : MonoBehaviour
     {
         if (cursorSprites[0] != newCursor)
         {
-            cursorSpritesSave = cursorSprites;
 
 
+            cursorDef.sprite = newCursor;
             for (int i = 0; i < cursorSprites.Length; i++)
             {
                 cursorSprites[i] = newCursor;
@@ -50,6 +62,11 @@ public class NewCursor : MonoBehaviour
 
     public void CursorToNormalState()
     {
-        cursorSprites = cursorSpritesSave;
+        cursorSpritesSave.CopyTo(cursorSprites, 0);
+        //for(int i = 0; i < cursorSprites.Length; i++)
+        //{
+        //    cursorSprites[i] = cursorSpritesSave[i];
+        //}
+        cursorDef.sprite = cursorSprites[0];
     }
 }

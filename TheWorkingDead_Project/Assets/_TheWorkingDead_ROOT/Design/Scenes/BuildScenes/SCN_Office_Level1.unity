@@ -23642,17 +23642,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1061364575}
     - target: {fileID: 8494436993374190957, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
+      propertyPath: cursorDef
+      value: 
+      objectReference: {fileID: 604436571}
+    - target: {fileID: 8494436993374190957, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
       propertyPath: newCursor
       value: 
       objectReference: {fileID: 1597725762}
-    - target: {fileID: 8494436993374190957, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
-      propertyPath: rotulador
-      value: 
-      objectReference: {fileID: 2800000, guid: 091cc1f6ed455c4409f3d93f7af0e601, type: 3}
-    - target: {fileID: 8494436993374190957, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
-      propertyPath: cursorRotu
-      value: 
-      objectReference: {fileID: 21300000, guid: e685e827aea6eca46a0c1cea6e46d02c, type: 3}
     - target: {fileID: 8494436993374190957, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
       propertyPath: saverLineas
       value: 
@@ -23665,10 +23661,6 @@ PrefabInstance:
       propertyPath: TareaDibujar
       value: 
       objectReference: {fileID: 1061364572}
-    - target: {fileID: 8494436993374190957, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
-      propertyPath: cursorSprite
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8494436993374190957, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
       propertyPath: uIGameObject
       value: 
@@ -47554,6 +47546,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3226734321452799299, guid: 8eda1191c8f6efb4584118350c30f162, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3226734321452799299, guid: 8eda1191c8f6efb4584118350c30f162, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4461707234130471952, guid: 8eda1191c8f6efb4584118350c30f162, type: 3}
       propertyPath: imagenTrazo
       value: 
@@ -47564,6 +47564,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5604341443062644341, guid: 8eda1191c8f6efb4584118350c30f162, type: 3}
       propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6486735085826354666, guid: 8eda1191c8f6efb4584118350c30f162, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6486735085826354666, guid: 8eda1191c8f6efb4584118350c30f162, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540461143797974818, guid: 8eda1191c8f6efb4584118350c30f162, type: 3}
+      propertyPath: progresoPorcentage
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9174556906109087599, guid: 8eda1191c8f6efb4584118350c30f162, type: 3}
@@ -75124,6 +75136,7 @@ MonoBehaviour:
   - {fileID: -175114690, guid: 00129e1ec191f7e4e9ae0f3b7bd53a34, type: 3}
   - {fileID: -842889416, guid: 9e5266a9c6af46646a498c22dec768f1, type: 3}
   cursorSpritesSave: []
+  cursorDef: {fileID: 604436571}
 --- !u!114 &1597725763
 MonoBehaviour:
   m_ObjectHideFlags: 0
