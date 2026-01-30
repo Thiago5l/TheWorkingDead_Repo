@@ -6,6 +6,7 @@ public class TareaDibujar : MonoBehaviour
 {
     [Header("Dibujo")]
     public RectTransform zonaDibujo;
+    public RectTransform saverLineas;
     public GameObject lineaGenerar;
     public DibujoUI DibujoUI;
 
@@ -55,7 +56,7 @@ public class TareaDibujar : MonoBehaviour
             if (!contandoTiempo)
                 contandoTiempo = true;
 
-            GameObject lineaActual = Instantiate(lineaGenerar, zonaDibujo);
+            GameObject lineaActual = Instantiate(lineaGenerar, saverLineas/*zonaDibujo*/);
             linea = lineaActual.GetComponent<Linea>();
 
             Vector2 pos;

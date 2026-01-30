@@ -45,8 +45,6 @@ public class NewCursor : MonoBehaviour
             {
                 cursorSprites[i] = newCursor;
             }
-
-            
         }
     }
 
