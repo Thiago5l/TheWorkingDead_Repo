@@ -21272,6 +21272,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 473fc9917e087f9428dd8601e5347e2f, type: 3}
+--- !u!1 &545578311 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5407395953164719490, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
+  m_PrefabInstance: {fileID: 173166529}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &546266564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -96965,6 +96970,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 200637151}
     - target: {fileID: 954870532862633175, guid: c6524a2253a065b429c22fab67757832, type: 3}
+      propertyPath: uiTarea
+      value: 
+      objectReference: {fileID: 545578311}
+    - target: {fileID: 954870532862633175, guid: c6524a2253a065b429c22fab67757832, type: 3}
       propertyPath: taskManager
       value: 
       objectReference: {fileID: 1032389578}
@@ -96972,10 +96981,6 @@ PrefabInstance:
       propertyPath: feedbackcanvas
       value: 
       objectReference: {fileID: 1835138751}
-    - target: {fileID: 954870532862633175, guid: c6524a2253a065b429c22fab67757832, type: 3}
-      propertyPath: taskExclamation
-      value: 
-      objectReference: {fileID: 8138708873058064599}
     - target: {fileID: 954870532862633175, guid: c6524a2253a065b429c22fab67757832, type: 3}
       propertyPath: spawnerReciclajeUI
       value: 
@@ -97029,11 +97034,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6524a2253a065b429c22fab67757832, type: 3}
---- !u!1 &8138708873058064599 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1720663094610658924, guid: c6524a2253a065b429c22fab67757832, type: 3}
-  m_PrefabInstance: {fileID: 8138708873058064598}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8505609060457906830
 PrefabInstance:
   m_ObjectHideFlags: 0
