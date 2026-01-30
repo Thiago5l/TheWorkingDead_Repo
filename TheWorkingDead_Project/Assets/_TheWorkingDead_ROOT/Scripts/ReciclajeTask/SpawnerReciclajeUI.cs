@@ -7,13 +7,21 @@ public class SpawnerReciclajeUI : MonoBehaviour
     public RectTransform areaSpawn;
     public int cantidadPorRonda = 5;
     public float spacing = 20f;
-
+    public int rondaActual = 0;
+    public bool correcto = false;   
     void Start()
     {
         GenerarObjetos();
     }
 
-    void GenerarObjetos()
+    private void Update()
+    {
+        if(rondaActual == cantidadPorRonda)
+        {
+            correcto = true;
+        }
+    }
+    public void GenerarObjetos()
     {
         if (todosLosObjetosUI.Count == 0 || areaSpawn == null) return;
 

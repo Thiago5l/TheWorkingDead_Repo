@@ -16,6 +16,8 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     private Vector3 scaleOriginal;
     private TooltipPorObjetoUI tooltip;
 
+    [SerializeField] SpawnerReciclajeUI spawnerReciclajeUI;
+
     public bool estaArrastrando { get; private set; } = false;
 
     void Awake()
@@ -84,6 +86,8 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
                     if (scaleTween != null) scaleTween.Kill();
                     Destroy(gameObject);
                     correcto = true;
+                    spawnerReciclajeUI.rondaActual += 1;
+                    Debug.Log("Ronda actual: " + spawnerReciclajeUI.rondaActual);
                 }
                 else
                 {
