@@ -97025,6 +97025,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5722913902963389119, guid: c6524a2253a065b429c22fab67757832, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722913902963389119, guid: c6524a2253a065b429c22fab67757832, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722913902963389119, guid: c6524a2253a065b429c22fab67757832, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722913902963389119, guid: c6524a2253a065b429c22fab67757832, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: TaskReciclaje, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 8183686503029268368, guid: c6524a2253a065b429c22fab67757832, type: 3}
       propertyPath: m_Name
       value: PF_TaskReciclar

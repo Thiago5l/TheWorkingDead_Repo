@@ -7,7 +7,7 @@ public class TaskReciclaje : TaskBase
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        base.Start();
     }
 
     // Update is called once per frame
@@ -23,6 +23,7 @@ public class TaskReciclaje : TaskBase
 
     protected override void IniciarTarea()
     {
+        Debug.Log("Iniciar Tarea Reciclaje");
         spawnerReciclajeUI.GenerarObjetos();
         spawnerReciclajeUI.rondaActual = 0;
     }
