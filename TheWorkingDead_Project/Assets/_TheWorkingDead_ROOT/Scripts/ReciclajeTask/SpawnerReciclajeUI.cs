@@ -16,7 +16,7 @@ public class SpawnerReciclajeUI : MonoBehaviour
 
     private void Update()
     {
-        if(rondaActual == cantidadPorRonda)
+        if (!correcto && rondaActual >= cantidadPorRonda)
         {
             correcto = true;
         }

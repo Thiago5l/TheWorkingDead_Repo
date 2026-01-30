@@ -27,6 +27,9 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         canvas = GetComponentInParent<Canvas>();
         scaleOriginal = rectTransform.localScale;
 
+        GameObject objetoSpawn = GameObject.FindGameObjectWithTag("SpawnReciclar");
+        spawnerReciclajeUI = objetoSpawn.GetComponent<SpawnerReciclajeUI>();
+
         tooltip = GetComponent<TooltipPorObjetoUI>();
 
         if (canvas == null)
@@ -83,11 +86,11 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
                 if (objReciclable.tiposCorrectos.Contains(contenedorLocal.tipoAceptado))
                 {
                     contenedorLocal.Felicidad();
+                    spawnerReciclajeUI.rondaActual++;
                     if (scaleTween != null) scaleTween.Kill();
                     Destroy(gameObject);
                     correcto = true;
-                    spawnerReciclajeUI.rondaActual += 1;
-                    Debug.Log("Ronda actual: " + spawnerReciclajeUI.rondaActual);
+
                 }
                 else
                 {

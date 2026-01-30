@@ -7245,6 +7245,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TaskReciclaje
       objectReference: {fileID: 0}
+    - target: {fileID: 7375972132008460040, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
+      propertyPath: m_TagString
+      value: SpawnReciclar
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -46185,6 +46189,8 @@ MonoBehaviour:
   - {fileID: 0}
   tareasObligatorias:
   - {fileID: 1849122840}
+  - {fileID: 1852657878}
+  - {fileID: 1940170142}
   maxNPCsEnTareas: 1
   Uwe: {fileID: 1173674809}
   wincanvas: {fileID: 1550445824}
@@ -84134,6 +84140,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5462162111488885013, guid: f73c8b087e039b4478776984bd05b71a, type: 3}
   m_PrefabInstance: {fileID: 1485698049}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1852657878 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3491279941596715678, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
+  m_PrefabInstance: {fileID: 591688109}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1853734348 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7999838200814728462, guid: 77c6b7483db4cd846bb422a93ba0152a, type: 3}
@@ -87879,6 +87890,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7855237392020801751, guid: 72962c3c56dcdfa4c851e1261323b0ea, type: 3}
   m_PrefabInstance: {fileID: 1437938327}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1940170142 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8183686503029268368, guid: c6524a2253a065b429c22fab67757832, type: 3}
+  m_PrefabInstance: {fileID: 8138708873058064598}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1940606687 stripped
 Transform:
