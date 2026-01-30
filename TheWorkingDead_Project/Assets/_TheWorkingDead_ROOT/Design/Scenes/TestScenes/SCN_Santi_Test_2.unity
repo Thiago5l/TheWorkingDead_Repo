@@ -57703,6 +57703,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 851448818072769303, guid: 8eda1191c8f6efb4584118350c30f162, type: 3}
   m_PrefabInstance: {fileID: 707384486}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1205228443 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7076994216773344411, guid: 8eda1191c8f6efb4584118350c30f162, type: 3}
+  m_PrefabInstance: {fileID: 707384486}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205228441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b4b56c393f801243a6f11ea7e216eeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TareaDibujar
 --- !u!1001 &1205410419
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75084,6 +75095,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5995226680237096359, guid: 6357f46476f1bfa41ba284235646d0a8, type: 3}
   m_PrefabInstance: {fileID: 132197226}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1637840206 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8540461143797974818, guid: 8eda1191c8f6efb4584118350c30f162, type: 3}
+  m_PrefabInstance: {fileID: 707384486}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4945f7bad7b394549bd82a4122c5fe36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DibujoUI
 --- !u!1001 &1639492126
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75281,9 +75303,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1205228441}
     - target: {fileID: 8494436993374190957, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
+      propertyPath: dibujoUI
+      value: 
+      objectReference: {fileID: 1637840206}
+    - target: {fileID: 8494436993374190957, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
       propertyPath: taskManager
       value: 
       objectReference: {fileID: 1032389578}
+    - target: {fileID: 8494436993374190957, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
+      propertyPath: TareaDibujar
+      value: 
+      objectReference: {fileID: 1205228443}
     - target: {fileID: 8494436993374190957, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
       propertyPath: cursorSprite
       value: 
