@@ -24391,6 +24391,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5868456367700398955, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1940720896, guid: 4bd54620b4e4bbd46b1866f4af0f8a6d, type: 3}
+    - target: {fileID: 7592989184593381460, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 106.1303
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592989184593381460, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 93.8697
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592989184593381460, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 262.82605
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592989184593381460, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 185.67397
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28115,6 +28135,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -69
       objectReference: {fileID: 0}
+    - target: {fileID: 3040061363946588870, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2129711676, guid: b13c3cbd707930a478219aafa57981e8, type: 3}
+    - target: {fileID: 3141166808530792641, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1506357095, guid: b13c3cbd707930a478219aafa57981e8, type: 3}
     - target: {fileID: 5129406883573939390, guid: 5e4e02896b684154f8caef32623cb8ac, type: 3}
       propertyPath: brazoL
       value: 
@@ -96823,6 +96851,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_BrazoCaidoFeedback
       objectReference: {fileID: 0}
+    - target: {fileID: 3183497680494865054, guid: cc21de1ef9ed3264c82599205d3c93c3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2129711676, guid: b13c3cbd707930a478219aafa57981e8, type: 3}
     - target: {fileID: 4463056746698124209, guid: cc21de1ef9ed3264c82599205d3c93c3, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -96903,6 +96935,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9002770027348446407, guid: cc21de1ef9ed3264c82599205d3c93c3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1506357095, guid: b13c3cbd707930a478219aafa57981e8, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
