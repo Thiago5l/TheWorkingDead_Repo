@@ -24,7 +24,7 @@ public class UIPuzzleManager : MonoBehaviour
     public float silhouetteScale = 0.25f;
 
     [Header("Tamaño de piezas")]
-    [Range(0.5f, 2f)]
+    [Range(0.5f, 5f)]
     [SerializeField] private float scalePieza = 1f;
 
     private List<RectTransform> piezas = new List<RectTransform>();
