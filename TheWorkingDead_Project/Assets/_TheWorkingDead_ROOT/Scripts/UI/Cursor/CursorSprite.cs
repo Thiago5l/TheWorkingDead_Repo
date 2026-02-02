@@ -8,7 +8,7 @@ public class CursorSprite : MonoBehaviour
     private Texture2D cursorTSave;
     public Texture2D cursorClick;
     private Texture2D cursorClickSave;
-    
+
     //public Texture2D cursorRotu;
 
     private Vector2 cursorHotSpot;

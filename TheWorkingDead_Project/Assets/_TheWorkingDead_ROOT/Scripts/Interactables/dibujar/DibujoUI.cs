@@ -11,19 +11,23 @@ public class DibujoUI : MonoBehaviour
     public Color colorLinea = Color.black;
     public int grosor = 4;
 
-    [Header("Validación")]
+    [Header("ValidaciÃ³n")]
     public RectTransform rectDibujo;
     public ZonaLineaUI[] zonas;
+    [SerializeField] private float progresoPorcentage = 0;
+    [SerializeField] private Slider progresoSlide;
     public bool tareaCompletada = false;
 
     Texture2D textura;
     Vector2 ultimoPunto;
-    List<Vector2> puntos = new List<Vector2>();
+    //List<Vector2> puntos = new List<Vector2>();
 
     List<Vector2> puntosWorld = new List<Vector2>();
 
     void Start()
     {
+        progresoSlide.value = progresoPorcentage;
+        progresoSlide.maxValue = zonas[1].porcentajeNecesario;
         textura = new Texture2D(texturaAncho, texturaAlto, TextureFormat.RGBA32, false);
         textura.filterMode = FilterMode.Point;
 
@@ -38,6 +42,16 @@ public class DibujoUI : MonoBehaviour
 
     void Update()
     {
+
+        float suma = 0f;
+
+        foreach (var zona in zonas)
+        {
+            suma += zona.progreso;
+        }
+
+        progresoPorcentage = suma / zonas.Length;
+        progresoSlide.value = progresoPorcentage;
         if (Input.GetMouseButtonDown(0))
         {
             if (!RectTransformUtility.RectangleContainsScreenPoint(
@@ -63,9 +77,34 @@ public class DibujoUI : MonoBehaviour
             ValidarZonas();
         }
     }
+    public void LimpiarDibujo()
+    {
+        Color[] clear = new Color[texturaAncho * texturaAlto];
+        for (int i = 0; i < clear.Length; i++)
+            clear[i] = Color.clear;
+
+        textura.SetPixels(clear);
+        textura.Apply();
+
+        progresoPorcentage = 0f;
+        progresoSlide.value = 0f;
+        tareaCompletada = false;
+
+        foreach (var zona in zonas)
+            zona.Resetear(); 
+    }
 
     void ValidarZonas()
     {
+        //float suma = 0f;
+
+        //foreach (var zona in zonas)
+        //{
+        //    suma += zona.progreso;
+        //}
+
+        //progresoPorcentage = suma / (zonas.Length - 1);
+        //progresoSlide.value = progresoPorcentage;
         foreach (var zona in zonas)
             zona.Validar(puntosWorld);
 

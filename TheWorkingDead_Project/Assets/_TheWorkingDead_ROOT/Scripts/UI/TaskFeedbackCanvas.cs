@@ -73,6 +73,7 @@ public class FadeCanvas : MonoBehaviour
         {
             managerBrazo.BrazoSeCae();
             brazoYaCaido = true;
+            Player.GetComponent<OviedadZombie>().Zombiedad -= 5f;
         }
 
         StartCoroutine(ResetLose());

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public abstract class TaskBase : MonoBehaviour
 {
@@ -20,7 +21,33 @@ public abstract class TaskBase : MonoBehaviour
     public bool playerCerca;
     public bool tareaAcabada;
     public bool interactuando;
+    protected GameObject FindInactiveObjectByTag(string tag)
+    {
+        GameObject result = null;
+        // Recorre todos los objetos raíz de la escena actual
+        foreach (GameObject go in SceneManager.GetActiveScene().GetRootGameObjects())
+        {
+            result = FindInChildren(go, tag);
+            if (result != null)
+                return result;
+        }
+        return null;
+    }
 
+    private GameObject FindInChildren(GameObject parent, string tag)
+    {
+        if (parent.CompareTag(tag))
+            return parent;
+
+        foreach (Transform child in parent.transform)
+        {
+            GameObject found = FindInChildren(child.gameObject, tag);
+            if (found != null)
+                return found;
+        }
+
+        return null;
+    }
     private void LateUpdate()
     {
         ActualizarCanvasInteract();
@@ -31,7 +58,7 @@ public abstract class TaskBase : MonoBehaviour
         if (player == null)
             player = GameObject.FindWithTag("Player");
         if (uiTarea == null)
-            uiTarea = GameObject.FindWithTag("UiNpcConversation");
+            uiTarea = FindInactiveObjectByTag("UiNpcConversation");
         if (uiTarea == null)
             uiTarea = GameObject.FindWithTag("BrazoCaidoFeedback");
         if (taskManager == null)
