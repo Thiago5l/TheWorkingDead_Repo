@@ -108,9 +108,9 @@ public class TareaDibujar : MonoBehaviour
 
         Debug.Log(" Tiempo agotado");
 
-        // Aquí puedes:
+        // AquÃ­ puedes:
         // - cancelar la tarea
-        // - borrar líneas
+        // - borrar lÃ­neas
         // - cerrar la UI
         // - avisar al gestor de misiones
     }

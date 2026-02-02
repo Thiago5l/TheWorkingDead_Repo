@@ -116,10 +116,11 @@ public class UIPuzzleManager : MonoBehaviour
 
         foreach (RectTransform pieza in piezasDisponibles)
         {
-            pieza.anchoredPosition = new Vector2(
-                Random.Range(-panelDist.rect.width / 2f, panelDist.rect.width / 2f),
-                Random.Range(-panelDist.rect.height / 2f, panelDist.rect.height / 2f)
-            );
+            pieza.anchoredPosition = GetRandomPointInPanelLocal();
+            //pieza.anchoredPosition = new Vector2(
+            //    Random.Range(-panelDist.rect.width / 2f, panelDist.rect.width / 2f),
+            //    Random.Range(-panelDist.rect.height / 2f, panelDist.rect.height / 2f)
+            //);
         }
 
         piezasCorrectas = 0; // Todavía ninguna pieza está en su lugar
@@ -137,11 +138,11 @@ public class UIPuzzleManager : MonoBehaviour
             int index = Random.Range(0, disponibles.Count);
             RectTransform pieza = disponibles[index];
             disponibles.RemoveAt(index);
-
-            pieza.anchoredPosition = new Vector2(
-                Random.Range(-panelDist.rect.width / 2f, panelDist.rect.width / 2f),
-                Random.Range(-panelDist.rect.height / 2f, panelDist.rect.height / 2f)
-            );
+            pieza.anchoredPosition = GetRandomPointInPanelLocal();
+            //pieza.anchoredPosition = new Vector2(
+            //    Random.Range(-panelDist.rect.width / 2f, panelDist.rect.width / 2f),
+            //    Random.Range(-panelDist.rect.height / 2f, panelDist.rect.height / 2f)
+            //);
         }
 
         for (int i = 0; i < disponibles.Count; i++)
@@ -161,9 +162,13 @@ public class UIPuzzleManager : MonoBehaviour
 
         float snapDistance = 50f;
 
-        if (Vector2.Distance(rt.position, targetSlot.position) < snapDistance)
+        //if (Vector2.Distance(rt.position, targetSlot.position) < snapDistance)    
+        //{
+            //rt.position = targetSlot.position;
+        if (Vector2.Distance(rt.anchoredPosition, targetSlot.anchoredPosition) < snapDistance)
         {
-            rt.position = targetSlot.position;
+            rt.anchoredPosition = targetSlot.anchoredPosition;
+
             piece.isCorrect = true;
             piezasCorrectas++;
 
@@ -243,7 +248,17 @@ public class UIPuzzleManager : MonoBehaviour
         }
     }
 
+    Vector2 GetRandomPointInPanelLocal()
+    {
+        Vector2 size = panelDist.rect.size;
 
+        float x = Random.Range(-size.x * 0.5f, size.x * 0.5f);
+        float y = Random.Range(-size.y * 0.5f, size.y * 0.5f);
+
+        return panelDist.anchoredPosition + new Vector2(x, y);
+    }
+
+    
 
 
     //void AsignarSiluetasASlots()

@@ -11,7 +11,7 @@ public class DibujoUI : MonoBehaviour
     public Color colorLinea = Color.black;
     public int grosor = 4;
 
-    [Header("Validación")]
+    [Header("ValidaciÃ³n")]
     public RectTransform rectDibujo;
     public ZonaLineaUI[] zonas;
     [SerializeField] private float progresoPorcentage = 0;
