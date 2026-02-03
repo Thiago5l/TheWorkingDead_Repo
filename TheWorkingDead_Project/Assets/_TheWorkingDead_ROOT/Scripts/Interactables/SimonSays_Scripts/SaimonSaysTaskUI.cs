@@ -32,6 +32,8 @@ public class SaimonSaysTaskUI : TaskBase
     [SerializeField] public int rondasACompletar;
 
     public GameObject playerBloqueado;
+    public GameObject turnoJugadorImage;
+    public GameObject turnoMáquinaImage;
 
 
     protected override void IniciarTarea()
@@ -110,6 +112,8 @@ public class SaimonSaysTaskUI : TaskBase
     {
         yield return new WaitForSeconds(1f);
         playerBloqueado.gameObject.SetActive(true);
+        turnoMáquinaImage.gameObject.SetActive(true);
+        turnoJugadorImage.gameObject.SetActive(false);
         for (int i = 0; i < sequence.Count; i++)
         {
             int index = sequence[i];
@@ -130,7 +134,9 @@ public class SaimonSaysTaskUI : TaskBase
 
         playerBloqueado.gameObject.SetActive(false);
         playerTurn = true;
-        
+        turnoMáquinaImage.gameObject.SetActive(false);
+        turnoJugadorImage.gameObject.SetActive(true);
+
     }
 
     public void PresionarBotonPlayer(int index)
