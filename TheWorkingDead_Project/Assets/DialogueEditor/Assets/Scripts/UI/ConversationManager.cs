@@ -81,6 +81,8 @@ namespace DialogueEditor
         private List<UIConversationButton> m_uiOptions;
         private int m_currentSelectedIndex;
 
+        //Serialized
+        [SerializeField] private ComprobadorNivelTuto comprobadorTuto;
 
         //--------------------------------------
         // Awake, Start, Destroy, Update
@@ -89,6 +91,7 @@ namespace DialogueEditor
 
         private void Awake()
         {
+            comprobadorTuto = GameObject.FindWithTag("ComprobadorNivelTuto").GetComponent< ComprobadorNivelTuto>(); ;
             // Destroy myself if I am not the singleton
             if (Instance != null && Instance != this)
             {
@@ -561,36 +564,62 @@ namespace DialogueEditor
 
         public void SpeechSelected(SpeechNode speech)
         {
-            if (m_inputLocked) return;
+            if (comprobadorTuto.enTutorial == true)
+            {
+                if (m_inputLocked) return;
 
-            m_inputLocked = true;
+                m_inputLocked = true;
 
-            SetupSpeech(speech);
+                SetupSpeech(speech);
+            }
+            if (comprobadorTuto.enTutorial == false)
+            {
+                SetupSpeech(speech);
+            }
         }
 
 
         public void OptionSelected(OptionNode option)
         {
-            if (m_inputLocked) return; // 🚫
+            if (comprobadorTuto.enTutorial == true)
+            {
+                if (m_inputLocked) return; // 
 
-            m_inputLocked = true; // 🔒 bloquear spam
+                m_inputLocked = true; //  bloquear spam
 
-            m_selectedOption = option;
-            DoParamAction(option);
+                m_selectedOption = option;
+                DoParamAction(option);
 
-            if (option.Event != null)
-                option.Event.Invoke();
+                if (option.Event != null)
+                    option.Event.Invoke();
 
-            SetState(eState.TransitioningOptionsOff);
+                SetState(eState.TransitioningOptionsOff);
+            }
+            if (comprobadorTuto.enTutorial == false)
+            {
+                m_selectedOption = option;
+                DoParamAction(option);
+                if (option.Event != null)
+                    option.Event.Invoke();
+                SetState(eState.TransitioningOptionsOff);
+            }
         }
 
         public void EndButtonSelected()
         {
-            if (m_inputLocked) return;
+            if (comprobadorTuto.enTutorial == true)
+            {
+                if (m_inputLocked) return;
 
-            m_inputLocked = true;
-            m_selectedOption = null;
-            SetState(eState.TransitioningOptionsOff);
+                m_inputLocked = true;
+                m_selectedOption = null;
+                SetState(eState.TransitioningOptionsOff);
+                if (comprobadorTuto.enTutorial == false)
+                {
+                    m_selectedOption = null;
+                    SetState(eState.TransitioningOptionsOff);
+                }
+            }
         }
 
 
