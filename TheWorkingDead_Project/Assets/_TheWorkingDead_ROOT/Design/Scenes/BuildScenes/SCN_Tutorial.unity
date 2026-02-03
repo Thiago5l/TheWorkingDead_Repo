@@ -3947,6 +3947,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_BrazoCaidoFeedback
       objectReference: {fileID: 0}
+    - target: {fileID: 2480895639282040025, guid: cc21de1ef9ed3264c82599205d3c93c3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4463056746698124209, guid: cc21de1ef9ed3264c82599205d3c93c3, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -29513,6 +29517,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 326527999}
     m_Modifications:
+    - target: {fileID: 2669866493121196396, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 54.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5372837729093730713, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_fontSize
+      value: 24.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5372837729093730713, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_margin.w
+      value: 7.621441
+      objectReference: {fileID: 0}
+    - target: {fileID: 5372837729093730713, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_margin.y
+      value: 6.1642113
+      objectReference: {fileID: 0}
+    - target: {fileID: 5372837729093730713, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_margin.z
+      value: 21.176758
+      objectReference: {fileID: 0}
     - target: {fileID: 5372837729872012726, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
       propertyPath: OptionImage
       value: 
@@ -29529,6 +29553,38 @@ PrefabInstance:
       propertyPath: BackgroundImageSliced
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5372837730208448088, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1207619038, guid: b36f075dffbbffa419874e191ea15c9c, type: 3}
+    - target: {fileID: 5372837730208448094, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 5372837730208448094, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 5372837730208448094, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99951744
+      objectReference: {fileID: 0}
+    - target: {fileID: 5372837730208448094, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.031061852
+      objectReference: {fileID: 0}
+    - target: {fileID: 5372837730208448094, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 89.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5372837730208448094, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -7.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5372837730208448094, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -3.56
+      objectReference: {fileID: 0}
     - target: {fileID: 5372837730209628712, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
       propertyPath: m_Type
       value: 0
@@ -29536,7 +29592,11 @@ PrefabInstance:
     - target: {fileID: 5372837730209628712, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1189783834, guid: 9d9b5b63208c8f14ba14ff58826041e5, type: 3}
+      objectReference: {fileID: 21300000, guid: a416da60c3a13594aa5308f8de203d75, type: 3}
+    - target: {fileID: 5372837730209628715, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 157.02
+      objectReference: {fileID: 0}
     - target: {fileID: 6147284871494750852, guid: 3b57e612f70860846aa8ccbf5260a0e2, type: 3}
       propertyPath: m_Name
       value: PF_CanvasDialogos
