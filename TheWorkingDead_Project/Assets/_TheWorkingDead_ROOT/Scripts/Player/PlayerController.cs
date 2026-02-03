@@ -289,7 +289,7 @@ public class PlayerController : MonoBehaviour
 
             EstaminaUI.enabled = true;
             sprintVFX.SetActive(true);
-            audioManager.PlaySFX("Energy");
+            audioManager.PlayOneShot("Energy");
             isSprinting = true;
             speedcontainer = sprintspeed;
             audioManager.sfxSource.pitch = 1.5f;

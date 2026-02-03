@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] musicSound, sfxSound;
     public AudioSource musicSource, sfxSource;
+    public AudioSource oneShotSource;
 
 
     private void Awake()
@@ -61,6 +62,13 @@ public class AudioManager : MonoBehaviour
             sfxSource.Play();
         }
     }
-
+    public void PlayOneShot(string name)
+    {
+        Sound s = Array.Find(sfxSound, x => x.name == name);
+        if (s != null)
+        {
+            oneShotSource.PlayOneShot(s.clip);
+        }
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 }
