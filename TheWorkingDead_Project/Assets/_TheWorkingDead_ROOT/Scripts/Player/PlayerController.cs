@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class PlayerController : MonoBehaviour
 {
@@ -79,6 +80,14 @@ public class PlayerController : MonoBehaviour
     [Header("Sprint Cooldown")]
     [SerializeField] float sprintCooldown = 0.5f; // medio segundo
     bool canSprint = true; // controla si se puede iniciar sprint
+
+    [Header("Audio")]
+    [SerializeField] AudioManager audioManager;
+    [SerializeField] string walkSoundName = "Caminar";
+    [SerializeField] string snackSoundName = "Snack";
+    bool isWalkingSoundPlaying = false;
+
+
     #endregion
 
     private void Awake()
@@ -99,6 +108,10 @@ public class PlayerController : MonoBehaviour
         speedcontainer = speed;
         speedbase=speed;
         //sprintVFX.SetActive(false);
+        if (audioManager == null)
+        {
+            audioManager = FindFirstObjectByType<AudioManager>()/*FindObjectOfType<AudioManager>()*/;
+        }
     }
 
 
@@ -148,6 +161,7 @@ public class PlayerController : MonoBehaviour
                 );
             }
         }
+        HandleWalkingSound();
 
     }
     public void FromPLayerToPLayerData()
@@ -218,6 +232,27 @@ public class PlayerController : MonoBehaviour
         //todo esto sin afectar al eje y, porque eso se encargará el salto
         PlayerRB.linearVelocity = new Vector3(moveDireccion.x *speed, PlayerRB.linearVelocity.y, moveDireccion.z *speed);
     }
+    void HandleWalkingSound()
+    {
+        bool isMoving = moveImput.magnitude > 0.1f;
+
+        if (isMoving && isGrounded && !playerOcupado)
+        {
+            if (!isWalkingSoundPlaying)
+            {
+                audioManager.PlaySFX(walkSoundName);
+                isWalkingSoundPlaying = true;
+            }
+        }
+        else
+        {
+            if (isWalkingSoundPlaying)
+            {
+                audioManager.sfxSource.Stop();
+                isWalkingSoundPlaying = false;
+            }
+        }
+    }
 
     void HandleRotation()
     {
@@ -254,8 +289,10 @@ public class PlayerController : MonoBehaviour
 
             EstaminaUI.enabled = true;
             sprintVFX.SetActive(true);
+            audioManager.PlaySFX("Energy");
             isSprinting = true;
             speedcontainer = sprintspeed;
+            audioManager.sfxSource.pitch = 1.5f;
             sprintTimer = sprinttime; // inicializa el temporizador
 
             sprintCoroutine = StartCoroutine(StopSprintCoroutine());
@@ -269,6 +306,7 @@ public class PlayerController : MonoBehaviour
 
         isSprinting = false;
         speedcontainer = speedbase;
+        audioManager.sfxSource.pitch = 1f;
 
         if (sprintCoroutine != null)
         {
@@ -309,6 +347,7 @@ public class PlayerController : MonoBehaviour
         if (snackusado || snacks <= 0) return; // evita usar otro snack
 
         snackusado = true; // marca que un snack está en uso
+        audioManager.PlaySFX(snackSoundName);
 
         // seleccionar icono
         int snackIndex = snacks - 1;
