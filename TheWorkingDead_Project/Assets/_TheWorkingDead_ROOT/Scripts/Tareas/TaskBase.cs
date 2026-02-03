@@ -69,7 +69,7 @@ public abstract class TaskBase : MonoBehaviour
     protected virtual void Start()
     {
         if (uiTarea != null) uiTarea.SetActive(false);
-        if (particles != null) particles.SetActive(true);
+        if (particles != null&& EstaEnListaDeTareas()) particles.SetActive(true);
         if (canvasInteractKey != null) canvasInteractKey.SetActive(false);
         if (objRenderer == null) objRenderer = GetComponent<Renderer>();
         tareaAcabada = false;
