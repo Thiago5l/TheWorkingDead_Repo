@@ -24,7 +24,7 @@ public class TaskReciclaje : TaskBase
     protected override void IniciarTarea()
     {
         Debug.Log("Iniciar Tarea Reciclaje");
-        spawnerReciclajeUI.GenerarObjetos();
+        //spawnerReciclajeUI.GenerarObjetos();
         spawnerReciclajeUI.rondaActual = 0;
     }
 

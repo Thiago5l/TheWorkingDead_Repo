@@ -8,10 +8,16 @@ public class SpawnerReciclajeUI : MonoBehaviour
     public int cantidadPorRonda = 5;
     public float spacing = 20f;
     public int rondaActual = 0;
-    public bool correcto = false;   
+    public bool correcto = false;  
+    private bool yaGenerado = false;
     void Start()
     {
-        GenerarObjetos();
+        if (!yaGenerado)
+        {
+            GenerarObjetos();
+            yaGenerado = true;
+        }
+        //GenerarObjetos();
     }
 
     private void Update()
@@ -54,5 +60,8 @@ public class SpawnerReciclajeUI : MonoBehaviour
             rt.anchoredPosition = new Vector2(x + rt.rect.width / 2f, 0f);
             x += rt.rect.width + spacing;
         }
+        Debug.Log("GenerarObjetos llamado");
+
+        if (todosLosObjetosUI.Count == 0 || areaSpawn == null) return;
     }
 }
