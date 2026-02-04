@@ -170,9 +170,10 @@ public class NPCConversationTask : TaskBase
         if (other.CompareTag("TaskPlayer"))
             playerCerca = false;
     }
-    public void PlayHablar ()
+    public void PlayHablar()
     {
         if (tareaAcabada) return;
-        AudioManager.Instance.PlaySFX("TalkSoundName");
+        Debug.Log("Play talk sound");
+        AudioManager.Instance.PlaySFX(TalkSoundName);
     }
 }
