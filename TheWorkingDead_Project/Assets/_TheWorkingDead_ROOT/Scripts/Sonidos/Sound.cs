@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
-public class Sound : MonoBehaviour
+public class Sound 
 {
-    public string soundName;
+    public string name;
     public AudioClip clip;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
