@@ -17,6 +17,10 @@ public class ImpresoraTask : TaskBase
 
     private float valor;
 
+
+    [Header("Audio")]
+    //[SerializeField] AudioManager audioManager;
+    [SerializeField] string teclaSoundName = "Teclear";
     protected override void Start()
     {
        
@@ -57,10 +61,12 @@ public class ImpresoraTask : TaskBase
 
         if (valor <= 0f)
         {
+            AudioManager.Instance.sfxSource.pitch = 1f;
             Loose();
         }
         else if (valor >= 100f)
         {
+            AudioManager.Instance.sfxSource.pitch = 1f;
             Win();
         }
     }
@@ -73,8 +79,13 @@ public class ImpresoraTask : TaskBase
         ActualizarBarra();
         StartCoroutine(FlashRoutine());
 
+        AudioManager.Instance.sfxSource.pitch = Random.Range(0.1f, 2);
+        AudioManager.Instance.PlaySFX(teclaSoundName);
+
+
         if (valor >= 100f)
         {
+            AudioManager.Instance.sfxSource.pitch = 1f;
             Win();
         }
     }

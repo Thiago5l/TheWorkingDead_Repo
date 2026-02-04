@@ -19,6 +19,11 @@ public class TaskReciclaje : TaskBase
             spawnerReciclajeUI.correcto = false;
             spawnerReciclajeUI.rondaActual = 0;
         }
+        if (spawnerReciclajeUI.fallo == true)
+        {
+            spawnerReciclajeUI.fallo = false;
+            Loose();
+        }
     }
 
     protected override void IniciarTarea()

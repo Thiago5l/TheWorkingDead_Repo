@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.UI;
 
 
 public class AudioManager : MonoBehaviour
@@ -9,13 +10,13 @@ public class AudioManager : MonoBehaviour
     private static AudioManager instance;
     public static AudioManager Instance
     {
-       get
+        get
         {
             if (instance == null) Debug.Log("No hay AudioManager!");
             return instance;
         }
     }
-    
+
 
     public Sound[] musicSound, sfxSound;
     public AudioSource musicSource, sfxSource;
@@ -43,15 +44,15 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void PlayMusic(string name)
     {
-        Sound s = Array.Find(musicSound, x => x.name == name); 
+        Sound s = Array.Find(musicSound, x => x.name == name);
         if (s == null)
         {
-            Debug.Log("sonido no encontrado");  
+            Debug.Log("sonido no encontrado");
         }
         else
         {
@@ -61,7 +62,7 @@ public class AudioManager : MonoBehaviour
     }
     public void PlaySFX(string name)
     {
-        Sound s = Array.Find(sfxSound, x => x.name == name); 
+        Sound s = Array.Find(sfxSound, x => x.name == name);
         if (s == null)
         {
             Debug.Log("sonido no encontrado");
@@ -80,6 +81,27 @@ public class AudioManager : MonoBehaviour
             oneShotSource.PlayOneShot(s.clip);
         }
     }
+
+    public void ToggleMusic()
+    {
+        musicSource.mute = !musicSource.mute;
+    }
+    public void ToggleSound()
+    {
+        sfxSource.mute = !sfxSource.mute;
+        oneShotSource.mute = !oneShotSource.mute;
+    }
+    public void MusicVolume(float volume)
+    {
+        musicSource.volume = volume;
+    }
+    public void SoundVolume(float volume)
+    {
+        sfxSource.volume = volume;
+        oneShotSource.volume = volume;
+    }
+
+
     //public void PlayCaminado(string name)
     //{
     //    Sound s = Array.Find(sfxSound, x => x.name == name);

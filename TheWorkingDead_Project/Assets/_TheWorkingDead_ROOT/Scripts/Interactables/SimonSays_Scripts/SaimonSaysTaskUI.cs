@@ -35,7 +35,9 @@ public class SaimonSaysTaskUI : TaskBase
     public GameObject turnoJugadorImage;
     public GameObject turnoMáquinaImage;
 
-
+    [Header("Audio")]
+    //[SerializeField] AudioManager audioManager;
+    [SerializeField] string botonSoundName = "Boton";
     protected override void IniciarTarea()
     { InicioDeJuego(); }
     protected override void CancelarTarea()
@@ -145,6 +147,7 @@ public class SaimonSaysTaskUI : TaskBase
         else
         {
             intOrdenBotonesPlayer.Add(index);
+            AudioManager.Instance.PlaySFX(botonSoundName);
         }
     }
 

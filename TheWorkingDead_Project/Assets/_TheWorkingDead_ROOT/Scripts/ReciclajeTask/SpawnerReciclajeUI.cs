@@ -8,7 +8,10 @@ public class SpawnerReciclajeUI : MonoBehaviour
     public int cantidadPorRonda = 5;
     public float spacing = 20f;
     public int rondaActual = 0;
+    public int erroresPermitidos = 3;
+    public int erroresRonda = 0;
     public bool correcto = false;  
+    public bool fallo = false;  
     private bool yaGenerado = false;
     void Start()
     {
@@ -25,6 +28,10 @@ public class SpawnerReciclajeUI : MonoBehaviour
         if (!correcto && rondaActual >= cantidadPorRonda)
         {
             correcto = true;
+        }
+        if(erroresPermitidos >= erroresRonda)
+        {
+            fallo = true;
         }
     }
     public void GenerarObjetos()

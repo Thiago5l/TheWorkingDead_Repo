@@ -30,7 +30,7 @@ public class Impresora : MonoBehaviour
     private Slider slider;
     private float save;
     private bool PlayerInteractuando = false; // Flag para saber si el jugador inició la interacción
-
+    
     void Start()
     {
         CanvasInteractableKey.SetActive(false);

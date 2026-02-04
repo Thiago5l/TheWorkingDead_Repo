@@ -87,6 +87,7 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
                 {
                     contenedorLocal.Felicidad();
                     spawnerReciclajeUI.rondaActual++;
+                    AudioManager.Instance.PlaySFX("Papel");
                     if (scaleTween != null) scaleTween.Kill();
                     Destroy(gameObject);
                     correcto = true;
@@ -95,6 +96,7 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
                 else
                 {
                     contenedorLocal.Tremble();
+                    spawnerReciclajeUI.erroresRonda++;
                 }
             }
         }

@@ -69,18 +69,18 @@ public class MearUI : MonoBehaviour
     // -----------------------------
 
     [Header("Audio")]
-    [SerializeField] AudioManager audioManager;
+    //[SerializeField] AudioManager audioManager;
     [SerializeField] string mearSoundName = "Agua";
     // -----------------------------
     // UNITY
     // -----------------------------
     private void Start()
     {
-        if (audioManager == null)
-        {
-            GameObject AMGO = GameObject.FindGameObjectWithTag("AudioManager");
-            audioManager = AMGO.GetComponent<AudioManager>();
-        }
+        //if (audioManager == null)
+        //{
+        //    GameObject AMGO = GameObject.FindGameObjectWithTag("AudioManager");
+        //    audioManager = AMGO.GetComponent<AudioManager>();
+        //}
         punteroPos = punteroRT.anchoredPosition;
         barraMear.value = barraMear.maxValue / 2f;
     }
@@ -168,14 +168,14 @@ public class MearUI : MonoBehaviour
         if (dentro)
         {
             barraMear.value += velocidad * Time.deltaTime;
-            audioManager.sfxSource.loop = true;
-            audioManager.PlaySFX(mearSoundName);
+            AudioManager.Instance.sfxSource.loop = true;
+            AudioManager.Instance.PlaySFX(mearSoundName);
         }
         else
         {
             barraMear.value -= velocidad * Time.deltaTime;
-            audioManager.sfxSource.loop = false;
-            ;
+            AudioManager.Instance.sfxSource.loop = false;
+            
         }
         barraMear.value = Mathf.Clamp(barraMear.value, 0f, barraMear.maxValue);
         //float velocidad = barraMear.maxValue * 0.4f;

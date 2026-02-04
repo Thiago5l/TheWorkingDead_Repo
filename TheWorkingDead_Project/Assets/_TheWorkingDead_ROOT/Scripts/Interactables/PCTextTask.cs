@@ -18,6 +18,10 @@ public class PCTextTask : TaskBase
     [Header("Feedback")]
     [SerializeField] private FadeCanvas taskFeedbackCanvas;
 
+    [Header("Audio")]
+    //[SerializeField] AudioManager audioManager;
+    [SerializeField] string botonSoundName = "Teclear";
+
     private List<string> textsSelected = new List<string>();
     private string textToWrite = string.Empty;
     private string currentText = string.Empty;
@@ -51,7 +55,11 @@ public class PCTextTask : TaskBase
 
     private void Update()
     {
-
+        if(Input.anyKeyDown)
+        {
+            AudioManager.Instance.sfxSource.pitch = Random.Range(0.1f, 2);
+            AudioManager.Instance.PlaySFX(botonSoundName);
+        }
         if (!interactuando || tareaAcabada) return;
 
         timeCurrent -= Time.deltaTime;
@@ -59,6 +67,7 @@ public class PCTextTask : TaskBase
 
         if (timeCurrent <= 0f)
         {
+            AudioManager.Instance.sfxSource.pitch = 1f;
             FailTask();
         }
     }
@@ -73,6 +82,7 @@ public class PCTextTask : TaskBase
         if (string.IsNullOrEmpty(currentText)) return;
         if (currentText.Length > textToWrite.Length)
         {
+            AudioManager.Instance.sfxSource.pitch = 1f;
             FailTask();
             return;
         }
@@ -81,6 +91,7 @@ public class PCTextTask : TaskBase
         {
             if (char.ToLower(currentText[i]) != char.ToLower(textToWrite[i]))
             {
+                AudioManager.Instance.sfxSource.pitch = 1f;
                 FailTask();
                 return;
             }
@@ -93,7 +104,10 @@ public class PCTextTask : TaskBase
             if (textsSelected.Count > 0)
                 NextWord();
             else
+            {
+                AudioManager.Instance.sfxSource.pitch = 1f;
                 CompleteTextTask();
+            }
         }
     }
 
