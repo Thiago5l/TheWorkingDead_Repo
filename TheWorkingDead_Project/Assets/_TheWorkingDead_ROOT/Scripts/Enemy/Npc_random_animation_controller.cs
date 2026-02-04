@@ -36,7 +36,7 @@ public class AnimacionAleatoria : MonoBehaviour
             }
 
             // Espera 1 segundo y resetea los parametros
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
 
             animator.SetFloat("rascar", 0f);
             animator.SetFloat("rascarmano", 0f);
