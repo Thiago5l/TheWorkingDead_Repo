@@ -52,6 +52,8 @@ public class ShowWithTab : MonoBehaviour
         // Movemos el panel fuera de la pantalla horizontalmente
         panel.transform.localPosition = originalPosition + new Vector3(offsetX, 0f, 0f);
         canvasGroup.alpha = 0f;
+        AudioManager.Instance.oneShotSource.loop = false;
+        AudioManager.Instance.PlayOneShot("Papel");
 
         if (duration <= 0f || Time.timeScale == 0f)
         {
@@ -75,7 +77,8 @@ public class ShowWithTab : MonoBehaviour
 
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
-
+        AudioManager.Instance.oneShotSource.loop = false;
+        AudioManager.Instance.PlayOneShot("Papel");
         if (duration <= 0f || Time.timeScale == 0f)
         {
             canvasGroup.alpha = 0f;
