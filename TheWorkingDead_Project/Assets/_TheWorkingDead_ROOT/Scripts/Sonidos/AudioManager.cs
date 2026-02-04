@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
     public Sound[] musicSound, sfxSound;
     public AudioSource musicSource, sfxSource;
     public AudioSource oneShotSource;
-    public AudioSource caminarSource;
+    //public AudioSource caminarSource;
 
 
     private void Awake()
@@ -71,13 +71,13 @@ public class AudioManager : MonoBehaviour
             oneShotSource.PlayOneShot(s.clip);
         }
     }
-    public void PlayCaminado(string name)
-    {
-        Sound s = Array.Find(sfxSound, x => x.name == name);
-        if (s != null)
-        {
-            caminarSource.PlayOneShot(s.clip);
-        }
-    }
+    //public void PlayCaminado(string name)
+    //{
+    //    Sound s = Array.Find(sfxSound, x => x.name == name);
+    //    if (s != null)
+    //    {
+    //        caminarSource.PlayOneShot(s.clip);
+    //    }
+    //}
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 }
