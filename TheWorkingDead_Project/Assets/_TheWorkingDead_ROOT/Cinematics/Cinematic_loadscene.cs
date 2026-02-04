@@ -17,5 +17,5 @@ public class Cinematic_loadscene : MonoBehaviour
     public void loadsceneMainMenu()
     { SceneManager.LoadScene("SCN_MainMenu_Test"); }
     public void loadsceneGame()
-    { SceneManager.LoadScene("SCN_Office_Level1"); }
+    { SceneManager.LoadScene("SCN_Tutorial"); }
 }

@@ -38,8 +38,10 @@ public class PCTextTask : TaskBase
         insertedText.text = string.Empty;
         insertedText.ActivateInputField();
 
+        GenerateTextList();  
         NextWord();
     }
+
 
     protected override void CancelarTarea()
     {
@@ -49,6 +51,7 @@ public class PCTextTask : TaskBase
 
     private void Update()
     {
+
         if (!interactuando || tareaAcabada) return;
 
         timeCurrent -= Time.deltaTime;
@@ -100,7 +103,6 @@ public class PCTextTask : TaskBase
 
         if (textsToSelect.Count < sizeTextsSelected)
         {
-            Debug.LogError("Not enough texts in textsToSelect");
             return;
         }
 
@@ -124,6 +126,7 @@ public class PCTextTask : TaskBase
     {
         timeMax = textToWrite.Length * timePerCharacter;
         timeCurrent = timeMax;
+
 
         timeSlider.maxValue = timeMax;
         timeSlider.value = timeMax;

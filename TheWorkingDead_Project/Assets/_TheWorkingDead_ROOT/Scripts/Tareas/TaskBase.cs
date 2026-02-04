@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public abstract class TaskBase : MonoBehaviour
 {
@@ -21,17 +22,51 @@ public abstract class TaskBase : MonoBehaviour
     public bool tareaAcabada;
     public bool interactuando;
 
+    [Header("Sonido")]
+    //[SerializeField] AudioManager audioManager;
+    [SerializeField] string bienSoundName = "Bien";
+    [SerializeField] string malSoundName = "Mal";
+
+    protected GameObject FindInactiveObjectByTag(string tag)
+    {
+        GameObject result = null;
+        // Recorre todos los objetos raíz de la escena actual
+        foreach (GameObject go in SceneManager.GetActiveScene().GetRootGameObjects())
+        {
+            result = FindInChildren(go, tag);
+            if (result != null)
+                return result;
+        }
+        return null;
+    }
+
+    private GameObject FindInChildren(GameObject parent, string tag)
+    {
+        if (parent.CompareTag(tag))
+            return parent;
+
+        foreach (Transform child in parent.transform)
+        {
+            GameObject found = FindInChildren(child.gameObject, tag);
+            if (found != null)
+                return found;
+        }
+
+        return null;
+    }
     private void LateUpdate()
     {
-        if (taskExclamation != null && !playerCerca && !tareaAcabada)
-            taskExclamation.SetActive(EstaEnListaDeTareas());
+        ActualizarCanvasInteract();
+        ActualizarExclamacion();
     }
     private void OnEnable()
     {
         if (player == null)
             player = GameObject.FindWithTag("Player");
         if (uiTarea == null)
-            uiTarea = GameObject.FindWithTag("UiNpcConversation");
+            uiTarea = FindInactiveObjectByTag("UiNpcConversation");
+        if (uiTarea == null)
+            uiTarea = GameObject.FindWithTag("BrazoCaidoFeedback");
         if (taskManager == null)
             taskManager = FindAnyObjectByType<TareasAleatorias>();
         if (feedbackcanvas == null)
@@ -40,10 +75,8 @@ public abstract class TaskBase : MonoBehaviour
     protected virtual void Start()
     {
         if (uiTarea != null) uiTarea.SetActive(false);
-        if (particles != null) particles.SetActive(true);
+        if (particles != null&& EstaEnListaDeTareas()) particles.SetActive(true);
         if (canvasInteractKey != null) canvasInteractKey.SetActive(false);
-        if (taskExclamation != null)
-            taskExclamation.SetActive(EstaEnListaDeTareas());
         if (objRenderer == null) objRenderer = GetComponent<Renderer>();
         tareaAcabada = false;
     }
@@ -53,20 +86,12 @@ public abstract class TaskBase : MonoBehaviour
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("TaskPlayer")&&!tareaAcabada) return;
-
-        playerCerca = true;
-
-        // Mostrar canvas solo si está en la lista
-        if (EstaEnListaDeTareas())
-            canvasInteractKey?.SetActive(true);
-        else
-            canvasInteractKey?.SetActive(false);
-
-        // Ocultar exclamación siempre al acercarse
-        if (taskExclamation != null)
-            taskExclamation.SetActive(false);
-
-        CambiarColorOutline(colorCerca);
+        if (!feedbackcanvas.brazoYaCaido)
+        {
+            playerCerca = true;
+            if (EstaEnListaDeTareas())
+                CambiarColorOutline(colorCerca);
+        }
     }
 
     protected virtual void OnTriggerExit(Collider other)
@@ -75,13 +100,6 @@ public abstract class TaskBase : MonoBehaviour
 
         playerCerca = false;
 
-        // Ocultar canvas interactivo
-        if (canvasInteractKey != null)
-            canvasInteractKey.SetActive(false);
-
-        // Mostrar exclamación solo si está en la lista y no completada
-        if (EstaEnListaDeTareas() && !tareaAcabada)
-            taskExclamation?.SetActive(true);
 
         CambiarColorOutline(colorLejos);
 
@@ -95,23 +113,24 @@ public abstract class TaskBase : MonoBehaviour
 
     public virtual void Interactuar()
     {
-        if (playerCerca && !tareaAcabada && !interactuando)
+        if (!EstaEnListaDeTareas()) return;
+
+        if (!feedbackcanvas.brazoYaCaido)
         {
-
-            uiTarea.SetActive(true);
-
-            interactuando = true;
-
-            if (player != null)
+            if (playerCerca && !tareaAcabada && !interactuando)
             {
-                player.GetComponent<PlayerController>().playerOcupado = true;
-                
-            }
-               
-            if (canvasInteractKey != null)
-                canvasInteractKey.SetActive(false);
+                uiTarea.SetActive(true);
 
-            IniciarTarea();
+                interactuando = true;
+
+                if (player != null)
+                    player.GetComponent<PlayerController>().playerOcupado = true;
+
+                canvasInteractKey?.SetActive(false);
+
+                IniciarTarea();
+            }
+
         }
     }
 
@@ -121,6 +140,8 @@ public abstract class TaskBase : MonoBehaviour
 
     protected void CompletarTarea()
     {
+        if (taskExclamation != null)
+            taskExclamation.SetActive(false);
         taskManager.CompletarTarea(this.gameObject);
         tareaAcabada = true;
         interactuando = false;
@@ -128,12 +149,10 @@ public abstract class TaskBase : MonoBehaviour
         if (particles != null) particles.SetActive(false);
         if (uiTarea != null) uiTarea.SetActive(false);
         if (canvasInteractKey != null) canvasInteractKey.SetActive(false);
-        if (taskExclamation != null) taskExclamation.SetActive(false);
         if (player != null) player.GetComponent<PlayerController>().playerOcupado = false;
 
         StopAllCoroutines();
         this.enabled = false;
-        ActualizarExclamacion();
     }
 
     protected void CancelarBase()
@@ -145,12 +164,24 @@ public abstract class TaskBase : MonoBehaviour
         if (player != null) player.GetComponent<PlayerController>().playerOcupado = false;
 
         StopAllCoroutines();
-        ActualizarExclamacion();
     }
 
     #endregion
 
     #region Visual
+
+    void ActualizarCanvasInteract()
+    {
+        if (canvasInteractKey == null) return;
+
+        bool mostrar =
+            playerCerca &&
+            EstaEnListaDeTareas() &&
+            !tareaAcabada &&
+            !interactuando;
+
+        canvasInteractKey.SetActive(mostrar);
+    }
 
     protected void CambiarColorOutline(Color color)
     {
@@ -166,16 +197,31 @@ public abstract class TaskBase : MonoBehaviour
         return taskManager != null && taskManager.OrdenTareas.Contains(this.gameObject);
     }
 
-    protected void ActualizarExclamacion()
+    void ActualizarExclamacion()
     {
-        if (taskExclamation != null)
-            taskExclamation.SetActive(EstaEnListaDeTareas() && !playerCerca && !tareaAcabada);
+        if (taskExclamation == null) return;
+
+        if (tareaAcabada)
+        {
+            taskExclamation.SetActive(false);
+            return;
+        }
+
+        bool mostrar =
+            EstaEnListaDeTareas() &&
+            !playerCerca &&
+            !interactuando;
+
+        taskExclamation.SetActive(mostrar);
     }
+
+   
 
     #endregion
     #region win/loose
     protected void Win()
     {
+        AudioManager.Instance.PlayOneShot(bienSoundName);
         tareaAcabada = true;
         interactuando = false;
         feedbackcanvas.PlayWin();
@@ -184,13 +230,20 @@ public abstract class TaskBase : MonoBehaviour
         interactuando = false;
         StopAllCoroutines();
         CompletarTarea();
+        if (taskExclamation != null)
+            taskExclamation.SetActive(false);
     }
     protected void Loose()
     {
+        AudioManager.Instance.oneShotSource.pitch = 0.5f;
+        AudioManager.Instance.PlayOneShot(malSoundName);
+        
+
         feedbackcanvas.PlayLose();
         player.gameObject.GetComponent<PlayerController>().playerOcupado = false;
         uiTarea.gameObject.SetActive(false);
         interactuando = false;
+        AudioManager.Instance.oneShotSource.pitch = 1;
         StopAllCoroutines();
     }
     #endregion

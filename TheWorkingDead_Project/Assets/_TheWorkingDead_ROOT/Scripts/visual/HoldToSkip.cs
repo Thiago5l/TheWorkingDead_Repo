@@ -132,13 +132,6 @@ public class HoldToSkipVideo : MonoBehaviour
 
     void SkipVideo()
     {
-        if (videoPlayer != null && videoPlayer.frameCount > 0)
-        {
-            long lastFrame = (long)videoPlayer.frameCount - 1;
-            videoPlayer.frame = lastFrame;
-            videoPlayer.Stop();
-        }
-
-        SceneManager.LoadScene("SCN_Office_Level1");
+        SceneManager.LoadScene("SCN_Tutorial");
     }
 }

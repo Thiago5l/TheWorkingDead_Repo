@@ -19,13 +19,18 @@ public class TareasAleatorias : MonoBehaviour
     [Header("Control de tareas")]
     public List<GameObject> OrdenTareas = new List<GameObject>();
     public Dictionary<GameObject, GameObject> tareaToUI = new Dictionary<GameObject, GameObject>();
+    [Header("Tareas obligatorias (siempre entran)")]
+    public List<GameObject> tareasObligatorias = new List<GameObject>();
 
     [Header("Configuración NPCs")]
     public int maxNPCsEnTareas = 3; // número máximo de NPCs que se agregan a PrefabsTareas
     public GameObject Uwe;
 
+    [Header("Win")]
+    public GameObject wincanvas;
     void Start()
     {
+        wincanvas.SetActive(false);
         DetectarNPCsComoTareas();
         MezclarLista(OrdenTareas);
         tareasHechas = 0;
@@ -75,23 +80,35 @@ public class TareasAleatorias : MonoBehaviour
     {
         if (PrefabsTareas == null || PrefabsTareas.Length == 0)
         {
-            Debug.LogError("PrefabsTareas está vacío!");
+            Debug.LogError("PrefabsTareas esta vacio");
             return;
         }
 
         List<GameObject> tareasDisponibles = new List<GameObject>(PrefabsTareas);
+
         OrdenTareas.Clear();
         tareaToUI.Clear();
 
+        // Agregar tareas obligatorias
+        foreach (GameObject tarea in tareasObligatorias)
+        {
+            if (tarea != null && !OrdenTareas.Contains(tarea))
+            {
+                OrdenTareas.Add(tarea);
+                tareasDisponibles.Remove(tarea);
+            }
+        }
+
+        // Uwe opcional
         bool incluirUwe = (Uwe != null && Random.value < 0.5f);
 
-        if (incluirUwe)
+        if (incluirUwe && !OrdenTareas.Contains(Uwe))
         {
             OrdenTareas.Add(Uwe);
             tareasDisponibles.Remove(Uwe);
-            Debug.Log("Uwe incluido en OrdenTareas (50%)");
         }
 
+        // Tareas aleatorias restantes
         MezclarLista(tareasDisponibles);
 
         int restantes = TareasPorNivel - OrdenTareas.Count;
@@ -107,14 +124,17 @@ public class TareasAleatorias : MonoBehaviour
             if (tarea == null) continue;
 
             GameObject box = Instantiate(boxTarea, tareaContiner);
+
             TareaNombre tareaComp = tarea.GetComponent<TareaNombre>();
             string nombreTarea = tareaComp != null ? tareaComp.tareaNombre : tarea.name;
+
             box.GetComponent<BoxTarea>().SetText(nombreTarea);
             tareaToUI[tarea] = box;
         }
 
-        Debug.Log($"Se generaron {OrdenTareas.Count} tareas | Uwe incluido: {incluirUwe}");
+        Debug.Log("Tareas generadas: " + OrdenTareas.Count);
     }
+
 
 
 
@@ -157,7 +177,7 @@ public class TareasAleatorias : MonoBehaviour
         if (!winLevel && (tareasHechas >= TareasPorNivel || OrdenTareas.Count <= 0))
         {
             winLevel = true;
-            SceneManager.LoadScene("SCN_CINE_WIN");
+            wincanvas.SetActive(true);
         }
     }
 }

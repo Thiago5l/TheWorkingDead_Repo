@@ -5,7 +5,7 @@ public class BrazoManager : MonoBehaviour
     [SerializeField] private GameObject brazoL;
     public GameObject pfBrazoCaido;
     public bool brazoYaCaido;
-    public GameObject Feedback;
+    public FadeCanvas Feedback;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,14 +13,9 @@ public class BrazoManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        brazoYaCaido = Feedback.GetComponent<FadeCanvas>().brazoYaCaido;
-    }
-
     public void BrazoSeCae()
     {
-        if (!brazoYaCaido)
+        if (!Feedback.brazoYaCaido)
         {
 
             // Asegúrate de que brazoL no sea null

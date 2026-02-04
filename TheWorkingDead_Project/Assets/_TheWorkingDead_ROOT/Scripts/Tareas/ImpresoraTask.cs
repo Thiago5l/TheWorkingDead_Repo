@@ -19,9 +19,17 @@ public class ImpresoraTask : TaskBase
 
     protected override void Start()
     {
+       
         base.Start();
         valor = valorInicial;
         ActualizarBarra();
+    }
+    private void Update()
+    {
+        if (EstaEnListaDeTareas() == false)
+        {
+            particles.gameObject.SetActive(false);
+        }
     }
 
     protected override void IniciarTarea()

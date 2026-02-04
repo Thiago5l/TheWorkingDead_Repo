@@ -32,7 +32,7 @@ namespace DialogueEditor
         // User-Facing options
         // Drawn by custom inspector
         public bool ScrollText;
-        public float ScrollSpeed = 1;
+        public float ScrollSpeed = 1.5f;
         public Sprite BackgroundImage;
         public bool BackgroundImageSliced;
         public Sprite OptionImage;
@@ -85,6 +85,7 @@ namespace DialogueEditor
         //--------------------------------------
         // Awake, Start, Destroy, Update
         //--------------------------------------
+        private bool m_inputLocked = false;
 
         private void Awake()
         {
@@ -457,6 +458,7 @@ namespace DialogueEditor
 
         private void SetupSpeech(SpeechNode speech)
         {
+            m_inputLocked = false;
             if (speech == null)
             {
                 EndConversation();
@@ -559,20 +561,34 @@ namespace DialogueEditor
 
         public void SpeechSelected(SpeechNode speech)
         {
+            if (m_inputLocked) return;
+
+            m_inputLocked = true;
+
             SetupSpeech(speech);
         }
 
+
         public void OptionSelected(OptionNode option)
         {
+            if (m_inputLocked) return; // 🚫
+
+            m_inputLocked = true; // 🔒 bloquear spam
+
             m_selectedOption = option;
             DoParamAction(option);
+
             if (option.Event != null)
                 option.Event.Invoke();
+
             SetState(eState.TransitioningOptionsOff);
         }
 
         public void EndButtonSelected()
         {
+            if (m_inputLocked) return;
+
+            m_inputLocked = true;
             m_selectedOption = null;
             SetState(eState.TransitioningOptionsOff);
         }

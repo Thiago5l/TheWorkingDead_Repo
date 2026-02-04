@@ -74,6 +74,14 @@ public class EnemyAiBase : MonoBehaviour
     [SerializeField, Range(0, 360)] private float viewAngle = 120f; // angulo de vision del enemigo
     [SerializeField] private float viewDistance = 10f;             // distancia maxima de vision
     [SerializeField] private LayerMask obstacleMask;               // para raycast de obstaculos
+    [Header("Vision Cone")]
+    public VisionCone visionCone;
+
+    [SerializeField] private Collider enemyCollider;
+
+    [Header("Audio")]
+    //[SerializeField] AudioManager audioManager;
+    [SerializeField] string pilladoSoundName = "pillar";
 
     #endregion
 
@@ -81,6 +89,9 @@ public class EnemyAiBase : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+
+        if (enemyCollider == null)
+            enemyCollider = GetComponent<Collider>();
 
         if (target == null)
         {
@@ -100,6 +111,11 @@ public class EnemyAiBase : MonoBehaviour
 
     private void Start()
     {
+        //if (audioManager == null)
+        //{
+        //    GameObject AMGO = GameObject.FindGameObjectWithTag("AudioManager");
+        //    audioManager = AMGO.GetComponent<AudioManager>();
+        //}
         exclamation.alpha = 0;
         sliderSospecha.maxValue = maxValSliderSospecha;
         sliderSospecha.value = 0;
@@ -177,14 +193,64 @@ public class EnemyAiBase : MonoBehaviour
         {
             yield return new WaitForSeconds(aiUpdateFrequency);
 
-            targetInSightRange = useSightRange ? Physics.CheckSphere(transform.position, sightRange, targetLayer) : true;
-            targetInAttackRange = Physics.CheckSphere(transform.position, attackRange, targetLayer);
+            targetInSightRange = useSightRange && IsTargetInSight();
+            targetInAttackRange = Vector3.Distance(EyePosition, target.position) <= attackRange;
 
-            if (targetInSightRange && targetInAttackRange) AttackTarget();
-            else if (targetInSightRange && !targetInAttackRange) ChaseTarget();
-            else Patrolling();
+
+            if (targetInSightRange && targetInAttackRange)
+                AttackTarget();
+            else if (targetInSightRange && !targetInAttackRange)
+                ChaseTarget();
+            else
+                Patrolling();
         }
     }
+
+    private Vector3 EyePosition => enemyCollider.bounds.center;
+
+    private bool IsTargetInSight()
+    {
+        if (target == null || enemyCollider == null)
+            return false;
+
+        Vector3 origin = EyePosition;
+
+        Collider targetCol = target.GetComponent<Collider>();
+        Vector3 targetCenter = targetCol != null
+            ? targetCol.bounds.center
+            : target.position;
+
+        Vector3 dir = (targetCenter - origin).normalized;
+        float distance = Vector3.Distance(origin, targetCenter);
+
+        // USAR sightRange (no viewDistance)
+        if (distance > sightRange)
+            return false;
+
+        float angle = Vector3.Angle(transform.forward, dir);
+        if (angle > viewAngle * 0.5f)
+            return false;
+
+        // Raycast SOLO contra obstáculos + player
+        if (Physics.Raycast(origin, dir, out RaycastHit hit, sightRange,
+            obstacleMask | targetLayer))
+        {
+            if (hit.collider.transform == target ||
+                hit.collider.transform.IsChildOf(target))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
+
+
+
+
     #endregion
 
     #region AI Behaviors
@@ -266,6 +332,8 @@ public class EnemyAiBase : MonoBehaviour
         sliderSospecha.value = 0;
         alreadyattacked = false;
 
+        AudioManager.Instance.oneShotSource.loop = false;
+
         if (agent.isStopped) agent.isStopped = false;
         agent.SetDestination(target.position);
     }
@@ -275,7 +343,8 @@ public class EnemyAiBase : MonoBehaviour
         agent.isStopped = true;
         sliderSospecha.gameObject.SetActive(true);
         isFillingBar = true;
-
+        AudioManager.Instance.oneShotSource.loop = true;
+        AudioManager.Instance.PlayOneShot("pilladoSoundName");
         if (!alreadyattacked)
         {
             alreadyattacked = true;
@@ -300,12 +369,40 @@ public class EnemyAiBase : MonoBehaviour
     #region Gizmos
     private void OnDrawGizmosSelected()
     {
+        Collider col = GetComponent<Collider>();
+        if (col == null) return;
+
+        Vector3 origin = col.bounds.center;
+
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(origin, attackRange);
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
+        Gizmos.DrawWireSphere(origin, sightRange);
+
+        Gizmos.color = Color.cyan;
+        Vector3 forward = transform.forward * viewDistance;
+
+        Quaternion leftRot = Quaternion.Euler(0, -viewAngle / 2f, 0);
+        Quaternion rightRot = Quaternion.Euler(0, viewAngle / 2f, 0);
+
+        Gizmos.DrawRay(origin, leftRot * forward);
+        Gizmos.DrawRay(origin, rightRot * forward);
+
+        if (target != null)
+        {
+            Collider targetCol = target.GetComponent<Collider>();
+            Vector3 targetCenter = targetCol != null
+                ? targetCol.bounds.center
+                : target.position;
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(origin, targetCenter);
+        }
     }
+
+
+
     #endregion
 }
 
