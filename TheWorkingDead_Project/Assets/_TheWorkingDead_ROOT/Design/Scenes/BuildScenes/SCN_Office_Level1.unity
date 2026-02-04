@@ -176,6 +176,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24576b02e40f6854786f504a61de7ae4, type: 3}
+--- !u!114 &836133 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2678746200952727608, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
+  m_PrefabInstance: {fileID: 173166529}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!4 &1181201 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 961228114570797031, guid: c412fc8c72c754b8bbb3ae9945ad0552, type: 3}
@@ -6851,6 +6862,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1101880788}
     m_Modifications:
+    - target: {fileID: 2678746200952727608, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3221084470382865170, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6882,18 +6897,6 @@ PrefabInstance:
     - target: {fileID: 3221084470382865170, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
       propertyPath: m_SizeDelta.y
       value: 481
-      objectReference: {fileID: 0}
-    - target: {fileID: 3221084470382865170, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.9356725
-      objectReference: {fileID: 0}
-    - target: {fileID: 3221084470382865170, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.9356725
-      objectReference: {fileID: 0}
-    - target: {fileID: 3221084470382865170, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.9356725
       objectReference: {fileID: 0}
     - target: {fileID: 3221084470382865170, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6943,21 +6946,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4765276723938262714, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 2.4560852
+      objectReference: {fileID: 0}
+    - target: {fileID: 4765276723938262714, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -6.362899
+      objectReference: {fileID: 0}
     - target: {fileID: 5407395953164719490, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
       propertyPath: m_Name
       value: TaskReciclaje
       objectReference: {fileID: 0}
-    - target: {fileID: 5407395953164719490, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 5826440977365110004, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7375972132008460040, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
-      propertyPath: m_TagString
-      value: SpawnReciclar
+    - target: {fileID: 5826440977365110004, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5826440977365110004, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7397248924613768328, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7397248924613768328, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 4709280469636490867, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
@@ -97852,6 +97874,10 @@ PrefabInstance:
       propertyPath: uiTarea
       value: 
       objectReference: {fileID: 545578311}
+    - target: {fileID: 954870532862633175, guid: c6524a2253a065b429c22fab67757832, type: 3}
+      propertyPath: barraTiempo
+      value: 
+      objectReference: {fileID: 836133}
     - target: {fileID: 954870532862633175, guid: c6524a2253a065b429c22fab67757832, type: 3}
       propertyPath: objRenderer
       value: 

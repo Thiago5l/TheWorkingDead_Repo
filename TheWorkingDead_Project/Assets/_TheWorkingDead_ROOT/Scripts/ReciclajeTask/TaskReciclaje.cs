@@ -54,7 +54,7 @@ public class TaskReciclaje : TaskBase
     {
         Debug.Log("Iniciar Tarea Reciclaje");
         //spawnerReciclajeUI.GenerarObjetos();
-        spawnerReciclajeUI.rondaActual = 0;
+        //spawnerReciclajeUI.rondaActual = 0;
         contandoTiempo = true;
         tiempoActual = tiempoMaximo;
         barraTiempo.value = 1f;
