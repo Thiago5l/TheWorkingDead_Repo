@@ -21,11 +21,20 @@ public class OrdenadorTask : TaskBase
     [SerializeField] private float flashTime = 0.2f;
     [SerializeField] private FadeCanvas taskFeedbackCanvas;
 
+    [Header("Audio")]
+    //[SerializeField] AudioManager audioManager;
+    [SerializeField] string cafeSoundName = "Agua";
+
     private float value;
     private float winValue;
 
     protected override void Start()
     {
+        //if (audioManager == null)
+        //{
+        //    GameObject AMGO = GameObject.FindGameObjectWithTag("AudioManager");
+        //    audioManager = AMGO.GetComponent<AudioManager>();
+        //}
         base.Start();
         value = startValue;
         taskBar.fillAmount = startValue;
@@ -89,7 +98,7 @@ public class OrdenadorTask : TaskBase
         if (value > winZoneMin && value < winZoneMax)
         {
             winValue += Time.deltaTime;
-
+            AudioManager.Instance.PlayOneShot("pilladoSoundName");
             if (winValue >= winThreshold)
             {
                 CompleteOrdenadorTask();

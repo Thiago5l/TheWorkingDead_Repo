@@ -79,6 +79,9 @@ public class EnemyAiBase : MonoBehaviour
 
     [SerializeField] private Collider enemyCollider;
 
+    [Header("Audio")]
+    //[SerializeField] AudioManager audioManager;
+    [SerializeField] string pilladoSoundName = "pillar";
 
     #endregion
 
@@ -108,6 +111,11 @@ public class EnemyAiBase : MonoBehaviour
 
     private void Start()
     {
+        //if (audioManager == null)
+        //{
+        //    GameObject AMGO = GameObject.FindGameObjectWithTag("AudioManager");
+        //    audioManager = AMGO.GetComponent<AudioManager>();
+        //}
         exclamation.alpha = 0;
         sliderSospecha.maxValue = maxValSliderSospecha;
         sliderSospecha.value = 0;
@@ -324,6 +332,8 @@ public class EnemyAiBase : MonoBehaviour
         sliderSospecha.value = 0;
         alreadyattacked = false;
 
+        AudioManager.Instance.oneShotSource.loop = false;
+
         if (agent.isStopped) agent.isStopped = false;
         agent.SetDestination(target.position);
     }
@@ -333,7 +343,8 @@ public class EnemyAiBase : MonoBehaviour
         agent.isStopped = true;
         sliderSospecha.gameObject.SetActive(true);
         isFillingBar = true;
-
+        AudioManager.Instance.oneShotSource.loop = true;
+        AudioManager.Instance.PlayOneShot("pilladoSoundName");
         if (!alreadyattacked)
         {
             alreadyattacked = true;

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class MearUI : MonoBehaviour
 {
@@ -64,10 +65,22 @@ public class MearUI : MonoBehaviour
     public bool meandoDentro;
 
     // -----------------------------
+    // SONIDO
+    // -----------------------------
+
+    [Header("Audio")]
+    [SerializeField] AudioManager audioManager;
+    [SerializeField] string mearSoundName = "Agua";
+    // -----------------------------
     // UNITY
     // -----------------------------
     private void Start()
     {
+        if (audioManager == null)
+        {
+            GameObject AMGO = GameObject.FindGameObjectWithTag("AudioManager");
+            audioManager = AMGO.GetComponent<AudioManager>();
+        }
         punteroPos = punteroRT.anchoredPosition;
         barraMear.value = barraMear.maxValue / 2f;
     }
@@ -84,6 +97,11 @@ public class MearUI : MonoBehaviour
         {
             Debug.Log("Hay input");
         }
+        //while (meandoDentro == true)
+        //{
+        //    audioManager.sfxSource.loop = true;
+        //    audioManager.PlaySFX(mearSoundName);
+        //}
     }
 
     // -----------------------------
@@ -148,10 +166,17 @@ public class MearUI : MonoBehaviour
         bool dentro = PunteroDentroZona();
 
         if (dentro)
+        {
             barraMear.value += velocidad * Time.deltaTime;
+            audioManager.sfxSource.loop = true;
+            audioManager.PlaySFX(mearSoundName);
+        }
         else
+        {
             barraMear.value -= velocidad * Time.deltaTime;
-
+            audioManager.sfxSource.loop = false;
+            ;
+        }
         barraMear.value = Mathf.Clamp(barraMear.value, 0f, barraMear.maxValue);
         //float velocidad = barraMear.maxValue * 0.4f;
 
@@ -164,6 +189,7 @@ public class MearUI : MonoBehaviour
     }
     private bool PunteroDentroZona()
     {
+
         return RectTransformUtility.RectangleContainsScreenPoint(
             zonaMearRT,
             punteroRT.position,

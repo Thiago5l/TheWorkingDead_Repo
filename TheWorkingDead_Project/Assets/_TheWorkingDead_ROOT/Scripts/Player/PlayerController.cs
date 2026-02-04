@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
     bool canSprint = true; // controla si se puede iniciar sprint
 
     [Header("Audio")]
-    [SerializeField] AudioManager audioManager;
+    //[SerializeField] AudioManager audioManager;
     [SerializeField] string walkSoundName = "Caminar";
     [SerializeField] string snackSoundName = "Snack";
     bool isWalkingSoundPlaying = false;
@@ -108,10 +108,7 @@ public class PlayerController : MonoBehaviour
         speedcontainer = speed;
         speedbase= speed;
         //sprintVFX.SetActive(false);
-        if (audioManager == null)
-        {
-            audioManager = FindFirstObjectByType<AudioManager>()/*FindObjectOfType<AudioManager>()*/;
-        }
+        
     }
 
 
@@ -241,8 +238,8 @@ public class PlayerController : MonoBehaviour
         {
             if (!isWalkingSoundPlaying)
             {
-                audioManager.sfxSource.loop = true;
-                audioManager.PlaySFX(walkSoundName);
+                AudioManager.Instance.sfxSource.loop = true;
+                AudioManager.Instance.PlaySFX(walkSoundName);
                 isWalkingSoundPlaying = true;
             }
         }
@@ -250,8 +247,8 @@ public class PlayerController : MonoBehaviour
         {
             if (isWalkingSoundPlaying)
             {
-                audioManager.sfxSource.Stop();
-                audioManager.sfxSource.loop = false;
+                AudioManager.Instance.sfxSource.Stop();
+                AudioManager.Instance.sfxSource.loop = false;
                 isWalkingSoundPlaying = false;
             }
         }
@@ -292,10 +289,10 @@ public class PlayerController : MonoBehaviour
 
             EstaminaUI.enabled = true;
             sprintVFX.SetActive(true);
-            audioManager.PlayOneShot("Energy");
+            AudioManager.Instance.PlayOneShot("Energy");
             isSprinting = true;
             speedcontainer = sprintspeed;
-            audioManager.sfxSource.pitch = 1.5f;
+            AudioManager.Instance.sfxSource.pitch = 1.5f;
             sprintTimer = sprinttime; // inicializa el temporizador
 
             sprintCoroutine = StartCoroutine(StopSprintCoroutine());
@@ -309,7 +306,7 @@ public class PlayerController : MonoBehaviour
 
         isSprinting = false;
         speedcontainer = speedbase;
-        audioManager.sfxSource.pitch = 1f;
+        AudioManager.Instance.sfxSource.pitch = 1f;
 
         if (sprintCoroutine != null)
         {
@@ -350,7 +347,7 @@ public class PlayerController : MonoBehaviour
         if (snackusado || snacks <= 0) return; // evita usar otro snack
 
         snackusado = true; // marca que un snack está en uso
-        audioManager.PlaySFX(snackSoundName);
+        AudioManager.Instance.PlaySFX(snackSoundName);
 
         // seleccionar icono
         int snackIndex = snacks - 1;

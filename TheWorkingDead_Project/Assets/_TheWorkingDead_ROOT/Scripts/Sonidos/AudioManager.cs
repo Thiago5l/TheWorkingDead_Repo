@@ -6,8 +6,16 @@ using System;
 
 public class AudioManager : MonoBehaviour
 {
-
-    [SerializeField] private AudioManager Instance;
+    private static AudioManager instance;
+    public static AudioManager Instance
+    {
+       get
+        {
+            if (instance == null) Debug.Log("No hay AudioManager!");
+            return instance;
+        }
+    }
+    
 
     public Sound[] musicSound, sfxSound;
     public AudioSource musicSource, sfxSource;
@@ -19,6 +27,7 @@ public class AudioManager : MonoBehaviour
     {
         if (Instance == null)
         {
+            instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
