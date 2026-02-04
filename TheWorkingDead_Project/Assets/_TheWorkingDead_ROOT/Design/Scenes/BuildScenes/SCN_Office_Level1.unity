@@ -24443,6 +24443,10 @@ PrefabInstance:
       propertyPath: feedbackcanvas
       value: 
       objectReference: {fileID: 1835138751}
+    - target: {fileID: 3021385092628256507, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+      propertyPath: 'conversationsList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 923810529}
     - target: {fileID: 4371115160881366041, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
       propertyPath: m_fontSize
       value: 62.7
@@ -37633,6 +37637,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 143c1cd665a9f431da70870b1632bf01, type: 3}
+--- !u!114 &923810529 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2419157270142519438, guid: 18adc45225c363648b2485cc7abf6ab7, type: 3}
+  m_PrefabInstance: {fileID: 609113845}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83189876d4d389f43b7dd2e925aa112e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NPCConversation
 --- !u!1001 &924381727
 PrefabInstance:
   m_ObjectHideFlags: 0
