@@ -14,6 +14,10 @@ public class NPCConversationTask : TaskBase
     [Header("Extras")]
     [SerializeField] public float rotationSpeed = 5f;
 
+    [Header("Audio")]
+    [SerializeField] AudioManager audioManager;
+    [SerializeField] string TalkSoundName = "voz1";
+
     private bool talking = false;
     private bool alreadyTalked = false;
     private bool girando = false;
@@ -31,7 +35,7 @@ public class NPCConversationTask : TaskBase
     protected override void Start()
     {
         base.Start();
-
+        audioManager = FindAnyObjectByType<AudioManager>();
         if (taskFeedbackCanvas == null)
             taskFeedbackCanvas = FindAnyObjectByType<FadeCanvas>();
 
@@ -164,5 +168,10 @@ public class NPCConversationTask : TaskBase
         base.OnTriggerExit(other);
         if (other.CompareTag("TaskPlayer"))
             playerCerca = false;
+    }
+    public void PlayHablar ()
+    {
+        if (tareaAcabada) return;
+        audioManager.PlaySFX("TalkSoundName");
     }
 }

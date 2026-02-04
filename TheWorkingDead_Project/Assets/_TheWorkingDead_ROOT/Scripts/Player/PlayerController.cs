@@ -106,12 +106,13 @@ public class PlayerController : MonoBehaviour
         if (camTransform == null) camTransform = Camera.main.transform; //busca la cámara main si no tiene cam asignada
         PlayerRB.freezeRotation = true; //congelar rotación de rigid body
         speedcontainer = speed;
-        speedbase=speed;
+        speedbase= speed;
         //sprintVFX.SetActive(false);
         if (audioManager == null)
         {
             audioManager = FindFirstObjectByType<AudioManager>()/*FindObjectOfType<AudioManager>()*/;
         }
+        Debug.Log("AudioManager encontrado: " + audioManager);
     }
 
 
@@ -248,7 +249,7 @@ public class PlayerController : MonoBehaviour
         {
             if (isWalkingSoundPlaying)
             {
-                audioManager.sfxSource.Stop();
+                //audioManager.sfxSource.Stop();
                 isWalkingSoundPlaying = false;
             }
         }

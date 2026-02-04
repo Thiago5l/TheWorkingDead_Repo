@@ -6211,13 +6211,13 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 2d214cc7507711741b5e39d79dca04be, type: 3}
   - name: 
     clip: {fileID: 8300000, guid: 9fa349fba13da1c41b51dadaa2b0350f, type: 3}
-  - name: 
+  - name: voz1
     clip: {fileID: 8300000, guid: 3aa7ae28fa9f44e4fa2ea21d0f30215c, type: 3}
-  - name: 
+  - name: voz2
     clip: {fileID: 8300000, guid: ac7fe30e071bc944b9a8fa3d9ee39ffa, type: 3}
-  - name: 
+  - name: voz3
     clip: {fileID: 8300000, guid: 64d614c96f0dd1c43be62454744fce63, type: 3}
-  - name: 
+  - name: voz4
     clip: {fileID: 8300000, guid: 2dc46df769c2e7748b684464fb13bbfd, type: 3}
   - name: 
     clip: {fileID: 8300000, guid: 2dc46df769c2e7748b684464fb13bbfd, type: 3}
@@ -6232,6 +6232,7 @@ MonoBehaviour:
   musicSource: {fileID: 798047351}
   sfxSource: {fileID: 1312118227}
   oneShotSource: {fileID: 1062223497}
+  caminarSource: {fileID: 1195674894}
 --- !u!4 &168220685
 Transform:
   m_ObjectHideFlags: 0
@@ -6248,6 +6249,7 @@ Transform:
   - {fileID: 798047352}
   - {fileID: 1312118228}
   - {fileID: 1062223498}
+  - {fileID: 1195674895}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &169994661 stripped
@@ -28370,7 +28372,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -32210,6 +32212,10 @@ PrefabInstance:
       propertyPath: sprintspeed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5387577124201428210, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 168220684}
     - target: {fileID: 5387577124201428210, guid: d3e2b87d02d276848b37a57518d70507, type: 3}
       propertyPath: airesapagados
       value: 0
@@ -53309,6 +53315,135 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c090672cda48fb349a4b9416bddc23d6, type: 3}
+--- !u!1 &1195674893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1195674895}
+  - component: {fileID: 1195674894}
+  m_Layer: 0
+  m_Name: CaminarSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1195674894
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195674893}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1195674895
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195674893}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 168220685}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1200676769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57080,6 +57215,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 542974073802568164, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
   m_PrefabInstance: {fileID: 1707790287}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1334608552 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5905090936030481871, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+  m_PrefabInstance: {fileID: 1707790287}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334608550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c2eda3b3dcbb04cbb5af509a5e7807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPCsConversation
 --- !u!1 &1335068267
 GameObject:
   m_ObjectHideFlags: 0
@@ -69766,6 +69912,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2864382618327441610, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2864382618327441610, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2864382618327441610, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1334608552}
+    - target: {fileID: 2864382618327441610, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2864382618327441610, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayHablar
+      objectReference: {fileID: 0}
+    - target: {fileID: 2864382618327441610, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: NPCConversationTask, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2864382618327441610, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4931906570305491720, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
       propertyPath: m_Name
       value: PF_Task_Toni
@@ -69783,6 +69957,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1032389578}
     - target: {fileID: 5905090936030481871, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 168220684}
+    - target: {fileID: 5905090936030481871, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+      propertyPath: TalkSoundName
+      value: voz3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905090936030481871, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
       propertyPath: feedbackcanvas
       value: 
       objectReference: {fileID: 1835138751}
@@ -69790,8 +69972,46 @@ PrefabInstance:
       propertyPath: taskFeedbackCanvas
       value: 
       objectReference: {fileID: 1835138751}
+    - target: {fileID: 5905090936030481871, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+      propertyPath: 'conversationsList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2110458180}
+    - target: {fileID: 5905090936030481871, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+      propertyPath: 'conversationsList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1771983017}
+    - target: {fileID: 6237910519040888968, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237910519040888968, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237910519040888968, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1334608552}
+    - target: {fileID: 6237910519040888968, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237910519040888968, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayHablar
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237910519040888968, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: NPCConversationTask, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237910519040888968, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7264770894845862266, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+    - {fileID: 8712652292725493922, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
@@ -72108,6 +72328,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5995226680237096359, guid: 6357f46476f1bfa41ba284235646d0a8, type: 3}
   m_PrefabInstance: {fileID: 1771397624}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1771983017 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2589922195087366332, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+  m_PrefabInstance: {fileID: 1707790287}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83189876d4d389f43b7dd2e925aa112e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NPCConversation
 --- !u!1001 &1772405681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84711,6 +84942,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 473fc9917e087f9428dd8601e5347e2f, type: 3}
+--- !u!114 &2110458180 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 295907928422430013, guid: 3426edf4b6ee3d546acfb7666dcb814c, type: 3}
+  m_PrefabInstance: {fileID: 1707790287}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83189876d4d389f43b7dd2e925aa112e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueEditor.NPCConversation
 --- !u!1001 &2115603578
 PrefabInstance:
   m_ObjectHideFlags: 0
