@@ -29,9 +29,10 @@ public class SpawnerReciclajeUI : MonoBehaviour
         {
             correcto = true;
         }
-        if(erroresPermitidos >= erroresRonda)
+        if(erroresPermitidos <= erroresRonda)
         {
             fallo = true;
+            erroresRonda = 0;
         }
     }
     public void GenerarObjetos()

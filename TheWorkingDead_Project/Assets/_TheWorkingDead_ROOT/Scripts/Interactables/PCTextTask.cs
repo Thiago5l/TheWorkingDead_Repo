@@ -55,11 +55,11 @@ public class PCTextTask : TaskBase
 
     private void Update()
     {
-        if(Input.anyKeyDown)
-        {
-            AudioManager.Instance.sfxSource.pitch = Random.Range(0.1f, 2);
-            AudioManager.Instance.PlaySFX(botonSoundName);
-        }
+        //if(Input.anyKeyDown)
+        //{
+        //    AudioManager.Instance.sfxSource.pitch = Random.Range(1f, 2);
+        //    AudioManager.Instance.PlaySFX(botonSoundName);
+        //}
         if (!interactuando || tareaAcabada) return;
 
         timeCurrent -= Time.deltaTime;
