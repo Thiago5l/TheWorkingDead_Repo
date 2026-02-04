@@ -17,6 +17,8 @@ public class CoinManager : MonoBehaviour
     public void Updatecoins()
     {
         NumberofCoins.text = playerController.coins.ToString();
+        AudioManager.Instance.oneShotSource.loop = false;
+        AudioManager.Instance.PlayOneShot("moneda");
 
     }
     public void AnimateUI()
