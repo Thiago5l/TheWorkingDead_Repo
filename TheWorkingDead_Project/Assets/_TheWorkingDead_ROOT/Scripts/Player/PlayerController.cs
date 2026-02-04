@@ -112,7 +112,6 @@ public class PlayerController : MonoBehaviour
         {
             audioManager = FindFirstObjectByType<AudioManager>()/*FindObjectOfType<AudioManager>()*/;
         }
-        Debug.Log("AudioManager encontrado: " + audioManager);
     }
 
 
@@ -212,6 +211,7 @@ public class PlayerController : MonoBehaviour
 
         HandleMovement();
         HandleRotation();
+        HandleWalkingSound();
     }
 
     void HandleMovement()
@@ -235,12 +235,13 @@ public class PlayerController : MonoBehaviour
     }
     void HandleWalkingSound()
     {
-        bool isMoving = moveImput.magnitude > 0.1f;
+        bool isMoving = moveImput.magnitude >= 0.1f;
 
-        if (isMoving && isGrounded && !playerOcupado)
+        if (isMoving && !playerOcupado)
         {
             if (!isWalkingSoundPlaying)
             {
+                audioManager.sfxSource.loop = true;
                 audioManager.PlaySFX(walkSoundName);
                 isWalkingSoundPlaying = true;
             }
@@ -249,7 +250,8 @@ public class PlayerController : MonoBehaviour
         {
             if (isWalkingSoundPlaying)
             {
-                //audioManager.sfxSource.Stop();
+                audioManager.sfxSource.Stop();
+                audioManager.sfxSource.loop = false;
                 isWalkingSoundPlaying = false;
             }
         }

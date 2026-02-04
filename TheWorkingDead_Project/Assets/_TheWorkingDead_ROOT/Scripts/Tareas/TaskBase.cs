@@ -21,6 +21,12 @@ public abstract class TaskBase : MonoBehaviour
     public bool playerCerca;
     public bool tareaAcabada;
     public bool interactuando;
+
+    [Header("Sonido")]
+    [SerializeField] AudioManager audioManager;
+    [SerializeField] string bienSoundName = "Bien";
+    [SerializeField] string malSoundName = "Mal";
+
     protected GameObject FindInactiveObjectByTag(string tag)
     {
         GameObject result = null;
@@ -209,12 +215,19 @@ public abstract class TaskBase : MonoBehaviour
         taskExclamation.SetActive(mostrar);
     }
 
-
+    private void Awake()
+    {
+        if (audioManager == null)
+        {
+            audioManager = FindFirstObjectByType<AudioManager>();
+        }
+    }
 
     #endregion
     #region win/loose
     protected void Win()
     {
+        audioManager.PlayOneShot(bienSoundName);
         tareaAcabada = true;
         interactuando = false;
         feedbackcanvas.PlayWin();
@@ -228,10 +241,15 @@ public abstract class TaskBase : MonoBehaviour
     }
     protected void Loose()
     {
+        audioManager.oneShotSource.pitch = 0.5f;
+        audioManager.PlayOneShot(malSoundName);
+        
+
         feedbackcanvas.PlayLose();
         player.gameObject.GetComponent<PlayerController>().playerOcupado = false;
         uiTarea.gameObject.SetActive(false);
         interactuando = false;
+        audioManager.oneShotSource.pitch = 1;
         StopAllCoroutines();
     }
     #endregion
