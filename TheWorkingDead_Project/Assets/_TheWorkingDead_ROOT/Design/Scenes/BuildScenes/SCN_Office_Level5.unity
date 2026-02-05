@@ -7172,7 +7172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4391183372253775275, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
       propertyPath: cantidadPorRonda
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4391183372253775275, guid: d7acd4c5e88ba084c8b11f86831b578b, type: 3}
       propertyPath: erroresPermitidos
@@ -100525,7 +100525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 954870532862633175, guid: c6524a2253a065b429c22fab67757832, type: 3}
       propertyPath: tiempoMaximo
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 954870532862633175, guid: c6524a2253a065b429c22fab67757832, type: 3}
       propertyPath: feedbackcanvas

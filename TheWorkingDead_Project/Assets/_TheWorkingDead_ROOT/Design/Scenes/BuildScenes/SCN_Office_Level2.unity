@@ -100192,7 +100192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 954870532862633175, guid: c6524a2253a065b429c22fab67757832, type: 3}
       propertyPath: tiempoMaximo
-      value: 15
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 954870532862633175, guid: c6524a2253a065b429c22fab67757832, type: 3}
       propertyPath: feedbackcanvas
