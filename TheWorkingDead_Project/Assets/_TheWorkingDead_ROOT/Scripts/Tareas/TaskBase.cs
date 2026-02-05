@@ -221,6 +221,7 @@ public abstract class TaskBase : MonoBehaviour
     #region win/loose
     protected void Win()
     {
+        AudioManager.Instance.oneShotSource.pitch = 1.5f;
         AudioManager.Instance.PlayOneShot(bienSoundName);
         tareaAcabada = true;
         interactuando = false;
@@ -232,6 +233,9 @@ public abstract class TaskBase : MonoBehaviour
         CompletarTarea();
         if (taskExclamation != null)
             taskExclamation.SetActive(false);
+
+        AudioManager.Instance.oneShotSource.pitch = 1;
+
     }
     protected void Loose()
     {
@@ -243,8 +247,8 @@ public abstract class TaskBase : MonoBehaviour
         player.gameObject.GetComponent<PlayerController>().playerOcupado = false;
         uiTarea.gameObject.SetActive(false);
         interactuando = false;
-        AudioManager.Instance.oneShotSource.pitch = 1;
         StopAllCoroutines();
+        AudioManager.Instance.oneShotSource.pitch = 1;
     }
     #endregion
     #region Abstract
