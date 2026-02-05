@@ -8,10 +8,24 @@ public class coin : MonoBehaviour
     public Transform[] spawnPoints;
     [Header("flags")]
     [SerializeField] private bool playercerca = false;
+    [SerializeField] private bool cangivecoin;
+    private void Start()
+    {
+        cangivecoin=true;
+        if (Random.value <= 0.5f)
+        {
+            if (spawnPoints.Length > 0)
+            {
+                int randomIndex = Random.Range(0, spawnPoints.Length);
+                transform.position = spawnPoints[randomIndex].position;
+            }
+        }
+    }
     public void givecoin()
     {
-        if (!playercerca) return;
+        if (!playercerca || !cangivecoin) return;
 
+        cangivecoin = false;
         playerController.coins++;
         CoinManager.Updatecoins();
         gameObject.SetActive(false);
