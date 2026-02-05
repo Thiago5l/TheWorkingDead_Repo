@@ -52,11 +52,8 @@ public class VendingMachine : MonoBehaviour
     }
     public void DisableShop()
     {
-        if (shopActive)
-        {
             shopCanvas.SetActive(false);
             PlayerController.playerOcupado=false;
-        }
     }
     public void CambiarColorOutline(Color color)
     {
