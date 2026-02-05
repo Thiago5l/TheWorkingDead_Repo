@@ -153,7 +153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -2511.4}
+  m_AnchoredPosition: {x: 0, y: -2712.4}
   m_SizeDelta: {x: 256.3713, y: 256.3713}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &345038521
@@ -482,7 +482,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.0000019073}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 556.9819, y: 313.3024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &714144021
@@ -692,8 +692,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0050041, y: -1262.4238}
-  m_SizeDelta: {x: 800.01, y: 2075.5398}
+  m_AnchoredPosition: {x: 0.0050041, y: -1350.282}
+  m_SizeDelta: {x: 800.01, y: 2251.256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1430345915
 MonoBehaviour:
@@ -730,11 +730,12 @@ MonoBehaviour:
   m_text: "Francisco Rodriguez\nCharacter & Concept Artist\n\nSara Lopez\t\n3D, VFX
     Artist & Programer\n\nToni Diaz\nAnimator. Programmer & Game Designer\n\nRaquel
     Garcer\xE1n\n3D Artist\n\nSantiago Marqu\xE9s \nMain Programmer\n\nFelix Rojas
-    \nGUI Designer & 3D Artist\n\n\nNPCs\nAna Coronado\nRoc\xEDo Guitierrez\nMaria
-    Soledad Rubio\nPau Comes Del Mazo\nIgnacio Company Moya\nJos\xE9 Antonio Carri\xF3n\nUwe
-    Schneider Jimenez\nJorge Martinez Ruiz\nJos\xE9 Manuel Guevara\nJos\xE9 Luis
-    L\xE1zaro\nMaria Angeles Crespo\n\nInspector\nJuan Peralta\n\nMenci\xF3n especial
-    a\nNuestras mascotas :)"
+    \nGUI Designer & 3D Artist\n\nBadabum.Music & @arrillagamj_comp\nM\xFAsica &
+    SFX\n\n\nNPCs\nAna Coronado\nRoc\xEDo Guitierrez\nMaria Soledad Rubio\nPau Comes
+    Del Mazo\nIgnacio Company Moya\nJos\xE9 Antonio Carri\xF3n\nUwe Schneider Jimenez\nJorge
+    Martinez Ruiz\nJos\xE9 Manuel Guevara\nJos\xE9 Luis L\xE1zaro\nMaria Angeles
+    Crespo\n\nInspector\nJuan Peralta\n\nMenci\xF3n especial a\nNuestras mascotas
+    :)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 474da2a9fdfef6c4da35138dafc7f1ac, type: 2}
   m_sharedMaterial: {fileID: 3527793882404320432, guid: 474da2a9fdfef6c4da35138dafc7f1ac, type: 2}
@@ -1000,7 +1001,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -2658}
+  m_AnchoredPosition: {x: 0, y: -2859}
   m_SizeDelta: {x: 56.9845, y: 48.83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2099271673
