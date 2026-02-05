@@ -126,7 +126,7 @@ public class NPCConversationTask : TaskBase
         talking = false;
         alreadyTalked = true;
         tareaAcabada = true;
-
+        AudioManager.Instance.sfxSource.Stop();
         Win();
     }
 
@@ -136,7 +136,7 @@ public class NPCConversationTask : TaskBase
 
         girando = false;
         talking = false;
-
+        AudioManager.Instance.musicSource.Stop();
         Loose();
 
         var controller = player?.GetComponent<PlayerController>();

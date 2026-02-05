@@ -132,6 +132,7 @@ public class HoldToSkipVideo : MonoBehaviour
 
     void SkipVideo()
     {
+        AudioManager.Instance.musicSource.Play();
         SceneManager.LoadScene("SCN_Tutorial");
     }
 }

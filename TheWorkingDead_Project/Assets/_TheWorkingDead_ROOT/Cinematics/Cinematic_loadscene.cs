@@ -6,7 +6,7 @@ public class Cinematic_loadscene : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        AudioManager.Instance.musicSource.Stop();
     }
 
     // Update is called once per frame
@@ -15,7 +15,7 @@ public class Cinematic_loadscene : MonoBehaviour
         
     }
     public void loadsceneMainMenu()
-    { SceneManager.LoadScene("SCN_MainMenu_Test"); }
+    { SceneManager.LoadScene("SCN_MainMenu_Test"); AudioManager.Instance.musicSource.Play(); }
     public void loadsceneGame()
-    { SceneManager.LoadScene("SCN_Tutorial"); }
+    { AudioManager.Instance.musicSource.Play(); SceneManager.LoadScene("SCN_Tutorial");  }
 }
