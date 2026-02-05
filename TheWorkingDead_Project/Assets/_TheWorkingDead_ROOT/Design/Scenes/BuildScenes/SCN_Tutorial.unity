@@ -20144,6 +20144,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ==PauseMenu==
       objectReference: {fileID: 0}
+    - target: {fileID: 8527113500815854410, guid: cae7012859f26a34fae4be0d6a67680a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8823213685363226166, guid: cae7012859f26a34fae4be0d6a67680a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

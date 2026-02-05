@@ -204,6 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 418609493}
   - component: {fileID: 418609494}
+  - component: {fileID: 418609495}
   m_Layer: 5
   m_Name: Slide
   m_TagString: Untagged
@@ -257,6 +258,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &418609495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418609492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c1b905cd5e2d634ca94ddaac47ed641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LoadSceneSimple
+  sceneToLoad: SCN_Main_Menu
 --- !u!1 &547919154
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,14 +742,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Francisco Rodriguez\nCharacter & Concept Artist\n\nSara Lopez\t\n3D, VFX
-    Artist & Programer\n\nToni Diaz\nAnimator. Programmer & Game Designer\n\nRaquel
-    Garcer\xE1n\n3D Artist\n\nSantiago Marqu\xE9s \nMain Programmer\n\nFelix Rojas
-    \nGUI Designer & 3D Artist\n\nBadabum.Music & @arrillagamj_comp\nM\xFAsica &
-    SFX\n\n\nNPCs\nAna Coronado\nRoc\xEDo Guitierrez\nMaria Soledad Rubio\nPau Comes
-    Del Mazo\nIgnacio Company Moya\nJos\xE9 Antonio Carri\xF3n\nUwe Schneider Jimenez\nJorge
-    Martinez Ruiz\nJos\xE9 Manuel Guevara\nJos\xE9 Luis L\xE1zaro\nMaria Angeles
-    Crespo\n\nInspector\nJuan Peralta\n\nMenci\xF3n especial a\nNuestras mascotas
-    :)"
+    Artist & Programer\n\nToni Diaz\nDirection, Art, Animator. Programmer & Game
+    Designer\n\nRaquel Garcer\xE1n\n3D Artist\n\nSantiago Marqu\xE9s \nMain Programmer\n\nFelix
+    Rojas \nGUI Designer & 3D Artist\n\nBadabum.Music & @arrillagamj_comp\nM\xFAsica
+    & SFX\n\n\nNPCs\nAna Coronado\nRoc\xEDo Guitierrez\nMaria Soledad Rubio\nPau
+    Comes Del Mazo\nIgnacio Company Moya\nJos\xE9 Antonio Carri\xF3n\nUwe Schneider
+    Jimenez\nJorge Martinez Ruiz\nJos\xE9 Manuel Guevara\nJos\xE9 Luis L\xE1zaro\nMaria
+    Angeles Crespo\n\nInspector\nJuan Peralta\n\nMenci\xF3n especial a\nNuestras
+    mascotas :)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 474da2a9fdfef6c4da35138dafc7f1ac, type: 2}
   m_sharedMaterial: {fileID: 3527793882404320432, guid: 474da2a9fdfef6c4da35138dafc7f1ac, type: 2}

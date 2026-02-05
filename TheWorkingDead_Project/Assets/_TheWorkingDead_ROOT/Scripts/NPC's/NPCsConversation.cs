@@ -18,7 +18,7 @@ public class NPCConversationTask : TaskBase
     //[SerializeField] AudioManager audioManager;
     [SerializeField] string TalkSoundName = "voz1";
 
-    private bool talking = false;
+    public bool talking = false;
     private bool alreadyTalked = false;
     private bool girando = false;
 
