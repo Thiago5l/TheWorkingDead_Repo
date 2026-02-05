@@ -221,7 +221,6 @@ public abstract class TaskBase : MonoBehaviour
     #region win/loose
     protected void Win()
     {
-        AudioManager.Instance.oneShotSource.pitch = 1.5f;
         AudioManager.Instance.PlayOneShot(bienSoundName);
         tareaAcabada = true;
         interactuando = false;
@@ -234,12 +233,10 @@ public abstract class TaskBase : MonoBehaviour
         if (taskExclamation != null)
             taskExclamation.SetActive(false);
 
-        AudioManager.Instance.oneShotSource.pitch = 1;
 
     }
     protected void Loose()
     {
-        AudioManager.Instance.oneShotSource.pitch = 0.5f;
         AudioManager.Instance.PlayOneShot(malSoundName);
         
 
@@ -248,7 +245,6 @@ public abstract class TaskBase : MonoBehaviour
         uiTarea.gameObject.SetActive(false);
         interactuando = false;
         StopAllCoroutines();
-        AudioManager.Instance.oneShotSource.pitch = 1;
     }
     #endregion
     #region Abstract
