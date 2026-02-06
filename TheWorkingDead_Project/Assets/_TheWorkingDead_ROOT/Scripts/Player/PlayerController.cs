@@ -347,7 +347,7 @@ public class PlayerController : MonoBehaviour
         if (snackusado || snacks <= 0) return; // evita usar otro snack
 
         snackusado = true; // marca que un snack está en uso
-        AudioManager.Instance.PlaySFX(snackSoundName);
+        AudioManager.Instance.PlayOneShot(snackSoundName);
 
         // seleccionar icono
         int snackIndex = snacks - 1;

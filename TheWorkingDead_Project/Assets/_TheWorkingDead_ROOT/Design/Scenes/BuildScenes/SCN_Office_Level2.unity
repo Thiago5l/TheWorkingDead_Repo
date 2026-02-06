@@ -33553,7 +33553,7 @@ PrefabInstance:
       objectReference: {fileID: 875105508}
     - target: {fileID: 8151358619113324464, guid: 1545c5bf95c8d8f4ab7bb2fb93ec160b, type: 3}
       propertyPath: spawnPoints.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8151358619113324464, guid: 1545c5bf95c8d8f4ab7bb2fb93ec160b, type: 3}
       propertyPath: 'spawnPoints.Array.data[0]'
@@ -33563,11 +33563,20 @@ PrefabInstance:
       propertyPath: 'spawnPoints.Array.data[1]'
       value: 
       objectReference: {fileID: 428847133}
+    - target: {fileID: 8151358619113324464, guid: 1545c5bf95c8d8f4ab7bb2fb93ec160b, type: 3}
+      propertyPath: 'spawnPoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 789432904}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1545c5bf95c8d8f4ab7bb2fb93ec160b, type: 3}
+--- !u!4 &789432904 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3458117375867579299, guid: 1545c5bf95c8d8f4ab7bb2fb93ec160b, type: 3}
+  m_PrefabInstance: {fileID: 789432903}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &790973050 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1169685547649474326, guid: 473fc9917e087f9428dd8601e5347e2f, type: 3}
