@@ -60347,11 +60347,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a922781db6b8994d9ce4d81282888d2, type: 3}
---- !u!4 &1192945335 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5453327163604753029, guid: f2f35398f1786ac4b9e707aa78ba2e31, type: 3}
-  m_PrefabInstance: {fileID: 7854752283342553729}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1194165429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -83682,11 +83677,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6357f46476f1bfa41ba284235646d0a8, type: 3}
---- !u!4 &1749537642 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5115612775684463195, guid: f2f35398f1786ac4b9e707aa78ba2e31, type: 3}
-  m_PrefabInstance: {fileID: 7854752283342553729}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1749638476
 GameObject:
   m_ObjectHideFlags: 0
@@ -99857,7 +99847,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3122548257701435940, guid: f2f35398f1786ac4b9e707aa78ba2e31, type: 3}
       propertyPath: spawnPoints.Array.size
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3122548257701435940, guid: f2f35398f1786ac4b9e707aa78ba2e31, type: 3}
       propertyPath: 'spawnPoints.Array.data[0]'
@@ -99882,11 +99872,11 @@ PrefabInstance:
     - target: {fileID: 3122548257701435940, guid: f2f35398f1786ac4b9e707aa78ba2e31, type: 3}
       propertyPath: 'spawnPoints.Array.data[5]'
       value: 
-      objectReference: {fileID: 1749537642}
+      objectReference: {fileID: 935031886}
     - target: {fileID: 3122548257701435940, guid: f2f35398f1786ac4b9e707aa78ba2e31, type: 3}
       propertyPath: 'spawnPoints.Array.data[6]'
       value: 
-      objectReference: {fileID: 1192945335}
+      objectReference: {fileID: 935031886}
     - target: {fileID: 3122548257701435940, guid: f2f35398f1786ac4b9e707aa78ba2e31, type: 3}
       propertyPath: 'spawnPoints.Array.data[7]'
       value: 
@@ -100229,10 +100219,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: WinCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1319507889210441641, guid: 1d2ebab8df8c1db4fa6ece2849b5e143, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2266928963377375987, guid: 1d2ebab8df8c1db4fa6ece2849b5e143, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -100314,21 +100300,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4177540135787082820, guid: 1d2ebab8df8c1db4fa6ece2849b5e143, type: 3}
-      propertyPath: panel
-      value: 
-      objectReference: {fileID: 1550445825}
-    - target: {fileID: 4177540135787082820, guid: 1d2ebab8df8c1db4fa6ece2849b5e143, type: 3}
-      propertyPath: winCanvas
-      value: 
-      objectReference: {fileID: 1550445824}
-    - target: {fileID: 4177540135787082820, guid: 1d2ebab8df8c1db4fa6ece2849b5e143, type: 3}
       propertyPath: PlayerController
       value: 
       objectReference: {fileID: 875105508}
-    - target: {fileID: 5482786222629205485, guid: 1d2ebab8df8c1db4fa6ece2849b5e143, type: 3}
-      propertyPath: m_UpdateMode
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
