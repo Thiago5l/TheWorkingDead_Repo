@@ -48558,7 +48558,7 @@ MonoBehaviour:
   tareasObligatorias:
   - {fileID: 9120860583668444841}
   - {fileID: 829853577}
-  maxNPCsEnTareas: 1
+  maxNPCsEnTareas: 3
   Uwe: {fileID: 1173674809}
   wincanvas: {fileID: 1550445824}
 --- !u!4 &1033079373 stripped

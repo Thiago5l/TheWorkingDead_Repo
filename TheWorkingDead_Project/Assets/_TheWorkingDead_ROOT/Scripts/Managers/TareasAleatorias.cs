@@ -100,7 +100,7 @@ public class TareasAleatorias : MonoBehaviour
         }
 
         // Uwe opcional
-        bool incluirUwe = (Uwe != null && Random.value < 0.5f);
+        bool incluirUwe = (Uwe != null && Random.value < 0.2f);
 
         if (incluirUwe && !OrdenTareas.Contains(Uwe))
         {

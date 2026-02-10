@@ -25121,6 +25121,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
+--- !u!1 &591688110 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3491279941596715678, guid: 87b4f5af3023bc948a320336ee38954f, type: 3}
+  m_PrefabInstance: {fileID: 591688109}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &591989023 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2865855573949544870, guid: eef4fa29f66ca0d4ba47d5eac12ce57f, type: 3}
@@ -48398,6 +48403,7 @@ MonoBehaviour:
   - {fileID: 1849122840}
   - {fileID: 7197434}
   - {fileID: 1152755189}
+  - {fileID: 591688110}
   TareasPorNivel: 4
   tareasHechas: 0
   winLevel: 0
@@ -48407,7 +48413,7 @@ MonoBehaviour:
   - {fileID: 0}
   tareasObligatorias:
   - {fileID: 1160209559}
-  maxNPCsEnTareas: 1
+  maxNPCsEnTareas: 2
   Uwe: {fileID: 1173674809}
   wincanvas: {fileID: 1550445824}
 --- !u!4 &1033079373 stripped
@@ -77687,23 +77693,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4212796700952751711, guid: 26ca1eb12bd8bf34e921dc4fce240386, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.09718799
       objectReference: {fileID: 0}
     - target: {fileID: 4212796700952751711, guid: 26ca1eb12bd8bf34e921dc4fce240386, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: -0.09718799
       objectReference: {fileID: 0}
     - target: {fileID: 4212796700952751711, guid: 26ca1eb12bd8bf34e921dc4fce240386, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000029802322
+      value: 0.700396
       objectReference: {fileID: 0}
     - target: {fileID: 4212796700952751711, guid: 26ca1eb12bd8bf34e921dc4fce240386, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000029802322
+      value: 0.700396
       objectReference: {fileID: 0}
     - target: {fileID: 4212796700952751711, guid: 26ca1eb12bd8bf34e921dc4fce240386, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212796700952751711, guid: 26ca1eb12bd8bf34e921dc4fce240386, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 164.2
       objectReference: {fileID: 0}
     - target: {fileID: 4212796700952751711, guid: 26ca1eb12bd8bf34e921dc4fce240386, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -96587,7 +96597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2091247636
 Transform:
   m_ObjectHideFlags: 0
