@@ -21,6 +21,8 @@ public class OrdenadorTask : TaskBase
     [SerializeField] private float flashTime = 0.2f;
     [SerializeField] private FadeCanvas taskFeedbackCanvas;
 
+    private bool tareaActiva = false;
+
     [Header("Audio")]
     //[SerializeField] AudioManager audioManager;
     [SerializeField] string cafeSoundName = "Agua";
@@ -39,13 +41,14 @@ public class OrdenadorTask : TaskBase
         value = startValue;
         taskBar.fillAmount = startValue;
         taskBar.gameObject.SetActive(false);
+        tareaActiva = false;
     }
 
     protected override void IniciarTarea()
     {
         value = startValue;
         winValue = 0f;
-
+        tareaActiva = true;
         taskBar.gameObject.SetActive(true);
         UpdateBar();
 
@@ -66,8 +69,10 @@ public class OrdenadorTask : TaskBase
     private void Update()
     {
         if (!interactuando || tareaAcabada) return;
-
-        UpdateBar();
+        if (tareaActiva)
+        {
+            UpdateBar();
+        }
         CheckWinZone();
         CheckFail();
     }
@@ -115,6 +120,7 @@ public class OrdenadorTask : TaskBase
         if (value <= 0f)
         {
             Loose();
+            tareaActiva = false;
             CancelarTarea();
         }
     }
@@ -123,6 +129,7 @@ public class OrdenadorTask : TaskBase
     {
         Win();
         taskBar.gameObject.SetActive(false);
+        tareaActiva = false;
         CompletarTarea();
     }
 
