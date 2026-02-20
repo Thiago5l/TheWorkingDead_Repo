@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DialogueEditor;
+using UnityEngine.UI;
 
 public class NPCConversationTask : TaskBase
 {
@@ -10,6 +11,7 @@ public class NPCConversationTask : TaskBase
 
     [Header("Feedback")]
     [SerializeField] private FadeCanvas taskFeedbackCanvas;
+    [SerializeField] private Image taskExclamationRenderer;
 
     [Header("Extras")]
     [SerializeField] public float rotationSpeed = 5f;
@@ -50,7 +52,7 @@ public class NPCConversationTask : TaskBase
         // Mostrar/hide exclamacion y canvas
         if (playerCerca && !alreadyTalked && !tareaAcabada)
         {
-            if (taskExclamation != null) taskExclamation.SetActive(true);
+            if (taskExclamation != null) taskExclamationRenderer.enabled = true;
             canvasInteractKey?.SetActive(true);
         }
         else
